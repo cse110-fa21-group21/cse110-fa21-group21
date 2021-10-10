@@ -1,17 +1,19 @@
 # Group 21
-##　Topic　Meeting
 
-#### Attendance
+## (Topic) Meeting
+
+### Attendance
 **Present:** 
 1. Name
+   
 **Absent:** 
 1. Name 
 
-#### Start Time and Place
+### Start Time and Place
 **Time (PDT):** 
 **Place:** 
 
-#### Updates <!-- Any updates that any members need to report -->
+### Updates <!-- Any updates that any members need to report -->
 1. **Name**
    - Topic
      - Description
@@ -19,7 +21,7 @@
    - Topic
      - Description
 
-#### Agenda
+### Agenda
 **Old / Open Issues:**  <!-- Any old/Open business from the previous meeting -->
 - Open Issues
   - Discussion Summary
@@ -28,12 +30,12 @@
 **Notes:**
 - Anything to take note of
   
-  
+
 **New / Unresolved Business:** <!-- New or still unresolved business to be discussed next Meeting (Even Open Issues that weren't resolved) -->
 - New Topics 
   - Discussion Summary
 - or Unresolved Topics
   - Discussion Summary
 
-#### Meeting End Time
+### Meeting End Time
 **Time (PDT):** 
