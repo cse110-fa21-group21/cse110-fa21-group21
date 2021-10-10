@@ -11,8 +11,8 @@
 1. Name 
 
 ### Start Time and Place
-**Time (PDT):** 
-**Place:** 
+- **Time (PDT):**
+- **Place:**
 
 ### Agenda
 **Old / Open Issues:**  <!-- Any old/Open business from the previous meeting -->
@@ -41,4 +41,4 @@
   - Discussion Summary
 
 ### Meeting End Time
-**Time (PDT):** 
+- **Time (PDT):** 

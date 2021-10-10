@@ -10,8 +10,8 @@
 1. Name 
 
 ### Start Time and Place
-**Time (PDT):** 
-**Place:** 
+- **Time (PDT):** 
+- **Place:** 
 
 ### Updates <!-- Any updates that any members need to report -->
 1. **Name**
@@ -38,4 +38,4 @@
   - Discussion Summary
 
 ### Meeting End Time
-**Time (PDT):** 
+- **Time (PDT):** 
