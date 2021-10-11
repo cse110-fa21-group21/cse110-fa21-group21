@@ -59,7 +59,8 @@
   - "Hi, "I'm (name) ..."
   - Maybe everybody on Zoom at once? Rehearse and do it?
   - Maybe group the videos sections according to Major
-  -**Responsible Leaders:**  Maggy, Ken, Richard
+  - **Responsible Leaders:**  Maggy, Ken, Richard
+  - **Resolved**
 - Choosing Weekly Meeting Day
   - **Unresolved**
   
