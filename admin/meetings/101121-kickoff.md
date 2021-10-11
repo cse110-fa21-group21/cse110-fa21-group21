@@ -28,7 +28,7 @@
     - **Unresolved:** 
 
 - Develop Team Contract
-  - Rule: 
+  - Rule: (Not set in stone, all suggestions)
     - At least check Slack once a day. Let people know you saw the message (Maybe emoji)
     - Before talking to leader, talk to the person you're having a problem with
     - Tell group immediately if you think you won't be able to help out much.
@@ -56,7 +56,7 @@
   - **Resolved:**
 - Team Intro Video
   - Everybody takes a video of themselves to for introduction
-  - "Hi, "I'm (name) 
+  - "Hi, "I'm (name) ..."
   - Maybe everybody on Zoom at once? Rehearse and do it?
   - Maybe group the videos sections according to Major
   -**Responsible Leaders:**  Maggy, Ken, Richard
@@ -67,7 +67,7 @@
 - To-do
   - Everybody sign their copy of the team contract
   - Everybody take a video of themselves introducing themselves
-  - Every project is open to suggestions from members!
+- Every project is open to suggestions from members!
   
 
 **New / Unresolved Business:** <!-- New or still unresolved business to be discussed next Meeting (Even Open Issues that weren't resolved) -->
