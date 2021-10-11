@@ -25,6 +25,7 @@
 **Old / Open Issues:**  <!-- Any old/Open business from the previous meeting -->
 - Open Issues
   - Discussion Summary
+    - **Responsible Leader**
     - **Resolved:** (Key Take Away) <!-- Only add when issue was resolved-->
 
 **Notes:**
