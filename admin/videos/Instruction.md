@@ -11,9 +11,9 @@
 1. Introduce yourself
 2. Do something fun
 3. Doing a ending:
-  - CE group say: WE ARE 10 
+  - CE group say: WE ARE NINE 
   - CS group say: PLUS 
-  - MATH-CS group: NINE
+  - MATH-CS group: TEN
 
 **Keep in mind maximum time limit is 2:30 for the entire video**
 
