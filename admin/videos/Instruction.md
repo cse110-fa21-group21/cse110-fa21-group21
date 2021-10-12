@@ -15,6 +15,7 @@
   - CS group say: PLUS 
   - MATH-CS group: TEN
 
+**When recording on zoom, person recording should turn off non-participant videos**
 **Keep in mind maximum time limit is 2:30 for the entire video**
 
 ## Afterward
