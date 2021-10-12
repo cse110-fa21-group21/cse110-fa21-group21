@@ -13,4 +13,5 @@
 
 ## Afterward
 1. Check your video have sounds
-2. Send you video to the email: yic006@ucsd.edu
+2. Send your video to the email: yic006@ucsd.edu
+3. Please do it early. If you can send me your video before WED 3pm would be nice.
