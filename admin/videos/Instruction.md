@@ -4,7 +4,7 @@
 
 1. Create a new meeting in zoom and send your link to your member
 2. Decide who is going to recording the meeting
-3. Make sure you are on ______
+3. Make sure your view is on Gallery so everyone showup
 
 ## Information within the video
 
