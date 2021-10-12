@@ -15,6 +15,8 @@
   - CS group say: PLUS 
   - MATH-CS group: NINE
 
+**Keep in mind maximum time limit is 2:30**
+
 ## Afterward
 1. Check your video have sounds
 2. Send your video to the email: yic006@ucsd.edu
