@@ -15,7 +15,7 @@
   - CS group say: PLUS 
   - MATH-CS group: NINE
 
-**Keep in mind maximum time limit is 2:30**
+**Keep in mind maximum time limit is 2:30 for the entire video**
 
 ## Afterward
 1. Check your video have sounds
