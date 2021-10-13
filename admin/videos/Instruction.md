@@ -9,14 +9,14 @@
 ## Information within the video
 
 1. Introduce yourself
-2. Do something fun
-3. Doing a ending:
+2. Doing a ending:
   - CE group say: WE ARE NINE 
   - CS group say: PLUS 
   - MATH-CS group: TEN
 
 **When recording on zoom, person recording should turn off non-participant videos** <br>
 **Keep in mind maximum time limit is 2:30 for the entire video**
+**Probably only 10 seconds per person**
 
 ## Afterward
 1. Check your video have sounds
