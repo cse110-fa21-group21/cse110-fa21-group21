@@ -6,6 +6,7 @@
 2. Decide who is going to recording the meeting
 3. Make sure your view is on Gallery so everyone showup
 
+
 ## Information within the video
 
 1. Introduce yourself
