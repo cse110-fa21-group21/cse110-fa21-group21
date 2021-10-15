@@ -1,7 +1,7 @@
 # Team 9+10
 **Team #21**
 
-![Team 21 Logo](https://addlinkhere)
+![Team 21 Logo](admin/branding/CSE%20110%20Group%2021%20Logo.png)
 
 ## Team Members
 
