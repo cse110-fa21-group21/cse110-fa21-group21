@@ -44,7 +44,7 @@
   - **_We will be open to feedback_**
     - When our teammates find an issue with our work or lack thereof, we will make an effort to picture what it is that has foreced their hand into conflict.
 
-I, <insert name here>, will abide by the rules stated above. By signing this contract I accept all terms and conditions stated and will do my best to respect them through practice.
+I, \<insert name here\>, will abide by the rules stated above. By signing this contract I accept all terms and conditions stated and will do my best to respect them through practice.
 
 Sign:
 
