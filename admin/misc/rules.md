@@ -19,7 +19,7 @@
     - Responses will be reviewed during the TA meeting on Monday.
     - Forms will be sent out Friday noon 12pm.
   - **_We will be direct..._**
-    -Talk to the person you're having a problem with before you go to the team leader for conflict resolution.
+    - Talk to the person you're having a problem with before you go to the team leader for conflict resolution.
     - Leader will ensure the preceding clause is followed, before acting on concerns.
   - **_We will be vocal..._**
     - Tell the group as soon as possible if you think you won't be able to help out much.
