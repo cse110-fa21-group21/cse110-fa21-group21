@@ -1,3 +1,3 @@
 # cse110-fa21-group21
 
-add Link to team.md group page
+[Link to our Team Page!](admin/team.md)
