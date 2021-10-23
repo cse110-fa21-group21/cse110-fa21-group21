@@ -12,9 +12,10 @@
 6. Maggie
 7. Henry
 8. Rohan
+9. Richard
    
 **Absent:** 
-1. Richard
+1. Ken
 2. Ludvig
 
 ### Start Time and Place
@@ -22,12 +23,18 @@
 - **Place:** Zoom
 
 ### Updates <!-- Any updates that any members need to report -->
-1. **Name**
-   - Topic
-     - Description
-2. **Name**
-   - Topic
-     - Description
+1. Extra Brainstorming notes
+   - Adding stuff to the [Miro board](https://miro.com/app/board/o9J_lotcOXE=/)
+     - [Making rice example](https://www.delish.com/cooking/a20089653/how-to-cook-rice/)
+     - Try to have recipe with lots of [pictures](https://foodgawker.com/) can also do extra tips at the end of the recipe. Also variant and substitution tips for when students are missing some ingredients. 
+     - Be aware of [font](https://www.epicurious.com/) Also has a related recipes section that can help a lot
+     - henry- text based ideas
+     - Quick and Easy, recipe already put in [categories](https://www.simplyrecipes.com/) open for kids, breakkie, lunch, dinner
+     - Feeling lucking button, spice levels and working tags
+     - implementing a filter for ingredients, budge
+     - click or tap to get information for local market data
+     - 
+
 
 ### Agenda
 **Old / Open Issues:**  <!-- Any old/Open business from the previous meeting -->
