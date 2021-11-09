@@ -19,10 +19,9 @@ async function bindSearch(){
     searchBar.addEventListener('input', event =>{
         searchBar.textContent = event.target.value;
     });
-    
-    searchBtn.addEventListener('click', event =>{
+
+    searchBtn.addEventListener('click',() => {
         searchQuery = searchBar.textContent;
-        console.log(searchQuery);
         baseURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=${searchQuery}`;
         fetchAPI();
     });
