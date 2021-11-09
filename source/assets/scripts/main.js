@@ -1,5 +1,4 @@
 //main.js
-
 const API_KEY = ''; //retrive a key
 const form = document.querySelector('.search-bar');
 const searchBar = document.querySelector("input[type='text']");
@@ -24,7 +23,7 @@ async function bindSearch(){
     searchBtn.addEventListener('click', event =>{
         searchQuery = searchBar.textContent;
         console.log(searchQuery);
-        baseURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_key}&query=${searchQuery}`;
+        baseURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=${searchQuery}`;
         fetchAPI();
     });
 }
