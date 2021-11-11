@@ -23,7 +23,7 @@ After taking a close look at the spoontacular repo, the js team has come to the 
 As for how the ```recipeCard``` itself would look like, we have made a mockup of our desired end result. Keep in mind our mockup focuses solely on the layout, 
 so the final product may very well vary.
 
-![Recipe Card Mock Up]('./images/recipeCardMockUp.png')
+![Recipe Card Mock Up](images/recipeCardMockUp.png)
 
 ## HTML Skeleton
 
