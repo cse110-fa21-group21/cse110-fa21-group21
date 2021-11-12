@@ -7,12 +7,20 @@
     <title>Some Testing</title>
 
     <script src="apiTest.js" type="module"></script>
+    <!-- Web Components -->
+    <script src="../components/recipeCard.js" type="module"></script>
   </head>
   <body>
     <main>
       <input type="text" id="search" />
       <button>search</button>
       <button id="stepsButton">steps</button>
+      <button id="funButt">fun button</button>
+      <section class="section--recipe-cards shown">
+        <div class="recipe-cards--wrapper">
+          <!-- Recipes Added Here -->
+        </div>
+      </section>
     </main>
   </body>
 </html>
