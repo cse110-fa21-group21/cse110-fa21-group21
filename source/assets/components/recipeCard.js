@@ -6,6 +6,7 @@
     <section>
       <main id='card-information'>
         <div id='recipe-title'> </div>
+        <div id='recipe-price'> </div>
         <div id='recipe-cooking-time'> </div>
         <div id='recipe-score'> </div>
         <div id='recipe-servings'> </div>
@@ -31,7 +32,55 @@ class recipeCard extends HTMLElement{
 
    set data(data){
      const card = document.createElement('section');
+     const styleElem = document.createElement('style');
+     styleElem.innerHTML=  `
+      main > div {
+        background: white;
+        padding: 1em;
+        border: 1px dashed grey;
+        border-radius: 1px;
+        margin: 5px;
+      }
 
+      #recipe-title{
+        grid-area: title;
+        text-align: center;
+      }
+      #recipe-price{
+        grid-area: price;
+      }
+      #recipe-servings{
+        grid-area: servings;
+      }
+      #recipe-cooking-time{
+        grid-area: cooking-time;
+      }
+      #recipe-calories{
+        grid-area: calories;
+      }
+      #recipe-score{
+        grid-area: score;
+      }
+      #recipe-total-calories{
+        grid-area: total-calories;
+      }
+
+      #card-information{
+        grid-area: information;
+        display: grid;
+        align-content: start;
+        grid-template-areas:
+        "title title"
+        ". ."
+        "price servings"
+        "cooking-time calories"
+        "score total-calories";
+      }
+
+      #card-visuals{
+        float: left
+      }
+     `;
      const cardVisuals = document.createElement('aside');
      cardVisuals.id = 'card-visuals';
 
@@ -50,7 +99,6 @@ class recipeCard extends HTMLElement{
        /** RECIPE IMAGE CAPTION */
       const recipeDietary = document.createElement('figcaption');
       recipeDietary.id = 'recipe-dietary';
-      recipe
 
       visual.appendChild(recipeImage);
       visual.appendChild(recipeDietary);
@@ -76,7 +124,7 @@ class recipeCard extends HTMLElement{
 
       /** RECIPE SCORE */
       const recipeScore = document.createElement('div');
-      recipeScore = 'recipe-score';
+      recipeScore.id = 'recipe-score';
       recipeScore.innerHTML = getRecipeScore(data);
      
       /** RECIPE SERVING */
@@ -87,12 +135,12 @@ class recipeCard extends HTMLElement{
       /** RECIPE CALORIES */
       const recipeCalories = document.createElement('div');
       recipeCalories.id = 'recipe-calories';
-      recipeCalories = getRecipeCalories(data);
+      recipeCalories.innerHTML = getRecipeCalories(data);
 
       /** RECIPE TOTAL CALORIES */
       const recipeTotalCalories = document.createElement('div');
       recipeTotalCalories.id = 'recipe-total-calories';
-      recipeTotalCalories = getTotalRecipeCalories(data);
+      recipeTotalCalories.innerHTML = getRecipeTotalCalories(data);
 
       cardInformation.appendChild(recipeTitle);
       cardInformation.appendChild(recipePrice);
@@ -109,6 +157,7 @@ class recipeCard extends HTMLElement{
      card.appendChild(cardVisuals);
      card.appendChild(cardInformation);
  
+     this.shadowRoot.appendChild(styleElem);
      this.shadowRoot.appendChild(card);
    }
 }
@@ -121,7 +170,7 @@ function getRecipeCookingTime(data);
 function getRecipeScore(data);
 function getRecipeCalories(data);
 function getRecipeServings(data);
-function getRecipeCalories(data);
 function getRecipeTotalCalories(data);
+function getRecipeImageSource(data);
 
 customElements.define('recipe-card', recipeCard);
