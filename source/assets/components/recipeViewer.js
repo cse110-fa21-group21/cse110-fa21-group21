@@ -53,7 +53,8 @@ class recipeViewer extends HTMLElement {
       /** RECIPE INSTRUCTIONS */
       const recipeInstructions = document.createElement("div");
       recipeInstructions.id = "recipe-instructions";
-      recipeInstructions.innerHTML = getRecipeInstructions(data);
+      const recipeInstructionsList = getRecipeInstructions(data);
+      recipeInstructionsList.appendChild(list);
 
       cardInformation.appendChild(recipeTitle);
       cardInformation.appendChild(recipeIngredients);
@@ -95,8 +96,15 @@ function getRecipeImageSource(data) {
 }
 
 function getRecipeInstructions(data) {
+  let test = data["analyzedInstructions"][0]["steps"];
   if (data) {
-    return data["analyzedInstructions"][0]["steps"];
+    const list = document.createElement('ol');
+    for(let i = 0; i<test.length; i++){
+      const entry = document.createElement('li');
+      entry.innerHTML = test[i].step;
+      list.appendChild(entry);
+    }
+    return list;
   }
   return null;
 }
