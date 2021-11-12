@@ -119,7 +119,7 @@ function getRecipeImageSource(data){
 }
 
 function getRecipeTitle(data){
-  returnn data.title;
+  return data.title;
 }
 /** 
   * function return the toal cost of the recipe
