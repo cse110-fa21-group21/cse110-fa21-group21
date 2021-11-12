@@ -38,8 +38,18 @@ class recipeViewer extends HTMLElement {
       recipeTitle.innerHTML = getRecipeTitle(data);
       /** RECIPE INGREDIENTS */
       const recipeIngredients = document.createElement("div");
+      const ingredientList = document.createElement("ul");
       recipeIngredients.id = "recipe-ingredients";
-      recipeIngredients.innerHTML = getRecipeIngredients(data);
+
+      let ingredientsList = getRecipeIngredients(data);
+      for (let i = 0; i < ingredientsList.length; i++) {
+        const ingredient = document.createElement("li");
+        ingredient.innerHTML = ingredientsList[i];
+        ingredientList.appendChild(ingredient);
+      }
+
+      recipeIngredients.appendChild(ingredientList);
+      // recipeIngredients.innerHTML = getRecipeIngredients(data);
       /** RECIPE INSTRUCTIONS */
       const recipeInstructions = document.createElement("div");
       recipeInstructions.id = "recipe-instructions";
