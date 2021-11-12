@@ -32,8 +32,8 @@ class recipeCard extends HTMLElement {
 
   set data(data) {
     const card = document.createElement("section");
-    const styleElem = document.createElement("style");
-    styleElem.innerHTML = `
+    const style = document.createElement("style");
+    style.innerHTML = `
       main > div {
         background: white;
         padding: 1em;
@@ -105,7 +105,7 @@ class recipeCard extends HTMLElement {
       cardVisuals.appendChild(visual);
     }
 
-    function setCardInformaation() {
+    function setCardInformation() {
       /** RECIPE TITLE */
       const recipeTitle = document.createElement("div");
       recipeTitle.id = "recipe-title";
@@ -151,12 +151,12 @@ class recipeCard extends HTMLElement {
     }
 
     setCardVisuals();
-    setCardInformaation();
+    setCardInformation();
 
     card.appendChild(cardVisuals);
     card.appendChild(cardInformation);
 
-    this.shadowRoot.appendChild(styleElem);
+    this.shadowRoot.appendChild(style);
     this.shadowRoot.appendChild(card);
   }
 }
