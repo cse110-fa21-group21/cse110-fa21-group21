@@ -22,8 +22,12 @@ async function bindSearch(){
 
     searchBtn.addEventListener('click',() => {
         searchQuery = searchBar.textContent;
-        baseURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=${searchQuery}`;
-        fetchAPI();
+        //To minimize unnecessary API fetches, we prevent empty string queries
+        if(searchQuery){
+            console.log('Search Query: ', searchQuery);
+            baseURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=${searchQuery}`;
+            fetchAPI();
+        }
     });
 }
 
