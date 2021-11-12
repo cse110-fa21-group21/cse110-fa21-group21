@@ -113,14 +113,19 @@ class recipeCard extends HTMLElement {
 }
 
 /** HELPER METHODS */
-function getRecipeTitle(data) {
-  return "a";
-}
-function getRecipePrice(data) {
-  return "b";
-}
 function getRecipeImageSource(data) {
-  return "";
+  return data.image;
+}
+
+function getRecipeTitle(data) {
+  return data.title;
+}
+/**
+ * function return the toal cost of the recipe
+ * Servings * pricePerServings
+ **/
+function getRecipePrice(data) {
+  return Math.round(data.pricePerServing * data.servings);
 }
 
 function getRecipeCookingTime(data) {
