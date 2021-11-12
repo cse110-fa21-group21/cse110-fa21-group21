@@ -1,6 +1,6 @@
 //SomeTest.js
 
-const API_key = "d7a805d987074402904a262f602c7844";
+const API_key = "19e32de046cf427cb34e9617e388133d";
 var recipeURL = ``;
 const searchBar = document.querySelector("input");
 const search = document.querySelector("button");
@@ -74,6 +74,20 @@ async function getSteps() {
   });
 }
 
+function getInstructions(data) {
+  if (data) {
+    data["analyzedInstructions"][0]["steps"];
+  }
+  return null;
+}
+
+function getIngredients(data) {
+  if (data) {
+    data["nutrition"]["ingredients"];
+  }
+  return null;
+}
+
 let funButton = document.getElementById("funButt");
 
 function funButtonBind() {
@@ -91,6 +105,13 @@ function funButtonBind() {
       recipeCard.data = recipesID[property];
       console.log(recipesID[property]);
       document.querySelector(".recipe-cards--wrapper").appendChild(recipeCard);
+
+      const recipeViewer = document.createElement("recipe-viewer");
+      recipeViewer.data = recipesID[property];
+      console.log(recipesID[property]);
+      document
+        .querySelector(".recipe-cards--wrapper")
+        .appendChild(recipeViewer);
     }
 
     // console.log(getSpoonacularScore(recipesID["BLT Pizza"]));

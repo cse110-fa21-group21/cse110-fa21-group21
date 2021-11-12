@@ -39,7 +39,7 @@ class recipeCard extends HTMLElement {
         padding: 1em;
         border: 1px dashed grey;
         border-radius: 1px;
-        margin: 5px;
+        margin: 10px;
       }
 
       #recipe-title{

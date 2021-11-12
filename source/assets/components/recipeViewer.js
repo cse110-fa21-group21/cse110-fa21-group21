@@ -4,7 +4,7 @@ class recipeViewer extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
   }
-/*********  CARD STRUCTURE ***********
+  /*********  CARD STRUCTURE ***********
   <recipe-viewer>
   ***** Shadow DOM *****
     <section>
@@ -23,33 +23,33 @@ class recipeViewer extends HTMLElement {
   ***** END OF SHADOW DOM *****
   <recipe-viewer>
 ***************************************/
-  set data(data){
-    const card = document.createElement('section');
-    const style = document.createElement('style');
+  set data(data) {
+    const card = document.createElement("section");
+    const style = document.createElement("style");
     style.innerHTML = ``;
 
-    const cardInformation = document.createElement('main');
-    const cardVisuals = document.createElement('aside');
+    const cardInformation = document.createElement("main");
+    const cardVisuals = document.createElement("aside");
 
-    function setCardInformation(){
+    function setCardInformation() {
       /** RECIPE TITLE */
-      const recipeTitle = document.createElement('div');
-      recipeTitle.id = 'recipe-title';
+      const recipeTitle = document.createElement("div");
+      recipeTitle.id = "recipe-title";
       recipeTitle.innerHTML = getRecipeTitle(data);
       /** RECIPE INGREDIENTS */
-      const recipeIngredients = document.createElement('div');
-      recipeIngredients.id = 'recipe-ingredients';
+      const recipeIngredients = document.createElement("div");
+      recipeIngredients.id = "recipe-ingredients";
       recipeIngredients.innerHTML = getRecipeIngredients(data);
       /** RECIPE INSTRUCTIONS */
-      const recipeInstructions = document.createElement('div');
-      recipeInstructions.id = 'recipe-instructions';
+      const recipeInstructions = document.createElement("div");
+      recipeInstructions.id = "recipe-instructions";
       recipeInstructions.innerHTML = getRecipeInstructions(data);
 
       cardInformation.appendChild(recipeTitle);
       cardInformation.appendChild(recipeIngredients);
       cardInformation.appendChild(recipeInstructions);
     }
-    function setCardVisuals(){
+    function setCardVisuals() {
       const visual = document.createElement("figure");
       visual.id = "visual";
       /** RECIPE IMAGE */
@@ -80,11 +80,28 @@ class recipeViewer extends HTMLElement {
 function getRecipeTitle(data) {
   return data.title;
 }
-function getRecipeImageSource(data){
+function getRecipeImageSource(data) {
   return data.image;
 }
-function getRecipeIngredients(data);
-function getRecipeInstructions(data);
 
+function getRecipeInstructions(data) {
+  if (data) {
+    return data["analyzedInstructions"][0]["steps"];
+  }
+  return null;
+}
+
+function getRecipeIngredients(data) {
+  let ingredients = [];
+  let test = data["nutrition"]["ingredients"];
+
+  if (data) {
+    for (let i = 0; i < test.length; i++) {
+      ingredients.push(test[i]["name"]);
+    }
+    return ingredients;
+  }
+  return null;
+}
 
 customElements.define("recipe-viewer", recipeViewer);
