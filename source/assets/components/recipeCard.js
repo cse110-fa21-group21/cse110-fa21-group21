@@ -162,15 +162,71 @@ class recipeCard extends HTMLElement{
    }
 }
 
-
 /** HELPER METHODS */
-function getRecipeTitle(data);
-function getRecipePrice(data);
-function getRecipeCookingTime(data);
-function getRecipeScore(data);
-function getRecipeCalories(data);
-function getRecipeServings(data);
-function getRecipeTotalCalories(data);
-function getRecipeImageSource(data);
+function getRecipeImageSource(data){
+  return data.image;
+}
+
+function getRecipeTitle(data){
+  return data.title;
+}
+/** 
+  * function return the toal cost of the recipe
+  * Servings * pricePerServings
+ **/
+function getRecipePrice(data){
+  return Math.round(data.pricePerServing * data.servings);
+}
+
+function getRecipeCookingTime(data) {
+  if (data) {
+    return data["readyInMinutes"];
+  }
+  return null;
+}
+
+function getRecipeScore(data) {
+  if (data) {
+    return data["spoonacularScore"];
+  }
+  return null;
+}
+
+function getRecipeCalories(data) {
+  if (data) {
+    return data["nutrition"]["nutrients"][0]["amount"];
+  }
+  return null;
+}
+
+function getRecipeServings(data) {
+  if (data) {
+    return data["servings"];
+  }
+  return null;
+}
+
+function getRecipeTotalCalories(data) {
+  if (data) {
+    return data["nutrition"]["nutrients"][0]["amount"] * data["servings"];
+  }
+  return null;
+}
+
+// Potentially Useful Getter Functions
+
+function getVegan(data) {
+  if (data) {
+    return data["vegan"];
+  }
+  return null;
+}
+
+function getVegetarian(data) {
+  if (data) {
+    return data["vegetarian"];
+  }
+  return null;
+}
 
 customElements.define('recipe-card', recipeCard);
