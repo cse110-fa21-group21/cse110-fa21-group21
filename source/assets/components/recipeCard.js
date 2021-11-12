@@ -124,7 +124,6 @@ function getRecipeTitle(data){
 /** 
   * function return the toal cost of the recipe
   * Servings * pricePerServings
-  *
  **/
 function getRecipePrice(data){
   return Math.round(data.pricePerServing * data.servings);
