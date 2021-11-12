@@ -92,44 +92,44 @@ class recipeCard extends HTMLElement{
       const visual = document.createElement('figure');
       visual.id = 'visual';
       /** RECIPE IMAGE */
-      const recipeImage = document.createElement('img');
-      recipeImage.id = 'recipe-image';
+      const recipeImage = document.createElement("img");
+      recipeImage.id = "recipe-image";
       recipeImage.src = getRecipeImageSource(data);
 
-       /** RECIPE IMAGE CAPTION */
-      const recipeDietary = document.createElement('figcaption');
-      recipeDietary.id = 'recipe-dietary';
+      /** RECIPE IMAGE CAPTION */
+      const recipeDietary = document.createElement("figcaption");
+      recipeDietary.id = "recipe-dietary";
 
       visual.appendChild(recipeImage);
       visual.appendChild(recipeDietary);
 
       cardVisuals.appendChild(visual);
-     }
+    }
 
-     function setCardInformaation(){
+    function setCardInformaation() {
       /** RECIPE TITLE */
-      const recipeTitle = document.createElement('div');
-      recipeTitle.id = 'recipe-title';
+      const recipeTitle = document.createElement("div");
+      recipeTitle.id = "recipe-title";
       recipeTitle.innerHTML = getRecipeTitle(data);
 
       /** RECIPE PRICE */
-      const recipePrice = document.createElement('div');
-      recipePrice.id = 'recipe-price';
+      const recipePrice = document.createElement("div");
+      recipePrice.id = "recipe-price";
       recipePrice.innerHTML = getRecipePrice(data);
 
       /** RECIPE COOKING TIME */
-      const recipeCookingTime = document.createElement('div');
-      recipeCookingTime.id = 'recipe-cooking-time';
+      const recipeCookingTime = document.createElement("div");
+      recipeCookingTime.id = "recipe-cooking-time";
       recipeCookingTime.innerHTML = getRecipeCookingTime(data);
 
       /** RECIPE SCORE */
-      const recipeScore = document.createElement('div');
-      recipeScore.id = 'recipe-score';
+      const recipeScore = document.createElement("div");
+      recipeScore.id = "recipe-score";
       recipeScore.innerHTML = getRecipeScore(data);
-     
+
       /** RECIPE SERVING */
-      const recipeServings = document.createElement('div');
-      recipeServings.id = 'recipe-servings';
+      const recipeServings = document.createElement("div");
+      recipeServings.id = "recipe-servings";
       recipeServings.innerHTML = getRecipeServings(data);
 
       /** RECIPE CALORIES */
@@ -149,10 +149,10 @@ class recipeCard extends HTMLElement{
       cardInformation.appendChild(recipeServings);
       cardInformation.appendChild(recipeCalories);
       cardInformation.appendChild(recipeTotalCalories);
-     }
+    }
 
-     setCardVisuals();
-     setCardInformaation();
+    setCardVisuals();
+    setCardInformaation();
 
      card.appendChild(cardVisuals);
      card.appendChild(cardInformation);
@@ -163,52 +163,55 @@ class recipeCard extends HTMLElement{
 }
 
 /** HELPER METHODS */
-function getRecipeImageSource(data){
+function getRecipeImageSource(data) {
   return data.image;
 }
 
-function getRecipeTitle(data){
+function getRecipeTitle(data) {
   return data.title;
 }
-/** 
-  * function return the toal cost of the recipe
-  * Servings * pricePerServings
+/**
+ * function return the toal cost of the recipe
+ * Servings * pricePerServings
  **/
-function getRecipePrice(data){
+function getRecipePrice(data) {
   return Math.round(data.pricePerServing * data.servings);
 }
 
 function getRecipeCookingTime(data) {
   if (data) {
-    return data["readyInMinutes"];
+    return data["readyInMinutes"] + "miniutes";
   }
   return null;
 }
 
 function getRecipeScore(data) {
   if (data) {
-    return data["spoonacularScore"];
+    return data["spoonacularScore"] + "/100";
   }
   return null;
 }
 
 function getRecipeCalories(data) {
   if (data) {
-    return data["nutrition"]["nutrients"][0]["amount"];
+    return data["nutrition"]["nutrients"][0]["amount"] + "calories per serving";
   }
   return null;
 }
 
 function getRecipeServings(data) {
   if (data) {
-    return data["servings"];
+    return data["servings"] + "servings";
   }
   return null;
 }
 
 function getRecipeTotalCalories(data) {
   if (data) {
-    return data["nutrition"]["nutrients"][0]["amount"] * data["servings"];
+    return (
+      data["nutrition"]["nutrients"][0]["amount"] * data["servings"] +
+      "total servings"
+    );
   }
   return null;
 }
@@ -229,4 +232,4 @@ function getVegetarian(data) {
   return null;
 }
 
-customElements.define('recipe-card', recipeCard);
+customElements.define("recipe-card", recipeCard);
