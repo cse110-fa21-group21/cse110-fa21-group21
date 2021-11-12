@@ -24,16 +24,16 @@
   <recipe-card>
 ***************************************/
 
-class recipeCard extends HTMLElement{
-   constructor(){
-     super();
-     this.attachShadow({mode: 'open'});
-   }
+class recipeCard extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+  }
 
-   set data(data){
-     const card = document.createElement('section');
-     const styleElem = document.createElement('style');
-     styleElem.innerHTML=  `
+  set data(data) {
+    const card = document.createElement("section");
+    const styleElem = document.createElement("style");
+    styleElem.innerHTML = `
       main > div {
         background: white;
         padding: 1em;
@@ -81,16 +81,15 @@ class recipeCard extends HTMLElement{
         float: left
       }
      `;
-     const cardVisuals = document.createElement('aside');
-     cardVisuals.id = 'card-visuals';
+    const cardVisuals = document.createElement("aside");
+    cardVisuals.id = "card-visuals";
 
-     const cardInformation = document.createElement('main');
-     cardInformation.id = 'card-information';
- 
-     function setCardVisuals(){
-      
-      const visual = document.createElement('figure');
-      visual.id = 'visual';
+    const cardInformation = document.createElement("main");
+    cardInformation.id = "card-information";
+
+    function setCardVisuals() {
+      const visual = document.createElement("figure");
+      visual.id = "visual";
       /** RECIPE IMAGE */
       const recipeImage = document.createElement("img");
       recipeImage.id = "recipe-image";
@@ -133,13 +132,13 @@ class recipeCard extends HTMLElement{
       recipeServings.innerHTML = getRecipeServings(data);
 
       /** RECIPE CALORIES */
-      const recipeCalories = document.createElement('div');
-      recipeCalories.id = 'recipe-calories';
+      const recipeCalories = document.createElement("div");
+      recipeCalories.id = "recipe-calories";
       recipeCalories.innerHTML = getRecipeCalories(data);
 
       /** RECIPE TOTAL CALORIES */
-      const recipeTotalCalories = document.createElement('div');
-      recipeTotalCalories.id = 'recipe-total-calories';
+      const recipeTotalCalories = document.createElement("div");
+      recipeTotalCalories.id = "recipe-total-calories";
       recipeTotalCalories.innerHTML = getRecipeTotalCalories(data);
 
       cardInformation.appendChild(recipeTitle);
@@ -154,12 +153,12 @@ class recipeCard extends HTMLElement{
     setCardVisuals();
     setCardInformaation();
 
-     card.appendChild(cardVisuals);
-     card.appendChild(cardInformation);
- 
-     this.shadowRoot.appendChild(styleElem);
-     this.shadowRoot.appendChild(card);
-   }
+    card.appendChild(cardVisuals);
+    card.appendChild(cardInformation);
+
+    this.shadowRoot.appendChild(styleElem);
+    this.shadowRoot.appendChild(card);
+  }
 }
 
 /** HELPER METHODS */
@@ -180,28 +179,31 @@ function getRecipePrice(data) {
 
 function getRecipeCookingTime(data) {
   if (data) {
-    return data["readyInMinutes"] + "miniutes";
+    return "Minutes: " + data["readyInMinutes"];
   }
   return null;
 }
 
 function getRecipeScore(data) {
   if (data) {
-    return data["spoonacularScore"] + "/100";
+    return "Score: " + data["spoonacularScore"] + "/100";
   }
   return null;
 }
 
 function getRecipeCalories(data) {
   if (data) {
-    return data["nutrition"]["nutrients"][0]["amount"] + "calories per serving";
+    return (
+      "Calories per Serving: " +
+      Math.round(data["nutrition"]["nutrients"][0]["amount"])
+    );
   }
   return null;
 }
 
 function getRecipeServings(data) {
   if (data) {
-    return data["servings"] + "servings";
+    return "Servings: " + data["servings"];
   }
   return null;
 }
@@ -209,8 +211,8 @@ function getRecipeServings(data) {
 function getRecipeTotalCalories(data) {
   if (data) {
     return (
-      data["nutrition"]["nutrients"][0]["amount"] * data["servings"] +
-      "total servings"
+      "Total Calories: " +
+      Math.round(data["nutrition"]["nutrients"][0]["amount"] * data["servings"])
     );
   }
   return null;
