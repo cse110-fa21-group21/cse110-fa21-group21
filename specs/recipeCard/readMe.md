@@ -15,6 +15,7 @@ After taking a close look at the spoontacular repo, the js team has come to the 
 * ```recipeDietary```: Diets that the recipe falls in line with. Examples include 'vegetarian', 'keto'
 * ```recipeScore```: The score given by the Spoonacular API to all of its recipes. A higher score means that it is amongst the top recipes on Spoonancular
   and a low score as amongst the worst recipes on Spoonacular.
+* ```recipePrice```: The price to cook the recipe, as predicted by the Spoonacular API.
 * ```recipeCookingTime```: The time to cook the recipe
 * ```recipeServings```: The number of people that the recipe was made to be served to
 * ```recipeCalories```: The number of calories per serving
@@ -48,7 +49,8 @@ interface. The visual consists of the recipe's image and recipe's dietary compli
 ### card-information
 ```HTML
   <main id='card-information'>
-    <div id='recipe-title'> </div>
+    <div id='recipe-title'> </div>    
+    <div id='recipe-price'> </div>
     <div id='recipe-cooking-time'> </div>
     <div id='recipe-score'> </div>
     <div id='recipe-servings'> </div>
