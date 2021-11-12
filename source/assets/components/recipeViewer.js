@@ -54,7 +54,7 @@ class recipeViewer extends HTMLElement {
       const recipeInstructions = document.createElement("div");
       recipeInstructions.id = "recipe-instructions";
       const recipeInstructionsList = getRecipeInstructions(data);
-      recipeInstructionsList.appendChild(list);
+      recipeInstructions.appendChild(recipeInstructionsList);
 
       cardInformation.appendChild(recipeTitle);
       cardInformation.appendChild(recipeIngredients);
