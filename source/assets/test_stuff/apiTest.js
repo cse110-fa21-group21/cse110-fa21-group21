@@ -62,46 +62,12 @@ async function fetchAPI() {
     });
 }
 
-async function getSteps() {
-  stepsButton.addEventListener("click", (event) => {
-    recipeTitle = searchBar.textContent;
-    let instructionSteps =
-      recipesID[recipeTitle]["analyzedInstructions"][0]["steps"];
-    for (let i = 0; i < instructionSteps.length; i++) {
-      console.log(instructionSteps[i]["step"]);
-    }
-  });
-}
-
-function getInstructions(data) {
-  if (data) {
-    data["analyzedInstructions"][0]["steps"];
-  }
-  return null;
-}
-
-function getIngredients(data) {
-  if (data) {
-    data["nutrition"]["ingredients"];
-  }
-  return null;
-}
 
 let funButton = document.getElementById("funButt");
 
 function funButtonBind() {
   funButton.addEventListener("click", (event) => {
     for (const property in recipesID) {
-/**
-      // PROPERTIES CONSOLE LOGS
-      console.log("Spoonacular Score: " + getSpoonacularScore(recipesID[property]));
-      console.log("Servings: " + getServings(recipesID[property]));
-      console.log("Calories Per Serving: " + getCaloriesAmountPerServing(recipesID[property]));
-      console.log("Cooking Time: " + getReadyTimeInMinutes(recipesID[property]));
-      console.log("Vegan: " + getVegan(recipesID[property]));
-      console.log("Vegetarian: "+ getVegetarian(recipesID[property]));
-      console.log("Total Calories: " + getTotalCaloriesAmount(recipesID[property]));
-*/
       // RECIPE CARD TESTER
       const recipeCard = document.createElement("recipe-card");
       recipeCard.data = recipesID[property];
@@ -117,75 +83,4 @@ function funButtonBind() {
         .appendChild(recipeViewer);
     }
   });
-}
-
-/**
-   // BLT PIZZA
-    console.log(getSpoonacularScore(recipesID["BLT Pizza"]));
-    console.log(getServings(recipesID["BLT Pizza"]));
-    console.log(getCaloriesAmountPerServing(recipesID["BLT Pizza"]));
-    console.log(getReadyTimeInMinutes(recipesID["BLT Pizza"]));
-    console.log(getVegan(recipesID["BLT Pizza"]));
-    console.log(getVegetarian(recipesID["BLT Pizza"]));
-    console.log(getTotalCaloriesAmount(recipesID["BLT Pizza"]));
-
-    const recipeCard = document.createElement("recipe-card");
-    recipeCard.data = recipesID["BLT Pizza"];
-    console.log(recipesID["BLT Pizza"]);
-    document.querySelector(".recipe-cards--wrapper").appendChild(recipeCard);
-*/
-
-// Necessary Getter Functions
-
-function getSpoonacularScore(data) {
-  if (data) {
-    return data["spoonacularScore"];
-  }
-  return null;
-}
-
-function getServings(data) {
-  if (data) {
-    return data["servings"];
-  }
-  return null;
-}
-
-function getCaloriesAmountPerServing(data) {
-  if (data) {
-    return data["nutrition"]["nutrients"][0]["amount"];
-  }
-  return null;
-}
-
-function getReadyTimeInMinutes(data) {
-  if (data) {
-    return data["readyInMinutes"];
-  }
-  return null;
-}
-
-// Potentially Useful Getter Functions
-
-function getVegan(data) {
-  if (data) {
-    return data["vegan"];
-  }
-  return null;
-}
-
-function getVegetarian(data) {
-  if (data) {
-    return data["vegetarian"];
-  }
-  return null;
-}
-
-// Modified Data Getter Functions
-
-function getTotalCaloriesAmount(data) {
-  if (data) {
-    return data["nutrition"]["nutrients"][0]["amount"] * data["servings"];
-  }
-  return null;
 }
