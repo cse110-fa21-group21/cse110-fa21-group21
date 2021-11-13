@@ -38,23 +38,12 @@ class recipeViewer extends HTMLElement {
       recipeTitle.innerHTML = getRecipeTitle(data);
       /** RECIPE INGREDIENTS */
       const recipeIngredients = document.createElement("div");
-      const ingredientList = document.createElement("ul");
       recipeIngredients.id = "recipe-ingredients";
-
-      let ingredientsList = getRecipeIngredients(data);
-      for (let i = 0; i < ingredientsList.length; i++) {
-        const ingredient = document.createElement("li");
-        ingredient.innerHTML = ingredientsList[i];
-        ingredientList.appendChild(ingredient);
-      }
-
-      recipeIngredients.appendChild(ingredientList);
-      // recipeIngredients.innerHTML = getRecipeIngredients(data);
+      recipeIngredients.appendChild(getRecipeIngredientsList(data));
       /** RECIPE INSTRUCTIONS */
       const recipeInstructions = document.createElement("div");
       recipeInstructions.id = "recipe-instructions";
-      const recipeInstructionsList = getRecipeInstructions(data);
-      recipeInstructions.appendChild(recipeInstructionsList);
+      recipeInstructions.appendChild(getRecipeInstructionsList(data));
 
       cardInformation.appendChild(recipeTitle);
       cardInformation.appendChild(recipeIngredients);
@@ -71,6 +60,35 @@ class recipeViewer extends HTMLElement {
       /** RECIPE IMAGE CAPTION */
       const recipeDietary = document.createElement("figcaption");
       recipeDietary.id = "recipe-dietary";
+      function setRecipeDietary(){
+        const dietary = getRecipeDietary(data);
+        let dietaryIcon;
+        if(dietary["vegan"]){
+          dietaryIcon = document.createElement('img');
+          dietaryIcon.src = '../icons/dietary/vegan.png';
+          dietaryIcon.alt = "Vegan"
+          recipeDietary.appendChild(dietaryIcon);
+        }
+        if(dietary["vegetarian"]){
+          dietaryIcon = document.createElement('img');
+          dietaryIcon.src = '../icons/dietary/vegetarian.png';
+          dietaryIcon.alt = "Vegetarian"
+          recipeDietary.appendChild(dietaryIcon);
+        }
+        if(dietary["gluten-free"]){
+          dietaryIcon = document.createElement('img');
+          dietaryIcon.src = '../icons/dietary/gluten-free.png';
+          dietaryIcon.alt = "Gluten Free"
+          recipeDietary.appendChild(dietaryIcon);
+        }
+        if(dietary["dairy-free"]){
+          dietaryIcon = document.createElement('img');
+          dietaryIcon.src = '../icons/dietary/dairy-free.png';
+          dietaryIcon.alt = "Dairy Free"
+          recipeDietary.appendChild(dietaryIcon);
+        }
+      }
+      setRecipeDietary();
 
       visual.appendChild(recipeImage);
       visual.appendChild(recipeDietary);
@@ -94,32 +112,41 @@ function getRecipeTitle(data) {
 function getRecipeImageSource(data) {
   return data.image;
 }
-
-function getRecipeInstructions(data) {
-  let test = data["analyzedInstructions"][0]["steps"];
+function getRecipeInstructionsList(data) {
   if (data) {
-    const list = document.createElement('ol');
-    for(let i = 0; i<test.length; i++){
-      const entry = document.createElement('li');
-      entry.innerHTML = test[i].step;
-      list.appendChild(entry);
+    const instructions = data["analyzedInstructions"][0]["steps"];
+    const instructionsListElem = document.createElement('ol');
+    for(let i = 0; i< instructions.JSON; i++){
+      const listEntry = document.createElement('li');
+      listEntry.innerHTML = instructions[i]["step"];
+      instructionsListElem.appendChild(listEntry);
     }
-    return list;
+    return instructionsListElem;
   }
   return null;
 }
-
-function getRecipeIngredients(data) {
-  let ingredients = [];
-  let test = data["nutrition"]["ingredients"];
-
+function getRecipeIngredientsList(data) {
   if (data) {
-    for (let i = 0; i < test.length; i++) {
-      ingredients.push(test[i]["name"]);
+    const ingredients = data["nutrition"]["ingredients"];
+    const ingredientsListElem = document.createElement('ul')
+    for (let i = 0; i < ingredients.length; i++) {
+      const listEntry = document.createElement('li');
+      listEntry.innerHTML = ingredients[i]["name"]
+      ingredientsListElem.appendChild(listEntry);
     }
-    return ingredients;
+    return ingredientsListElem;
   }
   return null;
 }
-
+function getRecipeDietary(data){
+  if(data){
+    let dietary = {};
+    dietary["vegan"] = data["vegan"];
+    dietary["vegetarian"] = data["vegetarian"];
+    dietary["dairy-free"] = data["dairyFree"]; 
+    dietary["gluten-free"] = data["glutenFree"];
+    return dietary;
+  }
+  return null;
+}
 customElements.define("recipe-viewer", recipeViewer);

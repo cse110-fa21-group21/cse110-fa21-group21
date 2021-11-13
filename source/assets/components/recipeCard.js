@@ -16,7 +16,7 @@
       <aside id ='card-visuals'>
         <fig id='visual'>
           <img id='recipe-image'/>
-          <figcaption id='recipe-dietary'>
+          <figcaption id='recipe-dietary'> </figcaption>
         </fig>
       </aside>
     </section> 
@@ -79,6 +79,7 @@ class recipeCard extends HTMLElement {
 
       #card-visuals{
         float: left
+        grid-template-columns: 1fr 1fr 1fr;
       }
      `;
     const cardVisuals = document.createElement("aside");
@@ -98,6 +99,36 @@ class recipeCard extends HTMLElement {
       /** RECIPE IMAGE CAPTION */
       const recipeDietary = document.createElement("figcaption");
       recipeDietary.id = "recipe-dietary";
+      
+      function setRecipeDietary(){
+        const dietary = getRecipeDietary(data);
+        let dietaryIcon;
+        if(dietary["vegan"]){
+          dietaryIcon = document.createElement('img');
+          dietaryIcon.src = '../icons/dietary/vegan.png'; //index.html path: assets/icons/dietary/vegan.png
+          dietaryIcon.alt = "Vegan"
+          recipeDietary.appendChild(dietaryIcon);
+        }
+        if(dietary["vegetarian"]){
+          dietaryIcon = document.createElement('img');
+          dietaryIcon.src = '../icons/dietary/vegetarian.png'; //index.html path: assets/icons/dietary/vegetarian.png
+          dietaryIcon.alt = "Vegetarian"
+          recipeDietary.appendChild(dietaryIcon);
+        }
+        if(dietary["gluten-free"]){
+          dietaryIcon = document.createElement('img');
+          dietaryIcon.src = '../icons/dietary/gluten-free.png'; //index.html path: assets/icons/dietary/gluten-free.png
+          dietaryIcon.alt = "Gluten Free"
+          recipeDietary.appendChild(dietaryIcon);
+        }
+        if(dietary["dairy-free"]){
+          dietaryIcon = document.createElement('img');
+          dietaryIcon.src = '../icons/dietary/dairy-free.png'; //index.html path: assets/icons/dietary/dairy-free.png
+          dietaryIcon.alt = "Dairy Free"
+          recipeDietary.appendChild(dietaryIcon);
+        }
+      }
+      setRecipeDietary();
 
       visual.appendChild(recipeImage);
       visual.appendChild(recipeDietary);
@@ -163,18 +194,18 @@ class recipeCard extends HTMLElement {
 
 /** HELPER METHODS */
 function getRecipeImageSource(data) {
-  return data.image;
+  return data["image"];
 }
 
 function getRecipeTitle(data) {
-  return data.title;
+  return data["title"];
 }
 /**
  * function return the toal cost of the recipe
  * Servings * pricePerServings
  **/
 function getRecipePrice(data) {
-  return Math.round(data.pricePerServing * data.servings);
+  return Math.round(data["pricePerServing"] * data["servings"]);
 }
 
 function getRecipeCookingTime(data) {
@@ -218,18 +249,14 @@ function getRecipeTotalCalories(data) {
   return null;
 }
 
-// Potentially Useful Getter Functions
-
-function getVegan(data) {
-  if (data) {
-    return data["vegan"];
-  }
-  return null;
-}
-
-function getVegetarian(data) {
-  if (data) {
-    return data["vegetarian"];
+function getRecipeDietary(data){
+  if(data){
+    let dietary = {};
+    dietary["vegan"] = data["vegan"];
+    dietary["vegetarian"] = data["vegetarian"];
+    dietary["dairy-free"] = data["dairyFree"]; 
+    dietary["gluten-free"] = data["glutenFree"];
+    return dietary;
   }
   return null;
 }

@@ -1,6 +1,6 @@
-//SomeTest.js
+//apiTest.js
 
-const API_key = "19e32de046cf427cb34e9617e388133d";
+const API_key = "54a305b43853416198613d4aaaed7b01";
 var recipeURL = ``;
 const searchBar = document.querySelector("input");
 const search = document.querySelector("button");
@@ -16,7 +16,6 @@ window.addEventListener("DOMContentLoaded", init);
 
 async function init() {
   bindSearch();
-  getSteps();
   funButtonBind();
 }
 
@@ -93,19 +92,25 @@ let funButton = document.getElementById("funButt");
 function funButtonBind() {
   funButton.addEventListener("click", (event) => {
     for (const property in recipesID) {
-      console.log(getSpoonacularScore(recipesID[property]));
-      console.log(getServings(recipesID[property]));
-      console.log(getCaloriesAmountPerServing(recipesID[property]));
-      console.log(getReadyTimeInMinutes(recipesID[property]));
-      console.log(getVegan(recipesID[property]));
-      console.log(getVegetarian(recipesID[property]));
-      console.log(getTotalCaloriesAmount(recipesID[property]));
-
+/**
+      // PROPERTIES CONSOLE LOGS
+      console.log("Spoonacular Score: " + getSpoonacularScore(recipesID[property]));
+      console.log("Servings: " + getServings(recipesID[property]));
+      console.log("Calories Per Serving: " + getCaloriesAmountPerServing(recipesID[property]));
+      console.log("Cooking Time: " + getReadyTimeInMinutes(recipesID[property]));
+      console.log("Vegan: " + getVegan(recipesID[property]));
+      console.log("Vegetarian: "+ getVegetarian(recipesID[property]));
+      console.log("Total Calories: " + getTotalCaloriesAmount(recipesID[property]));
+*/
+/**
+      // RECIPE CARD TESTER
       const recipeCard = document.createElement("recipe-card");
       recipeCard.data = recipesID[property];
       console.log(recipesID[property]);
       document.querySelector(".recipe-cards--wrapper").appendChild(recipeCard);
+ */ 
 
+      // RECIPE VIEWER TESTER
       const recipeViewer = document.createElement("recipe-viewer");
       recipeViewer.data = recipesID[property];
       console.log(recipesID[property]);
@@ -113,21 +118,24 @@ function funButtonBind() {
         .querySelector(".recipe-cards--wrapper")
         .appendChild(recipeViewer);
     }
-
-    // console.log(getSpoonacularScore(recipesID["BLT Pizza"]));
-    // console.log(getServings(recipesID["BLT Pizza"]));
-    // console.log(getCaloriesAmountPerServing(recipesID["BLT Pizza"]));
-    // console.log(getReadyTimeInMinutes(recipesID["BLT Pizza"]));
-    // console.log(getVegan(recipesID["BLT Pizza"]));
-    // console.log(getVegetarian(recipesID["BLT Pizza"]));
-    // console.log(getTotalCaloriesAmount(recipesID["BLT Pizza"]));
-
-    // const recipeCard = document.createElement("recipe-card");
-    // recipeCard.data = recipesID["BLT Pizza"];
-    // console.log(recipesID["BLT Pizza"]);
-    // document.querySelector(".recipe-cards--wrapper").appendChild(recipeCard);
   });
 }
+
+/**
+   // BLT PIZZA
+    console.log(getSpoonacularScore(recipesID["BLT Pizza"]));
+    console.log(getServings(recipesID["BLT Pizza"]));
+    console.log(getCaloriesAmountPerServing(recipesID["BLT Pizza"]));
+    console.log(getReadyTimeInMinutes(recipesID["BLT Pizza"]));
+    console.log(getVegan(recipesID["BLT Pizza"]));
+    console.log(getVegetarian(recipesID["BLT Pizza"]));
+    console.log(getTotalCaloriesAmount(recipesID["BLT Pizza"]));
+
+    const recipeCard = document.createElement("recipe-card");
+    recipeCard.data = recipesID["BLT Pizza"];
+    console.log(recipesID["BLT Pizza"]);
+    document.querySelector(".recipe-cards--wrapper").appendChild(recipeCard);
+*/
 
 // Necessary Getter Functions
 
