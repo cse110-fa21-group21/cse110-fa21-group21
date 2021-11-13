@@ -102,13 +102,11 @@ function funButtonBind() {
       console.log("Vegetarian: "+ getVegetarian(recipesID[property]));
       console.log("Total Calories: " + getTotalCaloriesAmount(recipesID[property]));
 */
-/**
       // RECIPE CARD TESTER
       const recipeCard = document.createElement("recipe-card");
       recipeCard.data = recipesID[property];
       console.log(recipesID[property]);
       document.querySelector(".recipe-cards--wrapper").appendChild(recipeCard);
- */ 
 
       // RECIPE VIEWER TESTER
       const recipeViewer = document.createElement("recipe-viewer");

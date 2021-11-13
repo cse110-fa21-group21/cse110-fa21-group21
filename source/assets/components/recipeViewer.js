@@ -1,28 +1,32 @@
 //recipeViewer.js
+
+import { Spoonacular } from "../scripts/spoonacular.js";
+const spoonacular = new Spoonacular();
+
 class recipeViewer extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
   }
   /*********  CARD STRUCTURE ***********
-  <recipe-viewer>
-  ***** Shadow DOM *****
-    <section>
-      <main id='card-information'>
-        <div id='recipe-title'> </div>
-        <div id='recipe-ingredients'> </div>
-        <div id='recipe-instructions'> </div>
-      </main>
-      <aside id ='card-visuals'>
-        <fig id='visual'>
-          <img id='recipe-image'/>
-          <figcaption id='recipe-dietary'>
-        </fig>
-      </aside>
-    </section> 
-  ***** END OF SHADOW DOM *****
-  <recipe-viewer>
-***************************************/
+    <recipe-viewer>
+    ***** Shadow DOM *****
+      <section>
+        <main id='card-information'>
+          <div id='recipe-title'> </div>
+          <div id='recipe-ingredients'> </div>
+          <div id='recipe-instructions'> </div>
+        </main>
+        <aside id ='card-visuals'>
+          <fig id='visual'>
+            <img id='recipe-image'/>
+            <figcaption id='recipe-dietary'>
+          </fig>
+        </aside>
+      </section> 
+    ***** END OF SHADOW DOM *****
+    <recipe-viewer>
+  ***************************************/
   set data(data) {
     const card = document.createElement("section");
     const style = document.createElement("style");
@@ -35,15 +39,15 @@ class recipeViewer extends HTMLElement {
       /** RECIPE TITLE */
       const recipeTitle = document.createElement("div");
       recipeTitle.id = "recipe-title";
-      recipeTitle.innerHTML = getRecipeTitle(data);
+      recipeTitle.innerHTML = spoonacular.getRecipeTitle(data);
       /** RECIPE INGREDIENTS */
       const recipeIngredients = document.createElement("div");
       recipeIngredients.id = "recipe-ingredients";
-      recipeIngredients.appendChild(getRecipeIngredientsList(data));
+      recipeIngredients.appendChild(spoonacular.getRecipeIngredientsList(data));
       /** RECIPE INSTRUCTIONS */
       const recipeInstructions = document.createElement("div");
       recipeInstructions.id = "recipe-instructions";
-      recipeInstructions.appendChild(getRecipeInstructionsList(data));
+      recipeInstructions.appendChild(spoonacular.getRecipeInstructionsList(data));
 
       cardInformation.appendChild(recipeTitle);
       cardInformation.appendChild(recipeIngredients);
@@ -55,13 +59,13 @@ class recipeViewer extends HTMLElement {
       /** RECIPE IMAGE */
       const recipeImage = document.createElement("img");
       recipeImage.id = "recipe-image";
-      recipeImage.src = getRecipeImageSource(data);
+      recipeImage.src = spoonacular.getRecipeImageSource(data);
 
       /** RECIPE IMAGE CAPTION */
       const recipeDietary = document.createElement("figcaption");
       recipeDietary.id = "recipe-dietary";
       function setRecipeDietary(){
-        const dietary = getRecipeDietary(data);
+        const dietary = spoonacular.getRecipeDietary(data);
         let dietaryIcon;
         if(dietary["vegan"]){
           dietaryIcon = document.createElement('img');
@@ -105,48 +109,5 @@ class recipeViewer extends HTMLElement {
     this.shadowRoot.appendChild(card);
   }
 }
-/** HELPER METHODS */
-function getRecipeTitle(data) {
-  return data.title;
-}
-function getRecipeImageSource(data) {
-  return data.image;
-}
-function getRecipeInstructionsList(data) {
-  if (data) {
-    const instructions = data["analyzedInstructions"][0]["steps"];
-    const instructionsListElem = document.createElement('ol');
-    for(let i = 0; i< instructions.JSON; i++){
-      const listEntry = document.createElement('li');
-      listEntry.innerHTML = instructions[i]["step"];
-      instructionsListElem.appendChild(listEntry);
-    }
-    return instructionsListElem;
-  }
-  return null;
-}
-function getRecipeIngredientsList(data) {
-  if (data) {
-    const ingredients = data["nutrition"]["ingredients"];
-    const ingredientsListElem = document.createElement('ul')
-    for (let i = 0; i < ingredients.length; i++) {
-      const listEntry = document.createElement('li');
-      listEntry.innerHTML = ingredients[i]["name"]
-      ingredientsListElem.appendChild(listEntry);
-    }
-    return ingredientsListElem;
-  }
-  return null;
-}
-function getRecipeDietary(data){
-  if(data){
-    let dietary = {};
-    dietary["vegan"] = data["vegan"];
-    dietary["vegetarian"] = data["vegetarian"];
-    dietary["dairy-free"] = data["dairyFree"]; 
-    dietary["gluten-free"] = data["glutenFree"];
-    return dietary;
-  }
-  return null;
-}
+
 customElements.define("recipe-viewer", recipeViewer);
