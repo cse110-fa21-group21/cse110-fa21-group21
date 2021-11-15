@@ -9,12 +9,12 @@
 **Current Status**
 
 
-Linting: Functional
+Linting:  Functional
 * Uses github/super-linter for linting. Checks HTML, CSS, JS. 
 * Will display errors within Github Actions page.
 * Errors are like W3Validator for HTML files!
 
-Code Quality Check: 
+Code Quality Check:
 * Using Codefactor Free Version. (Currently in Reduced Feature Mode)
 * Analysis and notifications are real time
 * Statuses for GitHub pull requests
@@ -23,9 +23,9 @@ Code Quality Check:
 **In Progress**
 
 
-Pull Requests: Functional
-* Pull requests enabled
-* Soon, there will be a requirement that the errors from linting must be all resolved before pull request can be done
+Pull Requests:  Need to pay?????
+* Pull requests: Branch Protection Rules is a feature that must be paid for...
+* Want there to be a requirement that the errors from linting must be all resolved before pull request can be done
 * Debating about whether or not to enable required approvals (i.e. before merge at least 1 other person must approve pull request)
 
 
