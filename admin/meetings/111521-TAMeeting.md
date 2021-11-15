@@ -47,5 +47,5 @@
 
    
 ### Meeting End Time
-- **Time (PDT): 2:00 pm ** 
+- **Time (PDT): 2:00 pm** 
 
