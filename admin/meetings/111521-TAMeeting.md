@@ -43,6 +43,7 @@
 3. **Roadmap**
     - Our team is lagging behind, more communication and clearer assignment of tasks is needed. 
     - Make sure everbody is on the same page
+    - Clearer Deadlines for each task!
 
 **Taks:**
    - MVP Feature by Friday!
