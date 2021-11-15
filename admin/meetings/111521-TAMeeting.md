@@ -40,6 +40,9 @@
      - Recipe Card and Recipe Viewer 
      - Need to be put together with CSS!
      - Hema: Filtering by Tags should be a necessary feature! Think about it!
+3. **Roadmap**
+    - Our team is lagging behind, more communication and clearer assignment of tasks is needed. 
+    - Make sure everbody is on the same page
 
 **Taks:**
    - MVP Feature by Friday!
