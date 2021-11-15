@@ -38,7 +38,7 @@
 2. **JavaScript**
      - Recipe Card and Recipe Viewer 
      - Need to be put together with CSS!
-     - Hema: Filtering by Tags should be a necessary feature! 
+     - Hema: Filtering by Tags should be a necessary feature! Think about it!
 
 **Taks:**
    - MVP Feature by Friday!
