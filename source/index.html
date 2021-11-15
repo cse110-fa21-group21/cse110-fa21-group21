@@ -1,0 +1,76 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <title>Recipe App</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="styles/main.css" />
+
+
+</head>
+
+<body>
+  <main>
+    
+    <!--Buttons in this section will be placed right-up corner and are also shown in shopping-list page, searching-result page and home-page-->
+    <section class = "section--favorite-list">
+      <div class = "home-button">
+        <button id="home-button">
+          <!-- Please resize the icons when we get to the styling of the page--> 
+          <img src = "icons/group-logo.png" width="12" height="12";/>
+          Home
+        </button>
+      </div>
+      <div class = "favorite-list-button">
+        <button id="favorite-list-button">
+          <!-- Please resize the icons when we get to the styling of the page-->
+          <i class='fa fa-star' style="color:orange"></i>
+          Favorite 
+        </button>
+      </div>
+      <div class = "shopping-list-button">
+        <button id="shopping-list-button">
+          <!-- Please resize the icons when we get to the styling of the page-->
+          <i class='fa fa-shopping-cart' style="color:orange"></i>
+          Shopping List
+        </button>
+      </div>
+    </section>
+    
+    <section class = "section--home-page">
+      <!--following icons are placed left-up corner at the same places, show and hide appropriately for each page-->
+      <div  class = favorite-icon>
+        <i class = 'fa fa-star' style = "color:orange">
+        </i>
+        Favorite
+      </div>
+      
+      <div class = "shopping-list-icon">
+        <i class = 'fa fa-shopping-cart' style = "color:orange">
+        </i>
+        Shopping List
+      </div>
+
+      <div class = "home-icon">
+        <img src = "icons/group-logo.png" width = "35", height = "35"/>
+        Home
+      </div>
+
+      <form class='search-bar'>
+        <input type="text" >
+        <input type="submit" value='Search'>
+      </form>
+      
+      <!--placed in the middle of home page above the home-page search bar; just like google-->
+      <div class = "logo">
+        <img src = "icons/group-logo.png" height = "300" class="center-home-icon"/>
+      </div>
+
+      <!--search bar for the home page; if it's easier to just move the 
+        search bar from other pages to the middle, feel free to delete this-->
+      <div class='home-page--search-bar'>
+        <input type="text" id="home-page--search-bar">
+        <input type="submit" value='Search for Your Recipe!' id="home-page--search-btn">
+      </div>
+    </section>
+  </main>
+</body>
