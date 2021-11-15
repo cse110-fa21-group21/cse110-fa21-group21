@@ -4,19 +4,20 @@
 
 ### Attendance
 **Present:** 
-1. Cade
-2. Sherilyn
-3. James
-4. Jonathan
-5. Ken
-6. Henry
-7. Ludvig
-   
+1. Cade Arriens
+2. Sherilyn Kuo
+3. Do (James) Kim
+4. Jonathan Bocanegra-gomez
+5. Ken Chen
+6. Henry Nyugen
+7. Ludvig Basmajyan
+  
+
 **Absent:** 
-1. Richard
-2. Maggie
-3. Rohan
-4. Angelina
+1. Richard Zhou
+2. Yifan (Maggie) Hou
+3. Rohan Sreedhar
+4. Angelina Le
 
 ### Start Time and Place
 - **Time (PDT): 1:00-2:00pm ** 
