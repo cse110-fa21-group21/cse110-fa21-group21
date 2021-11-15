@@ -19,8 +19,8 @@
 4. Angelina
 
 ### Start Time and Place
-- **Time (PDT): 1:00-1:30pm ** 
-- **Place:CS 3217 ** 
+- **Time (PDT): 1:00-2:00pm ** 
+- **Place: CS 3217 ** 
 
 ### Updates <!-- Any updates that any members need to report -->
 1. **Hema's Announcements**
@@ -37,12 +37,15 @@
     - Need to add Branch Protection Rules
 2. **JavaScript**
      - Recipe Card and Recipe Viewer 
+     - Need to be put together with CSS!
+     - Hema: Filtering by Tags should be a necessary feature! 
 
 **Taks:**
-   - Put in all the tasks in the project board for all teams
-   - Go through all assignemtns on canvas and start delegating tasks
+   - MVP Feature by Friday!
+   - Team Status Video by next Monday!
+   - Sprint Review and Retrospective
 
    
 ### Meeting End Time
-- **Time (PDT): 1:30 pm ** 
+- **Time (PDT): 2:00 pm ** 
 
