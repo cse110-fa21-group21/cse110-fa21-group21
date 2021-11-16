@@ -1,0 +1,45 @@
+/** 
+  recipeCard.css 
+  "I put in some basic CSS to get you all started. I've already imported bootstrap so feel free to 
+  use it. I would recommend the 'card' component." - Jonathan
+**/
+
+
+#recipe-card{
+  display: flex;
+}
+#recipe-title{
+  grid-area: title;
+  text-align: center;
+}
+#recipe-price{
+  grid-area: price;
+}
+#recipe-servings{
+  grid-area: servings;
+}
+#recipe-cooking-time{
+  grid-area: cooking-time;
+}
+#recipe-calories{
+  grid-area: calories;
+}
+#recipe-score{
+  grid-area: score;
+}
+#recipe-total-calories{
+  grid-area: total-calories;
+}
+
+#card-information{
+  grid-area: information;
+  display: grid;
+  align-content: start;
+  grid-template-areas:
+  "title title"
+  ". ."
+  "price servings"
+  "cooking-time calories"
+  "score total-calories";
+}
+
