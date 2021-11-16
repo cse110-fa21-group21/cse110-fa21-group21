@@ -46,4 +46,6 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           #default branch is either main or master!
           DEFAULT_BRANCH: main
+          # Ignore Markdown Files! (Annoying when doing meeeting minutes)
+          VALIDATE_MARKDOWN: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
