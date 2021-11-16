@@ -78,7 +78,7 @@ class recipeCard extends HTMLElement {
       }
 
       #card-visuals{
-        float: left
+        float: left;
         grid-template-columns: 1fr 1fr 1fr;
       }
      `;
