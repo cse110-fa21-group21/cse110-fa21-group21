@@ -2,7 +2,7 @@
 
 ## Diagram
 
-![phase1diagram](https://github.com/cse110-fa21-group21/cse110-fa21-group21/blob/cicd/admin/cipipeline/phase1.drawio.png)
+![phase1diagram](https://github.com/cse110-fa21-group21/cse110-fa21-group21/blob/main/admin/cipipeline/phase1.drawio.png)
 
 *Push = for all branches!
 
