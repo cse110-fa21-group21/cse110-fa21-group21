@@ -18,7 +18,7 @@
   text-align: center;
 }
 
-#homepage-search-bar, 
+#homepage-search-bar,
 #homepage-search-btn {
   display: inline;
   position: relative;
@@ -32,16 +32,15 @@
   background-color: peachpuff;
 }
 
-.home-button, 
-.favorite-list-button, 
+.home-button,
+.favorite-list-button,
 .shopping-list-button {
   display: inline-block;
   position: absolute;
   top: 10px;
-  right: 0px;
+  right: 0;
   padding: 0.1%;
   text-decoration: none;
-  display: inline-block;
   font-size: 25px;
 }
 
@@ -69,13 +68,16 @@
   right: 10px;
 }
 
-.home-icon, 
-.favorite-icon, 
+.home-icon,
+.favorite-icon,
 .shopping-list-icon {
   display: block;
   position: absolute;
   top: 10px;
   left: 20px;
+  font-size: xx-large;
+  font-family: 'Ephesis', cursive;
+  font-weight: bold;
 }
 
 .search-bar {
@@ -83,12 +85,4 @@
   position: relative;
   top: 60px;
   left: 20px;
-}
-
-.favorite-icon, 
-.shopping-list-icon, 
-.home-icon {
-  font-size: xx-large;
-  font-family: 'Ephesis', cursive;
-  font-weight: bold;
 }
