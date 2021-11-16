@@ -16,7 +16,6 @@ window.addEventListener("DOMContentLoaded", init);
 
 async function init() {
   bindSearch();
-  funButtonBind();
 }
 
 async function bindSearch() {
@@ -43,44 +42,36 @@ async function bindSearch() {
 }
 
 async function fetchAPI() {
-  fetch(baseURL)
+  await fetch(baseURL)
     .then((response) => response.json())
     .then((data) => {
       console.log(data.results);
       for (let i = 0; i < data.results.length; i++) {
         recipesID[data.results[i].title] = data.results[i];
       }
-      //   for (const [key, value] of Object.entries(recipesID)) {
-      //     console.log(`${key}:${value}`);
-      //     recipeURL = `https://api.spoonacular.com/recipes/${value}/information?apiKey=${API_key}`;
-      //     fetch(recipeURL)
-      //       .then((response) => response.json())
-      //       .then((data) => {
-      //         console.log(data);
-      //       });
-      //   }
     });
+  bindRecipeCards();
+  bindRecipeViewers();
 }
 
+function bindRecipeCards(){
+  for (const property in recipesID) {
+    // RECIPE CARD TESTER
+    const recipeCard = document.createElement("recipe-card");
+    recipeCard.data = recipesID[property];
+    console.log(recipesID[property]);
+    document.querySelector(".recipe-cards--wrapper").appendChild(recipeCard);
+  }
+}
 
-let funButton = document.getElementById("funButt");
-
-function funButtonBind() {
-  funButton.addEventListener("click", (event) => {
-    for (const property in recipesID) {
-      // RECIPE CARD TESTER
-      const recipeCard = document.createElement("recipe-card");
-      recipeCard.data = recipesID[property];
-      console.log(recipesID[property]);
-      document.querySelector(".recipe-cards--wrapper").appendChild(recipeCard);
-
-      // RECIPE VIEWER TESTER
-      const recipeViewer = document.createElement("recipe-viewer");
-      recipeViewer.data = recipesID[property];
-      console.log(recipesID[property]);
-      document
-        .querySelector(".recipe-cards--wrapper")
-        .appendChild(recipeViewer);
-    }
-  });
+function bindRecipeViewers(){
+  for (const property in recipesID) {
+    // RECIPE VIEWER TESTER
+    const recipeViewer = document.createElement("recipe-viewer");
+    recipeViewer.data = recipesID[property];
+    console.log(recipesID[property]);
+    document
+      .querySelector(".recipe-viewers--wrapper")
+      .appendChild(recipeViewer);
+  }
 }
