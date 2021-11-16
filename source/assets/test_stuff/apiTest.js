@@ -9,13 +9,13 @@ var baseURL = ``;
 var recipesID = {};
 
 let searchQueryHistory = [];
-let stepsButton = document.getElementById("stepsButton");
-let recipeTitle = "";
 
 window.addEventListener("DOMContentLoaded", init);
 
 async function init() {
   bindSearch();
+  showRecipeCards();
+  showRecipeViewers();
 }
 
 async function bindSearch() {
@@ -52,6 +52,7 @@ async function fetchAPI() {
     });
   bindRecipeCards();
   bindRecipeViewers();
+
 }
 
 function bindRecipeCards(){
@@ -59,6 +60,7 @@ function bindRecipeCards(){
     // RECIPE CARD TESTER
     const recipeCard = document.createElement("recipe-card");
     recipeCard.data = recipesID[property];
+    recipeCard.classList.add('shown');
     console.log(recipesID[property]);
     document.querySelector(".recipe-cards--wrapper").appendChild(recipeCard);
   }
@@ -69,9 +71,46 @@ function bindRecipeViewers(){
     // RECIPE VIEWER TESTER
     const recipeViewer = document.createElement("recipe-viewer");
     recipeViewer.data = recipesID[property];
+    recipeViewer.classList.add('hidden');
     console.log(recipesID[property]);
     document
       .querySelector(".recipe-viewers--wrapper")
       .appendChild(recipeViewer);
   }
+}
+
+function showRecipeCards(){
+  const recipeCardsBtn = document.querySelector("#recipe-cards-btn");
+  recipeCardsBtn.addEventListener("click",()=>{
+    /** Show the Recipe Cards */
+    const recipeCards = document.querySelectorAll("recipe-card");
+    recipeCards.forEach( (element) =>{
+      element.classList.remove("hidden");
+      element.classList.remove("shown");
+    })
+    /** Hide the Recipe Viewers */
+    const recipeViewers = document.querySelectorAll("recipe-viewer");
+    recipeViewers.forEach( (element) =>{
+      element.classList.remove("hidden");
+      element.classList.add("shown");
+    })
+  })
+}
+
+function showRecipeViewers(){
+   const recipeViewersBtn = document.querySelector("#recipe-viewers-btn");
+   /** Show the Recipe Viewers */
+   recipeViewersBtn.addEventListener("click",()=>{
+    const recipeViewers = document.querySelectorAll("recipe-viewer");
+    recipeViewers.forEach( (element) =>{
+      element.classList.remove("hidden");
+      element.classList.add("shown");
+    })
+    /** Hide the Recipe Cards */
+    const recipeCards = document.querySelectorAll("recipe-card");
+    recipeCards.forEach( (element) =>{
+      element.classList.remove("shown");
+      element.classList.add("hidden");
+    })
+  })
 }

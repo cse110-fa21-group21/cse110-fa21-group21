@@ -1,1 +1,10 @@
 /** apiTest.css **/
+
+.shown {
+ visibility: visible;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+}

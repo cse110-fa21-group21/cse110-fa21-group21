@@ -12,10 +12,18 @@
     <!-- Web Components -->
     <script src="../components/recipeCard.js" type="module"></script>
     <script src="../components/recipeViewer.js" type="module"></script>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="apiTest.css">
   <body>
     <main>
+      <h1> Search </h1>
       <input type="text" id="search" />
       <button>search</button>
+      <section>
+        <h2> Tools </h1>
+        <button id='recipe-cards-btn'>Show RecipeCards</button>
+        <button id='recipe-viewers-btn'>Show RecipeViewers</button>
+      </section>
       <section class="section--recipe-cards">
         <div class="recipe-cards--wrapper">
           <!-- Recipes Added Here -->
