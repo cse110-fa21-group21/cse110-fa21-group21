@@ -14,17 +14,17 @@
     margin-top: 7%;
 }
 
-.home-page--search-bar{
+.homepage-search-bar{
     text-align: center;
 }
 
-#home-page--search-bar, #home-page--search-btn{
+#homepage-search-bar, #homepage-search-btn{
     display: inline;
     position: relative;
     font-size: 30px;
 }
 
-#home-page--search-btn{
+#homepage-search-btn{
     font-family: 'Ephesis', cursive;
     font-weight: bold;
     border-radius: 10%;
