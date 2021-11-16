@@ -52,18 +52,20 @@ async function fetchAPI() {
     });
   bindRecipeCards();
   bindRecipeViewers();
-
 }
 
 function bindRecipeCards(){
+  let recipeCards = [];
   for (const property in recipesID) {
     // RECIPE CARD TESTER
     const recipeCard = document.createElement("recipe-card");
     recipeCard.data = recipesID[property];
     recipeCard.classList.add('shown');
     console.log(recipesID[property]);
-    document.querySelector(".recipe-cards--wrapper").appendChild(recipeCard);
+    recipeCards.push(recipeCard);
   }
+  sortRecipeCards(recipeCards);
+  recipeCards.forEach( (card) => {document.querySelector(".recipe-cards--wrapper").appendChild(card);})
 }
 
 function bindRecipeViewers(){
@@ -112,5 +114,30 @@ function showRecipeViewers(){
       element.classList.remove("shown");
       element.classList.add("hidden");
     })
+  })
+}
+
+function sortRecipeCards(recipeCards){
+  recipeCards.sort((firstCard,secondCard)=>{
+    //Pull the Inner Text of the 'recipe-score' div
+    let firstCardRecipeScoreText  = firstCard.shadowRoot.querySelector('section').querySelector('#recipe-score').innerText;
+    let secondCardRecipeScoreText  = secondCard.shadowRoot.querySelector('section').querySelector('#recipe-score').innerText;
+    //Parse the Inner Text to obtain the value
+    function pullValue(text){
+      let slashIndex = text.indexOf('/');
+      let value = text.substring(7,slashIndex) // length of 'Score: ' is 7;
+      return Number(value);
+    }
+
+    let firstCardScore = pullValue(firstCardRecipeScoreText);
+    let secondCardScore = pullValue(secondCardRecipeScoreText);
+
+    if(firstCardScore > secondCardScore){
+      return -1;
+    }else if(firstCardScore < secondCardScore){
+      return 1;
+    }else{
+      return 0;
+    }
   })
 }
