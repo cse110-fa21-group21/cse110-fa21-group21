@@ -26,10 +26,11 @@
 }
 
 #homepage-search-btn {
-  font-family: 'Ephesis', cursive;
+  font-family: Georgia, serif;
+  font-size: 30px;
   font-weight: bold;
   border-radius: 10%;
-  background-color: peachpuff;
+  background-color: lemonchiffon;
 }
 
 .home-button,
