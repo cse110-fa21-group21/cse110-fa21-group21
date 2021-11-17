@@ -52,31 +52,36 @@ async function fetchAPI() {
     });
   bindRecipeCards();
   bindRecipeViewers();
-
 }
 
 function bindRecipeCards(){
+  const recipeCardsWrapper = document.querySelector(".recipe-cards--wrapper");
   for (const property in recipesID) {
     // RECIPE CARD TESTER
     const recipeCard = document.createElement("recipe-card");
     recipeCard.data = recipesID[property];
     recipeCard.classList.add('shown');
     console.log(recipesID[property]);
-    document.querySelector(".recipe-cards--wrapper").appendChild(recipeCard);
+    recipeCardsWrapper.appendChild(recipeCard);
   }
+  sortRecipeCardsInWrapper(recipeCardsWrapper);
 }
 
 function bindRecipeViewers(){
+  const recipeViewersWrapper = document.querySelector(".recipe-viewers--wrapper")
   for (const property in recipesID) {
     // RECIPE VIEWER TESTER
     const recipeViewer = document.createElement("recipe-viewer");
     recipeViewer.data = recipesID[property];
     recipeViewer.classList.add('hidden');
-    console.log(recipesID[property]);
-    document
-      .querySelector(".recipe-viewers--wrapper")
-      .appendChild(recipeViewer);
+    recipeViewersWrapper.appendChild(recipeViewer);
   }
+  /**
+   * Spoonacular Scores need to be added to recipeViewers,
+   * in order for this feature to be implemented
+   * sortRecipeViewersInWrapper(recipeViewersWrapper); 
+   */
+
 }
 
 function showRecipeCards(){
@@ -113,4 +118,92 @@ function showRecipeViewers(){
       element.classList.add("hidden");
     })
   })
+}
+
+/** SORTERS */
+
+function sortRecipeCardsInWrapper(recipeCardsWrapper){
+  const recipeCards = [];
+  const indices = [];
+  const nodesList = recipeCardsWrapper.childNodes;
+  nodesList.forEach( (node,index) =>{
+    if(node.nodeName == 'RECIPE-CARD'){
+      recipeCards.push(node);
+      indices.push(index);
+    }
+  })
+  recipeCardsWrapper.innerHTML = '';
+  recipeCards.sort( (firstCard,secondCard) => compareRecipeCards(firstCard,secondCard))
+  recipeCards.forEach( (card) => {recipeCardsWrapper.appendChild(card);});
+}
+
+function sortRecipeViewersInWrapper(recipeViewersWrapper){
+  const recipeViewers = [];
+  const indices = [];
+  const nodesList = recipeViewersWrapper.childNodes;
+  nodesList.forEach( (node,index) =>{
+    if(node.nodeName == 'RECIPE-VIEWER'){
+      recipeViewers.push(node);
+      indices.push(index);
+    }
+  })
+  recipeViewersWrapper.innerHTML = '';
+  recipeViewers.sort( (firstViewer,secondViewer) => compareRecipeCards(firstViewer,secondViewer))
+  recipeViewers.forEach( (viewer) => {recipeCardsWrapper.appendChild(viewer);});
+}
+
+/** COMPARISONS */
+
+/**
+ * Compares two recipe-card DOMs and chooses the one with 
+ * the higher spoonacular score
+ */
+function compareRecipeCards(firstCard,secondCard){
+  //Pull the Inner Text of the 'recipe-score' div
+  let firstCardRecipeScoreText  = firstCard.shadowRoot.querySelector('section').querySelector('#recipe-score').innerText;
+  let secondCardRecipeScoreText  = secondCard.shadowRoot.querySelector('section').querySelector('#recipe-score').innerText;
+  //Parse the Inner Text to obtain the value
+  function pullValue(text){
+    let slashIndex = text.indexOf('/');
+    let value = text.substring(7,slashIndex) // length of 'Score: ' is 7;
+    return Number(value);
+  }
+
+  let firstCardScore = pullValue(firstCardRecipeScoreText);
+  let secondCardScore = pullValue(secondCardRecipeScoreText);
+
+  if(firstCardScore > secondCardScore){
+    return -1;
+  }else if(firstCardScore < secondCardScore){
+    return 1;
+  }else{
+    return 0;
+  }
+}
+
+/**
+ * Compares two recipe-viewer DOMs and chooses the one with 
+ * the higher spoonacular score
+ */
+ function compareRecipeViewers(firstViewer,secondViewer){
+  //Pull the Inner Text of the 'recipe-score' div
+  let firstViewerRecipeScoreText  = firstViewer.shadowRoot.querySelector('section').querySelector('#recipe-score').innerText;
+  let secondViewerRecipeScoreText  = secondViewer.shadowRoot.querySelector('section').querySelector('#recipe-score').innerText;
+  //Parse the Inner Text to obtain the value
+  function pullValue(text){
+    let slashIndex = text.indexOf('/');
+    let value = text.substring(7,slashIndex) // length of 'Score: ' is 7;
+    return Number(value);
+  }
+
+  let firstViewerScore = pullValue(firstViewerRecipeScoreText);
+  let secondViewerScore = pullValue(secondViewerRecipeScoreText);
+
+  if(firstViewerScore > secondViewerScore){
+    return -1;
+  }else if(firstViewerScore < secondViewerScore){
+    return 1;
+  }else{
+    return 0;
+  }
 }
