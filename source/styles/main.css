@@ -1,12 +1,12 @@
 /* main.css */
 
-@import url('https://fonts.googleapis.com/css2?family=Ephesis&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Ephesis&display=swap");
 
 * {
   font-family: Georgia, serif;
 }
 
-body{
+body {
   background-color: #ffd2cf;
 }
 
@@ -63,7 +63,6 @@ body{
   top: 5px;
   right: 135px;
 }
-
 
 #shopping-list-button {
   background-color: #ffa399;
