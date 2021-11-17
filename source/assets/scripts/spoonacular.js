@@ -1,25 +1,28 @@
 //spoonacular.js
-export class Spoonacular{
-  constructor(){}
+export class Spoonacular {
+  constructor() {}
 
   /** RECIPE IMAGE SOURCE */
   getRecipeImageSource(data) {
-    if(data){
+    if (data) {
       return data["image"];
     }
     return null;
   }
   /** RECIPE TITLE */
   getRecipeTitle(data) {
-    if(data){
+    if (data) {
       return data["title"];
     }
     return null;
   }
   /** RECIPE PRICE */
   getRecipePrice(data) {
-    if(data){
-      Math.round(data["pricePerServing"] * data["servings"]);
+    if (data) {
+      return (
+        "Total Price: $" +
+        Math.round(data["pricePerServing"] * data["servings"]) / 100
+      );
     }
     return null;
   }
@@ -59,18 +62,20 @@ export class Spoonacular{
     if (data) {
       return (
         "Total Calories: " +
-        Math.round(data["nutrition"]["nutrients"][0]["amount"] * data["servings"])
+        Math.round(
+          data["nutrition"]["nutrients"][0]["amount"] * data["servings"]
+        )
       );
     }
     return null;
   }
   /** RECIPE TOTAL DIETARY */
-  getRecipeDietary(data){
-    if(data){
+  getRecipeDietary(data) {
+    if (data) {
       let dietary = {};
       dietary["vegan"] = data["vegan"];
       dietary["vegetarian"] = data["vegetarian"];
-      dietary["dairy-free"] = data["dairyFree"]; 
+      dietary["dairy-free"] = data["dairyFree"];
       dietary["gluten-free"] = data["glutenFree"];
       return dietary;
     }
@@ -80,9 +85,9 @@ export class Spoonacular{
   getRecipeInstructionsList(data) {
     if (data) {
       const instructions = data["analyzedInstructions"][0]["steps"];
-      const instructionsListElem = document.createElement('ol');
-      for(let i = 0; i< instructions.length; i++){
-        const listEntry = document.createElement('li');
+      const instructionsListElem = document.createElement("ol");
+      for (let i = 0; i < instructions.length; i++) {
+        const listEntry = document.createElement("li");
         listEntry.innerHTML = instructions[i]["step"];
         instructionsListElem.appendChild(listEntry);
       }
@@ -94,10 +99,10 @@ export class Spoonacular{
   getRecipeIngredientsList(data) {
     if (data) {
       const ingredients = data["nutrition"]["ingredients"];
-      const ingredientsListElem = document.createElement('ul')
+      const ingredientsListElem = document.createElement("ul");
       for (let i = 0; i < ingredients.length; i++) {
-        const listEntry = document.createElement('li');
-        listEntry.innerHTML = ingredients[i]["name"]
+        const listEntry = document.createElement("li");
+        listEntry.innerHTML = ingredients[i]["name"];
         ingredientsListElem.appendChild(listEntry);
       }
       return ingredientsListElem;
