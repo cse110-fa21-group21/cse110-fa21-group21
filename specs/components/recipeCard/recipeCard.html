@@ -20,47 +20,67 @@
   You can picture there being a <recipe-card> tag right here
   <recipe-card> 
   -->
-    <!-- Shadow DOM, so style changes here won't bleed to the entire interface -->
     <section>
-      <aside id ='card-visuals'>
-        <fig id='visual'>
-          <!-- 
-            there is no uniform size for recipe images from Spooonacular, you have to take 
-            that into account when writing the CSS
-          -->
-          <img id='recipe-image' src='https://spoonacular.com/recipeImages/579247-556x370.jpg' alt='recipe-image'/>
-          <figcaption id='recipe-dietary'>
-              <img src='../../../source/assets/icons/dietary/dairy-free.png' alt='Dairy Free'/>
-              <img src='../../../source/assets/icons/dietary/gluten-free.png' alt='Gluten Free'/>
-              <img src='../../../source/assets/icons/dietary/vegan.png' alt='Vegan'/>
-              <img src='../../../source/assets/icons/dietary/vegetarian.png' alt='Vegetarian'/>
-          </figcaption>
-        </fig>
-      </aside>
+      
+      <div class="card">
+        <!-- The title of the recipe -->
+        <h1 class = "recipe-title"> 
+          Title 
+        </h1>
 
-      <main id='card-information'>
-        <div id='recipe-title'> 
-          Title
-        </div>      
-        <div id='recipe-price'> 
-          Price 
-       </div>
-        <div id='recipe-cooking-time'> 
-          Cooking Time
+        <div class="card-horizontal">
+          <div class="img-square-wrapper">
+            <!-- Shadow DOM, so style changes here won't bleed to the entire interface -->
+            <aside id ='card-visuals'>
+              <fig id='visual'>
+                <!-- 
+                  there is no uniform size for recipe images from Spooonacular, you have to take 
+                  that into account when writing the CSS
+                -->
+                <img id='recipe-image' src='https://spoonacular.com/recipeImages/579247-556x370.jpg' alt='recipe-image'/>
+                <figcaption id='recipe-dietary'>
+                    <img src='../../../source/assets/icons/dietary/dairy-free.png' width = 30px height = 30px alt='Dairy Free'/>
+                    <img src='../../../source/assets/icons/dietary/gluten-free.png' width = 30px height = 30px alt='Gluten Free'/>
+                    <img src='../../../source/assets/icons/dietary/vegan.png' width = 30px height = 30px alt='Vegan'/>
+                    <img src='../../../source/assets/icons/dietary/vegetarian.png' width = 30px height = 30px alt='Vegetarian'/>
+                </figcaption>
+              </fig>
+            </aside>
+          </div>
+          
+          <div class= "card-body">
+
+            <div class = "first-column">
+              <div id='recipe-price'> 
+                Price 
+              </div>
+              
+              <div id='recipe-cooking-time'> 
+                Cooking Time
+              </div>
+  
+              <div id='recipe-score'>
+                Recipe Score
+              </div>
+            </div>
+
+            <div class = "second-column">
+              <div id='recipe-servings'>
+                Recipe Servings
+              </div>
+  
+              <div id='recipe-calories'> 
+                Calories per Serving 
+              </div> 
+  
+              <div id='recipe-total-calories'>
+                Total Calories
+              </div>
+            </div>
+          </div>
         </div>
-        <div id='recipe-score'>
-          Recipe Score
-        </div>
-        <div id='recipe-servings'>
-          Recipe Servings
-        </div>
-        <div id='recipe-calories'> 
-          Calories per Serving 
-        </div> </div>
-        <div id='recipe-total-calories'>
-          Total Calories
-        </div>
-      </main>
+      </div>
+
     </section> 
     <!-- END OF SHADOW DOM -->
   <!-- 
