@@ -5,33 +5,8 @@ class recipeCard extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-  }
-  /*********  CARD STRUCTURE ***********
-    <recipe-card>
-    ***** Shadow DOM *****
-      <section>
-        <main id='card-information'>
-          <div id='recipe-title'> </div>
-          <div id='recipe-price'> </div>
-          <div id='recipe-cooking-time'> </div>
-          <div id='recipe-score'> </div>
-          <div id='recipe-servings'> </div>
-          <div id='recipe-calories'> </div>
-          <div id='recipe-total-calories'> </div>
-        </main>
-        <aside id ='card-visuals'>
-          <fig id='visual'>
-            <img id='recipe-image'/>
-            <figcaption id='recipe-dietary'> </figcaption>
-          </fig>
-        </aside>
-      </section> 
-    ***** END OF SHADOW DOM *****
-    <recipe-card>
-  ***************************************/
-  set data(data) {
-    const spoonacular = new Spoonacular();
-    const card = document.createElement("section");
+    
+    const card = document.createElement('article');
     const style = document.createElement("style");
     style.innerHTML = `
       main > div {
@@ -39,7 +14,7 @@ class recipeCard extends HTMLElement {
         padding: 1em;
         border: 1px dashed grey;
         border-radius: 1px;
-        margin: 10px;
+        margin: 15px;
       }
 
       #recipe-title{
@@ -82,113 +57,204 @@ class recipeCard extends HTMLElement {
         grid-template-columns: 1fr 1fr 1fr;
       }
      `;
-    const cardVisuals = document.createElement("aside");
-    cardVisuals.id = "card-visuals";
 
-    const cardInformation = document.createElement("main");
-    cardInformation.id = "card-information";
+     card.innerHTML = `
+      <main id='card-information'>
+        <div id='recipe-title'> </div>
+        <div id='recipe-price'> </div>
+        <div id='recipe-cooking-time'> </div>
+        <div id='recipe-score'> </div>
+        <div id='recipe-servings'> </div>
+        <div id='recipe-calories'> </div>
+        <div id='recipe-total-calories'> </div>
+      </main>
+      <aside id ='card-visuals'>
+          <fig id='visual'>
+            <img id='recipe-image'/>
+            <figcaption id='recipe-dietary'> </figcaption>
+          </fig>
+      </aside>
+     `;
 
-    function setCardVisuals() {
-      const visual = document.createElement("figure");
-      visual.id = "visual";
-      /** RECIPE IMAGE */
-      const recipeImage = document.createElement("img");
-      recipeImage.id = "recipe-image";
-      recipeImage.src = spoonacular.getRecipeImageSource(data);
+     this.shadowRoot.append(style,card);
+  }
+  /*********  CARD STRUCTURE ***********
+    <recipe-card>
+    ***** Shadow DOM *****
+      <section>
+        <main id='card-information'>
+          <div id='recipe-title'> </div>
+          <div id='recipe-price'> </div>
+          <div id='recipe-cooking-time'> </div>
+          <div id='recipe-score'> </div>
+          <div id='recipe-servings'> </div>
+          <div id='recipe-calories'> </div>
+          <div id='recipe-total-calories'> </div>
+        </main>
+        <aside id ='card-visuals'>
+          <fig id='visual'>
+            <img id='recipe-image'/>
+            <figcaption id='recipe-dietary'> </figcaption>
+          </fig>
+        </aside>
+      </section> 
+    ***** END OF SHADOW DOM *****
+    <recipe-card>
+  ***************************************/
+  set data(data) {
+    this.json = data;
+    
+    const spoonacular = new Spoonacular();
+    this.shadowRoot.querySelector('article').innerHTML = `
+      <main id='card-information'>
+        <div id='recipe-title'> </div>
+        <div id='recipe-price'> </div>
+        <div id='recipe-cooking-time'> </div>
+        <div id='recipe-score'> </div>
+        <div id='recipe-servings'> </div>
+        <div id='recipe-calories'> </div>
+        <div id='recipe-total-calories'> </div>
+      </main>
+      <aside id ='card-visuals'>
+        <fig id='visual'>
+          <img id='recipe-image'/>
+          <figcaption id='recipe-dietary'> </figcaption>
+        </fig>
+      </aside>
+    `;
 
-      /** RECIPE IMAGE CAPTION */
-      const recipeDietary = document.createElement("figcaption");
-      recipeDietary.id = "recipe-dietary";
+    const title = spoonacular.getRecipeTitle(data);
+    this.shadowRoot.getElementById('recipe-title').innerHTML = title;
+
+    const price = spoonacular.getRecipePrice(data);
+    this.shadowRoot.getElementById('recipe-price').innerHTML = price;
+
+    const time = spoonacular.getRecipeCookingTime(data);
+    this.shadowRoot.getElementById('recipe-cooking-time').innerHTML = time;
+
+    const score = spoonacular.getRecipeScore(data);
+    this.shadowRoot.getElementById('recipe-score').innerHTML = score;
+
+    const servings = spoonacular.getRecipeServings(data);
+    this.shadowRoot.getElementById('recipe-servings').innerHTML = servings;
+
+    const calories = spoonacular.getRecipeCalories(data);
+    this.shadowRoot.getElementById('recipe-calories').innerHTML = calories;
+
+    const totalCalories = spoonacular.getRecipeTotalCalories(data);
+    this.shadowRoot.getElementById('recipe-total-calories').innerHTML = totalCalories;
+
+    const image = spoonacular.getRecipeImageSource(data);
+    this.shadowRoot.getElementById('recipe-image').setAttribute('src',image);
+
+  //   const cardVisuals = document.createElement("aside");
+  //   cardVisuals.id = "card-visuals";
+
+  //   const cardInformation = document.createElement("main");
+  //   cardInformation.id = "card-information";
+
+  //   function setCardVisuals() {
+  //     const visual = document.createElement("figure");
+  //     visual.id = "visual";
+  //     /** RECIPE IMAGE */
+  //     const recipeImage = document.createElement("img");
+  //     recipeImage.id = "recipe-image";
+  //     recipeImage.src = spoonacular.getRecipeImageSource(data);
+
+  //     /** RECIPE IMAGE CAPTION */
+  //     const recipeDietary = document.createElement("figcaption");
+  //     recipeDietary.id = "recipe-dietary";
       
-      function setRecipeDietary(){
-        const dietary = spoonacular.getRecipeDietary(data);
-        let dietaryIcon;
-        if(dietary["vegan"]){
-          dietaryIcon = document.createElement('img');
-          dietaryIcon.src = '../icons/dietary/vegan.png'; //index.html path: assets/icons/dietary/vegan.png
-          dietaryIcon.alt = "Vegan"
-          recipeDietary.appendChild(dietaryIcon);
-        }
-        if(dietary["vegetarian"]){
-          dietaryIcon = document.createElement('img');
-          dietaryIcon.src = '../icons/dietary/vegetarian.png'; //index.html path: assets/icons/dietary/vegetarian.png
-          dietaryIcon.alt = "Vegetarian"
-          recipeDietary.appendChild(dietaryIcon);
-        }
-        if(dietary["gluten-free"]){
-          dietaryIcon = document.createElement('img');
-          dietaryIcon.src = '../icons/dietary/gluten-free.png'; //index.html path: assets/icons/dietary/gluten-free.png
-          dietaryIcon.alt = "Gluten Free"
-          recipeDietary.appendChild(dietaryIcon);
-        }
-        if(dietary["dairy-free"]){
-          dietaryIcon = document.createElement('img');
-          dietaryIcon.src = '../icons/dietary/dairy-free.png'; //index.html path: assets/icons/dietary/dairy-free.png
-          dietaryIcon.alt = "Dairy Free"
-          recipeDietary.appendChild(dietaryIcon);
-        }
-      }
-      setRecipeDietary();
+  //     function setRecipeDietary(){
+  //       const dietary = spoonacular.getRecipeDietary(data);
+  //       let dietaryIcon;
+  //       if(dietary["vegan"]){
+  //         dietaryIcon = document.createElement('img');
+  //         dietaryIcon.src = '../icons/dietary/vegan.png'; //index.html path: assets/icons/dietary/vegan.png
+  //         dietaryIcon.alt = "Vegan"
+  //         recipeDietary.appendChild(dietaryIcon);
+  //       }
+  //       if(dietary["vegetarian"]){
+  //         dietaryIcon = document.createElement('img');
+  //         dietaryIcon.src = '../icons/dietary/vegetarian.png'; //index.html path: assets/icons/dietary/vegetarian.png
+  //         dietaryIcon.alt = "Vegetarian"
+  //         recipeDietary.appendChild(dietaryIcon);
+  //       }
+  //       if(dietary["gluten-free"]){
+  //         dietaryIcon = document.createElement('img');
+  //         dietaryIcon.src = '../icons/dietary/gluten-free.png'; //index.html path: assets/icons/dietary/gluten-free.png
+  //         dietaryIcon.alt = "Gluten Free"
+  //         recipeDietary.appendChild(dietaryIcon);
+  //       }
+  //       if(dietary["dairy-free"]){
+  //         dietaryIcon = document.createElement('img');
+  //         dietaryIcon.src = '../icons/dietary/dairy-free.png'; //index.html path: assets/icons/dietary/dairy-free.png
+  //         dietaryIcon.alt = "Dairy Free"
+  //         recipeDietary.appendChild(dietaryIcon);
+  //       }
+  //     }
+  //     setRecipeDietary();
 
-      visual.appendChild(recipeImage);
-      visual.appendChild(recipeDietary);
+  //     visual.appendChild(recipeImage);
+  //     visual.appendChild(recipeDietary);
 
-      cardVisuals.appendChild(visual);
-    }
+  //     cardVisuals.appendChild(visual);
+  //   }
 
-    function setCardInformation() {
-      /** RECIPE TITLE */
-      const recipeTitle = document.createElement("div");
-      recipeTitle.id = "recipe-title";
-      recipeTitle.innerHTML = spoonacular.getRecipeTitle(data);
+  //   function setCardInformation() {
+  //     /** RECIPE TITLE */
+  //     const recipeTitle = document.createElement("div");
+  //     recipeTitle.id = "recipe-title";
+  //     recipeTitle.innerHTML = spoonacular.getRecipeTitle(data);
 
-      /** RECIPE PRICE */
-      const recipePrice = document.createElement("div");
-      recipePrice.id = "recipe-price";
-      recipePrice.innerHTML = spoonacular.getRecipePrice(data);
+  //     /** RECIPE PRICE */
+  //     const recipePrice = document.createElement("div");
+  //     recipePrice.id = "recipe-price";
+  //     recipePrice.innerHTML = spoonacular.getRecipePrice(data);
 
-      /** RECIPE COOKING TIME */
-      const recipeCookingTime = document.createElement("div");
-      recipeCookingTime.id = "recipe-cooking-time";
-      recipeCookingTime.innerHTML = spoonacular.getRecipeCookingTime(data);
+  //     /** RECIPE COOKING TIME */
+  //     const recipeCookingTime = document.createElement("div");
+  //     recipeCookingTime.id = "recipe-cooking-time";
+  //     recipeCookingTime.innerHTML = spoonacular.getRecipeCookingTime(data);
 
-      /** RECIPE SCORE */
-      const recipeScore = document.createElement("div");
-      recipeScore.id = "recipe-score";
-      recipeScore.innerHTML = spoonacular.getRecipeScore(data);
+  //     /** RECIPE SCORE */
+  //     const recipeScore = document.createElement("div");
+  //     recipeScore.id = "recipe-score";
+  //     recipeScore.innerHTML = spoonacular.getRecipeScore(data);
 
-      /** RECIPE SERVING */
-      const recipeServings = document.createElement("div");
-      recipeServings.id = "recipe-servings";
-      recipeServings.innerHTML = spoonacular.getRecipeServings(data);
+  //     /** RECIPE SERVING */
+  //     const recipeServings = document.createElement("div");
+  //     recipeServings.id = "recipe-servings";
+  //     recipeServings.innerHTML = spoonacular.getRecipeServings(data);
 
-      /** RECIPE CALORIES */
-      const recipeCalories = document.createElement("div");
-      recipeCalories.id = "recipe-calories";
-      recipeCalories.innerHTML = spoonacular.getRecipeCalories(data);
+  //     /** RECIPE CALORIES */
+  //     const recipeCalories = document.createElement("div");
+  //     recipeCalories.id = "recipe-calories";
+  //     recipeCalories.innerHTML = spoonacular.getRecipeCalories(data);
 
-      /** RECIPE TOTAL CALORIES */
-      const recipeTotalCalories = document.createElement("div");
-      recipeTotalCalories.id = "recipe-total-calories";
-      recipeTotalCalories.innerHTML = spoonacular.getRecipeTotalCalories(data);
+  //     /** RECIPE TOTAL CALORIES */
+  //     const recipeTotalCalories = document.createElement("div");
+  //     recipeTotalCalories.id = "recipe-total-calories";
+  //     recipeTotalCalories.innerHTML = spoonacular.getRecipeTotalCalories(data);
 
-      cardInformation.appendChild(recipeTitle);
-      cardInformation.appendChild(recipePrice);
-      cardInformation.appendChild(recipeCookingTime);
-      cardInformation.appendChild(recipeScore);
-      cardInformation.appendChild(recipeServings);
-      cardInformation.appendChild(recipeCalories);
-      cardInformation.appendChild(recipeTotalCalories);
-    }
+  //     cardInformation.appendChild(recipeTitle);
+  //     cardInformation.appendChild(recipePrice);
+  //     cardInformation.appendChild(recipeCookingTime);
+  //     cardInformation.appendChild(recipeScore);
+  //     cardInformation.appendChild(recipeServings);
+  //     cardInformation.appendChild(recipeCalories);
+  //     cardInformation.appendChild(recipeTotalCalories);
+  //   }
 
-    setCardVisuals();
-    setCardInformation();
+  //   setCardVisuals();
+  //   setCardInformation();
 
-    card.appendChild(cardVisuals);
-    card.appendChild(cardInformation);
+  //   card.appendChild(cardVisuals);
+  //   card.appendChild(cardInformation);
 
-    this.shadowRoot.appendChild(style);
-    this.shadowRoot.appendChild(card);
+  //   this.shadowRoot.appendChild(style);
+  //   this.shadowRoot.appendChild(card);
+  // }
   }
 }
 

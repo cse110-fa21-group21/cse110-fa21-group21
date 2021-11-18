@@ -1,6 +1,9 @@
 //apiTest.js
 
-const API_key = "54a305b43853416198613d4aaaed7b01";
+
+import {Router} from './Router.js';
+
+const API_key = "ec4a0690be5a4155b40c1525f9b8226d";
 var recipeURL = ``;
 const searchBar = document.querySelector("input");
 const search = document.querySelector("button");
@@ -10,12 +13,21 @@ var recipesID = {};
 
 let searchQueryHistory = [];
 
+var funcArray = [];
+
+const router = new Router(function (){
+  document.querySelector('.section--recipe-cards').classList.remove("shown");
+  document.querySelector('.section--recipe-viewers').classList.remove('shown');
+})
+
+
 window.addEventListener("DOMContentLoaded", init);
 
 async function init() {
   bindSearch();
   showRecipeCards();
   showRecipeViewers();
+  bindState();
 }
 
 async function bindSearch() {
@@ -32,16 +44,17 @@ async function bindSearch() {
       //This is slightly flawed. We don't want to only store search history but rather by title?
       console.log("NOT IN THERE YET!");
       searchQueryHistory.push(searchQuery);
-      baseURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_key}&query=${searchQuery}&instructions=true&addRecipeInformation=true&addRecipeNutrition=true&number=100&price=true`;
-      fetchAPI();
+      baseURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_key}&query=${searchQuery}&instructions=true&addRecipeInformation=true&addRecipeNutrition=true&number=10&price=true`;
+      fetchAPI(searchQuery);
     } else {
       console.log("ALREADY EXISTS NO NEED TO FETCH!");
       console.log(recipesID);
+      bindRecipeCards(searchQuery);
     }
   });
 }
 
-async function fetchAPI() {
+async function fetchAPI(query) {
   await fetch(baseURL)
     .then((response) => response.json())
     .then((data) => {
@@ -50,38 +63,76 @@ async function fetchAPI() {
         recipesID[data.results[i].title] = data.results[i];
       }
     });
-  bindRecipeCards();
-  bindRecipeViewers();
+  bindRecipeCards(query);
 }
 
-function bindRecipeCards(){
-  const recipeCardsWrapper = document.querySelector(".recipe-cards--wrapper");
-  for (const property in recipesID) {
-    // RECIPE CARD TESTER
-    const recipeCard = document.createElement("recipe-card");
-    recipeCard.data = recipesID[property];
-    recipeCard.classList.add('shown');
-    console.log(recipesID[property]);
-    recipeCardsWrapper.appendChild(recipeCard);
-  }
-  sortRecipeCardsInWrapper(recipeCardsWrapper);
+function bindRecipeCards(query){
+
+  router.insertPage(query, function(){
+    document.querySelector('.section--recipe-cards').classList.add("shown");
+    document.querySelector('.section--recipe-viewers').classList.remove("shown");
+    let i =0;
+    for (const property in recipesID) {
+      // RECIPE CARD TESTER
+      if(property.toLocaleLowerCase().includes(query.toLocaleLowerCase())){
+        const recipeSection = document.querySelector('.section--recipe-cards');
+        let recipeCard = recipeSection.children[i];
+        recipeCard.data = recipesID[property];
+        recipeCard.classList.add('shown');
+        const page = recipesID[property].title;
+  
+        router.insertPage(page, function(){
+          document.querySelector('.section--recipe-cards').classList.remove('shown');
+          document.querySelector('.section--recipe-viewers').classList.add('shown');
+          document.querySelector('recipe-viewer').data = recipesID[property];
+        });
+        bindRecipeViewers(recipeCard, page);
+        i++;
+      }
+    }
+  });
+  router.goTo(query);
+  //sortRecipeCardsInWrapper(recipeCardsWrapper);
+
+  
 }
 
-function bindRecipeViewers(){
-  const recipeViewersWrapper = document.querySelector(".recipe-viewers--wrapper")
-  for (const property in recipesID) {
-    // RECIPE VIEWER TESTER
-    const recipeViewer = document.createElement("recipe-viewer");
-    recipeViewer.data = recipesID[property];
-    recipeViewer.classList.add('hidden');
-    recipeViewersWrapper.appendChild(recipeViewer);
+function bindRecipeViewers(recipeCard, pageName){
+  if(funcArray.length == 10){
+    recipeCard.removeEventListener('click',funcArray.shift());
   }
+  function event(){
+    router.goTo(pageName);
+  }
+  recipeCard.addEventListener('click', event);
+  funcArray.push(event);
+  
+  // const recipeViewersWrapper = document.querySelector(".recipe-viewers--wrapper")
+  // for (const property in recipesID) {
+  //   // RECIPE VIEWER TESTER
+  //   const recipeViewer = document.createElement("recipe-viewer");
+  //   recipeViewer.data = recipesID[property];
+  //   recipeViewer.classList.add('hidden');
+  //   recipeViewersWrapper.appendChild(recipeViewer);
+  // }
   /**
    * Spoonacular Scores need to be added to recipeViewers,
    * in order for this feature to be implemented
    * sortRecipeViewersInWrapper(recipeViewersWrapper); 
    */
 
+}
+
+function bindState(){
+  window.addEventListener('popstate', event =>{
+    if(event.state == null){
+      router.goTo('home',true);
+    }
+    else{
+      console.log(event.state);
+      router.goTo(event.state,true);
+    }
+  });
 }
 
 function showRecipeCards(){
