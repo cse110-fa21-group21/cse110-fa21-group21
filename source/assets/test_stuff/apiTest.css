@@ -1,5 +1,7 @@
 /** apiTest.css **/
 
+
+/** this will hide all section without the class shown */
 section:not(section.shown){
   display: none;
 }

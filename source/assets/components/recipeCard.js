@@ -6,6 +6,8 @@ class recipeCard extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
     
+    //Change to article instead of section, because I wrote a shown
+    //class in CSS that hide all section without class shown
     const card = document.createElement('article');
     const style = document.createElement("style");
     style.innerHTML = `
@@ -101,10 +103,21 @@ class recipeCard extends HTMLElement {
     ***** END OF SHADOW DOM *****
     <recipe-card>
   ***************************************/
+  
+  /**
+   * Change make to recipeCard instead keep create elements
+   * Setting the structure of shadowRoot to what it need to be
+   * then we can just call data to set up information for each 
+   * part of the recipecard
+   * I did not get what is recipe-dietary part doing so I didnt 
+   * do that in the set data
+   */
   set data(data) {
     this.json = data;
     
     const spoonacular = new Spoonacular();
+
+    //this will reset the struction of the shadowRoot
     this.shadowRoot.querySelector('article').innerHTML = `
       <main id='card-information'>
         <div id='recipe-title'> </div>
@@ -123,27 +136,35 @@ class recipeCard extends HTMLElement {
       </aside>
     `;
 
+    //set title
     const title = spoonacular.getRecipeTitle(data);
     this.shadowRoot.getElementById('recipe-title').innerHTML = title;
-
+    
+    //set price
     const price = spoonacular.getRecipePrice(data);
     this.shadowRoot.getElementById('recipe-price').innerHTML = price;
 
+    //set time
     const time = spoonacular.getRecipeCookingTime(data);
     this.shadowRoot.getElementById('recipe-cooking-time').innerHTML = time;
 
+    //set score
     const score = spoonacular.getRecipeScore(data);
     this.shadowRoot.getElementById('recipe-score').innerHTML = score;
-
+    
+    //set servings
     const servings = spoonacular.getRecipeServings(data);
     this.shadowRoot.getElementById('recipe-servings').innerHTML = servings;
-
+    
+    //set calories
     const calories = spoonacular.getRecipeCalories(data);
     this.shadowRoot.getElementById('recipe-calories').innerHTML = calories;
 
+    //set totalCalories
     const totalCalories = spoonacular.getRecipeTotalCalories(data);
     this.shadowRoot.getElementById('recipe-total-calories').innerHTML = totalCalories;
 
+    //set image.src
     const image = spoonacular.getRecipeImageSource(data);
     this.shadowRoot.getElementById('recipe-image').setAttribute('src',image);
 

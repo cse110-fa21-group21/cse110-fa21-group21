@@ -49,6 +49,11 @@ class recipeViewer extends HTMLElement {
     ***** END OF SHADOW DOM *****
     <recipe-viewer>
   ***************************************/
+
+      /**
+       * similiar to recipeCard change to reset information
+       * for a recipe-viewer element instead creating
+       */
       set data(data){
         this.json = data;
 
@@ -76,9 +81,11 @@ class recipeViewer extends HTMLElement {
         const ingredients = spoonacular.getRecipeIngredientsList(data);
         this.shadowRoot.getElementById('recipe-ingredients').appendChild(ingredients);
 
+        //set instructions
         const instructions = spoonacular.getRecipeInstructionsList(data);
         this.shadowRoot.getElementById('recipe-instructions').appendChild(instructions);
 
+        //set image
         const image = spoonacular.getRecipeImageSource(data);
         this.shadowRoot.getElementById('recipe-image').setAttribute('src', image);
 
