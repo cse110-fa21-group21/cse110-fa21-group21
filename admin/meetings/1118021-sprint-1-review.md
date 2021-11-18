@@ -4,7 +4,7 @@
 
 ### Attendance
 **Present:** 
-1. Cade Arriens
+1. Cade Arriens (not yet)
 2. Sherilyn Kuo
 3. Do (James) Kim
 4. Jonathan Bocanegra-gomez
@@ -25,10 +25,15 @@
 - **Place: BLB 123 ** 
 
 ### Updates <!-- Any updates that any members need to report -->
-
+- Angelina asked about grid adjustments for our recipe card
+- Ken has
 
 **Notes:**
-
+Sprint review notes
+- ken has fixed the router bug where you can press the back and forward buttons.
+- henry is currently working on the filters, jonathan was able to sort everything by score, highest score at the top,
+- Henry is stryna figure out what other categories we can filter the recipes by, filtering by cuisine may be hard because we need to look into spoonacular to see what quisines they offer and extract that to create our own categories, The rest of the numerical values can be easily compared and implemented. 
+- james has worked on the linter CICD pipeline and is trying to figure out heroku and how to use it to launch our webapp
 
 **Taks:**
 
