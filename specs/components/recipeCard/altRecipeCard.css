@@ -1,0 +1,82 @@
+/** 
+  recipeCard.css 
+  "I put in some basic CSS to get you all started. I've already imported bootstrap so feel free to 
+  use it. I would recommend the 'card' component." - Jonathan
+**/
+
+#recipe-title {
+  text-align: center;
+  margin: 20px;
+  font-size: x-large;
+  border: 2.5px solid;
+  border-radius: 10px;
+}
+
+#recipe-dietary {
+  display: flex;
+  max-width: 600px;
+  max-height: 500px;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  margin: 20px;
+}
+
+#recipe-image {
+  display: block;
+  max-width: 600px;
+  max-height: 500px;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  margin: 20px;
+}
+
+#recipe-price {
+  text-align: left;
+  margin: 20px;
+  font-size: x-large;
+  border: 2.5px solid;
+  border-radius: 10px;
+}
+
+#recipe-servings {
+  text-align: left;
+  margin: 20px;
+  font-size: x-large;
+  border: 2.5px solid;
+  border-radius: 10px;
+}
+
+#recipe-cooking-time {
+  text-align: left;
+  margin: 20px;
+  font-size: x-large;
+  border: 2.5px solid;
+  border-radius: 10px;
+}
+
+#recipe-calories {
+  text-align: left;
+  margin: 20px;
+  font-size: x-large;
+  border: 2.5px solid;
+  border-radius: 10px;
+}
+
+#recipe-score {
+  text-align: left;
+  margin: 20px;
+  font-size: x-large;
+  border: 2.5px solid;
+  border-radius: 10px;
+}
+
+#recipe-total-calories {
+  text-align: left;
+  margin: 20px;
+  font-size: x-large;
+  border: 2.5px solid;
+  border-radius: 10px;
+}
+
