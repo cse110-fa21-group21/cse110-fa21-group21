@@ -1,5 +1,6 @@
 //apiTest.js
-import {Router} from './Router.js';
+
+import { Router } from "./Router.js";
 
 const API_key = "ec4a0690be5a4155b40c1525f9b8226d";
 const searchBar = document.querySelector("input");
@@ -30,7 +31,7 @@ var funcArray = [];
 /**
  * Constructor for router that would lead users to the home
  * page, now homepage should have nothing to be show
- * no recipecard or recipeview 
+ * no recipecard or recipeview
  */
 const router = new Router(function (){
   document.querySelector('.section--recipe-cards--wrapper').classList.remove("shown");
@@ -48,6 +49,7 @@ async function init() {
   showRecipeCards();
   showRecipeViewers();
   bindState();
+  filtering();
 }
 
 /** ADD COMMENTS */
@@ -102,7 +104,7 @@ async function fetchAPI(query) {
  * then call the goTo method to get to that page
  * @param {string} query the string that use to determine what is going to be show or not
  */
-function bindRecipeCards(query){
+function bindRecipeCards(query) {
   /**
    * Add route to the router
    * Also set up the recipeCard
@@ -168,21 +170,20 @@ function bindRecipeCards(query){
  * @param {HTMLElement} recipeCard the recipe-card element that use to connect to its recipeViewer
  * @param {string} pageName name of the route that should be goTo
  */
-function bindRecipeViewers(recipeCard, pageName){
-
-   //delete previous eventlistener that is set in last search
-  if(funcArray.length == 10){
-    recipeCard.removeEventListener('click',funcArray.shift());
+function bindRecipeViewers(recipeCard, pageName) {
+  //delete previous eventlistener that is set in last search
+  if (funcArray.length == 10) {
+    recipeCard.removeEventListener("click", funcArray.shift());
   }
-  function event(){
+  function event() {
     router.goTo(pageName);
   }
-  recipeCard.addEventListener('click', event);
+  recipeCard.addEventListener("click", event);
   funcArray.push(event);
 }
 
 /**
- * function that bind the back button 
+ * function that bind the back button
  * and the forward button
  */
 function bindState(){
@@ -197,12 +198,12 @@ function bindState(){
   });
 }
 
-function showRecipeCards(){
+function showRecipeCards() {
   const recipeCardsBtn = document.querySelector("#recipe-cards-btn");
-  recipeCardsBtn.addEventListener("click",()=>{
+  recipeCardsBtn.addEventListener("click", () => {
     /** Show the Recipe Cards */
     const recipeCards = document.querySelectorAll("recipe-card");
-    recipeCards.forEach( (element) =>{
+    recipeCards.forEach((element) => {
       element.classList.remove("hidden");
       element.classList.add("shown");
     })
@@ -215,110 +216,124 @@ function showRecipeCards(){
   })
 }
 
-function showRecipeViewers(){
-   const recipeViewersBtn = document.querySelector("#recipe-viewers-btn");
-   /** Show the Recipe Viewers */
-   recipeViewersBtn.addEventListener("click",()=>{
+function showRecipeViewers() {
+  const recipeViewersBtn = document.querySelector("#recipe-viewers-btn");
+  /** Show the Recipe Viewers */
+  recipeViewersBtn.addEventListener("click", () => {
     const recipeViewers = document.querySelectorAll("recipe-viewer");
-    recipeViewers.forEach( (element) =>{
+    recipeViewers.forEach((element) => {
       element.classList.remove("hidden");
       element.classList.add("shown");
-    })
+    });
     /** Hide the Recipe Cards */
     const recipeCards = document.querySelectorAll("recipe-card");
-    recipeCards.forEach( (element) =>{
+    recipeCards.forEach((element) => {
       element.classList.remove("shown");
       element.classList.add("hidden");
-    })
-  })
+    });
+  });
 }
 
 /*********************************************************
                 CURRENTLY NOT INTEGRATED
  ********************************************************/
 
-/** SORTERS */
-function sortRecipeCardsInWrapper(recipeCardsWrapper){
+function sortRecipeCardsInWrapper(recipeCardsWrapper) {
   const recipeCards = [];
   const indices = [];
   const nodesList = recipeCardsWrapper.childNodes;
-  nodesList.forEach( (node,index) =>{
-    if(node.nodeName == 'RECIPE-CARD'){
+  nodesList.forEach((node, index) => {
+    if (node.nodeName == "RECIPE-CARD") {
       recipeCards.push(node);
       indices.push(index);
     }
-  })
-  recipeCardsWrapper.innerHTML = '';
-  recipeCards.sort( (firstCard,secondCard) => compareRecipeCards(firstCard,secondCard))
-  recipeCards.forEach( (card) => {recipeCardsWrapper.appendChild(card);});
+  });
+  recipeCardsWrapper.innerHTML = "";
+  recipeCards.sort((firstCard, secondCard) =>
+    compareRecipeCards(firstCard, secondCard)
+  );
+  recipeCards.forEach((card) => {
+    recipeCardsWrapper.appendChild(card);
+  });
 }
-function sortRecipeViewersInWrapper(recipeViewersWrapper){
+
+function sortRecipeViewersInWrapper(recipeViewersWrapper) {
   const recipeViewers = [];
   const indices = [];
   const nodesList = recipeViewersWrapper.childNodes;
-  nodesList.forEach( (node,index) =>{
-    if(node.nodeName == 'RECIPE-VIEWER'){
+  nodesList.forEach((node, index) => {
+    if (node.nodeName == "RECIPE-VIEWER") {
       recipeViewers.push(node);
       indices.push(index);
     }
   })
   recipeViewersWrapper.innerHTML = '';
   recipeViewers.sort( (firstViewer,secondViewer) => compareRecipeViewers(firstViewer,secondViewer))
-  recipeViewers.forEach( (viewer) => {recipeCardsWrapper.appendChild(viewer);});
+  recipeViewers.forEach( (viewer) => {recipeViewersWrapper.appendChild(viewer);});
 }
 
 /** COMPARISONS */
 
 /**
- * Compares two recipe-card DOMs and chooses the one with 
+ * Compares two recipe-card DOMs and chooses the one with
  * the higher spoonacular score
  */
-function compareRecipeCards(firstCard,secondCard){
+function compareRecipeCards(firstCard, secondCard) {
   //Pull the Inner Text of the 'recipe-score' div
-  let firstCardRecipeScoreText  = firstCard.shadowRoot.querySelector('section').querySelector('#recipe-score').innerText;
-  let secondCardRecipeScoreText  = secondCard.shadowRoot.querySelector('section').querySelector('#recipe-score').innerText;
+  let firstCardRecipeScoreText = firstCard.shadowRoot
+    .querySelector("section")
+    .querySelector("#recipe-score").innerText;
+  let secondCardRecipeScoreText = secondCard.shadowRoot
+    .querySelector("section")
+    .querySelector("#recipe-score").innerText;
   //Parse the Inner Text to obtain the value
-  function pullValue(text){
-    let slashIndex = text.indexOf('/');
-    let value = text.substring(7,slashIndex) // length of 'Score: ' is 7;
+  function pullValue(text) {
+    let slashIndex = text.indexOf("/");
+    let value = text.substring(7, slashIndex); // length of 'Score: ' is 7;
     return Number(value);
   }
 
   let firstCardScore = pullValue(firstCardRecipeScoreText);
   let secondCardScore = pullValue(secondCardRecipeScoreText);
 
-  if(firstCardScore > secondCardScore){
+  if (firstCardScore > secondCardScore) {
     return -1;
-  }else if(firstCardScore < secondCardScore){
+  } else if (firstCardScore < secondCardScore) {
     return 1;
-  }else{
+  } else {
     return 0;
   }
 }
 
 /**
- * Compares two recipe-viewer DOMs and chooses the one with 
+ * Compares two recipe-viewer DOMs and chooses the one with
  * the higher spoonacular score
  */
- function compareRecipeViewers(firstViewer,secondViewer){
+function compareRecipeViewers(firstViewer, secondViewer) {
   //Pull the Inner Text of the 'recipe-score' div
-  let firstViewerRecipeScoreText  = firstViewer.shadowRoot.querySelector('section').querySelector('#recipe-score').innerText;
-  let secondViewerRecipeScoreText  = secondViewer.shadowRoot.querySelector('section').querySelector('#recipe-score').innerText;
+  let firstViewerRecipeScoreText = firstViewer.shadowRoot
+    .querySelector("section")
+    .querySelector("#recipe-score").innerText;
+  let secondViewerRecipeScoreText = secondViewer.shadowRoot
+    .querySelector("section")
+    .querySelector("#recipe-score").innerText;
   //Parse the Inner Text to obtain the value
-  function pullValue(text){
-    let slashIndex = text.indexOf('/');
-    let value = text.substring(7,slashIndex) // length of 'Score: ' is 7;
+  function pullValue(text) {
+    let slashIndex = text.indexOf("/");
+    let value = text.substring(7, slashIndex); // length of 'Score: ' is 7;
     return Number(value);
   }
 
   let firstViewerScore = pullValue(firstViewerRecipeScoreText);
   let secondViewerScore = pullValue(secondViewerRecipeScoreText);
 
-  if(firstViewerScore > secondViewerScore){
+  if (firstViewerScore > secondViewerScore) {
     return -1;
-  }else if(firstViewerScore < secondViewerScore){
+  } else if (firstViewerScore < secondViewerScore) {
     return 1;
-  }else{
+  } else {
     return 0;
   }
 }
+
+// Filters

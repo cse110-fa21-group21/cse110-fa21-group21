@@ -58,7 +58,7 @@ class recipeCard extends HTMLElement {
       }
      `;
 
-     card.innerHTML = `
+    card.innerHTML = `
       <main id='card-information'>
         <div id='recipe-title'> </div>
         <div id='recipe-price'> </div>
@@ -81,24 +81,24 @@ class recipeCard extends HTMLElement {
       </aside>
      `;
 
-     this.shadowRoot.append(style,card);
+    this.shadowRoot.append(style, card);
   }
   
   /**
    * Change make to recipeCard instead keep create elements
    * Setting the structure of shadowRoot to what it need to be
-   * then we can just call data to set up information for each 
+   * then we can just call data to set up information for each
    * part of the recipecard
-   * I did not get what is recipe-dietary part doing so I didnt 
+   * I did not get what is recipe-dietary part doing so I didnt
    * do that in the set data
    */
   set data(data) {
     this.json = data;
-    
+
     const spoonacular = new Spoonacular();
 
     //this will reset the struction of the shadowRoot
-    this.shadowRoot.querySelector('article').innerHTML = `
+    this.shadowRoot.querySelector("article").innerHTML = `
       <main id='card-information'>
         <div id='recipe-title'> </div>
         <div id='recipe-price'> </div>
@@ -123,31 +123,32 @@ class recipeCard extends HTMLElement {
 
     //set title
     const title = spoonacular.getRecipeTitle(data);
-    this.shadowRoot.getElementById('recipe-title').innerHTML = title;
-    
+    this.shadowRoot.getElementById("recipe-title").innerHTML = title;
+
     //set price
     const price = spoonacular.getRecipePrice(data);
-    this.shadowRoot.getElementById('recipe-price').innerHTML = price;
+    this.shadowRoot.getElementById("recipe-price").innerHTML = price;
 
     //set time
     const time = spoonacular.getRecipeCookingTime(data);
-    this.shadowRoot.getElementById('recipe-cooking-time').innerHTML = time;
+    this.shadowRoot.getElementById("recipe-cooking-time").innerHTML = time;
 
     //set score
     const score = spoonacular.getRecipeScore(data);
-    this.shadowRoot.getElementById('recipe-score').innerHTML = score;
-    
+    this.shadowRoot.getElementById("recipe-score").innerHTML = score;
+
     //set servings
     const servings = spoonacular.getRecipeServings(data);
-    this.shadowRoot.getElementById('recipe-servings').innerHTML = servings;
-    
+    this.shadowRoot.getElementById("recipe-servings").innerHTML = servings;
+
     //set calories
     const calories = spoonacular.getRecipeCalories(data);
-    this.shadowRoot.getElementById('recipe-calories').innerHTML = calories;
+    this.shadowRoot.getElementById("recipe-calories").innerHTML = calories;
 
     //set totalCalories
     const totalCalories = spoonacular.getRecipeTotalCalories(data);
-    this.shadowRoot.getElementById('recipe-total-calories').innerHTML = totalCalories;
+    this.shadowRoot.getElementById("recipe-total-calories").innerHTML =
+      totalCalories;
 
     //set image.src
     const image = spoonacular.getRecipeImageSource(data);
