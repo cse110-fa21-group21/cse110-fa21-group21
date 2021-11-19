@@ -59,43 +59,24 @@ function filterByScore(filter) {
     } else {
       document.querySelector("input[id=all_score]").checked = false;
       element.classList.add("hidden");
-      if (first_range) {
-        if (first_checked) {
-          element.classList.add("shown");
-          element.classList.remove("hidden");
-        } else {
-          element.classList.add("hidden");
-          element.classList.remove("shown");
-        }
+      element.classList.remove("shown");
+      if (first_range && first_checked) {
+        element.classList.add("shown");
+        element.classList.remove("hidden");
       }
-      if (second_range) {
-        if (second_checked) {
-          element.classList.add("shown");
-          element.classList.remove("hidden");
-        } else {
-          element.classList.add("hidden");
-          element.classList.remove("shown");
-        }
+      if (second_range && second_checked) {
+        element.classList.add("shown");
+        element.classList.remove("hidden");
       }
 
-      if (third_range) {
-        if (third_checked) {
-          element.classList.add("shown");
-          element.classList.remove("hidden");
-        } else {
-          element.classList.add("hidden");
-          element.classList.remove("shown");
-        }
+      if (third_range && third_checked) {
+        element.classList.add("shown");
+        element.classList.remove("hidden");
       }
 
-      if (fourth_range) {
-        if (fourth_checked) {
-          element.classList.add("shown");
-          element.classList.remove("hidden");
-        } else {
-          element.classList.add("hidden");
-          element.classList.remove("shown");
-        }
+      if (fourth_range && fourth_checked) {
+        element.classList.add("shown");
+        element.classList.remove("hidden");
       }
     }
 
