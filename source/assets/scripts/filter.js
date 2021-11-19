@@ -40,17 +40,14 @@ function filterByScore(filter) {
       document.querySelector("input[id=third_score]").checked = false;
       document.querySelector("input[id=fourth_score]").checked = false;
     } else {
+      document.querySelector("input[id=all_score]").checked = false;
       if (filter.id == "first_score" && filter.checked) {
-        document.querySelector("input[id=all_score]").checked = false;
       }
       if (filter.id == "second_score" && filter.checked) {
-        document.querySelector("input[id=all_score]").checked = false;
       }
       if (filter.id == "third_score" && filter.checked) {
-        document.querySelector("input[id=all_score]").checked = false;
       }
       if (filter.id == "fourth_score" && filter.checked) {
-        document.querySelector("input[id=all_score]").checked = false;
       }
     }
 
