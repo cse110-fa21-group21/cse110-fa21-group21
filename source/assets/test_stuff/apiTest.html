@@ -12,6 +12,8 @@
     <!-- Web Components -->
     <script src="../components/recipeCard.js" type="module"></script>
     <script src="../components/recipeViewer.js" type="module"></script>
+    <!--Filters-->
+    <script src="../scripts/filter.js" type="text/javascript"></script>
     <!-- Stylesheets -->
     <link rel="stylesheet" href="apiTest.css">
   <body>
@@ -23,6 +25,22 @@
         <h2> Tools </h1>
         <button id='recipe-cards-btn'>Show RecipeCards</button>
         <button id='recipe-viewers-btn'>Show RecipeViewers</button>
+      </section>
+      <section>
+        <h2> Filters </h1>
+          <h3> By Score </h1>
+          <form name="filterByScore" id="filterByScore">
+            <input type="checkbox" id="all_score_filter" name="all_score_filter">
+            <label for="all_score_filter"> All</label><br>
+            <input type="checkbox" id="first_score_filter" name="first_score_filter" value=75 notall="notall">
+            <label for="first_score_filter"> 75 - 100</label><br>
+            <input type="checkbox" id="second_score_filter"" name="second_score_filter"" value=50 notall="notall">
+            <label for="first_score_filter"> 50 - 75</label><br>
+            <input type="checkbox" id="third_score_filter"" name="third_score_filter"" value=25 notall="notall">
+            <label for="first_score_filter"> 25 - 50</label><br>
+            <input type="checkbox" id="fourth_score_filter"" name="fourth_score_filter"" value=0 notall="notall">
+            <label for="first_score_filter"> 0 - 25</label><br>
+          </div>
       </section>
       <section class="section--recipe-cards">
         <div class="recipe-cards--wrapper">

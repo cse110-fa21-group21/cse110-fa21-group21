@@ -99,32 +99,32 @@ class recipeCard extends HTMLElement {
       /** RECIPE IMAGE CAPTION */
       const recipeDietary = document.createElement("figcaption");
       recipeDietary.id = "recipe-dietary";
-      
-      function setRecipeDietary(){
+
+      function setRecipeDietary() {
         const dietary = spoonacular.getRecipeDietary(data);
         let dietaryIcon;
-        if(dietary["vegan"]){
-          dietaryIcon = document.createElement('img');
-          dietaryIcon.src = '../icons/dietary/vegan.png'; //index.html path: assets/icons/dietary/vegan.png
-          dietaryIcon.alt = "Vegan"
+        if (dietary["vegan"]) {
+          dietaryIcon = document.createElement("img");
+          dietaryIcon.src = "../icons/dietary/vegan.png"; //index.html path: assets/icons/dietary/vegan.png
+          dietaryIcon.alt = "Vegan";
           recipeDietary.appendChild(dietaryIcon);
         }
-        if(dietary["vegetarian"]){
-          dietaryIcon = document.createElement('img');
-          dietaryIcon.src = '../icons/dietary/vegetarian.png'; //index.html path: assets/icons/dietary/vegetarian.png
-          dietaryIcon.alt = "Vegetarian"
+        if (dietary["vegetarian"]) {
+          dietaryIcon = document.createElement("img");
+          dietaryIcon.src = "../icons/dietary/vegetarian.png"; //index.html path: assets/icons/dietary/vegetarian.png
+          dietaryIcon.alt = "Vegetarian";
           recipeDietary.appendChild(dietaryIcon);
         }
-        if(dietary["gluten-free"]){
-          dietaryIcon = document.createElement('img');
-          dietaryIcon.src = '../icons/dietary/gluten-free.png'; //index.html path: assets/icons/dietary/gluten-free.png
-          dietaryIcon.alt = "Gluten Free"
+        if (dietary["gluten-free"]) {
+          dietaryIcon = document.createElement("img");
+          dietaryIcon.src = "../icons/dietary/gluten-free.png"; //index.html path: assets/icons/dietary/gluten-free.png
+          dietaryIcon.alt = "Gluten Free";
           recipeDietary.appendChild(dietaryIcon);
         }
-        if(dietary["dairy-free"]){
-          dietaryIcon = document.createElement('img');
-          dietaryIcon.src = '../icons/dietary/dairy-free.png'; //index.html path: assets/icons/dietary/dairy-free.png
-          dietaryIcon.alt = "Dairy Free"
+        if (dietary["dairy-free"]) {
+          dietaryIcon = document.createElement("img");
+          dietaryIcon.src = "../icons/dietary/dairy-free.png"; //index.html path: assets/icons/dietary/dairy-free.png
+          dietaryIcon.alt = "Dairy Free";
           recipeDietary.appendChild(dietaryIcon);
         }
       }
