@@ -2,6 +2,7 @@ function filtering() {
   const checkboxByScore = document.querySelector("form[id=filterByScore]");
   checkboxByScore.addEventListener("click", (event) => {
     let byScoreCheck = event.target;
+    console.log(byScoreCheck);
     filterByScore(byScoreCheck);
   });
 
@@ -30,9 +31,25 @@ function filterByScore(filter) {
     const third_range = recipeScore >= 25 && recipeScore < 50;
     const fourth_range = recipeScore >= 0 && recipeScore < 25;
 
+    const first_checked = document.querySelector(
+      "input[id=first_score]"
+    ).checked;
+    const second_checked = document.querySelector(
+      "input[id=second_score]"
+    ).checked;
+    const third_checked = document.querySelector(
+      "input[id=third_score]"
+    ).checked;
+    const fourth_checked = document.querySelector(
+      "input[id=fourth_score]"
+    ).checked;
+
     console.log("TEST " + filter.id);
 
-    if (filter.id == "all_score" && filter.checked) {
+    if (
+      (filter.id == "all_score" && filter.checked) ||
+      (!first_checked && !second_checked && !third_checked && !fourth_checked)
+    ) {
       element.classList.add("shown");
       element.classList.remove("hidden");
       document.querySelector("input[id=first_score]").checked = false;
@@ -41,13 +58,44 @@ function filterByScore(filter) {
       document.querySelector("input[id=fourth_score]").checked = false;
     } else {
       document.querySelector("input[id=all_score]").checked = false;
-      if (filter.id == "first_score" && filter.checked) {
+      element.classList.add("hidden");
+      if (first_range) {
+        if (first_checked) {
+          element.classList.add("shown");
+          element.classList.remove("hidden");
+        } else {
+          element.classList.add("hidden");
+          element.classList.remove("shown");
+        }
       }
-      if (filter.id == "second_score" && filter.checked) {
+      if (second_range) {
+        if (second_checked) {
+          element.classList.add("shown");
+          element.classList.remove("hidden");
+        } else {
+          element.classList.add("hidden");
+          element.classList.remove("shown");
+        }
       }
-      if (filter.id == "third_score" && filter.checked) {
+
+      if (third_range) {
+        if (third_checked) {
+          element.classList.add("shown");
+          element.classList.remove("hidden");
+        } else {
+          element.classList.add("hidden");
+          element.classList.remove("shown");
+        }
       }
-      if (filter.id == "fourth_score" && filter.checked) {
+
+      if (fourth_range) {
+        if (fourth_checked) {
+          element.classList.add("shown");
+          element.classList.remove("hidden");
+        } else {
+          element.classList.add("hidden");
+          element.classList.remove("shown");
+        }
       }
     }
 
