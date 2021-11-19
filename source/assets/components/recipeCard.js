@@ -5,9 +5,7 @@ class recipeCard extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    
-    //Change to article instead of section, because I wrote a shown
-    //class in CSS that hide all section without class shown
+
     const card = document.createElement('article');
     const style = document.createElement("style");
     style.innerHTML = `
@@ -71,38 +69,20 @@ class recipeCard extends HTMLElement {
         <div id='recipe-total-calories'> </div>
       </main>
       <aside id ='card-visuals'>
-          <fig id='visual'>
-            <img id='recipe-image'/>
-            <figcaption id='recipe-dietary'> </figcaption>
-          </fig>
+      <fig id='visual'>
+        <img id='recipe-image'/>
+        <figcaption id='recipe-dietary'>
+          <img hidden id='vegan' src='../icons/dietary/vegan.png' alt='Vegan'/>
+          <img hidden id='vegetarian' src='../icons/dietary/vegetarian.png' alt='Vegetarian'/>
+          <img hidden id='gluten-free' src='../icons/dietary/gluten-free.png' alt='Gluten Free'/>
+          <img hidden id='dairy-free' src='../icons/dietary/gluten-free.png' alt='Dairy Free'/>            
+        </figcaption>
+      </fig>
       </aside>
      `;
 
      this.shadowRoot.append(style,card);
   }
-  /*********  CARD STRUCTURE ***********
-    <recipe-card>
-    ***** Shadow DOM *****
-      <section>
-        <main id='card-information'>
-          <div id='recipe-title'> </div>
-          <div id='recipe-price'> </div>
-          <div id='recipe-cooking-time'> </div>
-          <div id='recipe-score'> </div>
-          <div id='recipe-servings'> </div>
-          <div id='recipe-calories'> </div>
-          <div id='recipe-total-calories'> </div>
-        </main>
-        <aside id ='card-visuals'>
-          <fig id='visual'>
-            <img id='recipe-image'/>
-            <figcaption id='recipe-dietary'> </figcaption>
-          </fig>
-        </aside>
-      </section> 
-    ***** END OF SHADOW DOM *****
-    <recipe-card>
-  ***************************************/
   
   /**
    * Change make to recipeCard instead keep create elements
@@ -131,7 +111,12 @@ class recipeCard extends HTMLElement {
       <aside id ='card-visuals'>
         <fig id='visual'>
           <img id='recipe-image'/>
-          <figcaption id='recipe-dietary'> </figcaption>
+          <figcaption id='recipe-dietary'> 
+            <img hidden id='vegan' src='../icons/dietary/vegan.png' alt='Vegan'/>
+            <img hidden id='vegetarian' src='../icons/dietary/vegetarian.png' alt='Vegetarian'/>
+            <img hidden id='gluten-free' src='../icons/dietary/gluten-free.png' alt='Gluten Free'/>
+            <img hidden id='dairy-free' src='../icons/dietary/dairy-free.png' alt='Dairy Free'/>
+          </figcaption>
         </fig>
       </aside>
     `;
@@ -168,53 +153,53 @@ class recipeCard extends HTMLElement {
     const image = spoonacular.getRecipeImageSource(data);
     this.shadowRoot.getElementById('recipe-image').setAttribute('src',image);
 
-  //   const cardVisuals = document.createElement("aside");
-  //   cardVisuals.id = "card-visuals";
+    //set dietary logos
+    const dietary = spoonacular.getRecipeDietary(data);
+    if(dietary["vegan"])
+      this.shadowRoot.getElementById('vegan').removeAttribute('hidden');
+    if(dietary["vegetarian"])
+      this.shadowRoot.getElementById('vegetarian').removeAttribute('hidden');
+    if(dietary["gluten-free"])
+      this.shadowRoot.getElementById('gluten-free').removeAttribute('hidden');
+    if(dietary["dairy-free"])
+      this.shadowRoot.getElementById('dairy-free').removeAttribute('hidden');
+  }
+}
 
-  //   const cardInformation = document.createElement("main");
-  //   cardInformation.id = "card-information";
+customElements.define("recipe-card", recipeCard);
+
+  /*********  CARD STRUCTURE ***********
+    <recipe-card>
+    ***** Shadow DOM *****
+      <section>
+        <main id='card-information'>
+          <div id='recipe-title'> </div>
+          <div id='recipe-price'> </div>
+          <div id='recipe-cooking-time'> </div>
+          <div id='recipe-score'> </div>
+          <div id='recipe-servings'> </div>
+          <div id='recipe-calories'> </div>
+          <div id='recipe-total-calories'> </div>
+        </main>
+        <aside id ='card-visuals'>
+          <fig id='visual'>
+            <img id='recipe-image'/>
+            <figcaption id='recipe-dietary'> </figcaption>
+          </fig>
+        </aside>
+      </section> 
+    ***** END OF SHADOW DOM *****
+    <recipe-card>
+  ***************************************/
 
   //   function setCardVisuals() {
   //     const visual = document.createElement("figure");
   //     visual.id = "visual";
-  //     /** RECIPE IMAGE */
-  //     const recipeImage = document.createElement("img");
-  //     recipeImage.id = "recipe-image";
-  //     recipeImage.src = spoonacular.getRecipeImageSource(data);
 
   //     /** RECIPE IMAGE CAPTION */
   //     const recipeDietary = document.createElement("figcaption");
   //     recipeDietary.id = "recipe-dietary";
       
-  //     function setRecipeDietary(){
-  //       const dietary = spoonacular.getRecipeDietary(data);
-  //       let dietaryIcon;
-  //       if(dietary["vegan"]){
-  //         dietaryIcon = document.createElement('img');
-  //         dietaryIcon.src = '../icons/dietary/vegan.png'; //index.html path: assets/icons/dietary/vegan.png
-  //         dietaryIcon.alt = "Vegan"
-  //         recipeDietary.appendChild(dietaryIcon);
-  //       }
-  //       if(dietary["vegetarian"]){
-  //         dietaryIcon = document.createElement('img');
-  //         dietaryIcon.src = '../icons/dietary/vegetarian.png'; //index.html path: assets/icons/dietary/vegetarian.png
-  //         dietaryIcon.alt = "Vegetarian"
-  //         recipeDietary.appendChild(dietaryIcon);
-  //       }
-  //       if(dietary["gluten-free"]){
-  //         dietaryIcon = document.createElement('img');
-  //         dietaryIcon.src = '../icons/dietary/gluten-free.png'; //index.html path: assets/icons/dietary/gluten-free.png
-  //         dietaryIcon.alt = "Gluten Free"
-  //         recipeDietary.appendChild(dietaryIcon);
-  //       }
-  //       if(dietary["dairy-free"]){
-  //         dietaryIcon = document.createElement('img');
-  //         dietaryIcon.src = '../icons/dietary/dairy-free.png'; //index.html path: assets/icons/dietary/dairy-free.png
-  //         dietaryIcon.alt = "Dairy Free"
-  //         recipeDietary.appendChild(dietaryIcon);
-  //       }
-  //     }
-  //     setRecipeDietary();
 
   //     visual.appendChild(recipeImage);
   //     visual.appendChild(recipeDietary);
@@ -276,7 +261,3 @@ class recipeCard extends HTMLElement {
   //   this.shadowRoot.appendChild(style);
   //   this.shadowRoot.appendChild(card);
   // }
-  }
-}
-
-customElements.define("recipe-card", recipeCard);
