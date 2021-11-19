@@ -47,7 +47,7 @@ export class Router{
             this[page]();
         }
         else{
-            console.log('error');
+            console.log('error, page not found: '+ page);
             return;
         }
     }

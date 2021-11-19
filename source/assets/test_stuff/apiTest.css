@@ -15,7 +15,7 @@ section:not(section.shown){
   visibility: hidden;
 }
 
-.section--recipe-viewers{
+.section--recipe-viewers--wrapper{
   height: 100%;
   width:100%;
 }
