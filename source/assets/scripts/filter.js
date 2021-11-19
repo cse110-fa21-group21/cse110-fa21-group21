@@ -42,63 +42,15 @@ function filterByScore(filter) {
     } else {
       if (filter.id == "first_score" && filter.checked) {
         document.querySelector("input[id=all_score]").checked = false;
-        if (first_range) {
-          element.classList.add("shown");
-          element.classList.remove("hidden");
-        } else {
-          element.classList.remove("shown");
-          element.classList.add("hidden");
-        }
-      } else if (filter.id == "first_score" && !filter.checked) {
-        if (first_range) {
-          element.classList.remove("shown");
-          element.classList.add("hidden");
-        }
       }
       if (filter.id == "second_score" && filter.checked) {
         document.querySelector("input[id=all_score]").checked = false;
-        if (second_range) {
-          element.classList.add("shown");
-          element.classList.remove("hidden");
-        } else {
-          element.classList.remove("shown");
-          element.classList.add("hidden");
-        }
-      } else if (!filter.id == "second_score" && filter.checked) {
-        if (second_range) {
-          element.classList.remove("shown");
-          element.classList.add("hidden");
-        }
       }
       if (filter.id == "third_score" && filter.checked) {
         document.querySelector("input[id=all_score]").checked = false;
-        if (third_range) {
-          element.classList.add("shown");
-          element.classList.remove("hidden");
-        } else {
-          element.classList.remove("shown");
-          element.classList.add("hidden");
-        }
-      } else if (filter.id == "third_score" && !filter.checked) {
-        if (third_range) {
-          element.classList.remove("shown");
-          element.classList.add("hidden");
-        }
       }
       if (filter.id == "fourth_score" && filter.checked) {
         document.querySelector("input[id=all_score]").checked = false;
-        if (fourth_range) {
-          element.classList.add("shown");
-          element.classList.remove("hidden");
-        } else {
-          element.classList.remove("shown");
-          element.classList.add("hidden");
-        }
-      } else if (filter.id == "fourth_score" && !filter.checked) {
-        if (fourth_range) {
-          element.classList.remove("shown");
-          element.classList.add("hidden");
-        }
       }
     }
 
