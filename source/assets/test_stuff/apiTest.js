@@ -40,13 +40,6 @@ const router = new Router(function () {
   document
     .querySelector(".section--recipe-viewers--wrapper")
     .classList.remove("shown");
-
-  document
-    .querySelector(".section--recipe-cards--wrapper")
-    .classList.add("hidden");
-  document
-    .querySelector(".section--recipe-viewers--wrapper")
-    .classList.add("hidden");
 });
 
 window.addEventListener("DOMContentLoaded", init);
@@ -121,7 +114,6 @@ function bindRecipeCards(query) {
     const recipeCardsWrapper = document.querySelector(
       ".section--recipe-cards--wrapper"
     );
-    recipeCardsWrapper.classList.remove("hidden");
     recipeCardsWrapper.classList.add("shown");
 
     //Hide the Recipe Viewers Wrapper
@@ -129,7 +121,6 @@ function bindRecipeCards(query) {
       ".section--recipe-viewers--wrapper"
     );
     recipeViewersWrapper.classList.remove("shown");
-    recipeViewersWrapper.classList.add("hidden");
 
     /** The are 10 distinct recipeCard DOMs */
     let cardIndex = 0;
@@ -151,9 +142,7 @@ function bindRecipeCards(query) {
         router.insertPage(page, function () {
           //Hide the Recipe Cards Wrapper
           recipeCardsWrapper.classList.remove("shown");
-          recipeCardsWrapper.classList.add("hidden");
           //Show the Recipe Viewers Wrapper
-          recipeViewersWrapper.classList.remove("hidden");
           recipeViewersWrapper.classList.add("shown");
           //Pass the data from the <recipe-card> to the singular <recipe-viewer>
           document.querySelector("recipe-viewer").data = recipesID[recipeTitle];
