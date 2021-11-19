@@ -68,27 +68,34 @@ function filterByScore() {
         element.classList.add("shown");
         element.classList.remove("hidden");
       }
-
       if (third_range && third_checked) {
         element.classList.add("shown");
         element.classList.remove("hidden");
       }
-
       if (fourth_range && fourth_checked) {
         element.classList.add("shown");
         element.classList.remove("hidden");
       }
     }
-
-    console.log(
-      extractScore(element.shadowRoot.getElementById("recipe-score").innerHTML)
-    );
+    // console.log(
+    //   extractScore(element.shadowRoot.getElementById("recipe-score").innerHTML)
+    // );
   });
 }
 
 function extractScore(scoreString) {
   let slashIndex = scoreString.indexOf("/");
   let value = scoreString.substring(7, slashIndex); // length of 'Score: ' is 7;
+  return Number(value);
+}
+function extractPrice(priceString) {
+  let dollarIndex = priceString.indexOf("$");
+  let value = priceString.substring(dollarIndex + 1); // length of 'Score: ' is 7;
+  return Number(value);
+}
+function extractCookingTime(cookingString) {
+  let spaceIndex = cookingString.indexOf(" ");
+  let value = cookingString.substring(spaceIndex + 1); // length of 'Score: ' is 7;
   return Number(value);
 }
 

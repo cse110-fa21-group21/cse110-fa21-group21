@@ -56,7 +56,7 @@ async function init() {
   showRecipeCards();
   showRecipeViewers();
   bindState();
-  // filtering();
+  filtering();
 }
 
 /** ADD COMMENTS */
@@ -172,7 +172,6 @@ function bindRecipeCards(query) {
     }
   });
   router.goTo(query);
-  filtering();
 }
 
 /**
@@ -187,7 +186,6 @@ function bindRecipeViewers(recipeCard, pageName) {
   }
   function event() {
     router.goTo(pageName);
-    filtering();
   }
   recipeCard.addEventListener("click", event);
   funcArray.push(event);
@@ -201,12 +199,11 @@ function bindState() {
   window.addEventListener("popstate", (event) => {
     if (event.state == null) {
       router.goTo("home", true);
-      filtering();
     } else {
       console.log("Routing to page:", event.state);
       router.goTo(event.state, true);
-      filtering();
     }
+    filtering();
   });
 }
 
