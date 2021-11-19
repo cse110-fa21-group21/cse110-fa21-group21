@@ -96,6 +96,7 @@ async function fetchAPI(query) {
       }
     });
   bindRecipeCards(query);
+  filtering();
 }
 
 /**

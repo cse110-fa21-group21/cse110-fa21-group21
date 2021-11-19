@@ -1,7 +1,5 @@
 function filtering() {
   filterByScore();
-  filterByPrice();
-  filterByTime();
 
   const checkboxByScore = document.querySelector("form[id=filterByScore]");
   checkboxByScore.addEventListener("click", (event) => {
@@ -9,17 +7,17 @@ function filtering() {
     filterByScore();
   });
 
-  const checkboxByPrice = document.querySelector("form[id=]");
-  checkboxByScore.addEventListener("click", (event) => {
-    // let byScoreCheck = event.target;
-    filterByPrice();
-  });
+  // const checkboxByPrice = document.querySelector("form[id=]");
+  // checkboxByScore.addEventListener("click", (event) => {
+  //   // let byScoreCheck = event.target;
+  //   filterByPrice();
+  // });
 
-  const checkboxByTime = document.querySelector("form[id=]");
-  checkboxByScore.addEventListener("click", (event) => {
-    // let byScoreCheck = event.target;
-    filterByScore();
-  });
+  // const checkboxByTime = document.querySelector("form[id=]");
+  // checkboxByScore.addEventListener("click", (event) => {
+  //   // let byScoreCheck = event.target;
+  //   filterByScore();
+  // });
 }
 
 function filterByScore() {
@@ -85,8 +83,8 @@ function filterByScore() {
   });
 }
 
-function filterByPrice();
-function filterByTime();
+// function filterByPrice();
+// function filterByTime();
 
 function extractScore(scoreString) {
   let slashIndex = scoreString.indexOf("/");
