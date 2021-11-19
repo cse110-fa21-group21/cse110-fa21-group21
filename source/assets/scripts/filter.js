@@ -1,9 +1,10 @@
 function filtering() {
+  filterByScore();
+
   const checkboxByScore = document.querySelector("form[id=filterByScore]");
   checkboxByScore.addEventListener("click", (event) => {
-    let byScoreCheck = event.target;
-    console.log(byScoreCheck);
-    filterByScore(byScoreCheck);
+    // let byScoreCheck = event.target;
+    filterByScore();
   });
 
   //   const checkboxByScore = document.querySelector("form[id=filterByScore]");
@@ -19,7 +20,7 @@ function filtering() {
   //   });
 }
 
-function filterByScore(filter) {
+function filterByScore() {
   const recipeCards = document.querySelectorAll("recipe-card");
   recipeCards.forEach((element) => {
     const recipeScore = extractScore(
@@ -44,8 +45,6 @@ function filterByScore(filter) {
     const fourth_checked = document.querySelector(
       "input[id=fourth_score]"
     ).checked;
-
-    console.log("TEST " + filter.id);
 
     if (
       all_checked ||
