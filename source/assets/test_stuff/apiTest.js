@@ -33,6 +33,7 @@ async function init() {
   showRecipeCards();
   showRecipeViewers();
   bindState();
+  filtering();
 }
 
 async function bindSearch() {
