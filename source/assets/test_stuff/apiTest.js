@@ -2,7 +2,7 @@
 
 import { Router } from "./Router.js";
 
-const API_key = "ec4a0690be5a4155b40c1525f9b8226d";
+const API_key = "54a305b43853416198613d4aaaed7b01";
 const searchBar = document.querySelector("input");
 const search = document.querySelector("button");
 let searchQuery = "";
@@ -157,6 +157,7 @@ function bindRecipeCards(query) {
     while(cardIndex!=10){
       let recipeCard = recipeCardsWrapper.children[cardIndex];
       recipeCard.data='';
+      bindRecipeViewers(recipeCard, '');
       recipeCard.classList.remove('shown');
       recipeCard.classList.add('hidden');
       cardIndex++;
