@@ -5,33 +5,10 @@ class recipeCard extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-  }
-  /*********  CARD STRUCTURE ***********
-    <recipe-card>
-    ***** Shadow DOM *****
-      <section>
-        <main id='card-information'>
-          <div id='recipe-title'> </div>
-          <div id='recipe-price'> </div>
-          <div id='recipe-cooking-time'> </div>
-          <div id='recipe-score'> </div>
-          <div id='recipe-servings'> </div>
-          <div id='recipe-calories'> </div>
-          <div id='recipe-total-calories'> </div>
-        </main>
-        <aside id ='card-visuals'>
-          <fig id='visual'>
-            <img id='recipe-image'/>
-            <figcaption id='recipe-dietary'> </figcaption>
-          </fig>
-        </aside>
-      </section> 
-    ***** END OF SHADOW DOM *****
-    <recipe-card>
-  ***************************************/
-  set data(data) {
-    const spoonacular = new Spoonacular();
-    const card = document.createElement("section");
+
+    //Change to article instead of section, because I wrote a shown
+    //class in CSS that hide all section without class shown
+    const card = document.createElement("article");
     const style = document.createElement("style");
     style.innerHTML = `
       main > div {
@@ -39,7 +16,7 @@ class recipeCard extends HTMLElement {
         padding: 1em;
         border: 1px dashed grey;
         border-radius: 1px;
-        margin: 10px;
+        margin: 15px;
       }
 
       #recipe-title{
@@ -82,113 +59,224 @@ class recipeCard extends HTMLElement {
         grid-template-columns: 1fr 1fr 1fr;
       }
      `;
-    const cardVisuals = document.createElement("aside");
-    cardVisuals.id = "card-visuals";
 
-    const cardInformation = document.createElement("main");
-    cardInformation.id = "card-information";
+    card.innerHTML = `
+      <main id='card-information'>
+        <div id='recipe-title'> </div>
+        <div id='recipe-price'> </div>
+        <div id='recipe-cooking-time'> </div>
+        <div id='recipe-score'> </div>
+        <div id='recipe-servings'> </div>
+        <div id='recipe-calories'> </div>
+        <div id='recipe-total-calories'> </div>
+      </main>
+      <aside id ='card-visuals'>
+          <fig id='visual'>
+            <img id='recipe-image'/>
+            <figcaption id='recipe-dietary'> </figcaption>
+          </fig>
+      </aside>
+     `;
 
-    function setCardVisuals() {
-      const visual = document.createElement("figure");
-      visual.id = "visual";
-      /** RECIPE IMAGE */
-      const recipeImage = document.createElement("img");
-      recipeImage.id = "recipe-image";
-      recipeImage.src = spoonacular.getRecipeImageSource(data);
+    this.shadowRoot.append(style, card);
+  }
+  /*********  CARD STRUCTURE ***********
+    <recipe-card>
+    ***** Shadow DOM *****
+      <section>
+        <main id='card-information'>
+          <div id='recipe-title'> </div>
+          <div id='recipe-price'> </div>
+          <div id='recipe-cooking-time'> </div>
+          <div id='recipe-score'> </div>
+          <div id='recipe-servings'> </div>
+          <div id='recipe-calories'> </div>
+          <div id='recipe-total-calories'> </div>
+        </main>
+        <aside id ='card-visuals'>
+          <fig id='visual'>
+            <img id='recipe-image'/>
+            <figcaption id='recipe-dietary'> </figcaption>
+          </fig>
+        </aside>
+      </section> 
+    ***** END OF SHADOW DOM *****
+    <recipe-card>
+  ***************************************/
 
-      /** RECIPE IMAGE CAPTION */
-      const recipeDietary = document.createElement("figcaption");
-      recipeDietary.id = "recipe-dietary";
+  /**
+   * Change make to recipeCard instead keep create elements
+   * Setting the structure of shadowRoot to what it need to be
+   * then we can just call data to set up information for each
+   * part of the recipecard
+   * I did not get what is recipe-dietary part doing so I didnt
+   * do that in the set data
+   */
+  set data(data) {
+    this.json = data;
 
-      function setRecipeDietary() {
-        const dietary = spoonacular.getRecipeDietary(data);
-        let dietaryIcon;
-        if (dietary["vegan"]) {
-          dietaryIcon = document.createElement("img");
-          dietaryIcon.src = "../icons/dietary/vegan.png"; //index.html path: assets/icons/dietary/vegan.png
-          dietaryIcon.alt = "Vegan";
-          recipeDietary.appendChild(dietaryIcon);
-        }
-        if (dietary["vegetarian"]) {
-          dietaryIcon = document.createElement("img");
-          dietaryIcon.src = "../icons/dietary/vegetarian.png"; //index.html path: assets/icons/dietary/vegetarian.png
-          dietaryIcon.alt = "Vegetarian";
-          recipeDietary.appendChild(dietaryIcon);
-        }
-        if (dietary["gluten-free"]) {
-          dietaryIcon = document.createElement("img");
-          dietaryIcon.src = "../icons/dietary/gluten-free.png"; //index.html path: assets/icons/dietary/gluten-free.png
-          dietaryIcon.alt = "Gluten Free";
-          recipeDietary.appendChild(dietaryIcon);
-        }
-        if (dietary["dairy-free"]) {
-          dietaryIcon = document.createElement("img");
-          dietaryIcon.src = "../icons/dietary/dairy-free.png"; //index.html path: assets/icons/dietary/dairy-free.png
-          dietaryIcon.alt = "Dairy Free";
-          recipeDietary.appendChild(dietaryIcon);
-        }
-      }
-      setRecipeDietary();
+    const spoonacular = new Spoonacular();
 
-      visual.appendChild(recipeImage);
-      visual.appendChild(recipeDietary);
+    //this will reset the struction of the shadowRoot
+    this.shadowRoot.querySelector("article").innerHTML = `
+      <main id='card-information'>
+        <div id='recipe-title'> </div>
+        <div id='recipe-price'> </div>
+        <div id='recipe-cooking-time'> </div>
+        <div id='recipe-score'> </div>
+        <div id='recipe-servings'> </div>
+        <div id='recipe-calories'> </div>
+        <div id='recipe-total-calories'> </div>
+      </main>
+      <aside id ='card-visuals'>
+        <fig id='visual'>
+          <img id='recipe-image'/>
+          <figcaption id='recipe-dietary'> </figcaption>
+        </fig>
+      </aside>
+    `;
 
-      cardVisuals.appendChild(visual);
-    }
+    //set title
+    const title = spoonacular.getRecipeTitle(data);
+    this.shadowRoot.getElementById("recipe-title").innerHTML = title;
 
-    function setCardInformation() {
-      /** RECIPE TITLE */
-      const recipeTitle = document.createElement("div");
-      recipeTitle.id = "recipe-title";
-      recipeTitle.innerHTML = spoonacular.getRecipeTitle(data);
+    //set price
+    const price = spoonacular.getRecipePrice(data);
+    this.shadowRoot.getElementById("recipe-price").innerHTML = price;
 
-      /** RECIPE PRICE */
-      const recipePrice = document.createElement("div");
-      recipePrice.id = "recipe-price";
-      recipePrice.innerHTML = spoonacular.getRecipePrice(data);
+    //set time
+    const time = spoonacular.getRecipeCookingTime(data);
+    this.shadowRoot.getElementById("recipe-cooking-time").innerHTML = time;
 
-      /** RECIPE COOKING TIME */
-      const recipeCookingTime = document.createElement("div");
-      recipeCookingTime.id = "recipe-cooking-time";
-      recipeCookingTime.innerHTML = spoonacular.getRecipeCookingTime(data);
+    //set score
+    const score = spoonacular.getRecipeScore(data);
+    this.shadowRoot.getElementById("recipe-score").innerHTML = score;
 
-      /** RECIPE SCORE */
-      const recipeScore = document.createElement("div");
-      recipeScore.id = "recipe-score";
-      recipeScore.innerHTML = spoonacular.getRecipeScore(data);
+    //set servings
+    const servings = spoonacular.getRecipeServings(data);
+    this.shadowRoot.getElementById("recipe-servings").innerHTML = servings;
 
-      /** RECIPE SERVING */
-      const recipeServings = document.createElement("div");
-      recipeServings.id = "recipe-servings";
-      recipeServings.innerHTML = spoonacular.getRecipeServings(data);
+    //set calories
+    const calories = spoonacular.getRecipeCalories(data);
+    this.shadowRoot.getElementById("recipe-calories").innerHTML = calories;
 
-      /** RECIPE CALORIES */
-      const recipeCalories = document.createElement("div");
-      recipeCalories.id = "recipe-calories";
-      recipeCalories.innerHTML = spoonacular.getRecipeCalories(data);
+    //set totalCalories
+    const totalCalories = spoonacular.getRecipeTotalCalories(data);
+    this.shadowRoot.getElementById("recipe-total-calories").innerHTML =
+      totalCalories;
 
-      /** RECIPE TOTAL CALORIES */
-      const recipeTotalCalories = document.createElement("div");
-      recipeTotalCalories.id = "recipe-total-calories";
-      recipeTotalCalories.innerHTML = spoonacular.getRecipeTotalCalories(data);
+    //set image.src
+    const image = spoonacular.getRecipeImageSource(data);
+    this.shadowRoot.getElementById("recipe-image").setAttribute("src", image);
 
-      cardInformation.appendChild(recipeTitle);
-      cardInformation.appendChild(recipePrice);
-      cardInformation.appendChild(recipeCookingTime);
-      cardInformation.appendChild(recipeScore);
-      cardInformation.appendChild(recipeServings);
-      cardInformation.appendChild(recipeCalories);
-      cardInformation.appendChild(recipeTotalCalories);
-    }
+    //   const cardVisuals = document.createElement("aside");
+    //   cardVisuals.id = "card-visuals";
 
-    setCardVisuals();
-    setCardInformation();
+    //   const cardInformation = document.createElement("main");
+    //   cardInformation.id = "card-information";
 
-    card.appendChild(cardVisuals);
-    card.appendChild(cardInformation);
+    //   function setCardVisuals() {
+    //     const visual = document.createElement("figure");
+    //     visual.id = "visual";
+    //     /** RECIPE IMAGE */
+    //     const recipeImage = document.createElement("img");
+    //     recipeImage.id = "recipe-image";
+    //     recipeImage.src = spoonacular.getRecipeImageSource(data);
 
-    this.shadowRoot.appendChild(style);
-    this.shadowRoot.appendChild(card);
+    //     /** RECIPE IMAGE CAPTION */
+    //     const recipeDietary = document.createElement("figcaption");
+    //     recipeDietary.id = "recipe-dietary";
+
+    //     function setRecipeDietary(){
+    //       const dietary = spoonacular.getRecipeDietary(data);
+    //       let dietaryIcon;
+    //       if(dietary["vegan"]){
+    //         dietaryIcon = document.createElement('img');
+    //         dietaryIcon.src = '../icons/dietary/vegan.png'; //index.html path: assets/icons/dietary/vegan.png
+    //         dietaryIcon.alt = "Vegan"
+    //         recipeDietary.appendChild(dietaryIcon);
+    //       }
+    //       if(dietary["vegetarian"]){
+    //         dietaryIcon = document.createElement('img');
+    //         dietaryIcon.src = '../icons/dietary/vegetarian.png'; //index.html path: assets/icons/dietary/vegetarian.png
+    //         dietaryIcon.alt = "Vegetarian"
+    //         recipeDietary.appendChild(dietaryIcon);
+    //       }
+    //       if(dietary["gluten-free"]){
+    //         dietaryIcon = document.createElement('img');
+    //         dietaryIcon.src = '../icons/dietary/gluten-free.png'; //index.html path: assets/icons/dietary/gluten-free.png
+    //         dietaryIcon.alt = "Gluten Free"
+    //         recipeDietary.appendChild(dietaryIcon);
+    //       }
+    //       if(dietary["dairy-free"]){
+    //         dietaryIcon = document.createElement('img');
+    //         dietaryIcon.src = '../icons/dietary/dairy-free.png'; //index.html path: assets/icons/dietary/dairy-free.png
+    //         dietaryIcon.alt = "Dairy Free"
+    //         recipeDietary.appendChild(dietaryIcon);
+    //       }
+    //     }
+    //     setRecipeDietary();
+
+    //     visual.appendChild(recipeImage);
+    //     visual.appendChild(recipeDietary);
+
+    //     cardVisuals.appendChild(visual);
+    //   }
+
+    //   function setCardInformation() {
+    //     /** RECIPE TITLE */
+    //     const recipeTitle = document.createElement("div");
+    //     recipeTitle.id = "recipe-title";
+    //     recipeTitle.innerHTML = spoonacular.getRecipeTitle(data);
+
+    //     /** RECIPE PRICE */
+    //     const recipePrice = document.createElement("div");
+    //     recipePrice.id = "recipe-price";
+    //     recipePrice.innerHTML = spoonacular.getRecipePrice(data);
+
+    //     /** RECIPE COOKING TIME */
+    //     const recipeCookingTime = document.createElement("div");
+    //     recipeCookingTime.id = "recipe-cooking-time";
+    //     recipeCookingTime.innerHTML = spoonacular.getRecipeCookingTime(data);
+
+    //     /** RECIPE SCORE */
+    //     const recipeScore = document.createElement("div");
+    //     recipeScore.id = "recipe-score";
+    //     recipeScore.innerHTML = spoonacular.getRecipeScore(data);
+
+    //     /** RECIPE SERVING */
+    //     const recipeServings = document.createElement("div");
+    //     recipeServings.id = "recipe-servings";
+    //     recipeServings.innerHTML = spoonacular.getRecipeServings(data);
+
+    //     /** RECIPE CALORIES */
+    //     const recipeCalories = document.createElement("div");
+    //     recipeCalories.id = "recipe-calories";
+    //     recipeCalories.innerHTML = spoonacular.getRecipeCalories(data);
+
+    //     /** RECIPE TOTAL CALORIES */
+    //     const recipeTotalCalories = document.createElement("div");
+    //     recipeTotalCalories.id = "recipe-total-calories";
+    //     recipeTotalCalories.innerHTML = spoonacular.getRecipeTotalCalories(data);
+
+    //     cardInformation.appendChild(recipeTitle);
+    //     cardInformation.appendChild(recipePrice);
+    //     cardInformation.appendChild(recipeCookingTime);
+    //     cardInformation.appendChild(recipeScore);
+    //     cardInformation.appendChild(recipeServings);
+    //     cardInformation.appendChild(recipeCalories);
+    //     cardInformation.appendChild(recipeTotalCalories);
+    //   }
+
+    //   setCardVisuals();
+    //   setCardInformation();
+
+    //   card.appendChild(cardVisuals);
+    //   card.appendChild(cardInformation);
+
+    //   this.shadowRoot.appendChild(style);
+    //   this.shadowRoot.appendChild(card);
+    // }
   }
 }
 
