@@ -31,6 +31,7 @@ function filterByScore(filter) {
     const third_range = recipeScore >= 25 && recipeScore < 50;
     const fourth_range = recipeScore >= 0 && recipeScore < 25;
 
+    const all_checked = document.querySelector("input[id=all_score]").checked;
     const first_checked = document.querySelector(
       "input[id=first_score]"
     ).checked;
@@ -47,7 +48,7 @@ function filterByScore(filter) {
     console.log("TEST " + filter.id);
 
     if (
-      (filter.id == "all_score" && filter.checked) ||
+      all_checked ||
       (!first_checked && !second_checked && !third_checked && !fourth_checked)
     ) {
       element.classList.add("shown");
