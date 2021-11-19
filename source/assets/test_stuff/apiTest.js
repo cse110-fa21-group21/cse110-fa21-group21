@@ -65,7 +65,7 @@ async function bindSearch() {
       //This is slightly flawed. We don't want to only store search history but rather by title?
       console.log("Original query, fetching data!");
       searchQueryHistory.push(searchQuery);
-      baseURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_key}&query=${searchQuery}&instructions=true&addRecipeInformation=true&addRecipeNutrition=true&number=10&price=true`;
+      baseURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_key}&query=${searchQuery}&instructions=true&addRecipeInformation=true&addRecipeNutrition=true&number=30&price=true`;
       fetchAPI(searchQuery);
     } else {
       console.log("Unoriginal query, no need to fetch it!");
