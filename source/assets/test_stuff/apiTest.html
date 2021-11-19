@@ -27,20 +27,36 @@
         <button id='recipe-viewers-btn'>Show RecipeViewers</button>
       </section>
       <section class="shown">
-        <h2> Filters </h1>
-          <h3> By Score </h1>
+        <h2> Filters </h2>
+          <h3> By Score </h3>
           <form name="filterByScore" id="filterByScore">
             <input type="checkbox" id="all_score" name="all_score">
             <label for="all_score"> All</label><br>
             <input type="checkbox" id="first_score" name="first_score" value=75>
             <label for="first_score"> 75 - 100</label><br>
-            <input type="checkbox" id="second_score" name="second_score"" value=50>
+            <input type="checkbox" id="second_score" name="second_score" value=50>
             <label for="second_score"> 50 - 75</label><br>
             <input type="checkbox" id="third_score" name="third_score" value=25>
             <label for="third_score"> 25 - 50</label><br>
             <input type="checkbox" id="fourth_score" name="fourth_score" value=0>
             <label for="fourth_score"> 0 - 25</label><br>
           </form>
+
+          <h3> By Price </h3>
+            <form name="filterByPrice" id="filterByPrice">
+              <input type="checkbox" id="all_price" name="all_price">
+              <label for="all_price"> All</label><br>
+              <input type="checkbox" id="first_price" name="first_price" value=75>
+              <label for="first_price"> 50.00+</label><br>
+              <input type="checkbox" id="second_price" name="second_price" value=50>
+              <label for="second_price"> 20.00 - 50.00</label><br>
+              <input type="checkbox" id="third_price" name="third_price" value=25>
+              <label for="third_price"> 10.00 - 20.00</label><br>
+              <input type="checkbox" id="fourth_price" name="fourth_price" value=0>
+              <label for="fourth_price"> 5.00 - 10.00</label><br>
+              <input type="checkbox" id="fifth_price" name="fifth_price" value=0>
+              <label for="fifth_price"> 0.00 - 5.00</label><br>
+            </form>
       </section>
       <section class="section--recipe-cards--wrapper">
         <!-- create recipe-card -->

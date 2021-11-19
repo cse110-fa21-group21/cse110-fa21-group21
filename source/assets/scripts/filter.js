@@ -1,7 +1,7 @@
 function filtering() {
   filterByScore();
   filterByPrice();
-  filterByTime();
+  //   filterByTime();
 
   const checkboxByScore = document.querySelector("form[id=filterByScore]");
   checkboxByScore.addEventListener("click", (event) => {
@@ -9,17 +9,17 @@ function filtering() {
     filterByScore();
   });
 
-  const checkboxByPrice = document.querySelector("form[id=]");
-  checkboxByScore.addEventListener("click", (event) => {
+  const checkboxByPrice = document.querySelector("form[id=filterByPrice]");
+  checkboxByPrice.addEventListener("click", (event) => {
     // let byScoreCheck = event.target;
     filterByPrice();
   });
 
-  const checkboxByTime = document.querySelector("form[id=]");
-  checkboxByScore.addEventListener("click", (event) => {
-    // let byScoreCheck = event.target;
-    filterByScore();
-  });
+  //   const checkboxByTime = document.querySelector("form[id=]");
+  //   checkboxByScore.addEventListener("click", (event) => {
+  //     // let byScoreCheck = event.target;
+  //     filterByTime();
+  //   });
 }
 
 function filterByScore() {
@@ -28,6 +28,10 @@ function filterByScore() {
     const recipeScore = extractScore(
       element.shadowRoot.getElementById("recipe-score").innerHTML
     );
+
+    // if (element.getAttribute("class") == "hidden") {
+    //   return;
+    // }
 
     const first_range = recipeScore >= 75;
     const second_range = recipeScore >= 50 && recipeScore < 75;
@@ -79,14 +83,86 @@ function filterByScore() {
         element.classList.remove("hidden");
       }
     }
-    // console.log(
-    //   extractScore(element.shadowRoot.getElementById("recipe-score").innerHTML)
-    // );
+  });
+}
+function filterByPrice() {
+  const recipeCards = document.querySelectorAll("recipe-card");
+  recipeCards.forEach((element) => {
+    const recipePrice = extractPrice(
+      element.shadowRoot.getElementById("recipe-price").innerHTML
+    );
+
+    if (element.getAttribute("class") == "hidden") {
+      return;
+    }
+
+    const first_range = recipePrice >= 50.0;
+    const second_range = recipePrice >= 20.0 && recipePrice < 50.0;
+    const third_range = recipePrice >= 10.0 && recipePrice < 20.0;
+    const fourth_range = recipePrice >= 5.0 && recipePrice < 10.0;
+    const fifth_range = recipePrice >= 0.0 && recipePrice < 5.0;
+
+    const all_checked = document.querySelector("input[id=all_price]").checked;
+    const first_checked = document.querySelector(
+      "input[id=first_price]"
+    ).checked;
+    const second_checked = document.querySelector(
+      "input[id=second_price]"
+    ).checked;
+    const third_checked = document.querySelector(
+      "input[id=third_price]"
+    ).checked;
+    const fourth_checked = document.querySelector(
+      "input[id=fourth_price]"
+    ).checked;
+    const fifth_checked = document.querySelector(
+      "input[id=fifth_price]"
+    ).checked;
+
+    if (
+      all_checked ||
+      (!first_checked &&
+        !second_checked &&
+        !third_checked &&
+        !fourth_checked &&
+        !fifth_checked)
+    ) {
+      element.classList.add("shown");
+      element.classList.remove("hidden");
+      document.querySelector("input[id=first_price]").checked = false;
+      document.querySelector("input[id=second_price]").checked = false;
+      document.querySelector("input[id=third_price]").checked = false;
+      document.querySelector("input[id=fourth_price]").checked = false;
+      document.querySelector("input[id=fifth_price]").checked = false;
+    } else {
+      document.querySelector("input[id=all_price]").checked = false;
+      element.classList.add("hidden");
+      element.classList.remove("shown");
+      if (first_range && first_checked) {
+        element.classList.add("shown");
+        element.classList.remove("hidden");
+      }
+      if (second_range && second_checked) {
+        element.classList.add("shown");
+        element.classList.remove("hidden");
+      }
+      if (third_range && third_checked) {
+        element.classList.add("shown");
+        element.classList.remove("hidden");
+      }
+      if (fourth_range && fourth_checked) {
+        element.classList.add("shown");
+        element.classList.remove("hidden");
+      }
+      if (fifth_range && fifth_checked) {
+        element.classList.add("shown");
+        element.classList.remove("hidden");
+      }
+    }
   });
 }
 
-function filterByPrice();
-function filterByTime();
+// function filterByTime();
 
 function extractScore(scoreString) {
   let slashIndex = scoreString.indexOf("/");

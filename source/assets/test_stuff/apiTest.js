@@ -2,7 +2,7 @@
 
 import { Router } from "./Router.js";
 
-const API_key = "d7a805d987074402904a262f602c7844";
+const API_key = "19e32de046cf427cb34e9617e388133d";
 const searchBar = document.querySelector("input");
 const search = document.querySelector("button");
 let searchQuery = "";
@@ -128,7 +128,7 @@ function bindRecipeCards(query) {
     //for each recipe within recipesID
     for (const recipeTitle in recipesID) {
       // we display 10 cards at most
-      if (cardIndex == 10) break;
+      if (cardIndex == 30) break;
       //we check if the recipe title contains the search query
       if (recipeTitle.toLocaleLowerCase().includes(query.toLocaleLowerCase())) {
         let recipeCard = recipeCardsWrapper.children[cardIndex];
@@ -152,7 +152,7 @@ function bindRecipeCards(query) {
       }
     }
     //hide and clear any unused cards
-    while (cardIndex != 10) {
+    while (cardIndex != 30) {
       let recipeCard = recipeCardsWrapper.children[cardIndex];
       recipeCard.data = "";
       recipeCard.classList.remove("shown");
@@ -170,7 +170,7 @@ function bindRecipeCards(query) {
  */
 function bindRecipeViewers(recipeCard, pageName) {
   //delete previous eventlistener that is set in last search
-  if (funcArray.length == 10) {
+  if (funcArray.length == 30) {
     recipeCard.removeEventListener("click", funcArray.shift());
   }
   function event() {
