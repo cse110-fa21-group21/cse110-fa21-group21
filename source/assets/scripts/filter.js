@@ -1,24 +1,28 @@
 function filtering() {
+  filterByScore();
+  filterByPrice();
+  filterByTime();
+
   const checkboxByScore = document.querySelector("form[id=filterByScore]");
   checkboxByScore.addEventListener("click", (event) => {
-    let byScoreCheck = event.target;
-    filterByScore(byScoreCheck);
+    // let byScoreCheck = event.target;
+    filterByScore();
   });
 
-  //   const checkboxByScore = document.querySelector("form[id=filterByScore]");
-  //   checkboxByScore.addEventListener("click", (event) => {
-  //     let byScoreCheck = event.target;
-  //     filterByScore(byScoreCheck);
-  //   });
+  const checkboxByPrice = document.querySelector("form[id=]");
+  checkboxByScore.addEventListener("click", (event) => {
+    // let byScoreCheck = event.target;
+    filterByPrice();
+  });
 
-  //   const checkboxByScore = document.querySelector("form[id=filterByScore]");
-  //   checkboxByScore.addEventListener("click", (event) => {
-  //     let byScoreCheck = event.target;
-  //     filterByScore(byScoreCheck);
-  //   });
+  const checkboxByTime = document.querySelector("form[id=]");
+  checkboxByScore.addEventListener("click", (event) => {
+    // let byScoreCheck = event.target;
+    filterByScore();
+  });
 }
 
-function filterByScore(filter) {
+function filterByScore() {
   const recipeCards = document.querySelectorAll("recipe-card");
   recipeCards.forEach((element) => {
     const recipeScore = extractScore(
@@ -30,9 +34,24 @@ function filterByScore(filter) {
     const third_range = recipeScore >= 25 && recipeScore < 50;
     const fourth_range = recipeScore >= 0 && recipeScore < 25;
 
-    console.log("TEST " + filter.id);
+    const all_checked = document.querySelector("input[id=all_score]").checked;
+    const first_checked = document.querySelector(
+      "input[id=first_score]"
+    ).checked;
+    const second_checked = document.querySelector(
+      "input[id=second_score]"
+    ).checked;
+    const third_checked = document.querySelector(
+      "input[id=third_score]"
+    ).checked;
+    const fourth_checked = document.querySelector(
+      "input[id=fourth_score]"
+    ).checked;
 
-    if (filter.id == "all_score" && filter.checked) {
+    if (
+      all_checked ||
+      (!first_checked && !second_checked && !third_checked && !fourth_checked)
+    ) {
       element.classList.add("shown");
       element.classList.remove("hidden");
       document.querySelector("input[id=first_score]").checked = false;
@@ -41,58 +60,46 @@ function filterByScore(filter) {
       document.querySelector("input[id=fourth_score]").checked = false;
     } else {
       document.querySelector("input[id=all_score]").checked = false;
-      if (filter.id == "first_score" && filter.checked) {
+      element.classList.add("hidden");
+      element.classList.remove("shown");
+      if (first_range && first_checked) {
+        element.classList.add("shown");
+        element.classList.remove("hidden");
       }
-      if (filter.id == "second_score" && filter.checked) {
+      if (second_range && second_checked) {
+        element.classList.add("shown");
+        element.classList.remove("hidden");
       }
-      if (filter.id == "third_score" && filter.checked) {
+      if (third_range && third_checked) {
+        element.classList.add("shown");
+        element.classList.remove("hidden");
       }
-      if (filter.id == "fourth_score" && filter.checked) {
+      if (fourth_range && fourth_checked) {
+        element.classList.add("shown");
+        element.classList.remove("hidden");
       }
     }
-
-    console.log(
-      extractScore(element.shadowRoot.getElementById("recipe-score").innerHTML)
-    );
+    // console.log(
+    //   extractScore(element.shadowRoot.getElementById("recipe-score").innerHTML)
+    // );
   });
 }
+
+function filterByPrice();
+function filterByTime();
 
 function extractScore(scoreString) {
   let slashIndex = scoreString.indexOf("/");
   let value = scoreString.substring(7, slashIndex); // length of 'Score: ' is 7;
   return Number(value);
 }
-
-// if (filter.name == "all_score_filter" && filter.checked) {
-//   recipeCard.classList.add("shown");
-//   document.querySelector("input[notall=notall]").checked = false;
-// } else if (filter.name == "first_score_filter") {
-//   if (filter.checked) {
-//     if (recipeCardScore >= 75) {
-//       recipeCard.classList.add("shown");
-//     } else {
-//       recipeCard.classList.add("hidden");
-//     }
-//   } else {
-//   }
-// }
-
-// if (recipeCardScore >= 75 && firstCheckbox.checked == true) {
-//   recipeCard.classList.remove("hidden");
-//   recipeCard.classList.add("shown");
-// } else {
-//   recipeCard.classList.add("hidden");
-//   recipeCard.classList.remove("shown");
-// }
-
-// if (
-//   recipeCardScore < 75 &&
-//   recipeCardScore >= 50 &&
-//   secondCheckbox.checked == true
-// ) {
-//   recipeCard.classList.remove("hidden");
-//   recipeCard.classList.add("shown");
-// } else {
-//   recipeCard.classList.add("hidden");
-//   recipeCard.classList.remove("shown");
-// }
+function extractPrice(priceString) {
+  let dollarIndex = priceString.indexOf("$");
+  let value = priceString.substring(dollarIndex + 1); // length of 'Score: ' is 7;
+  return Number(value);
+}
+function extractCookingTime(cookingString) {
+  let spaceIndex = cookingString.indexOf(" ");
+  let value = cookingString.substring(spaceIndex + 1); // length of 'Score: ' is 7;
+  return Number(value);
+}

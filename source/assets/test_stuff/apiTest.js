@@ -2,14 +2,14 @@
 
 import { Router } from "./Router.js";
 
-const API_key = "54a305b43853416198613d4aaaed7b01";
+const API_key = "d7a805d987074402904a262f602c7844";
 const searchBar = document.querySelector("input");
 const search = document.querySelector("button");
 let searchQuery = "";
 var baseURL = ``;
 
 /**
- * Every property within the recipesID object abides by the following 
+ * Every property within the recipesID object abides by the following
  * structure: `title` and data. Together they form the property
  * {
  *   ...,
@@ -33,14 +33,14 @@ var funcArray = [];
  * page, now homepage should have nothing to be show
  * no recipecard or recipeview
  */
-const router = new Router(function (){
-  document.querySelector('.section--recipe-cards--wrapper').classList.remove("shown");
-  document.querySelector('.section--recipe-viewers--wrapper').classList.remove("shown");
-
-  document.querySelector('.section--recipe-cards--wrapper').classList.add("hidden");
-  document.querySelector('.section--recipe-viewers--wrapper').classList.add('hidden');
-})
-
+const router = new Router(function () {
+  document
+    .querySelector(".section--recipe-cards--wrapper")
+    .classList.remove("shown");
+  document
+    .querySelector(".section--recipe-viewers--wrapper")
+    .classList.remove("shown");
+});
 
 window.addEventListener("DOMContentLoaded", init);
 
@@ -67,7 +67,7 @@ async function bindSearch() {
       //This is slightly flawed. We don't want to only store search history but rather by title?
       console.log("Original query, fetching data!");
       searchQueryHistory.push(searchQuery);
-      baseURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_key}&query=${searchQuery}&instructions=true&addRecipeInformation=true&addRecipeNutrition=true&number=10&price=true`;
+      baseURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_key}&query=${searchQuery}&instructions=true&addRecipeInformation=true&addRecipeNutrition=true&number=30&price=true`;
       fetchAPI(searchQuery);
     } else {
       console.log("Unoriginal query, no need to fetch it!");
@@ -84,9 +84,9 @@ async function fetchAPI(query) {
   await fetch(baseURL)
     .then((response) => response.json())
     .then((data) => {
-      console.log('Query Results...');
+      console.log("Query Results...");
       /**
-       * data.results is  array of all results matching the query. 
+       * data.results is  array of all results matching the query.
        * Each individual entry corresponds to a unique matching recipe
        */
       console.log(data.results);
@@ -109,52 +109,50 @@ function bindRecipeCards(query) {
    * Add route to the router
    * Also set up the recipeCard
    */
-  router.insertPage(query, function(){
+  router.insertPage(query, function () {
     //Display the Recipe Cards Wrapper
-    const recipeCardsWrapper = document.querySelector('.section--recipe-cards--wrapper');
-    recipeCardsWrapper.classList.remove('hidden');
-    recipeCardsWrapper.classList.add('shown');
-
+    const recipeCardsWrapper = document.querySelector(
+      ".section--recipe-cards--wrapper"
+    );
+    recipeCardsWrapper.classList.add("shown");
 
     //Hide the Recipe Viewers Wrapper
-    const recipeViewersWrapper = document.querySelector('.section--recipe-viewers--wrapper');
-    recipeViewersWrapper.classList.remove('shown');
-    recipeViewersWrapper.classList.add('hidden');
+    const recipeViewersWrapper = document.querySelector(
+      ".section--recipe-viewers--wrapper"
+    );
+    recipeViewersWrapper.classList.remove("shown");
 
     /** The are 10 distinct recipeCard DOMs */
-    let cardIndex =0;
+    let cardIndex = 0;
 
     //for each recipe within recipesID
     for (const recipeTitle in recipesID) {
       // we display 10 cards at most
-      if(cardIndex==10)
-        break;
+      if (cardIndex == 10) break;
       //we check if the recipe title contains the search query
-      if(recipeTitle.toLocaleLowerCase().includes(query.toLocaleLowerCase())){
+      if (recipeTitle.toLocaleLowerCase().includes(query.toLocaleLowerCase())) {
         let recipeCard = recipeCardsWrapper.children[cardIndex];
         recipeCard.data = recipesID[recipeTitle];
         //Show the Recipe Card
-        recipeCard.classList.remove('hidden')
-        recipeCard.classList.add('shown');
+        recipeCard.classList.remove("hidden");
+        recipeCard.classList.add("shown");
 
         //this following part added route that would lead users to the corresponding recipeView
-        const page = recipeTitle; 
-        router.insertPage(page, function(){
-          //Hide the Recipe Cards Wrapper  
-          recipeCardsWrapper.classList.remove('shown');
-          recipeCardsWrapper.classList.add('hidden');
+        const page = recipeTitle;
+        router.insertPage(page, function () {
+          //Hide the Recipe Cards Wrapper
+          recipeCardsWrapper.classList.remove("shown");
           //Show the Recipe Viewers Wrapper
-          recipeViewersWrapper.classList.remove('hidden');
-          recipeViewersWrapper.classList.add('shown');
+          recipeViewersWrapper.classList.add("shown");
           //Pass the data from the <recipe-card> to the singular <recipe-viewer>
-          document.querySelector('recipe-viewer').data = recipesID[recipeTitle];
+          document.querySelector("recipe-viewer").data = recipesID[recipeTitle];
         });
         bindRecipeViewers(recipeCard, page);
         cardIndex++;
       }
     }
     //hide and clear any unused cards
-    while(cardIndex!=10){
+    while (cardIndex != 10) {
       let recipeCard = recipeCardsWrapper.children[cardIndex];
       recipeCard.data='';
       bindRecipeViewers(recipeCard, '');
@@ -187,15 +185,15 @@ function bindRecipeViewers(recipeCard, pageName) {
  * function that bind the back button
  * and the forward button
  */
-function bindState(){
-  window.addEventListener('popstate', event =>{
-    if(event.state == null){
-      router.goTo('home',true);
+function bindState() {
+  window.addEventListener("popstate", (event) => {
+    if (event.state == null) {
+      router.goTo("home", true);
+    } else {
+      console.log("Routing to page:", event.state);
+      router.goTo(event.state, true);
     }
-    else{
-      console.log('Routing to page:', event.state);
-      router.goTo(event.state,true);
-    }
+    filtering();
   });
 }
 
@@ -207,14 +205,14 @@ function showRecipeCards() {
     recipeCards.forEach((element) => {
       element.classList.remove("hidden");
       element.classList.add("shown");
-    })
+    });
     /** Hide the Recipe Viewers */
     const recipeViewers = document.querySelectorAll("recipe-viewer");
-    recipeViewers.forEach( (element) =>{
+    recipeViewers.forEach((element) => {
       element.classList.remove("shown");
       element.classList.add("hidden");
-    })
-  })
+    });
+  });
 }
 
 function showRecipeViewers() {
@@ -267,10 +265,14 @@ function sortRecipeViewersInWrapper(recipeViewersWrapper) {
       recipeViewers.push(node);
       indices.push(index);
     }
-  })
-  recipeViewersWrapper.innerHTML = '';
-  recipeViewers.sort( (firstViewer,secondViewer) => compareRecipeViewers(firstViewer,secondViewer))
-  recipeViewers.forEach( (viewer) => {recipeViewersWrapper.appendChild(viewer);});
+  });
+  recipeViewersWrapper.innerHTML = "";
+  recipeViewers.sort((firstViewer, secondViewer) =>
+    compareRecipeViewers(firstViewer, secondViewer)
+  );
+  recipeViewers.forEach((viewer) => {
+    recipeViewersWrapper.appendChild(viewer);
+  });
 }
 
 /** COMPARISONS */
