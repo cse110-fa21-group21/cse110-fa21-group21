@@ -5,19 +5,20 @@ function filtering() {
 
   const checkboxByScore = document.querySelector("form[id=filterByScore]");
   checkboxByScore.addEventListener("click", (event) => {
+    // Could use this to add some more functionality to the all button.
     // let byScoreCheck = event.target;
     filterByScore();
   });
 
   const checkboxByPrice = document.querySelector("form[id=filterByPrice]");
   checkboxByPrice.addEventListener("click", (event) => {
-    // let byScoreCheck = event.target;
+    // let byPriceCheck = event.target;
     filterByPrice();
   });
 
   //   const checkboxByTime = document.querySelector("form[id=]");
   //   checkboxByScore.addEventListener("click", (event) => {
-  //     // let byScoreCheck = event.target;
+  //     // let byTimeCheck = event.target;
   //     filterByTime();
   //   });
 }
@@ -92,9 +93,9 @@ function filterByPrice() {
       element.shadowRoot.getElementById("recipe-price").innerHTML
     );
 
-    if (element.getAttribute("class") == "hidden") {
-      return;
-    }
+    // if (element.getAttribute("class") == "hidden") {
+    //   return;
+    // }
 
     const first_range = recipePrice >= 50.0;
     const second_range = recipePrice >= 20.0 && recipePrice < 50.0;
