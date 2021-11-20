@@ -2,9 +2,10 @@
 
 import { Router } from "./Router.js";
 
-const API_key = "d7a805d987074402904a262f602c7844";
+const API_key = "19e32de046cf427cb34e9617e388133d";
 const searchBar = document.querySelector("input");
 const search = document.querySelector("button");
+const MAX_NUM_RECIPE_CARDS = 30;
 let searchQuery = "";
 var baseURL = ``;
 
@@ -46,8 +47,6 @@ window.addEventListener("DOMContentLoaded", init);
 
 async function init() {
   bindSearch();
-  showRecipeCards();
-  showRecipeViewers();
   bindState();
   filtering();
 }
@@ -129,7 +128,7 @@ function bindRecipeCards(query) {
     //for each recipe within recipesID
     for (const recipeTitle in recipesID) {
       // we display 10 cards at most
-      if (cardIndex == 10) break;
+      if (cardIndex == MAX_NUM_RECIPE_CARDS) break;
       //we check if the recipe title contains the search query
       if (recipeTitle.toLocaleLowerCase().includes(query.toLocaleLowerCase())) {
         let recipeCard = recipeCardsWrapper.children[cardIndex];
@@ -153,7 +152,7 @@ function bindRecipeCards(query) {
       }
     }
     //hide and clear any unused cards
-    while (cardIndex != 10) {
+    while (cardIndex != MAX_NUM_RECIPE_CARDS) {
       let recipeCard = recipeCardsWrapper.children[cardIndex];
       recipeCard.data='';
       bindRecipeViewers(recipeCard, '');
@@ -161,6 +160,7 @@ function bindRecipeCards(query) {
       recipeCard.classList.add('hidden');
       cardIndex++;
     }
+    sortRecipeCardsInWrapper(recipeCardsWrapper);
   });
   router.goTo(query);
 }
@@ -172,7 +172,7 @@ function bindRecipeCards(query) {
  */
 function bindRecipeViewers(recipeCard, pageName) {
   //delete previous eventlistener that is set in last search
-  if (funcArray.length == 10) {
+  if (funcArray.length == MAX_NUM_RECIPE_CARDS) {
     recipeCard.removeEventListener("click", funcArray.shift());
   }
   function event() {
@@ -198,52 +198,12 @@ function bindState() {
   });
 }
 
-function showRecipeCards() {
-  const recipeCardsBtn = document.querySelector("#recipe-cards-btn");
-  recipeCardsBtn.addEventListener("click", () => {
-    /** Show the Recipe Cards */
-    const recipeCards = document.querySelectorAll("recipe-card");
-    recipeCards.forEach((element) => {
-      element.classList.remove("hidden");
-      element.classList.add("shown");
-    });
-    /** Hide the Recipe Viewers */
-    const recipeViewers = document.querySelectorAll("recipe-viewer");
-    recipeViewers.forEach((element) => {
-      element.classList.remove("shown");
-      element.classList.add("hidden");
-    });
-  });
-}
-
-function showRecipeViewers() {
-  const recipeViewersBtn = document.querySelector("#recipe-viewers-btn");
-  /** Show the Recipe Viewers */
-  recipeViewersBtn.addEventListener("click", () => {
-    const recipeViewers = document.querySelectorAll("recipe-viewer");
-    recipeViewers.forEach((element) => {
-      element.classList.remove("hidden");
-      element.classList.add("shown");
-    });
-    /** Hide the Recipe Cards */
-    const recipeCards = document.querySelectorAll("recipe-card");
-    recipeCards.forEach((element) => {
-      element.classList.remove("shown");
-      element.classList.add("hidden");
-    });
-  });
-}
-
-/*********************************************************
-                CURRENTLY NOT INTEGRATED
- ********************************************************/
-
 function sortRecipeCardsInWrapper(recipeCardsWrapper) {
   const recipeCards = [];
   const indices = [];
   const nodesList = recipeCardsWrapper.childNodes;
   nodesList.forEach((node, index) => {
-    if (node.nodeName == "RECIPE-CARD") {
+    if (node.nodeName == "RECIPE-CARD" && node.class != "hidden") {
       recipeCards.push(node);
       indices.push(index);
     }
@@ -257,25 +217,6 @@ function sortRecipeCardsInWrapper(recipeCardsWrapper) {
   });
 }
 
-function sortRecipeViewersInWrapper(recipeViewersWrapper) {
-  const recipeViewers = [];
-  const indices = [];
-  const nodesList = recipeViewersWrapper.childNodes;
-  nodesList.forEach((node, index) => {
-    if (node.nodeName == "RECIPE-VIEWER") {
-      recipeViewers.push(node);
-      indices.push(index);
-    }
-  });
-  recipeViewersWrapper.innerHTML = "";
-  recipeViewers.sort((firstViewer, secondViewer) =>
-    compareRecipeViewers(firstViewer, secondViewer)
-  );
-  recipeViewers.forEach((viewer) => {
-    recipeViewersWrapper.appendChild(viewer);
-  });
-}
-
 /** COMPARISONS */
 
 /**
@@ -285,10 +226,10 @@ function sortRecipeViewersInWrapper(recipeViewersWrapper) {
 function compareRecipeCards(firstCard, secondCard) {
   //Pull the Inner Text of the 'recipe-score' div
   let firstCardRecipeScoreText = firstCard.shadowRoot
-    .querySelector("section")
+    .querySelector("article")
     .querySelector("#recipe-score").innerText;
   let secondCardRecipeScoreText = secondCard.shadowRoot
-    .querySelector("section")
+    .querySelector("article")
     .querySelector("#recipe-score").innerText;
   //Parse the Inner Text to obtain the value
   function pullValue(text) {
@@ -308,36 +249,3 @@ function compareRecipeCards(firstCard, secondCard) {
     return 0;
   }
 }
-
-/**
- * Compares two recipe-viewer DOMs and chooses the one with
- * the higher spoonacular score
- */
-function compareRecipeViewers(firstViewer, secondViewer) {
-  //Pull the Inner Text of the 'recipe-score' div
-  let firstViewerRecipeScoreText = firstViewer.shadowRoot
-    .querySelector("section")
-    .querySelector("#recipe-score").innerText;
-  let secondViewerRecipeScoreText = secondViewer.shadowRoot
-    .querySelector("section")
-    .querySelector("#recipe-score").innerText;
-  //Parse the Inner Text to obtain the value
-  function pullValue(text) {
-    let slashIndex = text.indexOf("/");
-    let value = text.substring(7, slashIndex); // length of 'Score: ' is 7;
-    return Number(value);
-  }
-
-  let firstViewerScore = pullValue(firstViewerRecipeScoreText);
-  let secondViewerScore = pullValue(secondViewerRecipeScoreText);
-
-  if (firstViewerScore > secondViewerScore) {
-    return -1;
-  } else if (firstViewerScore < secondViewerScore) {
-    return 1;
-  } else {
-    return 0;
-  }
-}
-
-// Filters
