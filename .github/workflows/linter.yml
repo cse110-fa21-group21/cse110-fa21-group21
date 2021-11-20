@@ -43,10 +43,10 @@ jobs:
       - name: Lint Code Base
         uses: github/super-linter@v4
         env:
-          VALIDATE_MARKDOWN: false
           VALIDATE_ALL_CODEBASE: false
-          # Ignore Markdown Files! (Annoying when doing meeeting minutes)
-          # FILTER_REGEX_EXCLUDE: *.md
+          # Ignore Markdown Files! (Annoying when doing meeeting minutes, Both are needed)
+          VALIDATE_MARKDOWN: false
+          VALIDATE_NATURAL_LANGUAGE: false
           #default branch is either main or master!
           DEFAULT_BRANCH: main
           
