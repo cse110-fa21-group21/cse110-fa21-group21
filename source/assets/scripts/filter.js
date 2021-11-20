@@ -1,23 +1,19 @@
 function filtering() {
   goThroughElements();
-  //   filterByTime();
 
   const checkboxByScore = document.querySelector("form[id=filterByScore]");
   checkboxByScore.addEventListener("click", (event) => {
     // Could use this to add some more functionality to the all button.
-    // let byScoreCheck = event.target;
     goThroughElements();
   });
 
   const checkboxByPrice = document.querySelector("form[id=filterByPrice]");
   checkboxByPrice.addEventListener("click", (event) => {
-    // let byPriceCheck = event.target;
     goThroughElements();
   });
 
   const checkboxByTime = document.querySelector("form[id=filterByTime]");
   checkboxByTime.addEventListener("click", (event) => {
-    // let byTimeCheck = event.target;
     goThroughElements();
   });
 }
@@ -29,6 +25,7 @@ function goThroughElements() {
     element.classList.remove("hidden");
     scoreAllChecked();
     priceAllChecked();
+    timeAllChecked();
     if (checkScoreChecked()) {
       filterByScore(element);
     }
@@ -51,7 +48,6 @@ function filterByScore(element) {
   const third_range = recipeScore >= 25 && recipeScore < 50;
   const fourth_range = recipeScore >= 0 && recipeScore < 25;
 
-  const all_checked = document.querySelector("input[id=all_score]").checked;
   const first_checked = document.querySelector("input[id=first_score]").checked;
   const second_checked = document.querySelector(
     "input[id=second_score]"
@@ -79,10 +75,6 @@ function filterByScore(element) {
   }
 }
 function filterByPrice(element) {
-  // if (element.getAttribute("class") == "hidden") {
-  //   return;
-  // }
-
   const recipePrice = extractPrice(
     element.shadowRoot.getElementById("recipe-price").innerHTML
   );
@@ -93,7 +85,6 @@ function filterByPrice(element) {
   const fourth_range = recipePrice >= 5.0 && recipePrice < 10.0;
   const fifth_range = recipePrice >= 0.0 && recipePrice < 5.0;
 
-  const all_checked = document.querySelector("input[id=all_price]").checked;
   const first_checked = document.querySelector("input[id=first_price]").checked;
   const second_checked = document.querySelector(
     "input[id=second_price]"
@@ -136,7 +127,6 @@ function filterByTime(element) {
   const fourth_time = recipeTime >= 15 && recipeTime < 30;
   const fifth_time = recipeTime >= 0 && recipeTime < 15;
 
-  const all_checked = document.querySelector("input[id=all_time]").checked;
   const first_checked = document.querySelector("input[id=first_time]").checked;
   const second_checked = document.querySelector(
     "input[id=second_time]"
@@ -189,6 +179,18 @@ function priceAllChecked() {
     document.querySelector("input[id=third_price]").checked = false;
     document.querySelector("input[id=fourth_price]").checked = false;
     document.querySelector("input[id=fifth_price]").checked = false;
+  }
+}
+
+function timeAllChecked() {
+  const all_checked = document.querySelector("input[id=all_time]").checked;
+
+  if (all_checked) {
+    document.querySelector("input[id=first_time").checked = false;
+    document.querySelector("input[id=second_time]").checked = false;
+    document.querySelector("input[id=third_time]").checked = false;
+    document.querySelector("input[id=fourth_time]").checked = false;
+    document.querySelector("input[id=fifth_time]").checked = false;
   }
 }
 
@@ -251,14 +253,16 @@ function extractScore(scoreString) {
 }
 function extractPrice(priceString) {
   let dollarIndex = priceString.indexOf("$");
-  let value = priceString.substring(dollarIndex + 1); // length of 'Score: ' is 7;
+  let value = priceString.substring(dollarIndex + 1);
   return Number(value);
 }
 function extractCookingTime(cookingString) {
   let spaceIndex = cookingString.indexOf(" ");
-  let value = cookingString.substring(spaceIndex + 1); // length of 'Score: ' is 7;
+  let value = cookingString.substring(spaceIndex + 1);
   return Number(value);
 }
+
+// Old working code.
 
 // function filtering() {
 //   filterByScore();
