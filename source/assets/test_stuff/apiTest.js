@@ -95,6 +95,7 @@ async function fetchAPI(query) {
       }
     });
   bindRecipeCards(query);
+  filtering();
 }
 
 /**
@@ -153,9 +154,10 @@ function bindRecipeCards(query) {
     //hide and clear any unused cards
     while (cardIndex != MAX_NUM_RECIPE_CARDS) {
       let recipeCard = recipeCardsWrapper.children[cardIndex];
-      recipeCard.data = "";
-      recipeCard.classList.remove("shown");
-      recipeCard.classList.add("hidden");
+      recipeCard.data='';
+      bindRecipeViewers(recipeCard, '');
+      recipeCard.classList.remove('shown');
+      recipeCard.classList.add('hidden');
       cardIndex++;
     }
     sortRecipeCardsInWrapper(recipeCardsWrapper);

@@ -15,11 +15,11 @@ function filtering() {
     goThroughElements();
   });
 
-  //   const checkboxByTime = document.querySelector("form[id=]");
-  //   checkboxByScore.addEventListener("click", (event) => {
-  //     // let byTimeCheck = event.target;
-  //     filterByTime();
-  //   });
+  const checkboxByTime = document.querySelector("form[id=filterByTime]");
+  checkboxByTime.addEventListener("click", (event) => {
+    // let byTimeCheck = event.target;
+    goThroughElements();
+  });
 }
 
 function goThroughElements() {
@@ -34,6 +34,9 @@ function goThroughElements() {
     }
     if (checkPriceChecked()) {
       filterByPrice(element);
+    }
+    if (checkTimeChecked()) {
+      filterByTime(element);
     }
   });
 }
@@ -122,8 +125,49 @@ function filterByPrice(element) {
     element.classList.remove("shown");
   }
 }
+function filterByTime(element) {
+  const recipeTime = extractCookingTime(
+    element.shadowRoot.getElementById("recipe-cooking-time").innerHTML
+  );
 
-// function filterByTime();
+  const first_time = recipeTime >= 60;
+  const second_time = recipeTime >= 45 && recipeTime < 60;
+  const third_time = recipeTime >= 30 && recipeTime < 45;
+  const fourth_time = recipeTime >= 15 && recipeTime < 30;
+  const fifth_time = recipeTime >= 0 && recipeTime < 15;
+
+  const all_checked = document.querySelector("input[id=all_time]").checked;
+  const first_checked = document.querySelector("input[id=first_time]").checked;
+  const second_checked = document.querySelector(
+    "input[id=second_time]"
+  ).checked;
+  const third_checked = document.querySelector("input[id=third_time]").checked;
+  const fourth_checked = document.querySelector(
+    "input[id=fourth_time]"
+  ).checked;
+  const fifth_checked = document.querySelector("input[id=fifth_time]").checked;
+
+  if (first_time && !first_checked) {
+    element.classList.add("hidden");
+    element.classList.remove("shown");
+  }
+  if (second_time && !second_checked) {
+    element.classList.add("hidden");
+    element.classList.remove("shown");
+  }
+  if (third_time && !third_checked) {
+    element.classList.add("hidden");
+    element.classList.remove("shown");
+  }
+  if (fourth_time && !fourth_checked) {
+    element.classList.add("hidden");
+    element.classList.remove("shown");
+  }
+  if (fifth_time && !fifth_checked) {
+    element.classList.add("hidden");
+    element.classList.remove("shown");
+  }
+}
 
 function scoreAllChecked() {
   const all_checked = document.querySelector("input[id=all_score]").checked;
@@ -172,6 +216,25 @@ function checkPriceChecked() {
   ).checked;
   const fifth_checked = document.querySelector("input[id=fifth_price]").checked;
 
+  return (
+    first_checked ||
+    second_checked ||
+    third_checked ||
+    fourth_checked ||
+    fifth_checked
+  );
+}
+
+function checkTimeChecked() {
+  const first_checked = document.querySelector("input[id=first_time]").checked;
+  const second_checked = document.querySelector(
+    "input[id=second_time]"
+  ).checked;
+  const third_checked = document.querySelector("input[id=third_time]").checked;
+  const fourth_checked = document.querySelector(
+    "input[id=fourth_time]"
+  ).checked;
+  const fifth_checked = document.querySelector("input[id=fifth_time]").checked;
   return (
     first_checked ||
     second_checked ||
