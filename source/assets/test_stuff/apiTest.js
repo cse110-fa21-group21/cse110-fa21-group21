@@ -51,7 +51,11 @@ async function init() {
   filtering();
 }
 
-/** ADD COMMENTS */
+/**
+ * Pulls the search query from our search bar. In the event that the search query is 
+ * original we call fetchAPI(Query). Otherwise, we call bindRecipeCards(searchQuery).
+ * @param none
+ */
 async function bindSearch() {
   searchBar.addEventListener("input", (event) => {
     searchBar.textContent = event.target.value;
@@ -69,6 +73,7 @@ async function bindSearch() {
       baseURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_key}&query=${searchQuery}&instructions=true&addRecipeInformation=true&addRecipeNutrition=true&number=30&price=true`;
       fetchAPI(searchQuery);
     } else {
+      //All of this should be integrated into a service worker, just a thought
       console.log("Unoriginal query, no need to fetch it!");
       console.log(recipesID);
       bindRecipeCards(searchQuery);
@@ -76,16 +81,18 @@ async function bindSearch() {
   });
 }
 
-//change make to fetchAPI to take in arg string
-//this is just making it easy to keep track what is being search
-//also need the string to update the url for searching
+/**
+ * Fetches the url equivalent of query from the Spoonacular API. Adds recipes
+ * to the global recipesID obj, format of entry is specified by the recipesID obj.
+ * @param {string} query 
+ */
 async function fetchAPI(query) {
   await fetch(baseURL)
     .then((response) => response.json())
     .then((data) => {
       console.log("Query Results...");
       /**
-       * data.results is  array of all results matching the query.
+       * data.results is the array of all results matching the query.
        * Each individual entry corresponds to a unique matching recipe
        */
       console.log(data.results);
@@ -122,12 +129,12 @@ function bindRecipeCards(query) {
     );
     recipeViewersWrapper.classList.remove("shown");
 
-    /** The are 10 distinct recipeCard DOMs */
+    /** The are MAX_NUM_RECIPE_CARDS distinct recipeCard DOMs */
     let cardIndex = 0;
 
     //for each recipe within recipesID
     for (const recipeTitle in recipesID) {
-      // we display 10 cards at most
+      // we display MAX_NUM_RECIPE_CARDS cards at most
       if (cardIndex == MAX_NUM_RECIPE_CARDS) break;
       //we check if the recipe title contains the search query
       if (recipeTitle.toLocaleLowerCase().includes(query.toLocaleLowerCase())) {
