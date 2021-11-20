@@ -27,6 +27,8 @@ function goThroughElements() {
   recipeCards.forEach((element) => {
     element.classList.add("shown");
     element.classList.remove("hidden");
+    scoreAllChecked();
+    priceAllChecked();
     if (checkScoreChecked()) {
       filterByScore(element);
     }
@@ -121,6 +123,31 @@ function filterByPrice(element) {
   }
 }
 
+// function filterByTime();
+
+function scoreAllChecked() {
+  const all_checked = document.querySelector("input[id=all_score]").checked;
+
+  if (all_checked) {
+    document.querySelector("input[id=first_score]").checked = false;
+    document.querySelector("input[id=second_score]").checked = false;
+    document.querySelector("input[id=third_score]").checked = false;
+    document.querySelector("input[id=fourth_score]").checked = false;
+  }
+}
+
+function priceAllChecked() {
+  const all_checked = document.querySelector("input[id=all_price]").checked;
+
+  if (all_checked) {
+    document.querySelector("input[id=first_price]").checked = false;
+    document.querySelector("input[id=second_price]").checked = false;
+    document.querySelector("input[id=third_price]").checked = false;
+    document.querySelector("input[id=fourth_price]").checked = false;
+    document.querySelector("input[id=fifth_price]").checked = false;
+  }
+}
+
 function checkScoreChecked() {
   const first_checked = document.querySelector("input[id=first_score]").checked;
   const second_checked = document.querySelector(
@@ -153,8 +180,6 @@ function checkPriceChecked() {
     fifth_checked
   );
 }
-
-// function filterByTime();
 
 function extractScore(scoreString) {
   let slashIndex = scoreString.indexOf("/");
