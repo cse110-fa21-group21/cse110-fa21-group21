@@ -17,7 +17,6 @@ function filtering() {
 
   const checkboxByTime = document.querySelector("form[id=filterByTime]");
   checkboxByTime.addEventListener("click", (event) => {
-      console.log("reached");
       // let byTimeCheck = event.target;
       goThroughElements();
   });
@@ -127,6 +126,8 @@ function filterByPrice(element) {
 function filterByTime(element){
   const recipeTime = extractCookingTime(element.shadowRoot.getElementById("recipe-cooking-time").innerHTML);
 
+  
+
   const first_time = recipeTime >= 60;
   const second_time = recipeTime >=45 && recipeTime < 60;
   const third_time  = recipeTime >=30 && recipeTime < 45;
@@ -139,26 +140,26 @@ function filterByTime(element){
   const third_checked = document.querySelector("input[id=third_time]").checked;
   const fourth_checked = document.querySelector("input[id=fourth_time]").checked;
   const fifth_checked = document.querySelector("input[id=fifth_time]").checked;
-  
-  if(first_time && first_checked){
-    element.classList.add('shown');
-    element.classList.remove('hidden');
+
+  if(first_time && !first_checked){
+    element.classList.add('hidden');
+    element.classList.remove('shown');
   }
-  if(second_time && second_checked){
-    element.classList.add('shown');
-    element.classList.remove('hidden');
+  if(second_time && !second_checked){
+    element.classList.add('hidden');
+    element.classList.remove('shown');
   }
-  if(third_time && third_checked){
-    element.classList.add('shown');
-    element.classList.remove('hidden');
+  if(third_time && !third_checked){
+    element.classList.add('hidden');
+    element.classList.remove('shown');
   }
-  if(fourth_time && fourth_checked){
-    element.classList.add('shown');
-    element.classList.remove('hidden');
+  if(fourth_time && !fourth_checked){
+    element.classList.add('hidden');
+    element.classList.remove('shown');
   }
-  if(fifth_time && fifth_checked){
-    element.classList.add('shown');
-    element.classList.remove('hidden');
+  if(fifth_time && !fifth_checked){
+    element.classList.add('hidden');
+    element.classList.remove('shown');
   }
 }
 
@@ -202,7 +203,6 @@ function checkTimeChecked(){
   const third_checked = document.querySelector("input[id=third_time]").checked;
   const fourth_checked = document.querySelector("input[id=fourth_time]").checked;
   const fifth_checked = document.querySelector("input[id=fifth_time]").checked;
-
   return (first_checked || second_checked || third_checked || fourth_checked || fifth_checked);
 }
 
@@ -220,7 +220,6 @@ function extractPrice(priceString) {
 function extractCookingTime(cookingString) {
   let spaceIndex = cookingString.indexOf(" ");
   let value = cookingString.substring(spaceIndex + 1); // length of 'Score: ' is 7;
-  console.log(value);
   return Number(value);
 }
 
