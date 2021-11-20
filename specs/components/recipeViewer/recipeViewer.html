@@ -22,60 +22,90 @@
   -->
     <!-- Shadow DOM, so style changes here won't bleed to the entire interface -->
     <section>
-      <aside id ='card-visuals'>
-        <fig id='visual'>
-          <!-- 
-            there is no uniform size for recipe images from Spooonacular, you have to take 
-            that into account when writing the CSS
-          -->
-          <img id='recipe-image' src='https://spoonacular.com/recipeImages/579247-556x370.jpg' alt='recipe-image'/>
-          <figcaption id='recipe-dietary'>
-              <img src='../../../source/assets/icons/dietary/dairy-free.png' alt='Dairy Free'/>
-              <img src='../../../source/assets/icons/dietary/gluten-free.png' alt='Gluten Free'/>
-              <img src='../../../source/assets/icons/dietary/vegan.png' alt='Vegan'/>
-              <img src='../../../source/assets/icons/dietary/vegetarian.png' alt='Vegetarian'/>
-          </figcaption>
-        </fig>
-      </aside>
-
       <main id='card-information'>
         <div id='recipe-title'> 
-          Title
-        </div>      
-        <div id='recipe-price'> 
-          Price 
-       </div>
-        <div id='recipe-cooking-time'> 
-          Cooking Time
-        </div>
-        <div id='recipe-score'>
-          Recipe Score
-        </div>
-        <div id='recipe-servings'>
-          Recipe Servings
-        </div>
-        <div id='recipe-calories'> 
-          Calories per Serving 
-        </div> </div>
-        <div id='recipe-total-calories'>
-          Total Calories
-        </div>
-        <div id='recipe-ingredients'> 
-          <ul>
-            <li> Ingredient 1 </li>
-            <li> Ingredient 2 </li>
-            <li> Ingredient 3 </li>
-            <li> Ingredient 4 </li>
-          </ul>
-        </div>
-        <div id='recipe-instructions'> 
-          <ol>
-            <li> Step 1 </li>
-            <li> Step 2 </li>
-            <li> Step 3 </li>
-            <li> Step 4 </li>
-          </ol>
-        </div>
+          Title Of The Recipe
+        </div> 
+        <section class = "flex-container">
+          <div id = "left-flex">
+            <aside id ='card-visuals'>
+              <fig id='visual'>
+                <!-- 
+                  there is no uniform size for recipe images from Spooonacular, you have to take 
+                  that into account when writing the CSS
+                -->
+                <img id='recipe-image' src='https://spoonacular.com/recipeImages/579247-556x370.jpg' alt='recipe-image'/>
+                <figcaption id='recipe-dietary'>
+                  <img src='../../../source/assets/icons/dietary/dairy-free.png' width = "30px" height = "30px" alt='Dairy Free'/>
+                  <img src='../../../source/assets/icons/dietary/gluten-free.png' width = "30px" height = "30px" alt='Gluten Free'/>
+                  <img src='../../../source/assets/icons/dietary/vegan.png' width = "30px" height = "30px" alt='Vegan'/>
+                  <img src='../../../source/assets/icons/dietary/vegetarian.png' width = "30px" height = "30px" alt='Vegetarian'/>
+                </figcaption>
+              </fig>
+            </aside>
+            
+            <div id = "info-container">
+              <div id='recipe-price'> 
+                Price: $54.75
+              </div>
+              <div id='recipe-cooking-time'> 
+                Time: 20min
+              </div>
+              <div id='recipe-servings'>
+                Servings: 2
+              </div>
+              <div id='recipe-calories'> 
+                Calories per Serving: 500 cal
+              </div> 
+              <div id='recipe-total-calories'>
+                Total Calories: 1000 cal
+              </div>
+              <div id='recipe-score'>
+                Recipe Score: 95/100
+              </div>
+            </div>
+
+            <div id='recipe-instructions'> 
+              <ol>
+                <li> Step 1: hbeobc ocuewc ouecoc o coenc2eo c2ecnoencon2eojc ojencocne icne cneoc onccoj conceodc owcn  </li>
+                <li> Step 2 </li>
+                <li> Step 3 </li>
+                <li> Step 4 </li>
+                <li> Step 5 </li>
+                <li> Step 6 </li>
+                <li> Step 7 </li>
+                <li> Step 8 </li>
+                <li> Step 9 </li>
+                <li> Step 10 </li>
+                <li> Step 11 </li>
+                <li> Step 12 </li>
+                <li> Step 13 </li>
+                <li> Step 14 </li>
+                <li> Step 15 </li>
+                <li> Step 16 </li>
+              </ol>
+            </div>
+            
+          </div>
+
+          <div id = "right-flex">
+            <div id='recipe-ingredients'> 
+              <ul>
+                <li> Ingredient 1 </li>
+                <li> Ingredient 2 </li>
+                <li> Ingredient 3 </li>
+                <li> Ingredient 4 </li>
+                <li> Ingredient 5 </li>
+                <li> Ingredient 6 </li>
+                <li> Ingredient 7 </li>
+                <li> Ingredient 8 </li>
+              </ul>
+            </div>
+          </div>
+          
+
+        </section> 
+
       </main>
     </section> 
     <!-- END OF SHADOW DOM -->
