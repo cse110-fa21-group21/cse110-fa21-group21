@@ -30,7 +30,9 @@ This command will use the `start` script that is specified in the `package.json.
 - Tasks to run before a [new release is deployed](https://devcenter.heroku.com/articles/release-phase)
 
 
+
 ## Declaring Dependencies
+
 1. Heroku recognizes an app as Node.js by the existence of a `package.json` file in the root directory. For your own apps, you can create one by running 
 > `$ npm init --yes`
 
