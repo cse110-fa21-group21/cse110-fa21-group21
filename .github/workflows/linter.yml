@@ -41,9 +41,14 @@ jobs:
       # Run Linter against code base #
       ################################
       - name: Lint Code Base
-        uses: github/super-linter@v4.8.2
+        uses: github/super-linter@v4
         env:
           VALIDATE_ALL_CODEBASE: false
+          VALIDATE_JSCPD: false
+          # Ignore Markdown Files! (Annoying when doing meeeting minutes, Both are needed)
+          VALIDATE_MARKDOWN: false
+          VALIDATE_NATURAL_LANGUAGE: false
           #default branch is either main or master!
           DEFAULT_BRANCH: main
+          
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
