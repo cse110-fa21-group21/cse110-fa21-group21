@@ -60,14 +60,22 @@ export class Filter{
     const recipeScore = this.#extractScore(
       recipeCard.shadowRoot.getElementById("recipe-score").innerHTML
     );
+    
+    const ranges = [];
+    const checks = [];
     /**
      * determine in which range our element falls into, the ranges
      * by design must be mutually exclusive
      */
-    const first_range = recipeScore >= 75;
-    const second_range = recipeScore >= 50 && recipeScore < 75;
-    const third_range = recipeScore >= 25 && recipeScore < 50;
-    const fourth_range = recipeScore >= 0 && recipeScore < 25;
+    const first_score = recipeScore >= 75;
+    const second_score = recipeScore >= 50 && recipeScore < 75;
+    const third_score = recipeScore >= 25 && recipeScore < 50;
+    const fourth_score = recipeScore >= 0 && recipeScore < 25;
+    
+    ranges.push(first_score);
+    ranges.push(second_score);
+    ranges.push(third_score);
+    ranges.push(fourth_score);
 
     /**
      * determine which ranges are being filtered for
@@ -79,26 +87,16 @@ export class Filter{
     const third_checked = document.querySelector("input[id=third-score]").checked;
     const fourth_checked = document.querySelector("input[id=fourth-score]").checked;
     
+    checks.push(first_checked);
+    checks.push(second_checked);
+    checks.push(third_checked);
+    checks.push(fourth_checked);
+
     /**
      * if an item falls into a range but we are not requesting to see
      * it then it should be hidden
      */
-    if (first_range && !first_checked) {
-      recipeCard.classList.add("hidden");
-      recipeCard.classList.remove("shown");
-    }
-    if (second_range && !second_checked) {
-      recipeCard.classList.add("hidden");
-      recipeCard.classList.remove("shown");
-    }
-    if (third_range && !third_checked) {
-      recipeCard.classList.add("hidden");
-      recipeCard.classList.remove("shown");
-    }
-    if (fourth_range && !fourth_checked) {
-      recipeCard.classList.add("hidden");
-      recipeCard.classList.remove("shown");
-    }
+    this.#decider(recipeCard,ranges,checks);
   }
   /**
    * We check whether or not this recipe card falls into a range
@@ -111,15 +109,24 @@ export class Filter{
     const recipePrice = this.#extractPrice(
       recipeCard.shadowRoot.getElementById("recipe-price").innerHTML
     );
+
+    const ranges = [];
+    const checks = [];
     /**
      * determine in which range our element falls into, the ranges
      * by design must be mutually exclusive
      */
-    const first_range = recipePrice >= 50.0;
-    const second_range = recipePrice >= 20.0 && recipePrice < 50.0;
-    const third_range = recipePrice >= 10.0 && recipePrice < 20.0;
-    const fourth_range = recipePrice >= 5.0 && recipePrice < 10.0;
-    const fifth_range = recipePrice >= 0.0 && recipePrice < 5.0;
+    const first_price = recipePrice >= 50.0;
+    const second_price = recipePrice >= 20.0 && recipePrice < 50.0;
+    const third_price = recipePrice >= 10.0 && recipePrice < 20.0;
+    const fourth_price = recipePrice >= 5.0 && recipePrice < 10.0;
+    const fifth_price = recipePrice >= 0.0 && recipePrice < 5.0;
+
+    ranges.push(first_price);
+    ranges.push(second_price);
+    ranges.push(third_price);
+    ranges.push(fourth_price);
+    ranges.push(fifth_price);
 
     /**
      * determine which ranges are being filtered for
@@ -132,30 +139,17 @@ export class Filter{
     const fourth_checked = document.querySelector("input[id=fourth-price]").checked;
     const fifth_checked = document.querySelector("input[id=fifth-price]").checked;
 
+    checks.push(first_checked);
+    checks.push(second_checked);
+    checks.push(third_checked);
+    checks.push(fourth_checked);
+    checks.push(fifth_checked);
+
     /**
      * if an item falls into a range but we are not requesting to see
      * it then it should be hidden
      */
-    if (first_range && !first_checked) {
-      recipeCard.classList.add("hidden");
-      recipeCard.classList.remove("shown");
-    }
-    if (second_range && !second_checked) {
-      recipeCard.classList.add("hidden");
-      recipeCard.classList.remove("shown");
-    }
-    if (third_range && !third_checked) {
-      recipeCard.classList.add("hidden");
-      recipeCard.classList.remove("shown");
-    }
-    if (fourth_range && !fourth_checked) {
-      recipeCard.classList.add("hidden");
-      recipeCard.classList.remove("shown");
-    }
-    if (fifth_range && !fifth_checked) {
-      recipeCard.classList.add("hidden");
-      recipeCard.classList.remove("shown");
-    }
+    this.#decider(recipeCard,ranges,checks)
   }
 
   /**
@@ -169,6 +163,9 @@ export class Filter{
     const recipeTime = this.#extractCookingTime(
       recipeCard.shadowRoot.getElementById("recipe-cooking-time").innerHTML
     );
+    
+    const ranges = [];
+    const checks = [];
     /**
      * determine in which range our element falls into, the ranges
      * by design must be mutually exclusive
@@ -178,6 +175,14 @@ export class Filter{
     const third_time = recipeTime >= 30 && recipeTime < 45;
     const fourth_time = recipeTime >= 15 && recipeTime < 30;
     const fifth_time = recipeTime >= 0 && recipeTime < 15;
+
+    ranges.push(first_time);
+    ranges.push(second_time);
+    ranges.push(third_time);
+    ranges.push(fourth_time);
+    ranges.push(fifth_time);
+
+    
     /**
      * if an item falls into a range but we are not requesting to see
      * it then it should be hidden
@@ -187,30 +192,17 @@ export class Filter{
     const third_checked = document.querySelector("input[id=third-time]").checked;
     const fourth_checked = document.querySelector("input[id=fourth-time]").checked;
     const fifth_checked = document.querySelector("input[id=fifth-time]").checked;
+
+    checks.push(first_checked);
+    checks.push(second_checked);
+    checks.push(third_checked);
+    checks.push(fourth_checked);
+    checks.push(fifth_checked);
     /**
      * if an item falls into a range but we are not requesting to see
      * it then it should be hidden
      */
-    if (first_time && !first_checked) {
-      recipeCard.classList.add("hidden");
-      recipeCard.classList.remove("shown");
-    }
-    if (second_time && !second_checked) {
-      recipeCard.classList.add("hidden");
-      recipeCard.classList.remove("shown");
-    }
-    if (third_time && !third_checked) {
-      recipeCard.classList.add("hidden");
-      recipeCard.classList.remove("shown");
-    }
-    if (fourth_time && !fourth_checked) {
-      recipeCard.classList.add("hidden");
-      recipeCard.classList.remove("shown");
-    }
-    if (fifth_time && !fifth_checked) {
-      recipeCard.classList.add("hidden");
-      recipeCard.classList.remove("shown");
-    }
+    this.#decider(recipeCard,ranges,checks)
   }
 
 
@@ -305,6 +297,34 @@ export class Filter{
     const fourth_checked = document.querySelector("input[id=fourth-time]").checked;
     const fifth_checked = document.querySelector("input[id=fifth-time]").checked;
     return (first_checked || second_checked || third_checked || fourth_checked || fifth_checked);
+  }
+  /***************************************************
+           HELPER METHOD
+    *************************************************/
+   /**
+    * Check to see which range the card falls into and if the coinciding check is false,
+    * (a.k.a not requested) then we hide the card
+    * @param {recipeCard} card  - the DOM in question
+    * @param {boolean[]} ranges - only one element in the ranges is set to true by design
+    * @param {boolean[]} checks - reflective of the current selected checkboxes
+    * @private
+    */
+   #decider(card, ranges, checks){
+    if(ranges.length != checks.length){
+       console.log("error: length of ranges ${ranges} is not the same as ${checks}");
+       return;
+    }
+
+    ranges.forEach( (range, index) => {
+      /**
+       * if an item falls into a range but we are not requesting to see
+       * it then it should be hidden
+       */
+      if(range && !checks[index]){
+        card.classList.add("hidden");
+        card.classList.remove("shown");
+      }
+    })
   }
 
   /***************************************************
