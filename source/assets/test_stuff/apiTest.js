@@ -1,7 +1,7 @@
 //apiTest.js
 
 import { Router } from "./Router.js";
-
+import { Filter } from "../scripts/filter.js";
 const API_key = "19e32de046cf427cb34e9617e388133d";
 const searchBar = document.querySelector("input");
 const search = document.querySelector("button");
@@ -43,12 +43,14 @@ const router = new Router(function () {
     .classList.remove("shown");
 });
 
+const filter = new Filter();
+
 window.addEventListener("DOMContentLoaded", init);
 
 async function init() {
   bindSearch();
   bindState();
-  filtering();
+  filter.filtering();
 }
 
 /**
@@ -102,7 +104,7 @@ async function fetchAPI(query) {
       }
     });
   bindRecipeCards(query);
-  filtering();
+  filter.filtering();
 }
 
 /**
@@ -201,7 +203,7 @@ function bindState() {
       console.log("Routing to page:", event.state);
       router.goTo(event.state, true);
     }
-    filtering();
+    filter.filtering();
   });
 }
 
