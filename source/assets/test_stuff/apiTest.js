@@ -36,10 +36,10 @@ var funcArray = [];
  */
 const router = new Router(function () {
   document
-    .querySelector(".section--recipe-cards--wrapper")
+    .querySelector(".section-recipe-cards-wrapper")
     .classList.remove("shown");
   document
-    .querySelector(".section--recipe-viewers--wrapper")
+    .querySelector(".section-recipe-viewers-wrapper")
     .classList.remove("shown");
 });
 
@@ -121,13 +121,13 @@ function bindRecipeCards(query) {
   router.insertPage(query, function () {
     //Display the Recipe Cards Wrapper
     const recipeCardsWrapper = document.querySelector(
-      ".section--recipe-cards--wrapper"
+      ".section-recipe-cards-wrapper"
     );
     recipeCardsWrapper.classList.add("shown");
 
     //Hide the Recipe Viewers Wrapper
     const recipeViewersWrapper = document.querySelector(
-      ".section--recipe-viewers--wrapper"
+      ".section-recipe-viewers-wrapper"
     );
     recipeViewersWrapper.classList.remove("shown");
 

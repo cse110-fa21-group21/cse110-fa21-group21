@@ -16,65 +16,66 @@
     <script src="../scripts/filter.js" type="module"></script>
     <!-- Stylesheets -->
     <link rel="stylesheet" href="apiTest.css">
+  </head>
   <body>
     <main>
       <h1> Search </h1>
       <input type="text" id="search" />
       <button>search</button>
-      <section class="section--button-display shown">
-        <h2> Tools </h1>
-        <button id='recipe-cards-btn'>Show RecipeCards</button>
-        <button id='recipe-viewers-btn'>Show RecipeViewers</button>
+      <section class="section-button-display shown">
+        <h2> Tools </h2>
+        <button id="recipe-cards-btn">Show RecipeCards</button>
+        <button id="recipe-viewers-btn">Show RecipeViewers</button>
       </section>
       <section class="shown">
         <h2> Filters </h2>
           <h3> By Score </h3>
-          <form name="filterByScore" id="filterByScore">
-            <input type="checkbox" id="all_score" name="all_score">
-            <label for="all_score"> All</label><br>
-            <input type="checkbox" id="first_score" name="first_score" value=75>
-            <label for="first_score"> 75 - 100</label><br>
-            <input type="checkbox" id="second_score" name="second_score" value=50>
-            <label for="second_score"> 50 - 75</label><br>
-            <input type="checkbox" id="third_score" name="third_score" value=25>
-            <label for="third_score"> 25 - 50</label><br>
-            <input type="checkbox" id="fourth_score" name="fourth_score" value=0>
-            <label for="fourth_score"> 0 - 25</label><br>
+          <form name="filterByScore" id="filter-by-score">
+            <input type="checkbox" id="all-score" name="all_score">
+            <label for="all-score"> All</label><br>
+            <input type="checkbox" id="first-score" name="first_score">
+            <label for="first-score"> 75 - 100</label><br>
+            <input type="checkbox" id="second-score" name="second_score">
+            <label for="second-score"> 50 - 75</label><br>
+            <input type="checkbox" id="third-score" name="third_score">
+            <label for="third-score"> 25 - 50</label><br>
+            <input type="checkbox" id="fourth-score" name="fourth_score">
+            <label for="fourth-score"> 0 - 25</label><br>
           </form>
 
           <h3> By Price </h3>
-            <form name="filterByPrice" id="filterByPrice">
-              <input type="checkbox" id="all_price" name="all_price">
-              <label for="all_price"> All</label><br>
-              <input type="checkbox" id="first_price" name="first_price" value=75>
-              <label for="first_price"> 50.00+</label><br>
-              <input type="checkbox" id="second_price" name="second_price" value=50>
-              <label for="second_price"> 20.00 - 50.00</label><br>
-              <input type="checkbox" id="third_price" name="third_price" value=25>
-              <label for="third_price"> 10.00 - 20.00</label><br>
-              <input type="checkbox" id="fourth_price" name="fourth_price" value=0>
-              <label for="fourth_price"> 5.00 - 10.00</label><br>
-              <input type="checkbox" id="fifth_price" name="fifth_price" value=0>
-              <label for="fifth_price"> 0.00 - 5.00</label><br>
+            <form name="filterByPrice" id="filter-by-price">
+              <input type="checkbox" id="all-price" name="all_price">
+              <label for="all-price"> All</label><br>
+              <input type="checkbox" id="first-price" name="first_price">
+              <label for="first-price"> 50.00+</label><br>
+              <input type="checkbox" id="second-price" name="second_price">
+              <label for="second-price"> 20.00 - 50.00</label><br>
+              <input type="checkbox" id="third-price" name="third_price">
+              <label for="third-price"> 10.00 - 20.00</label><br>
+              <input type="checkbox" id="fourth-price" name="fourth_price">
+              <label for="fourth-price"> 5.00 - 10.00</label><br>
+              <input type="checkbox" id="fifth-price" name="fifth_price">
+              <label for="fifth-price"> 0.00 - 5.00</label><br>
             </form>
 
             <h3>By Time</h3>
-              <form name="filterByTime" id = "filterByTime">
-                <input type="checkbox" id="all_time" name="all_time">
-                <label for="all_time">All</label><br>
-                <input type="checkbox" id="first_time" name="first_time" value = 60>
-                <label for="first_time">60 min+</label><br>
-                <input type="checkbox" id="second_time" name="second_time" value = 45>
-                <label for="first_time">45 min - 60 min</label><br>
-                <input type="checkbox" id="third_time" name="third_time" value = 30>
-                <label for="first_time">30 min - 45 min</label><br>
-                <input type="checkbox" id="fourth_time" name="fourth_time" value = 15>
-                <label for="first_time">15 min - 30 min</label><br>
-                <input type="checkbox" id="fifth_time" name="fifth_time" value = 0>
-                <label for="first_time">0 min - 15 min</label><br>
+              <form name="filterByTime" id = "filter-by-time">
+                <input type="checkbox" id="all-time" name="all_time">
+                <label for="all-time">All</label><br>
+                <input type="checkbox" id="first-time" name="first_time">
+                <label for="first-time">60 min+</label><br>
+                <input type="checkbox" id="second-time" name="second_time">
+                <label for="first-time">45 min - 60 min</label><br>
+                <input type="checkbox" id="third-time" name="third_time">
+                <label for="first-time">30 min - 45 min</label><br>
+                <input type="checkbox" id="fourth-time" name="fourth_time">
+                <label for="first-time">15 min - 30 min</label><br>
+                <input type="checkbox" id="fifth-time" name="fifth_time">
+                <label for="first-time">0 min - 15 min</label><br>
               </form>
       </section>
-      <section class="section--recipe-cards--wrapper">
+      <section class="section-recipe-cards-wrapper">
         <!-- create recipe-card -->
         <recipe-card></recipe-card>
         <recipe-card></recipe-card>
@@ -107,7 +108,7 @@
         <recipe-card></recipe-card>
         <recipe-card></recipe-card>
       </section>
-      <section class="section--recipe-viewers--wrapper">
+      <section class="section-recipe-viewers-wrapper">
         <!-- create recipe-viewer -->
         <recipe-viewer></recipe-viewer>
       </section>

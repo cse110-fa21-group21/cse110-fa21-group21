@@ -8,18 +8,18 @@ export class Filter{
     //needed for filtering before new searches
     this.#goThroughElements();
 
-    const checkboxByScore = document.querySelector("form[id=filterByScore]");
+    const checkboxByScore = document.querySelector("form[id=filter-by-score]");
     checkboxByScore.addEventListener("click", () => {
       // Could use this to add some more functionality to the all button.
       this.#goThroughElements();
     });
 
-    const checkboxByPrice = document.querySelector("form[id=filterByPrice]");
+    const checkboxByPrice = document.querySelector("form[id=filter-by-price]");
     checkboxByPrice.addEventListener("click", () => {
       this.#goThroughElements();
     });
 
-    const checkboxByTime = document.querySelector("form[id=filterByTime]");
+    const checkboxByTime = document.querySelector("form[id=filter-by-time]");
     checkboxByTime.addEventListener("click", () => {
       this.#goThroughElements();
     });
@@ -74,10 +74,10 @@ export class Filter{
      *  - true: we want to see items in this range
      *  - false: we do not want to see item in this range
      */
-    const first_checked = document.querySelector("input[id=first_score]").checked;
-    const second_checked = document.querySelector("input[id=second_score]").checked;
-    const third_checked = document.querySelector("input[id=third_score]").checked;
-    const fourth_checked = document.querySelector("input[id=fourth_score]").checked;
+    const first_checked = document.querySelector("input[id=first-score]").checked;
+    const second_checked = document.querySelector("input[id=second-score]").checked;
+    const third_checked = document.querySelector("input[id=third-score]").checked;
+    const fourth_checked = document.querySelector("input[id=fourth-score]").checked;
     
     /**
      * if an item falls into a range but we are not requesting to see
@@ -126,11 +126,11 @@ export class Filter{
      *  - true: we want to see items in this range
      *  - false: we do not want to see item in this range
      */
-    const first_checked = document.querySelector("input[id=first_price]").checked;
-    const second_checked = document.querySelector("input[id=second_price]").checked;
-    const third_checked = document.querySelector("input[id=third_price]").checked;
-    const fourth_checked = document.querySelector("input[id=fourth_price]").checked;
-    const fifth_checked = document.querySelector("input[id=fifth_price]").checked;
+    const first_checked = document.querySelector("input[id=first-price]").checked;
+    const second_checked = document.querySelector("input[id=second-price]").checked;
+    const third_checked = document.querySelector("input[id=third-price]").checked;
+    const fourth_checked = document.querySelector("input[id=fourth-price]").checked;
+    const fifth_checked = document.querySelector("input[id=fifth-price]").checked;
 
     /**
      * if an item falls into a range but we are not requesting to see
@@ -182,11 +182,11 @@ export class Filter{
      * if an item falls into a range but we are not requesting to see
      * it then it should be hidden
      */
-    const first_checked = document.querySelector("input[id=first_time]").checked;
-    const second_checked = document.querySelector("input[id=second_time]").checked;
-    const third_checked = document.querySelector("input[id=third_time]").checked;
-    const fourth_checked = document.querySelector("input[id=fourth_time]").checked;
-    const fifth_checked = document.querySelector("input[id=fifth_time]").checked;
+    const first_checked = document.querySelector("input[id=first-time]").checked;
+    const second_checked = document.querySelector("input[id=second-time]").checked;
+    const third_checked = document.querySelector("input[id=third-time]").checked;
+    const fourth_checked = document.querySelector("input[id=fourth-time]").checked;
+    const fifth_checked = document.querySelector("input[id=fifth-time]").checked;
     /**
      * if an item falls into a range but we are not requesting to see
      * it then it should be hidden
@@ -220,13 +220,13 @@ export class Filter{
    * @private
    */
   #scoreAllChecked() {
-    const all_checked = document.querySelector("input[id=all_score]").checked;
+    const all_checked = document.querySelector("input[id=all-score]").checked;
     // ensure no other checkbox within the same form can be checked if 'all' is checked
     if (all_checked) {
-      document.querySelector("input[id=first_score]").checked = false;
-      document.querySelector("input[id=second_score]").checked = false;
-      document.querySelector("input[id=third_score]").checked = false;
-      document.querySelector("input[id=fourth_score]").checked = false;
+      document.querySelector("input[id=first-score]").checked = false;
+      document.querySelector("input[id=second-score]").checked = false;
+      document.querySelector("input[id=third-score]").checked = false;
+      document.querySelector("input[id=fourth-score]").checked = false;
     }
   }
   /**
@@ -235,14 +235,14 @@ export class Filter{
    * @private
    */
   #priceAllChecked() {
-    const all_checked = document.querySelector("input[id=all_price]").checked;
+    const all_checked = document.querySelector("input[id=all-price]").checked;
     // ensure no other checkbox within the same form can be checked if 'all' is checked
     if (all_checked) {
-      document.querySelector("input[id=first_price]").checked = false;
-      document.querySelector("input[id=second_price]").checked = false;
-      document.querySelector("input[id=third_price]").checked = false;
-      document.querySelector("input[id=fourth_price]").checked = false;
-      document.querySelector("input[id=fifth_price]").checked = false;
+      document.querySelector("input[id=first-price]").checked = false;
+      document.querySelector("input[id=second-price]").checked = false;
+      document.querySelector("input[id=third-price]").checked = false;
+      document.querySelector("input[id=fourth-price]").checked = false;
+      document.querySelector("input[id=fifth-price]").checked = false;
     }
   }
   /**
@@ -251,13 +251,13 @@ export class Filter{
    * @private
    */
   #timeAllChecked() {
-    const all_checked = document.querySelector("input[id=all_time]").checked;
+    const all_checked = document.querySelector("input[id=all-time]").checked;
     if (all_checked) {
-      document.querySelector("input[id=first_time").checked = false;
-      document.querySelector("input[id=second_time]").checked = false;
-      document.querySelector("input[id=third_time]").checked = false;
-      document.querySelector("input[id=fourth_time]").checked = false;
-      document.querySelector("input[id=fifth_time]").checked = false;
+      document.querySelector("input[id=first-time").checked = false;
+      document.querySelector("input[id=second-time]").checked = false;
+      document.querySelector("input[id=third-time]").checked = false;
+      document.querySelector("input[id=fourth-time]").checked = false;
+      document.querySelector("input[id=fifth-time]").checked = false;
     }
   }
 
@@ -268,10 +268,10 @@ export class Filter{
    * @returns {boolean} false -- otherwise
    */
   #checkScoreChecked() {
-    const first_checked = document.querySelector("input[id=first_score]").checked;
-    const second_checked = document.querySelector("input[id=second_score]").checked;
-    const third_checked = document.querySelector("input[id=third_score]").checked;
-    const fourth_checked = document.querySelector("input[id=fourth_score]").checked;
+    const first_checked = document.querySelector("input[id=first-score]").checked;
+    const second_checked = document.querySelector("input[id=second-score]").checked;
+    const third_checked = document.querySelector("input[id=third-score]").checked;
+    const fourth_checked = document.querySelector("input[id=fourth-score]").checked;
 
     return (first_checked || second_checked || third_checked || fourth_checked);
   }
@@ -283,11 +283,11 @@ export class Filter{
    * @private
    */
   #checkPriceChecked() {
-    const first_checked = document.querySelector("input[id=first_price]").checked;
-    const second_checked = document.querySelector("input[id=second_price]").checked;
-    const third_checked = document.querySelector("input[id=third_price]").checked;
-    const fourth_checked = document.querySelector("input[id=fourth_price]").checked;
-    const fifth_checked = document.querySelector("input[id=fifth_price]").checked;
+    const first_checked = document.querySelector("input[id=first-price]").checked;
+    const second_checked = document.querySelector("input[id=second-price]").checked;
+    const third_checked = document.querySelector("input[id=third-price]").checked;
+    const fourth_checked = document.querySelector("input[id=fourth-price]").checked;
+    const fifth_checked = document.querySelector("input[id=fifth-price]").checked;
 
     return (first_checked ||second_checked ||third_checked ||fourth_checked || fifth_checked);
   }
@@ -299,11 +299,11 @@ export class Filter{
    * @private
    */
   #checkTimeChecked() {
-    const first_checked = document.querySelector("input[id=first_time]").checked;
-    const second_checked = document.querySelector("input[id=second_time]").checked;
-    const third_checked = document.querySelector("input[id=third_time]").checked;
-    const fourth_checked = document.querySelector("input[id=fourth_time]").checked;
-    const fifth_checked = document.querySelector("input[id=fifth_time]").checked;
+    const first_checked = document.querySelector("input[id=first-time]").checked;
+    const second_checked = document.querySelector("input[id=second-time]").checked;
+    const third_checked = document.querySelector("input[id=third-time]").checked;
+    const fourth_checked = document.querySelector("input[id=fourth-time]").checked;
+    const fifth_checked = document.querySelector("input[id=fifth-time]").checked;
     return (first_checked || second_checked || third_checked || fourth_checked || fifth_checked);
   }
 
