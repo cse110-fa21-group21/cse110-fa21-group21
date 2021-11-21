@@ -1,7 +1,5 @@
 // spoonacular.js
 export class Spoonacular {
-  constructor () {}
-
   /** RECIPE IMAGE SOURCE */
   getRecipeImageSource (data) {
     if (data) {
