@@ -1,13 +1,13 @@
-//recipeCard.js
-import { Spoonacular } from "../scripts/spoonacular.js";
+// recipeCard.js
+import { Spoonacular } from '../scripts/spoonacular.js'
 
 class recipeCard extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: "open" });
+  constructor () {
+    super()
+    this.attachShadow({ mode: 'open' })
 
-    const card = document.createElement('article');
-    const style = document.createElement("style");
+    const card = document.createElement('article')
+    const style = document.createElement('style')
     style.innerHTML = `
       main > div {
         background: white;
@@ -56,7 +56,7 @@ class recipeCard extends HTMLElement {
         float: left;
         grid-template-columns: 1fr 1fr 1fr;
       }
-     `;
+     `
 
     card.innerHTML = `
       <main id='card-information'>
@@ -79,11 +79,11 @@ class recipeCard extends HTMLElement {
         </figcaption>
       </fig>
       </aside>
-     `;
+     `
 
-    this.shadowRoot.append(style, card);
+    this.shadowRoot.append(style, card)
   }
-  
+
   /**
    * Change make to recipeCard instead keep create elements
    * Setting the structure of shadowRoot to what it need to be
@@ -92,13 +92,13 @@ class recipeCard extends HTMLElement {
    * I did not get what is recipe-dietary part doing so I didnt
    * do that in the set data
    */
-  set data(data) {
-    this.json = data;
+  set data (data) {
+    this.json = data
 
-    const spoonacular = new Spoonacular();
+    const spoonacular = new Spoonacular()
 
-    //this will reset the struction of the shadowRoot
-    this.shadowRoot.querySelector("article").innerHTML = `
+    // this will reset the struction of the shadowRoot
+    this.shadowRoot.querySelector('article').innerHTML = `
       <main id='card-information'>
         <div id='recipe-title'> </div>
         <div id='recipe-price'> </div>
@@ -119,55 +119,50 @@ class recipeCard extends HTMLElement {
           </figcaption>
         </fig>
       </aside>
-    `;
+    `
 
-    //set title
-    const title = spoonacular.getRecipeTitle(data);
-    this.shadowRoot.getElementById("recipe-title").innerHTML = title;
+    // set title
+    const title = spoonacular.getRecipeTitle(data)
+    this.shadowRoot.getElementById('recipe-title').innerHTML = title
 
-    //set price
-    const price = spoonacular.getRecipePrice(data);
-    this.shadowRoot.getElementById("recipe-price").innerHTML = price;
+    // set price
+    const price = spoonacular.getRecipePrice(data)
+    this.shadowRoot.getElementById('recipe-price').innerHTML = price
 
-    //set time
-    const time = spoonacular.getRecipeCookingTime(data);
-    this.shadowRoot.getElementById("recipe-cooking-time").innerHTML = time;
+    // set time
+    const time = spoonacular.getRecipeCookingTime(data)
+    this.shadowRoot.getElementById('recipe-cooking-time').innerHTML = time
 
-    //set score
-    const score = spoonacular.getRecipeScore(data);
-    this.shadowRoot.getElementById("recipe-score").innerHTML = score;
+    // set score
+    const score = spoonacular.getRecipeScore(data)
+    this.shadowRoot.getElementById('recipe-score').innerHTML = score
 
-    //set servings
-    const servings = spoonacular.getRecipeServings(data);
-    this.shadowRoot.getElementById("recipe-servings").innerHTML = servings;
+    // set servings
+    const servings = spoonacular.getRecipeServings(data)
+    this.shadowRoot.getElementById('recipe-servings').innerHTML = servings
 
-    //set calories
-    const calories = spoonacular.getRecipeCalories(data);
-    this.shadowRoot.getElementById("recipe-calories").innerHTML = calories;
+    // set calories
+    const calories = spoonacular.getRecipeCalories(data)
+    this.shadowRoot.getElementById('recipe-calories').innerHTML = calories
 
-    //set totalCalories
-    const totalCalories = spoonacular.getRecipeTotalCalories(data);
-    this.shadowRoot.getElementById("recipe-total-calories").innerHTML =
-      totalCalories;
+    // set totalCalories
+    const totalCalories = spoonacular.getRecipeTotalCalories(data)
+    this.shadowRoot.getElementById('recipe-total-calories').innerHTML =
+      totalCalories
 
-    //set image.src
-    const image = spoonacular.getRecipeImageSource(data);
-    this.shadowRoot.getElementById('recipe-image').setAttribute('src',image);
+    // set image.src
+    const image = spoonacular.getRecipeImageSource(data)
+    this.shadowRoot.getElementById('recipe-image').setAttribute('src', image)
 
-    //set dietary logos
-    const dietary = spoonacular.getRecipeDietary(data);
-    if(dietary){
-      if(dietary["vegan"])
-        this.shadowRoot.getElementById('vegan').removeAttribute('hidden');
-      if(dietary["vegetarian"])
-        this.shadowRoot.getElementById('vegetarian').removeAttribute('hidden');
-      if(dietary["gluten-free"])
-        this.shadowRoot.getElementById('gluten-free').removeAttribute('hidden');
-      if(dietary["dairy-free"])
-        this.shadowRoot.getElementById('dairy-free').removeAttribute('hidden');
+    // set dietary logos
+    const dietary = spoonacular.getRecipeDietary(data)
+    if (dietary) {
+      if (dietary.vegan) { this.shadowRoot.getElementById('vegan').removeAttribute('hidden') }
+      if (dietary.vegetarian) { this.shadowRoot.getElementById('vegetarian').removeAttribute('hidden') }
+      if (dietary['gluten-free']) { this.shadowRoot.getElementById('gluten-free').removeAttribute('hidden') }
+      if (dietary['dairy-free']) { this.shadowRoot.getElementById('dairy-free').removeAttribute('hidden') }
     }
-
   }
 }
 
-customElements.define("recipe-card", recipeCard);
+customElements.define('recipe-card', recipeCard)

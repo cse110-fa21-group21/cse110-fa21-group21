@@ -1,15 +1,14 @@
-//recipeViewer.js
+// recipeViewer.js
 
-import { Spoonacular } from "../scripts/spoonacular.js";
-const spoonacular = new Spoonacular();
+import { Spoonacular } from '../scripts/spoonacular.js'
+const spoonacular = new Spoonacular()
 
 class recipeViewer extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: "open" });
+  constructor () {
+    super()
+    this.attachShadow({ mode: 'open' })
 
-    const article = document.createElement('article');
-
+    const article = document.createElement('article')
 
     article.innerHTML = `
     <section>
@@ -32,15 +31,16 @@ class recipeViewer extends HTMLElement {
           </fig>
         </aside>
       </section> 
-    `;
-    this.shadowRoot.append(article);
+    `
+    this.shadowRoot.append(article)
   }
+
   /**
    * similiar to recipeCard change to reset information
    * for a recipe-viewer element instead creating
    */
-  set data(data){
-    this.json = data;
+  set data (data) {
+    this.json = data
 
     this.shadowRoot.querySelector('article').innerHTML = `
     <section class='section--viewer-info shown'>
@@ -61,35 +61,30 @@ class recipeViewer extends HTMLElement {
         </fig>
       </aside>
     </section> 
-    `;
-    //set title
-    const title = spoonacular.getRecipeTitle(data);
-    this.shadowRoot.getElementById('recipe-title').innerHTML = title;
+    `
+    // set title
+    const title = spoonacular.getRecipeTitle(data)
+    this.shadowRoot.getElementById('recipe-title').innerHTML = title
 
+    // set ingredients
+    const ingredients = spoonacular.getRecipeIngredientsList(data)
+    this.shadowRoot.getElementById('recipe-ingredients').appendChild(ingredients)
 
-    //set ingredients
-    const ingredients = spoonacular.getRecipeIngredientsList(data);
-    this.shadowRoot.getElementById('recipe-ingredients').appendChild(ingredients);
+    // set instructions
+    const instructions = spoonacular.getRecipeInstructionsList(data)
+    this.shadowRoot.getElementById('recipe-instructions').appendChild(instructions)
 
-    //set instructions
-    const instructions = spoonacular.getRecipeInstructionsList(data);
-    this.shadowRoot.getElementById('recipe-instructions').appendChild(instructions);
+    // set image
+    const image = spoonacular.getRecipeImageSource(data)
+    this.shadowRoot.getElementById('recipe-image').setAttribute('src', image)
 
-    //set image
-    const image = spoonacular.getRecipeImageSource(data);
-    this.shadowRoot.getElementById('recipe-image').setAttribute('src', image);
-
-    //set dietary logos
-    const dietary = spoonacular.getRecipeDietary(data);
-    if(dietary["vegan"])
-      this.shadowRoot.getElementById('vegan').removeAttribute('hidden');
-    if(dietary["vegetarian"])
-      this.shadowRoot.getElementById('vegetarian').removeAttribute('hidden');
-    if(dietary["gluten-free"])
-      this.shadowRoot.getElementById('gluten-free').removeAttribute('hidden');
-    if(dietary["dairy-free"])
-      this.shadowRoot.getElementById('dairy-free').removeAttribute('hidden');
+    // set dietary logos
+    const dietary = spoonacular.getRecipeDietary(data)
+    if (dietary.vegan) { this.shadowRoot.getElementById('vegan').removeAttribute('hidden') }
+    if (dietary.vegetarian) { this.shadowRoot.getElementById('vegetarian').removeAttribute('hidden') }
+    if (dietary['gluten-free']) { this.shadowRoot.getElementById('gluten-free').removeAttribute('hidden') }
+    if (dietary['dairy-free']) { this.shadowRoot.getElementById('dairy-free').removeAttribute('hidden') }
   }
 }
 
-customElements.define("recipe-viewer", recipeViewer);
+customElements.define('recipe-viewer', recipeViewer)
