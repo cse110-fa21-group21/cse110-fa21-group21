@@ -34,7 +34,10 @@ class recipeViewer extends HTMLElement {
     `
     this.shadowRoot.append(article)
   }
-
+  
+  get data(){
+    return this.json;
+  }
   /**
    * similiar to recipeCard change to reset information
    * for a recipe-viewer element instead creating

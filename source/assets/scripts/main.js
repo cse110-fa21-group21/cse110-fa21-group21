@@ -1,15 +1,14 @@
 // main.js
-const API_KEY = '' // retrive a key
-const form = document.querySelector('.search-bar')
-const searchBar = document.querySelector("input[type='text']")
-const searchBtn = document.querySelector("input[type='submit']")
+const API_KEY = ''; // retrive a key
+const searchBar = document.querySelector("input[type='text']");
+const searchBtn = document.querySelector("input[type='submit']");
 
-let searchQuery = ''
-let baseURL = ''
-const recipesID = {}
-let recipeURL = ''
+let searchQuery = '';
+let baseURL = '';
+const recipesID = {};
+let recipeURL = '';
 
-window.addEventListener('DOMContentLoaded', init)
+window.addEventListener('DOMContentLoaded', init);
 
 async function init () {
   bindSearch()

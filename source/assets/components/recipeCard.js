@@ -84,6 +84,9 @@ class recipeCard extends HTMLElement {
     this.shadowRoot.append(style, card)
   }
 
+  get data(){
+    return this.json;
+  }
   /**
    * Change make to recipeCard instead keep create elements
    * Setting the structure of shadowRoot to what it need to be
