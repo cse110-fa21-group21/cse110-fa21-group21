@@ -2,7 +2,7 @@
 
 import { Router } from '../scripts/Router.js'
 import { Filter } from '../scripts/filter.js'
-const apiKey = '19e32de046cf427cb34e9617e388133d'
+const apiKey = '54a305b43853416198613d4aaaed7b01'
 const searchBar = document.getElementById('homepage-search-bar')
 const search = document.getElementById('homepage-search-btn')
 const MAX_NUM_RECIPE_CARDS = 30
