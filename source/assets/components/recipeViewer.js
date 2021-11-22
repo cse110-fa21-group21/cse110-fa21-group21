@@ -136,10 +136,10 @@ class recipeViewer extends HTMLElement {
               <fig id = "visual">
                 <img id = "recipe-image" src="" alt="recipe-image"/>
                 <figcaption id = "recipe-dietary">
-                  <img id="dairy-free" src="../../../source/assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
-                  <img id="gluten-free" src="../../../source/assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" hidden alt="Gluten Free"/>
-                  <img id="vegan" src="../../../source/assets/icons/dietary/vegan.png" width = "30px" height = "30px" hidden alt="Vegan"/>
-                  <img id="vegetarian" src="../../../source/assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
+                  <img id="dairy-free" src="/assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
+                  <img id="gluten-free" src="/assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" hidden alt="Gluten Free"/>
+                  <img id="vegan" src="/assets/icons/dietary/vegan.png" width = "30px" height = "30px" hidden alt="Vegan"/>
+                  <img id="vegetarian" src="/assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
                 </figcaption>
               </fig>
             </aside>
