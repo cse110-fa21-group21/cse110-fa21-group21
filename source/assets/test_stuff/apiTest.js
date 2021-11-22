@@ -1,5 +1,5 @@
 // apiTest.js
-import { Router } from './Router.js'
+import { Router } from '../scripts/Router.js'
 import { Filter } from '../scripts/filter.js'
 const apiKey = '19e32de046cf427cb34e9617e388133d'
 const searchBar = document.querySelector('input')
@@ -234,10 +234,8 @@ function sortRecipeCardsInWrapper (recipeCardsWrapper) {
 function compareRecipeCards (firstCard, secondCard) {
   // Pull the Inner Text of the 'recipe-score' div
   const firstCardRecipeScoreText = firstCard.shadowRoot
-    .querySelector('article')
     .querySelector('#recipe-score').innerText
   const secondCardRecipeScoreText = secondCard.shadowRoot
-    .querySelector('article')
     .querySelector('#recipe-score').innerText
   // Parse the Inner Text to obtain the value
   function pullValue (text) {
