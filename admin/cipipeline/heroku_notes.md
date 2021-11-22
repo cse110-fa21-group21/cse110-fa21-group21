@@ -9,7 +9,6 @@ Useful: [Hosting a Node js App in 5 Minutes!](https://javascript.plainenglish.io
 What was used at 11/20 1:50am: https://medium.com/@winnieliang/how-to-run-a-simple-html-css-javascript-application-on-heroku-4e664c541b0b
 
 
-
 ## Deploying
 1. Create an app on Heroku, which prepares Heroku to receive your source code. 
 > `$ heroku create`
@@ -34,7 +33,9 @@ This command will use the `start` script that is specified in the `package.json.
 - Tasks to run before a [new release is deployed](https://devcenter.heroku.com/articles/release-phase)
 
 
+
 ## Declaring Dependencies
+
 1. Heroku recognizes an app as Node.js by the existence of a `package.json` file in the root directory. For your own apps, you can create one by running 
 > `$ npm init --yes`
 
