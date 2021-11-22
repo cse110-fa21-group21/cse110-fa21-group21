@@ -1,0 +1,21 @@
+/** apiTest.css **/
+
+/** this will hide all section without the class shown */
+section:not(section.shown) {
+  display: none;
+  visibility: hidden;
+}
+
+.shown {
+  visibility: visible;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+.section-recipe-viewers-wrapper {
+  height: 100%;
+  width: 100%;
+}

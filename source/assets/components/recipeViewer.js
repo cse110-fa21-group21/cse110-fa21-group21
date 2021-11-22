@@ -1,113 +1,94 @@
-//recipeViewer.js
+// recipeViewer.js
 
-import { Spoonacular } from "../scripts/spoonacular.js";
-const spoonacular = new Spoonacular();
+import { Spoonacular } from '../scripts/spoonacular.js'
+const spoonacular = new Spoonacular()
 
 class recipeViewer extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: "open" });
-  }
-  /*********  CARD STRUCTURE ***********
-    <recipe-viewer>
-    ***** Shadow DOM *****
-      <section>
+  constructor () {
+    super()
+    this.attachShadow({ mode: 'open' })
+
+    const article = document.createElement('article')
+
+    article.innerHTML = `
+    <section>
         <main id='card-information'>
           <div id='recipe-title'> </div>
-          <div id='recipe-ingredients'> </div>
-          <div id='recipe-instructions'> </div>
+          <div id='recipe-ingredients'> 
+          </div>
+          <div id='recipe-instructions'> 
+          </div>
         </main>
         <aside id ='card-visuals'>
           <fig id='visual'>
             <img id='recipe-image'/>
             <figcaption id='recipe-dietary'>
+              <img hidden id='vegan' src='../icons/dietary/vegan.png' alt='Vegan'/>
+              <img hidden id='vegetarian' src='../icons/dietary/vegetarian.png' alt='Vegetarian'/>
+              <img hidden id='gluten-free' src='../icons/dietary/gluten-free.png' alt='Gluten Free'/>
+              <img hidden id='dairy-free' src='../icons/dietary/dairy-free.png' alt='Dairy Free'/>            
+            </figcaption>
           </fig>
         </aside>
       </section> 
-    ***** END OF SHADOW DOM *****
-    <recipe-viewer>
-  ***************************************/
-  set data(data) {
-    const card = document.createElement("section");
-    const style = document.createElement("style");
-    style.innerHTML = ``;
+    `
+    this.shadowRoot.append(article)
+  }
 
-    const cardInformation = document.createElement("main");
-    const cardVisuals = document.createElement("aside");
+  get data () {
+    return this.json
+  }
 
-    function setCardInformation() {
-      /** RECIPE TITLE */
-      const recipeTitle = document.createElement("div");
-      recipeTitle.id = "recipe-title";
-      recipeTitle.innerHTML = spoonacular.getRecipeTitle(data);
-      /** RECIPE INGREDIENTS */
-      const recipeIngredients = document.createElement("div");
-      recipeIngredients.id = "recipe-ingredients";
-      recipeIngredients.appendChild(spoonacular.getRecipeIngredientsList(data));
-      /** RECIPE INSTRUCTIONS */
-      const recipeInstructions = document.createElement("div");
-      recipeInstructions.id = "recipe-instructions";
-      recipeInstructions.appendChild(spoonacular.getRecipeInstructionsList(data));
+  /**
+   * similiar to recipeCard change to reset information
+   * for a recipe-viewer element instead creating
+   */
+  set data (data) {
+    this.json = data
 
-      cardInformation.appendChild(recipeTitle);
-      cardInformation.appendChild(recipeIngredients);
-      cardInformation.appendChild(recipeInstructions);
-    }
-    function setCardVisuals() {
-      const visual = document.createElement("figure");
-      visual.id = "visual";
-      /** RECIPE IMAGE */
-      const recipeImage = document.createElement("img");
-      recipeImage.id = "recipe-image";
-      recipeImage.src = spoonacular.getRecipeImageSource(data);
+    this.shadowRoot.querySelector('article').innerHTML = `
+    <section class='section--viewer-info shown'>
+      <main id='card-information'>
+        <div id='recipe-title'> </div>
+        <div id='recipe-ingredients'> </div>
+        <div id='recipe-instructions'> </div>
+      </main>
+      <aside id ='card-visuals'>
+        <fig id='visual'>
+          <img id='recipe-image'/>
+          <figcaption id='recipe-dietary'>
+            <img hidden id='vegan' src='../icons/dietary/vegan.png' alt='Vegan'/>
+            <img hidden id='vegetarian' src='../icons/dietary/vegetarian.png' alt='Vegetarian'/>
+            <img hidden id='gluten-free' src='../icons/dietary/gluten-free.png' alt='Gluten Free'/>
+            <img hidden id='dairy-free' src='../icons/dietary/dairy-free.png' alt='Dairy Free'/>            
+        </figcaption>
+        </fig>
+      </aside>
+    </section> 
+    `
+    // set title
+    const title = spoonacular.getRecipeTitle(data)
+    this.shadowRoot.getElementById('recipe-title').innerHTML = title
 
-      /** RECIPE IMAGE CAPTION */
-      const recipeDietary = document.createElement("figcaption");
-      recipeDietary.id = "recipe-dietary";
-      function setRecipeDietary(){
-        const dietary = spoonacular.getRecipeDietary(data);
-        let dietaryIcon;
-        if(dietary["vegan"]){
-          dietaryIcon = document.createElement('img');
-          dietaryIcon.src = '../icons/dietary/vegan.png';
-          dietaryIcon.alt = "Vegan"
-          recipeDietary.appendChild(dietaryIcon);
-        }
-        if(dietary["vegetarian"]){
-          dietaryIcon = document.createElement('img');
-          dietaryIcon.src = '../icons/dietary/vegetarian.png';
-          dietaryIcon.alt = "Vegetarian"
-          recipeDietary.appendChild(dietaryIcon);
-        }
-        if(dietary["gluten-free"]){
-          dietaryIcon = document.createElement('img');
-          dietaryIcon.src = '../icons/dietary/gluten-free.png';
-          dietaryIcon.alt = "Gluten Free"
-          recipeDietary.appendChild(dietaryIcon);
-        }
-        if(dietary["dairy-free"]){
-          dietaryIcon = document.createElement('img');
-          dietaryIcon.src = '../icons/dietary/dairy-free.png';
-          dietaryIcon.alt = "Dairy Free"
-          recipeDietary.appendChild(dietaryIcon);
-        }
-      }
-      setRecipeDietary();
+    // set ingredients
+    const ingredients = spoonacular.getRecipeIngredientsList(data)
+    this.shadowRoot.getElementById('recipe-ingredients').appendChild(ingredients)
 
-      visual.appendChild(recipeImage);
-      visual.appendChild(recipeDietary);
+    // set instructions
+    const instructions = spoonacular.getRecipeInstructionsList(data)
+    this.shadowRoot.getElementById('recipe-instructions').appendChild(instructions)
 
-      cardVisuals.appendChild(visual);
-    }
-    setCardVisuals();
-    setCardInformation();
+    // set image
+    const image = spoonacular.getRecipeImageSource(data)
+    this.shadowRoot.getElementById('recipe-image').setAttribute('src', image)
 
-    card.appendChild(cardVisuals);
-    card.appendChild(cardInformation);
-
-    this.shadowRoot.appendChild(style);
-    this.shadowRoot.appendChild(card);
+    // set dietary logos
+    const dietary = spoonacular.getRecipeDietary(data)
+    if (dietary.vegan) { this.shadowRoot.getElementById('vegan').removeAttribute('hidden') }
+    if (dietary.vegetarian) { this.shadowRoot.getElementById('vegetarian').removeAttribute('hidden') }
+    if (dietary['gluten-free']) { this.shadowRoot.getElementById('gluten-free').removeAttribute('hidden') }
+    if (dietary['dairy-free']) { this.shadowRoot.getElementById('dairy-free').removeAttribute('hidden') }
   }
 }
 
-customElements.define("recipe-viewer", recipeViewer);
+customElements.define('recipe-viewer', recipeViewer)
