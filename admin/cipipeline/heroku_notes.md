@@ -4,7 +4,10 @@
 **Tutorial Link**
 [Heroku, Getting started with Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
 
-Usefule: [Hosting a Node js App in 5 Minutes!](https://javascript.plainenglish.io/hosting-node-js-app-on-heroku-in-less-than-5-mins-bc7ce244c8d0)
+Useful: [Hosting a Node js App in 5 Minutes!](https://javascript.plainenglish.io/hosting-node-js-app-on-heroku-in-less-than-5-mins-bc7ce244c8d0)
+
+What was used at 11/20 1:50am: https://medium.com/@winnieliang/how-to-run-a-simple-html-css-javascript-application-on-heroku-4e664c541b0b
+
 
 ## Deploying
 1. Create an app on Heroku, which prepares Heroku to receive your source code. 
