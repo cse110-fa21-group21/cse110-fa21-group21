@@ -6,7 +6,7 @@
  */
 
 export class Router{
-    static routes = {};
+    static routes {};
 
 
     /**
