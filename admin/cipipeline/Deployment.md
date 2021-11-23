@@ -8,3 +8,5 @@ Site deployed using `Netlify`.
 - Deploys automatically whenever any changes are made in `main` branch. (Any pushes or merges)
 - Looks at `./source/` folder for deployment! 
 - No build details (e.g. `npm build`) are run
+
+**Check Deployment details at**: [Netlify deploy](https://app.netlify.com/sites/group21-recipe/deploys)
