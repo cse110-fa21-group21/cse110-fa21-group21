@@ -7,10 +7,10 @@
 }
 
 body {
-  background-color: #ffffff;
+  background-color: #fff;
 }
 
-/**css for home page*/
+/* css for home page */
 .center-home-icon {
   display: block;
   position: relative;
@@ -34,20 +34,19 @@ body {
   font-size: 30px;
   font-weight: bold;
   border-radius: 10%;
-  background-color: rgb(255, 226, 147);
+  background-color: #FFE293;
 }
 
-
-/**css for top bar*/
+/* css for top bar */
 .topbar {
   height: 150px;
-  background-color: rgb(150, 103, 81);
+  background-color: #966751;
 }
 
 .topbar a {
   display: inline-block;
   color: black;
-  background-color: rgb(255, 226, 147);
+  background-color: #FFE293;
   font-size: 20px;
   padding: 3px 10px;
   border-radius: 3px;
@@ -72,7 +71,7 @@ body {
 }
 
 #home-button {
-  background-color: rgb(255, 226, 147);
+  background-color: #FFE293;
   width: 70px;
   position: absolute;
   top: 5px;
@@ -80,7 +79,7 @@ body {
 }
 
 #favorite-list-button {
-  background-color: rgb(255, 226, 147);
+  background-color: #FFE293;
   width: 90px;
   position: absolute;
   top: 5px;
@@ -88,7 +87,7 @@ body {
 }
 
 #shopping-list-button {
-  background-color: rgb(255, 226, 147);
+  background-color: #FFE293;
   width: 120px;
   position: absolute;
   top: 5px;
@@ -132,11 +131,10 @@ section:not(section.shown) {
   width: 100%;
 }
 
-
-/**css for the filter page*/
+/* css for the filter page */
 fieldset {
   width: 170px;
-  background-color: rgb(255, 244, 230);
+  background-color: #FFF4E6;
 }
 
 .flex-container {
@@ -147,5 +145,5 @@ fieldset {
   font-size: 15px;
   font-weight: bold;
   border-radius: 10%;
-  background-color: rgb(255, 226, 147);
+  background-color: #FFE293;
 }
