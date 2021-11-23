@@ -14,6 +14,7 @@
 
 #recipe-dietary {
   display: flex;
+  justify-content: center;
   max-width: 600px;
   max-height: 500px;
   width: auto;
@@ -29,7 +30,9 @@
   width: auto;
   height: auto;
   border-radius: 10px;
-  margin: 20px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #recipe-price {
