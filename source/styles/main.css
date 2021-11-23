@@ -34,7 +34,7 @@ body {
   font-size: 30px;
   font-weight: bold;
   border-radius: 10%;
-  background-color: #FFE293;
+  background-color: #ffe293;
 }
 
 /* css for top bar */
@@ -46,7 +46,7 @@ body {
 .topbar a {
   display: inline-block;
   color: black;
-  background-color: #FFE293;
+  background-color: #ffe293;
   font-size: 20px;
   padding: 3px 10px;
   border-radius: 3px;
@@ -71,7 +71,7 @@ body {
 }
 
 #home-button {
-  background-color: #FFE293;
+  background-color: #ffe293;
   width: 70px;
   position: absolute;
   top: 5px;
@@ -79,7 +79,7 @@ body {
 }
 
 #favorite-list-button {
-  background-color: #FFE293;
+  background-color: #ffe293;
   width: 90px;
   position: absolute;
   top: 5px;
@@ -87,7 +87,7 @@ body {
 }
 
 #shopping-list-button {
-  background-color: #FFE293;
+  background-color: #ffe293;
   width: 120px;
   position: absolute;
   top: 5px;
@@ -134,7 +134,7 @@ section:not(section.shown) {
 /* css for the filter page */
 fieldset {
   width: 170px;
-  background-color: #FFF4E6;
+  background-color: #fff4e6;
 }
 
 .flex-container {
@@ -145,5 +145,5 @@ fieldset {
   font-size: 15px;
   font-weight: bold;
   border-radius: 10%;
-  background-color: #FFE293;
+  background-color: #ffe293;
 }
