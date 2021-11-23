@@ -41,7 +41,7 @@ export class Router{
                 hash = '#' + page;
             }
             if((state != true) && (window.location.hash != hash)){
-                console.log('push' + hash);
+                console.log('push ' + hash);
                 history.pushState(page,window.location.href, hash);
             }
             this[page]();
