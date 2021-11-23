@@ -108,3 +108,7 @@ section:not(section.shown) {
   height: 100%;
   width: 100%;
 }
+
+recipe-card {
+ margin: 20px;
+}

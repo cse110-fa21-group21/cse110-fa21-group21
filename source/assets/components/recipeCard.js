@@ -1,22 +1,22 @@
 // recipeCard.js
 import { Spoonacular } from '../scripts/spoonacular.js'
-
 class recipeCard extends HTMLElement {
   constructor () {
     super()
     this.attachShadow({ mode: 'open' })
 
-    const card = document.createElement('section');
-    card.classList.add('card');
-    card.classList.add('container');
-    const style = document.createElement('style');
+    const card = document.createElement('section')
+    card.classList.add('card')
+    card.classList.add('container')
+    card.classList.add('p-3')
+    const style = document.createElement('style')
     style.innerHTML = `
+      @import "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css";
+
       #recipe-title {
         text-align: center;
-        margin: 20px;
         font-size: x-large;
-        border: 2.5px solid;
-        border-radius: 10px;
+        font-weight: bold;
       }
       
       #recipe-dietary {
@@ -26,105 +26,86 @@ class recipeCard extends HTMLElement {
         width: auto;
         height: auto;
         border-radius: 10px;
-        margin: 20px;
       }
       
       #recipe-image {
         display: block;
-        max-width: 600px;
-        max-height: 500px;
-        width: auto;
-        height: auto;
+        width: 70%;
+        padding: 20px;
         border-radius: 10px;
-        margin: 20px;
+        margin-left: auto;
+        margin-right: auto;
       }
       
       #recipe-price {
         text-align: left;
-        margin: 20px;
         font-size: x-large;
-        border: 2.5px solid;
-        border-radius: 10px;
       }
       
       #recipe-servings {
         text-align: left;
-        margin: 20px;
         font-size: x-large;
-        border: 2.5px solid;
-        border-radius: 10px;
       }
       
       #recipe-cooking-time {
         text-align: left;
-        margin: 20px;
         font-size: x-large;
-        border: 2.5px solid;
-        border-radius: 10px;
       }
       
       #recipe-calories {
         text-align: left;
-        margin: 20px;
         font-size: x-large;
-        border: 2.5px solid;
-        border-radius: 10px;
       }
       
       #recipe-score {
         text-align: left;
-        margin: 20px;
         font-size: x-large;
-        border: 2.5px solid;
-        border-radius: 10px;
       }
       
       #recipe-total-calories {
         text-align: left;
-        margin: 20px;
         font-size: x-large;
-        border: 2.5px solid;
-        border-radius: 10px;
       }
      `
 
     card.innerHTML = `
-      <div class="row">
-        <div class="col">
-          <div class="img-square-wrapper">
-            <aside id ='card-visuals'>
-              <fig id='visual'>
-                <img id='recipe-image' src='' alt='recipe-image'/>
-                <figcaption class="justify-content-center" id='recipe-dietary'>
-                    <img id='dairy-free' src='/assets/icons/dietary/dairy-free.png' width = 30px height = 30px hidden alt='Dairy Free'/>
-                    <img id='gluten-free' src='/assets/icons/dietary/gluten-free.png' width = 30px height = 30px hidden alt='Gluten Free'/>
-                    <img id='vegan' src='/assets/icons/dietary/vegan.png' width = 30px height = 30px hidden alt='Vegan'/>
-                    <img id='vegetarian' src='/assets/icons/dietary/vegetarian.png' width = 30px height = 30px hidden alt='Vegetarian'/>
-                </figcaption>
-              </fig>
-            </aside>
-          </div>
-        </div>
-        <div class="col">
-            <div class="row"> 
-              <div class="col" id="recipe-title"> Title </div>
-            </div> 
-            <div class="row">
-              <div class="col" id="recipe-price"> Price </div>
-              <div class="col" id="recipe-servings"> Recipe Servings </div>
-            </div>
-            <div class="row"> 
-              <div class="col" id="recipe-cooking-time"> Cooking Time </div>
-              <div class="col" id="recipe-calories"> Calories Per Serving </div>   
-            </div>
-            <div class="row">
-              <div class="col" id="recipe-score"> Recipe Score </div>
-              <div class="col" id="recipe-total-calories"> Total Calories </div>               
-            </div>
-        </div>
+    <div class="row">
+    <div class="col-sm-6">
+      <div class="img-square-wrapper">
+        <aside id ="card-visuals">
+          <fig id="visual">
+            <img id="recipe-image" class="justify-content-center" src="" alt="recipe-image"/>
+            <figcaption class="justify-content-center" id="recipe-dietary">
+                <img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width="30px" height="30px" hidden alt="Dairy Free"/>
+                <img id="gluten-free" src="./assets/icons/dietary/gluten-free.png" width="30px" height="30px" hidden alt="Gluten Free"/>
+                <img id="vegan" src="./assets/icons/dietary/vegan.png" width="30px" height="30px" hidden alt="Vegan"/>
+                <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width ="30px" height ="30px" hidden alt="Vegetarian"/>
+            </figcaption>
+          </fig>
+        </aside>
       </div>
+    </div>
+    <div class="col my-auto">
+      <div class="card">
+        <div class="card-header" id="recipe-title"></div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" id="recipe-price"></li>
+          <li class="list-group-item" id="recipe-servings"></li>
+          <li class="list-group-item" id="recipe-cooking-time"></li>
+          <li class="list-group-item" id="recipe-calories"></li>
+          <li class="list-group-item" id="recipe-total-calories"></li>
+          <li class="list-group-item" id="recipe-score"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
      `
-    this.shadowRoot.append(style, card)
+    const bootstrap = document.createElement('script')
+    bootstrap.setAttribute('src',"https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js")
+    bootstrap.setAttribute('integrity',"sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM")
+    bootstrap.setAttribute('crossorigin',"anonymous")
+
+    this.shadowRoot.append(style, card, bootstrap)
   }
 
   get data () {
@@ -145,41 +126,37 @@ class recipeCard extends HTMLElement {
     const spoonacular = new Spoonacular()
 
     // this will reset the struction of the shadowRoot
-    this.shadowRoot.querySelector('section').innerHTML = `
-      <div class="row">
-        <div class="col">
-          <div class="img-square-wrapper">
-            <aside id ='card-visuals'>
-              <fig id='visual'>
-                <img id='recipe-image' src='' alt='recipe-image'/>
-                <figcaption class="justify-content-center" id='recipe-dietary'>
-                    <img id='dairy-free' src='/assets/icons/dietary/dairy-free.png' width = 30px height = 30px hidden alt='Dairy Free'/>
-                    <img id='gluten-free' src='/assets/icons/dietary/gluten-free.png' width = 30px height = 30px hidden alt='Gluten Free'/>
-                    <img id='vegan' src='/assets/icons/dietary/vegan.png' width = 30px height = 30px hidden alt='Vegan'/>
-                    <img id='vegetarian' src='/assets/icons/dietary/vegetarian.png' width = 30px height = 30px hidden alt='Vegetarian'/>
-                </figcaption>
-              </fig>
-            </aside>
-          </div>
-        </div>
-        <div class="col">
-            <div class="row"> 
-              <div class="col" id="recipe-title"> Title </div>
-            </div> 
-            <div class="row">
-              <div class="col" id="recipe-price"> Price </div>
-              <div class="col" id="recipe-servings"> Recipe Servings </div>
-            </div>
-            <div class="row"> 
-              <div class="col" id="recipe-cooking-time"> Cooking Time </div>
-              <div class="col" id="recipe-calories"> Calories Per Serving </div>   
-            </div>
-            <div class="row">
-              <div class="col" id="recipe-score"> Recipe Score </div>
-              <div class="col" id="recipe-total-calories"> Total Calories </div>               
-            </div>
+    this.shadowRoot.querySelector("section").innerHTML = `
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="rounded">
+          <aside id ="card-visuals">
+            <fig id="visual">
+              <img id="recipe-image" class="justify-content-center" src="" alt="recipe-image"/>
+              <figcaption class="justify-content-center" id="recipe-dietary">
+                  <img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width="30px" height="30px" hidden alt="Dairy Free"/>
+                  <img id="gluten-free" src="./assets/icons/dietary/gluten-free.png" width="30px" height="30px" hidden alt="Gluten Free"/>
+                  <img id="vegan" src="./assets/icons/dietary/vegan.png" width="30px" height="30px" hidden alt="Vegan"/>
+                  <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width ="30px" height ="30px" hidden alt="Vegetarian"/>
+              </figcaption>
+            </fig>
+          </aside>
         </div>
       </div>
+      <div class="col my-auto">
+        <div class="card">
+          <div class="card-header" id="recipe-title"></div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" id="recipe-price"></li>
+            <li class="list-group-item" id="recipe-servings"></li>
+            <li class="list-group-item" id="recipe-cooking-time"></li>
+            <li class="list-group-item" id="recipe-calories"></li>
+            <li class="list-group-item" id="recipe-total-calories"></li>
+            <li class="list-group-item" id="recipe-score"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
     `
 
     // set title
