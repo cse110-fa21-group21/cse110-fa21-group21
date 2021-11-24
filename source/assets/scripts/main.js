@@ -2,6 +2,7 @@
 
 import { Router } from '../scripts/Router.js'
 import { Filter } from '../scripts/filter.js'
+let myStorage = window.localStorage;
 const apiKey = '54a305b43853416198613d4aaaed7b01'
 const searchBar = document.getElementById('homepage-search-bar')
 const search = document.getElementById('homepage-search-btn')
@@ -51,6 +52,7 @@ let baseURL = ''
    bindSearch()
    bindState()
    filter.filtering()
+   bindFavoriteList()
  }
  
  /**
@@ -61,6 +63,29 @@ let baseURL = ''
  async function bindSearch () {
    searchBar.addEventListener('input', (event) => {
      searchBar.textContent = event.target.value
+   })
+   /**
+    * bind enter on search bar to trigger a search
+    */
+   searchBar.addEventListener('keydown', (event) => {
+     if(event.key == "Enter"){
+      searchQuery = searchBar.textContent
+      if (
+        !searchQueryHistory.includes(searchQuery) &&
+        !(searchQuery in recipesID)
+      ) {
+        // This is slightly flawed. We don't want to only store search history but rather by title?
+        console.log('Original query, fetching data!')
+        searchQueryHistory.push(searchQuery)
+        baseURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${searchQuery}&instructions=true&addRecipeInformation=true&addRecipeNutrition=true&number=30&price=true`
+        fetchAPI(searchQuery)
+      } else {
+        // All of this should be integrated into a service worker, just a thought
+        console.log('Unoriginal query, no need to fetch it!')
+        console.log(recipesID)
+        bindRecipeCards(searchQuery)
+      }
+     }
    })
  
    search.addEventListener('click', () => {
@@ -196,6 +221,25 @@ let baseURL = ''
    funcArray.push(event)
  }
  
+/**
+ * function that connect FavoriteList button to display
+ * users' favorite recipe
+ */
+function bindFavoriteList(){
+  const favButton = document.querySelector('#favorite-list-button')
+  favButton.addEventListener('click', event =>{
+    for(let i = 0; i < myStorage.length; i++){
+      console.log(JSON.parse(myStorage.getItem(myStorage.key(i))))
+      let favoriteCard = document.createElement('recipe-card')
+      let favoriteList = document.querySelector(".my-favorite-list")
+      favoriteList.appendChild(favoriteCard)
+      favoriteCard.data = JSON.parse(myStorage.getItem(myStorage.key(i)))
+      
+      bindRecipeViewers(favoriteCard, )
+    }
+  })
+}
+
  /**
   * function that bind the back button
   * and the forward button

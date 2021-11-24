@@ -2,6 +2,7 @@
 
 import { Spoonacular } from '../scripts/spoonacular.js'
 const spoonacular = new Spoonacular()
+let myStorage = window.localStorage
 
 class recipeViewer extends HTMLElement {
   constructor () {
@@ -77,6 +78,7 @@ class recipeViewer extends HTMLElement {
     const viewer  = document.createElement('section')
     viewer.innerHTML = `
     <main id = "card-information">
+      <button>Favorite</button>
         <div id = "recipe-title"></div> 
         <section class = "flex-container">
           <div id = "left-flex">
@@ -131,6 +133,7 @@ class recipeViewer extends HTMLElement {
 
     this.shadowRoot.querySelector('section').innerHTML = `
     <main id = "card-information">
+      <button>Favorite</button>
         <div id = "recipe-title"></div> 
         <section class = "flex-container">
           <div id = "left-flex">
@@ -210,6 +213,13 @@ class recipeViewer extends HTMLElement {
     if (dietary.vegetarian) { this.shadowRoot.getElementById('vegetarian').removeAttribute('hidden') }
     if (dietary['gluten-free']) { this.shadowRoot.getElementById('gluten-free').removeAttribute('hidden') }
     if (dietary['dairy-free']) { this.shadowRoot.getElementById('dairy-free').removeAttribute('hidden') }
+
+    //set favorite Button functionality
+    const favoriteButton = this.shadowRoot.querySelector('button');
+    favoriteButton.addEventListener('click', event =>{
+      myStorage.setItem(title,JSON.stringify(data))
+      alert('Added to Favorite List')
+    })
   }
 }
 
