@@ -58,40 +58,17 @@ body {
   right: 15px;
 }
 
-.home-button,
-.favorite-list-button,
-.shopping-list-button {
-  display: inline-block;
-  position: absolute;
-  top: 120px;
-  right: 0;
-  padding: 0.1%;
-  text-decoration: none;
-  font-size: 25px;
+#nav-search-btn {
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 10%;
+  background-color: #ffe293;
 }
 
-#home-button {
-  background-color: #ffe293;
-  width: 70px;
+.nav-search-bar {
   position: absolute;
-  top: 5px;
-  right: 230px;
-}
-
-#favorite-list-button {
-  background-color: #ffe293;
-  width: 90px;
-  position: absolute;
-  top: 5px;
-  right: 135px;
-}
-
-#shopping-list-button {
-  background-color: #ffe293;
-  width: 120px;
-  position: absolute;
-  top: 5px;
-  right: 10px;
+  top: 130px;
+  left: 15px;
 }
 
 .home-icon,
@@ -143,11 +120,4 @@ fieldset {
 
 .flex-container {
   display: flex;
-}
-
-#resultpage-search-btn {
-  font-size: 15px;
-  font-weight: bold;
-  border-radius: 10%;
-  background-color: #ffe293;
 }
