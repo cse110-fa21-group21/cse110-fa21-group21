@@ -9,6 +9,7 @@ class recipeViewer extends HTMLElement {
     this.attachShadow({ mode: 'open' })
     const style = document.createElement('style');
     style.innerHTML = `
+    @import "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css";
     .flex-container {
       display: flex;
       justify-content: center;
@@ -76,19 +77,17 @@ class recipeViewer extends HTMLElement {
     const viewer  = document.createElement('section')
     viewer.innerHTML = `
     <main id = "card-information">
-        <div id = "recipe-title"> 
-          Title Of The Recipe
-        </div> 
+        <div id = "recipe-title"></div> 
         <section class = "flex-container">
           <div id = "left-flex">
             <aside id = "card-visuals">
               <fig id = "visual">
-                <img id = "recipe-image" src="https://spoonacular.com/recipeImages/579247-556x370.jpg" alt="recipe-image"/>
+                <img id = "recipe-image" src="" alt="recipe-image"/>
                 <figcaption id = "recipe-dietary">
-                  <img id="dairy-free" src="assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
-                  <img id="gluten-free" src="assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" hidden alt="Gluten Free"/>
-                  <img id="vegan" src="assets/icons/dietary/vegan.png" width = "30px" height = "30px" hidden alt="Vegan"/>
-                  <img id="vegetarian" src="assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
+                  <img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
+                  <img id="gluten-free" src="./assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" hidden alt="Gluten Free"/>
+                  <img id="vegan" src="./assets/icons/dietary/vegan.png" width = "30px" height = "30px" hidden alt="Vegan"/>
+                  <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
                 </figcaption>
               </fig>
             </aside>
@@ -111,7 +110,12 @@ class recipeViewer extends HTMLElement {
         </section> 
       </main>
     `
-    this.shadowRoot.append(style,viewer)
+    const bootstrap = document.createElement('script')
+    bootstrap.setAttribute('src','https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js')
+    bootstrap.setAttribute('integrity','sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM')
+    bootstrap.setAttribute('crossorigin','anonymous')
+
+    this.shadowRoot.append(style, viewer, bootstrap)
   }
 
   get data () {
@@ -127,19 +131,17 @@ class recipeViewer extends HTMLElement {
 
     this.shadowRoot.querySelector('section').innerHTML = `
     <main id = "card-information">
-        <div id = "recipe-title"> 
-          Title Of The Recipe
-        </div> 
+        <div id = "recipe-title"></div> 
         <section class = "flex-container">
           <div id = "left-flex">
             <aside id = "card-visuals">
               <fig id = "visual">
                 <img id = "recipe-image" src="" alt="recipe-image"/>
                 <figcaption id = "recipe-dietary">
-                  <img id="dairy-free" src="/assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
-                  <img id="gluten-free" src="/assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" hidden alt="Gluten Free"/>
-                  <img id="vegan" src="/assets/icons/dietary/vegan.png" width = "30px" height = "30px" hidden alt="Vegan"/>
-                  <img id="vegetarian" src="/assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
+                  <img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
+                  <img id="gluten-free" src="./assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" hidden alt="Gluten Free"/>
+                  <img id="vegan" src="./assets/icons/dietary/vegan.png" width = "30px" height = "30px" hidden alt="Vegan"/>
+                  <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
                 </figcaption>
               </fig>
             </aside>
