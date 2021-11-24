@@ -7,7 +7,6 @@ body {
   background-color: beige;
 }
 
-
 .title {
   text-align: center;
   font-size: x-large;
@@ -19,6 +18,7 @@ body {
   border-radius: 20px;
   margin-top: 20px;
 }
+
 #recipe-image {
   margin-top: 20px;
   display: block;
@@ -33,6 +33,7 @@ body {
   display: flex;
   justify-content: center;
 }
+
 #recipe-dietary > img{
   display: inline-block;
 }
@@ -69,14 +70,13 @@ body {
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
 }
+
 #recipe-ingredients-wrapper > .card-body {
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
 }
 
-
 #recipe-instructions-wrapper {
-  margin-bottom: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
   border-radius: 20px;
@@ -88,21 +88,22 @@ body {
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
 }
+
 #recipe-instructions-wrapper > .card-body {
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
 }
 
-
-ol,ul {
+ol,
+ul {
   background-color: #f8f9fa;
 }
 
-ol > li{
+ol > li {
   background-color: #f8f9fa;
 }
 
-ul > li{
+ul > li {
   background-color: #f8f9fa;
-  list-style: '☐ ';
+  list-style: "☐ ";
 }
