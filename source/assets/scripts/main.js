@@ -168,37 +168,6 @@ let baseURL = ''
       if (recipeTitle.toLocaleLowerCase().includes(query.toLocaleLowerCase())) {
         recipeArray.push(recipeTitle);
       }
-     }
-     sortRecipeCards(recipeArray)
-
-     
-
-     /**
-      * for each recipe title inside the sorted recipeArray
-      * recipeArray[i] to access the corresponding json file in recipesID
-      * 
-      */
-    for(let i =0; i < recipeArray.length; i++){
-      if (cardIndex === MAX_NUM_RECIPE_CARDS) break
-       // we check if the recipe title contains the search query
-         const recipeCard = recipeCardsWrapper.children[cardIndex]
-         recipeCard.data = recipesID[recipeArray[i]]
-         // Show the Recipe Card
-         recipeCard.classList.remove('hidden')
-         recipeCard.classList.add('shown')
- 
-         // this following part added route that would lead users to the corresponding recipeView
-         const page = recipeArray[i]
-         router.insertPage(page, function () {
-           // Hide the Recipe Cards Wrapper
-           recipeCardsWrapper.classList.remove('shown')
-           // Show the Recipe Viewers Wrapper
-           recipeViewersWrapper.classList.add('shown')
-           // Pass the data from the <recipe-card> to the singular <recipe-viewer>
-           document.querySelector('recipe-viewer').data = recipesID[recipeArray[i]]
-         })
-         bindRecipeViewers(recipeCard, page)
-         cardIndex++
     }
    })
    router.goTo(query)
