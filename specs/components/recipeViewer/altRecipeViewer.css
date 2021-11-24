@@ -1,7 +1,7 @@
 /** altRecipeViewer.css */
 
 body {
-  font-family: 'Oxygen', sans-serif;
+  font-family: Oxygen, sans-serif;
   text-align: left;
   font-size: 1em;
   background-color: beige;
@@ -34,7 +34,7 @@ body {
   justify-content: center;
 }
 
-#recipe-dietary > img{
+#recipe-dietary > img {
   display: inline-block;
 }
 
@@ -85,7 +85,6 @@ body {
 }
 
 #recipe-instructions-wrapper > .card-header {
-  border-top-right-radius: 20px;
   border-top-left-radius: 20px;
 }
 
