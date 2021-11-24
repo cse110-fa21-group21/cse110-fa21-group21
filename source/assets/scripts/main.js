@@ -133,43 +133,48 @@ let baseURL = ''
  
      /** The are MAX_NUM_RECIPE_CARDS distinct recipeCard DOMs */
      let cardIndex = 0
- 
-     // for each recipe within recipesID
-     for (const recipeTitle in recipesID) {
-       // we display MAX_NUM_RECIPE_CARDS cards at most
-       if (cardIndex === MAX_NUM_RECIPE_CARDS) break
+     // An array to store recipe to be sort and display
+     let recipeArray = []
+     /**
+      * going over the recipe object and find the corresponding recipe to display
+      * put the recipe title into the array for sort
+      */
+     for(const recipeTitle in recipesID){
+      if (recipeTitle.toLocaleLowerCase().includes(query.toLocaleLowerCase())) {
+        recipeArray.push(recipeTitle);
+      }
+     }
+     sortRecipeCards(recipeArray)
+
+     
+
+     /**
+      * for each recipe title inside the sorted recipeArray
+      * recipeArray[i] to access the corresponding json file in recipesID
+      * 
+      */
+    for(let i =0; i < recipeArray.length; i++){
+      if (cardIndex === MAX_NUM_RECIPE_CARDS) break
        // we check if the recipe title contains the search query
-       if (recipeTitle.toLocaleLowerCase().includes(query.toLocaleLowerCase())) {
          const recipeCard = recipeCardsWrapper.children[cardIndex]
-         recipeCard.data = recipesID[recipeTitle]
+         recipeCard.data = recipesID[recipeArray[i]]
          // Show the Recipe Card
          recipeCard.classList.remove('hidden')
          recipeCard.classList.add('shown')
  
          // this following part added route that would lead users to the corresponding recipeView
-         const page = recipeTitle
+         const page = recipeArray[i]
          router.insertPage(page, function () {
            // Hide the Recipe Cards Wrapper
            recipeCardsWrapper.classList.remove('shown')
            // Show the Recipe Viewers Wrapper
            recipeViewersWrapper.classList.add('shown')
            // Pass the data from the <recipe-card> to the singular <recipe-viewer>
-           document.querySelector('recipe-viewer').data = recipesID[recipeTitle]
+           document.querySelector('recipe-viewer').data = recipesID[recipeArray[i]]
          })
          bindRecipeViewers(recipeCard, page)
          cardIndex++
-       }
-     }
-     // hide and clear any unused cards
-     while (cardIndex !== MAX_NUM_RECIPE_CARDS) {
-       const recipeCard = recipeCardsWrapper.children[cardIndex]
-       recipeCard.data = ''
-       bindRecipeViewers(recipeCard, '')
-       recipeCard.classList.remove('shown')
-       recipeCard.classList.add('hidden')
-       cardIndex++
-     }
-     sortRecipeCardsInWrapper(recipeCardsWrapper)
+    }
    })
    router.goTo(query)
  }
@@ -207,23 +212,14 @@ let baseURL = ''
    })
  }
  
- function sortRecipeCardsInWrapper (recipeCardsWrapper) {
-   const recipeCards = []
-   const indices = []
-   const nodesList = recipeCardsWrapper.childNodes
-   nodesList.forEach((node, index) => {
-     if (node.nodeName === 'RECIPE-CARD' && node.class !== 'hidden') {
-       recipeCards.push(node)
-       indices.push(index)
-     }
-   })
-   recipeCardsWrapper.innerHTML = ''
-   recipeCards.sort((firstCard, secondCard) =>
+ /**
+  * Function use to sort a given array by score
+  * @param {Array} recipeArray 
+  */
+ function sortRecipeCards (recipeArray) {
+   recipeArray.sort((firstCard, secondCard) =>
      compareRecipeCards(firstCard, secondCard)
    )
-   recipeCards.forEach((card) => {
-     recipeCardsWrapper.appendChild(card)
-   })
  }
  
  /** COMPARISONS */
@@ -233,24 +229,12 @@ let baseURL = ''
   * the higher spoonacular score
   */
  function compareRecipeCards (firstCard, secondCard) {
-   // Pull the Inner Text of the 'recipe-score' div
-   const firstCardRecipeScoreText = firstCard.shadowRoot
-     .querySelector('#recipe-score').innerText
-   const secondCardRecipeScoreText = secondCard.shadowRoot
-     .querySelector('#recipe-score').innerText
-   // Parse the Inner Text to obtain the value
-   function pullValue (text) {
-     const slashIndex = text.indexOf('/')
-     const value = text.substring(7, slashIndex) // length of 'Score: ' is 7;
-     return Number(value)
-   }
- 
-   const firstCardScore = pullValue(firstCardRecipeScoreText)
-   const secondCardScore = pullValue(secondCardRecipeScoreText)
- 
-   if (firstCardScore > secondCardScore) {
+   //Change the score extract firstCard and secondCard's score in to number
+   const firstCardRecipeScore = Number(recipesID[firstCard].spoonacularScore)
+   const secondCardRecipeScore = Number(recipesID[secondCard].spoonacularScore)
+   if (firstCardRecipeScore > secondCardRecipeScore) {
      return -1
-   } else if (firstCardScore < secondCardScore) {
+   } else if (firstCardRecipeScore < secondCardRecipeScore) {
      return 1
    } else {
      return 0
