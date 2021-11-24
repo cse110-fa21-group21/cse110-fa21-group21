@@ -57,10 +57,54 @@
           <!--Favorite-->
         </div>
 
-        <div class="shopping-list-icon">
-          <i class="fa fa-shopping-cart" style="color: yellow"> </i>
-          <!--Shopping List-->
-        </div>
+    <!--top nav bar for all pages-->
+    <div class="topbar">
+      <!--Not sure if we can apply the hyperlink tag 'a' here-->
+      <div class="ml-auto">
+        <a href="#home">Home</a>
+        <a href="#fav">Favorite</a>
+        <a href="#shopList">Shopping List</a>
+      </div>
+    </div>
+    
+    <!--Buttons in this section will be placed right-up corner and are also shown in shopping-list page, searching-result page and home-page-->
+    <section class = "section-favorite-list shown">
+      <div class = "home-button">
+        <button id="home-button">
+          <!-- Please resize the icons when we get to the styling of the page--> 
+          <img src = "assets/icons/group-logo.png" alt = "group-logo" width="12" height="12"/>
+          Home
+        </button>
+      </div>
+      <div class = "favorite-list-button">
+        <button id="favorite-list-button">
+          <!-- Please resize the icons when we get to the styling of the page-->
+          <i class="fa fa-star" style="color:yellow"></i>
+          Favorite 
+        </button>
+      </div>
+      <div class = "shopping-list-button">
+        <button id="shopping-list-button">
+          <!-- Please resize the icons when we get to the styling of the page-->
+          <i class="fa fa-shopping-cart" style="color:yellow"></i>
+          Shopping List
+        </button>
+      </div>
+    </section>
+    
+    <section class = "section-home-page shown">
+      <!--following icons are placed left-up corner at the same places, show and hide appropriately for each page-->
+      <div class = "favorite-icon">
+        <i class = "fa fa-star" style = "color:yellow" >
+        </i>
+        <!--Favorite-->
+      </div>
+      
+      <div class = "shopping-list-icon">
+        <i class = "fa fa-shopping-cart" style = "color:yellow">
+        </i>
+        <!--Shopping List-->
+      </div>
 
         <div class="home-icon">
           <img
@@ -84,26 +128,30 @@
 
         <!--search bar for the home page; if it's easier to just move the 
         search bar from other pages to the middle, feel free to delete this-->
-        <div class="homepage-search-bar">
-          <input type="text" id="homepage-search-bar" />
-          <input type="submit" value="Search" id="homepage-search-btn" />
-        </div>
-      </section>
-      <section class="shown">
-        <fieldset>
-          <legend><h2>Filters</h2></legend>
+      <div class="homepage-search-bar ">
+        <input type="text" id="homepage-search-bar">
+        <input type="submit" value="Search" id="homepage-search-btn">
+      </div>
+    </section>
 
-          <fieldset>
-            <legend><h3>Dietary</h3></legend>
-            <form name="filterByDie" id="filter-by-diet">
-              <input type="checkbox" id="dairy-free-diet" name="dairy_free" />
-              <label for="dairy-free-diet"> Dairy Free</label><br />
-              <input type="checkbox" id="gluten-free-diet" name="gluten_free" />
-              <label for="gluten-free-diet"> Gluten Free </label><br />
-              <input type="checkbox" id="vegetarian-diet" name="vegetarian" />
-              <label for="vegetarian-diet"> Vegetarian </label><br />
-              <input type="checkbox" id="vegan-diet" name="vegan" />
-              <label for="vegan-diet"> Vegan </label><br />
+    <div class="flex-container">
+      <section class="shown">
+        <div>
+          <div class="resultpage-search-bar">
+            <input type="text" id="resultpage-search-bar">
+            <input type="submit" value="Search" id="resultpage-search-btn">
+          </div>
+        <fieldset>
+          <legend><h3>Dietary</h3></legend>
+          <form name="filterByDietary" id="filter-by-diet">
+            <input type="checkbox" id="dairy-free-diet" name="dairy_free" />
+            <label for="dairy-free-diet"> Dairy Free</label><br />
+            <input type="checkbox" id="gluten-free-diet" name="gluten_free" />
+            <label for="gluten-free-diet"> Gluten Free </label><br />
+            <input type="checkbox" id="vegetarian-diet" name="vegetarian" />
+            <label for="vegetarian-diet"> Vegetarian </label><br />
+            <input type="checkbox" id="vegan-diet" name="vegan" />
+            <label for="vegan-diet"> Vegan </label><br />
             </form>
           </fieldset>
 
