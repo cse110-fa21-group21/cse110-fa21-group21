@@ -2,10 +2,11 @@
 
 import { Router } from "../scripts/Router.js";
 import { Filter } from "../scripts/filter.js";
-const apiKey = "d7a805d987074402904a262f602c7844";
+const apiKey = "52121edf0f71442dbf23b640dbe1ad78";
 const searchBar = document.getElementById("homepage-search-bar");
 const search = document.getElementById("homepage-search-btn");
 const MAX_NUM_RECIPE_CARDS = 30;
+const searchFilter = document.querySelector(".searchFilter");
 let searchQuery = "";
 let baseURL = "";
 
@@ -41,6 +42,13 @@ const router = new Router(function () {
   document
     .querySelector(".section-recipe-viewers-wrapper")
     .classList.remove("shown");
+  document
+    .querySelector(".section-home-page")
+    .classList.add("shown");
+  document
+    .querySelector(".nav-search-bar")
+    .classList.add("hidden");
+  searchFilter.classList.add("shown");
 });
 
 const filter = new Filter();
@@ -80,6 +88,7 @@ async function bindSearch() {
       console.log(recipesID);
       bindRecipeCards(searchQuery);
     }
+    
   });
 }
 
@@ -131,6 +140,20 @@ function bindRecipeCards(query) {
     );
     recipeViewersWrapper.classList.remove("shown");
 
+    // Display the search filter
+    searchFilter.classList.add("shown");
+
+    // Hide the homepage-section
+    const homepage = document.querySelector(
+      ".section-home-page"
+    )
+    homepage.classList.remove("shown");
+
+    // Display navbar search bar
+    const navSearchDisplay = document.querySelector(
+      ".nav-search-bar"
+    )
+    navSearchDisplay.classList.remove("hidden");
     /** The are MAX_NUM_RECIPE_CARDS distinct recipeCard DOMs */
     let cardIndex = 0;
     // An array to store recipe to be sort and display
@@ -167,6 +190,8 @@ function bindRecipeCards(query) {
         recipeCardsWrapper.classList.remove("shown");
         // Show the Recipe Viewers Wrapper
         recipeViewersWrapper.classList.add("shown");
+        // Hide the filter
+        searchFilter.classList.remove("shown");
         // Pass the data from the <recipe-card> to the singular <recipe-viewer>
         document.querySelector("recipe-viewer").data =
           recipesID[recipeArray[i]];
