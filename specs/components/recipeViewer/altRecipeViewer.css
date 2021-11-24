@@ -1,0 +1,108 @@
+/** altRecipeViewer.css */
+
+body {
+  font-family: Oxygen, sans-serif;
+  text-align: left;
+  font-size: 1em;
+  background-color: beige;
+}
+
+.title {
+  text-align: center;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+#shadow {
+  border: solid black 2px;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+#recipe-image {
+  margin-top: 20px;
+  display: block;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  border: solid black 2px;
+}
+
+#recipe-dietary {
+  display: flex;
+  justify-content: center;
+}
+
+#recipe-dietary > img {
+  display: inline-block;
+}
+
+#recipe-information-wrapper {
+  display: block;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  border: solid black 2px;
+}
+
+#recipe-information-wrapper > .card-header {
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+#recipe-information-wrapper > .card-body {
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+#recipe-ingredients-wrapper {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  border: solid black 2px;
+  margin-right: 20px;
+}
+
+#recipe-ingredients-wrapper > .card-header {
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+#recipe-ingredients-wrapper > .card-body {
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+#recipe-instructions-wrapper {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  border: solid black 2px;
+  margin-right: 20px;
+}
+
+#recipe-instructions-wrapper > .card-header {
+  border-top-left-radius: 20px;
+}
+
+#recipe-instructions-wrapper > .card-body {
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+ol,
+ul {
+  background-color: #f8f9fa;
+}
+
+ol > li {
+  background-color: #f8f9fa;
+}
+
+ul > li {
+  background-color: #f8f9fa;
+  list-style: "☐ ";
+}
