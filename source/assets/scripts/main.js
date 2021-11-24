@@ -6,7 +6,7 @@ const apiKey = "52121edf0f71442dbf23b640dbe1ad78" ;
 const searchBar = document.getElementById("homepage-search-bar");
 const search = document.getElementById("homepage-search-btn");
 const MAX_NUM_RECIPE_CARDS = 30;
-const searchFilter = document.querySelector(".searchFilter");
+const searchFilter = document.querySelector(".search-filter");
 let searchQuery = "";
 let baseURL = "";
 
