@@ -110,8 +110,12 @@ export class Spoonacular {
       const ingredientsListElem = document.createElement('ul')
       for (let i = 0; i < ingredients.length; i++) {
         const listEntry = document.createElement('li')
-        listEntry.innerHTML = ingredients[i].name
+        //Currently only found US units in Spoonacular!
+        listEntry.innerHTML = ingredients[i].amount + " " + ingredients[i].unit + " of " + ingredients[i].name
         ingredientsListElem.appendChild(listEntry)
+
+        //To display ingredient data in console
+        //console.log(JSON.stringify(ingredients[i]))
       }
       return ingredientsListElem
     }
