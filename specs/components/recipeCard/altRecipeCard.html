@@ -11,6 +11,10 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <!-- Local -->
   <link rel="stylesheet" href="./altRecipeCard.css">
+  <link rel="stylesheet" href="./iconRecipeCard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://kit.fontawesome.com/0e68289b8e.js" crossorigin="anonymous"></script>
+
 </head>
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -20,12 +24,13 @@
   You can picture there being a <recipe-card> tag right here
   <recipe-card> 
   -->
-        <section class="card container">
+        <!-- OLD VERSION OF THE RECIPE CARD -->
+        <!-- <section class="card-container">
           <div class="row">
             <div class="col">
-              <div class="img-square-wrapper">
+              <div class="img-square-wrapper"> -->
                 <!-- Shadow DOM, so style changes here won't bleed to the entire interface -->
-                <aside id ="card-visuals">
+                <!-- <aside id ="card-visuals">
                   <fig id="visual">
                     <img id="recipe-image" src="https://spoonacular.com/recipeImages/579247-556x370.jpg" alt="recipe-image"/>
                     <figcaption class="justify-content-center" id="recipe-dietary">
@@ -40,22 +45,86 @@
             </div>
             <div class="col">
                 <div class="row"> 
-                  <div class="col" id="recipe-title"> Title </div>
+                  <div class="col" id="recipe-title"> Recipe Title </div>
                 </div> 
                 <div class="row">
-                  <div class="col" id="recipe-price"> Price </div>
-                  <div class="col" id="recipe-servings"> Recipe Servings </div>
+                  <div class="col" id = "recipe-price"> Price </div>
+                  <div class="col" id="recipe-servings"> Recipe Servings  </div>
                 </div>
                 <div class="row"> 
-                  <div class="col" id="recipe-cooking-time"> Cooking Time </div>
-                  <div class="col" id="recipe-calories"> Calories Per Serving </div>   
+                  <div class="col" id="recipe-cooking-time"> Time </div>
+                  <div class="col" id="recipe-score"> Recipe Score </div>
                 </div>
                 <div class="row">
-                  <div class="col" id="recipe-score"> Recipe Score </div>
+                  <div class="col" id="recipe-calories"> Calories Per Serving </div>   
                   <div class="col" id="recipe-total-calories"> Total Calories </div>               
                 </div>
             </div>
           </div>
+        </section> -->
+
+        <!-- NEW VERSION OF THE RECIPE CARD -->
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="rounded">
+              <aside id ="card-visuals">
+                <fig id="visual">
+                  <img id="recipe-image" src="https://spoonacular.com/recipeImages/579247-556x370.jpg" alt="recipe-image"/>
+                  <figcaption class="justify-content-center" id="recipe-dietary">
+                      <img id="dairy-free" src="../../../source/assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" alt="Dairy Free"/>
+                      <img id="gluten-free" src="../../../source/assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" alt="Gluten Free"/>
+                      <img id="vegan" src="../../../source/assets/icons/dietary/vegan.png" width = "30px" height = "30px" alt="Vegan"/>
+                      <img id="vegetarian" src="../../../source/assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" alt="Vegetarian"/>
+                  </figcaption>
+                </fig>
+              </aside>
+            </div>
+          </div>
+          <div id="card-information" class="col my-auto">
+            <div class="card">
+              <div class="card-header" id="recipe-title"> Recipe Title </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item" id="recipe-price"> Price </li>
+                <li class="list-group-item" id="recipe-servings"> Recipe Servings </li>
+                <li class="list-group-item" id="recipe-cooking-time"> Time </li>
+                <li class="list-group-item" id="recipe-score"> Recipe Score </li>
+                <li class="list-group-item" id="recipe-calories"> Calories Per Serving </li>
+                <li class="list-group-item" id="recipe-total-calories"> Total Calories</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <section class = "icon-container">
+          <!-- Dollar sign icons for PRICE-->
+          <i class="fas fa-dollar-sign fa-lg circle-1dollar"></i>
+
+          <div id = "circle-2dollar">
+            <i class="fas fa-dollar-sign fa-sm"></i>
+            <i class="fas fa-dollar-sign fa-sm"></i>
+          </div>
+
+          <div id = "circle-3dollar">
+            <i class="fas fa-dollar-sign"></i>
+            <i class="fas fa-dollar-sign"></i>
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+
+          <!-- Face icons for RECIPE SCORE-->
+          <i class="far fa-grin-beam fa-lg smiley-face" ></i>
+          <i class="far fa-meh fa-lg neutral-face"></i>
+          <i class="far fa-frown fa-lg sad-face"></i>
+
+          <!-- Icons for RECIPE SERVINGS -->
+          <i class="fas fa-user fa-lg one-serving" ></i>
+          <i class="fas fa-user-friends two-servings" ></i>
+          <i class="fas fa-users three-plus-servings" ></i>
+
+          <!-- Icons for COOKING TIME -->
+          <i class="fas fa-hourglass-start fa-lg less-than-15-min" ></i>
+          <i class="fas fa-hourglass-half fa-lg between-15-and-45-min" ></i>
+          <i class="fas fa-hourglass-end fa-lg over-45-min" ></i>
         </section>
   <!-- 
     You can imagine the closing tag here
