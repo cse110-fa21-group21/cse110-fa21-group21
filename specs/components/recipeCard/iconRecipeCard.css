@@ -1,4 +1,4 @@
-/* Style for the icons*/
+/* Style for the icons */
 .circle-1dollar {
   background: #27ba4e;
   width: 40px;
@@ -36,7 +36,7 @@
   margin: 10px;
 }
 
-.smiley-face, 
+.smiley-face,
 .neutral-face,
 .sad-face {  
   width: 40px;
@@ -64,7 +64,7 @@
   background-color: lightsalmon;
 }
 
-.one-serving, 
+.one-serving,
 .two-servings,
 .three-plus-servings,
 .less-than-15-min,
@@ -83,14 +83,13 @@
   line-height: 30px;
 }
 
-.two-servings, 
+.two-servings,
 .three-plus-servings {
   line-height: 20px;
 }
 
-.one-serving, 
+.one-serving,
 .two-servings,
 .three-plus-servings {
   background-color: lightblue;
 }
-

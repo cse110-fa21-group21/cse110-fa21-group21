@@ -96,15 +96,18 @@
   background-color: white;
 } */
 
+/* NEW VERSION OF THE RECIPE CARD */
+
 #shadow {
   border: solid black 2px;
   border-radius: 20px;
   background-color: #ffe293;
 }
 
-#card-information{
+#card-information { 
   margin-right: 20px;
 }
+
 #recipe-title {
   text-align: center;
   font-size: x-large;
