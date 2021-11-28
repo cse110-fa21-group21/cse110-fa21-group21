@@ -256,16 +256,20 @@ function bindRecipeCards(query) {
  * @param {HTMLElement} recipeCard the recipe-card element that use to connect to its recipeViewer
  * @param {string} pageName name of the route that should be goTo
  */
-function bindRecipeViewers(recipeCard, pageName) {
+function bindRecipeViewers(recipeCard, pageName, state) {
   // delete previous eventlistener that is set in last search
-  if (funcArray.length === MAX_NUM_RECIPE_CARDS) {
+  console.log(funcArray.length)
+  if (state == undefined && funcArray.length === MAX_NUM_RECIPE_CARDS) {
     recipeCard.removeEventListener("click", funcArray.shift());
   }
   function event() {
     router.goTo(pageName);
   }
   recipeCard.addEventListener("click", event);
-  funcArray.push(event);
+  console.log(state)
+  if(state == undefined){
+    funcArray.push(event);
+  }
 }
 
 
@@ -304,14 +308,7 @@ function bindRecipeViewers(recipeCard, pageName) {
           
           document.querySelector("recipe-viewer").data = JSON.parse(myStorage.getItem(myStorage.key(i)));
         })
-        bindRecipeViewers(favoriteCard, favoritePage);
-        numidx++;
-      }
-      while(numidx < MAX_NUM_RECIPE_CARDS){
-        function nothing(){
-
-        }
-        funcArray.push(nothing);
+        bindRecipeViewers(favoriteCard, favoritePage,true);
         numidx++;
       }
     })
@@ -329,6 +326,7 @@ function removeFavoriteList(){
   while(favoriteList.firstChild){
     favoriteList.removeChild(favoriteList.firstChild)
   }
+
 }
 
  /**
