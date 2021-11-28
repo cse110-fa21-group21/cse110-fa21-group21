@@ -16,12 +16,14 @@ class recipeCard extends HTMLElement {
 
       #shadow {
         border: solid black 2px;
-        border-radius: 20px;
+        border-radius: 30px;
+        background-color: wheat;
       }
-
-      #card-information{
+      
+      #card-information {
         margin-right: 20px;
       }
+      
       #recipe-title {
         text-align: center;
         font-size: x-large;
@@ -48,73 +50,71 @@ class recipeCard extends HTMLElement {
       
       #recipe-price {
         text-align: left;
-        font-size: x-large;
       }
       
       #recipe-servings {
         text-align: left;
-        font-size: x-large;
       }
       
       #recipe-cooking-time {
         text-align: left;
-        font-size: x-large;
       }
       
       #recipe-calories {
         text-align: left;
-        font-size: x-large;
       }
       
       #recipe-score {
         text-align: left;
-        font-size: x-large;
       }
       
       #recipe-total-calories {
         text-align: left;
-        font-size: x-large;
       }
      `
 
     card.innerHTML = `
     <div class="row">
-    <div class="col-sm-6">
-      <div class="img-square-wrapper">
-        <aside id ="card-visuals">
-          <fig id="visual">
-            <img id="recipe-image" class="justify-content-center" src="" alt="recipe-image"/>
-            <figcaption class="justify-content-center" id="recipe-dietary">
-                <img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width="30px" height="30px" hidden alt="Dairy Free"/>
-                <img id="gluten-free" src="./assets/icons/dietary/gluten-free.png" width="30px" height="30px" hidden alt="Gluten Free"/>
-                <img id="vegan" src="./assets/icons/dietary/vegan.png" width="30px" height="30px" hidden alt="Vegan"/>
-                <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width ="30px" height ="30px" hidden alt="Vegetarian"/>
-            </figcaption>
-          </fig>
-        </aside>
+      <div class="col-sm-6">
+        <div class="rounded">
+          <aside id ="card-visuals">
+            <fig id="visual">
+              <img id="recipe-image" src="https://spoonacular.com/recipeImages/579247-556x370.jpg" alt="recipe-image"/>
+              <figcaption class="justify-content-center" id="recipe-dietary">
+                  <img id="dairy-free" src="../../../source/assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" alt="Dairy Free"/>
+                  <img id="gluten-free" src="../../../source/assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" alt="Gluten Free"/>
+                  <img id="vegan" src="../../../source/assets/icons/dietary/vegan.png" width = "30px" height = "30px" alt="Vegan"/>
+                  <img id="vegetarian" src="../../../source/assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" alt="Vegetarian"/>
+              </figcaption>
+            </fig>
+          </aside>
+        </div>
+      </div>
+      <div id="card-information" class="col my-auto">
+        <div class="card">
+          <div class="card-header" id="recipe-title"> Recipe Title </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" id="recipe-price"> Price </li>
+            <li class="list-group-item" id="recipe-servings"> Recipe Servings </li>
+            <li class="list-group-item" id="recipe-cooking-time"> Time </li>
+            <li class="list-group-item" id="recipe-score"> Recipe Score </li>
+            <li class="list-group-item" id="recipe-calories"> Calories Per Serving </li>
+            <li class="list-group-item" id="recipe-total-calories"> Total Calories</li>
+          </ul>
+        </div>
       </div>
     </div>
-    <div id="card-information" class="col my-auto">
-      <div class="card">
-        <div class="card-header" id="recipe-title"></div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item" id="recipe-price"></li>
-          <li class="list-group-item" id="recipe-servings"></li>
-          <li class="list-group-item" id="recipe-cooking-time"></li>
-          <li class="list-group-item" id="recipe-calories"></li>
-          <li class="list-group-item" id="recipe-total-calories"></li>
-          <li class="list-group-item" id="recipe-score"></li>
-        </ul>
-      </div>
-    </div>
-  </div>
      `
     const bootstrap = document.createElement('script')
     bootstrap.setAttribute('src',"https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js")
     bootstrap.setAttribute('integrity',"sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM")
     bootstrap.setAttribute('crossorigin',"anonymous")
 
-    this.shadowRoot.append(style, card, bootstrap)
+    const fontAwesome = document.createElement('script')
+    fontAwesome.setAttribute('src',"https://kit.fontawesome.com/0e68289b8e.js")
+    fontAwesome.setAttribute('crossorigin',"anonymous")
+
+    this.shadowRoot.append(style, card, bootstrap, fontAwesome)
   }
 
   get data () {
@@ -141,12 +141,12 @@ class recipeCard extends HTMLElement {
         <div class="rounded">
           <aside id ="card-visuals">
             <fig id="visual">
-              <img id="recipe-image" class="justify-content-center" src="" alt="recipe-image"/>
+              <img id="recipe-image" src="" alt="recipe-image"/>
               <figcaption class="justify-content-center" id="recipe-dietary">
-                  <img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width="30px" height="30px" hidden alt="Dairy Free"/>
-                  <img id="gluten-free" src="./assets/icons/dietary/gluten-free.png" width="30px" height="30px" hidden alt="Gluten Free"/>
-                  <img id="vegan" src="./assets/icons/dietary/vegan.png" width="30px" height="30px" hidden alt="Vegan"/>
-                  <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width ="30px" height ="30px" hidden alt="Vegetarian"/>
+                  <img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" alt="Dairy Free"/>
+                  <img id="gluten-free" src="./assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" alt="Gluten Free"/>
+                  <img id="vegan" src="./assets/icons/dietary/vegan.png" width = "30px" height = "30px" alt="Vegan"/>
+                  <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" alt="Vegetarian"/>
               </figcaption>
             </fig>
           </aside>
@@ -154,14 +154,14 @@ class recipeCard extends HTMLElement {
       </div>
       <div id="card-information" class="col my-auto">
         <div class="card">
-          <div class="card-header" id="recipe-title"></div>
+          <div class="card-header" id="recipe-title"> Recipe Title </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item" id="recipe-price"></li>
-            <li class="list-group-item" id="recipe-servings"></li>
-            <li class="list-group-item" id="recipe-cooking-time"></li>
-            <li class="list-group-item" id="recipe-calories"></li>
-            <li class="list-group-item" id="recipe-total-calories"></li>
-            <li class="list-group-item" id="recipe-score"></li>
+            <li class="list-group-item" id="recipe-price"> Price </li>
+            <li class="list-group-item" id="recipe-servings"> Recipe Servings </li>
+            <li class="list-group-item" id="recipe-cooking-time"> Time </li>
+            <li class="list-group-item" id="recipe-score"> Recipe Score </li>
+            <li class="list-group-item" id="recipe-calories"> Calories Per Serving </li>
+            <li class="list-group-item" id="recipe-total-calories"> Total Calories</li>
           </ul>
         </div>
       </div>
