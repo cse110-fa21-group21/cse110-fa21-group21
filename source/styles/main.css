@@ -7,19 +7,16 @@
 }
 
 body {
-  background-color: #ffd2cf;
+  background-color: #fff;
 }
 
+/* css for home page */
 .center-home-icon {
   display: block;
   position: relative;
   margin-left: auto;
   margin-right: auto;
   margin-top: 7%;
-}
-
-.homepage-search-bar {
-  text-align: center;
 }
 
 #homepage-search-bar,
@@ -33,43 +30,41 @@ body {
   font-size: 30px;
   font-weight: bold;
   border-radius: 10%;
-  background-color: #ffa399;
+  background-color: #ffe293;
 }
 
-.home-button,
-.favorite-list-button,
-.shopping-list-button {
+/* css for top bar */
+.topbar {
+  height: 150px;
+  background-color: #966751;
+}
+
+.topbar a {
   display: inline-block;
-  position: absolute;
-  top: 10px;
-  right: 0;
-  padding: 0.1%;
-  text-decoration: none;
-  font-size: 25px;
+  color: black;
+  background-color: #ffe293;
+  font-size: 20px;
+  padding: 3px 10px;
+  border-radius: 3px;
 }
 
-#home-button {
-  background-color: #ffa399;
-  width: 70px;
+.topbar .ml-auto {
   position: absolute;
-  top: 5px;
-  right: 230px;
+  top: 120px;
+  right: 15px;
 }
 
-#favorite-list-button {
-  background-color: #ffa399;
-  width: 90px;
-  position: absolute;
-  top: 5px;
-  right: 135px;
+#nav-search-btn {
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 10%;
+  background-color: #ffe293;
 }
 
-#shopping-list-button {
-  background-color: #ffa399;
-  width: 120px;
+.nav-search-bar {
   position: absolute;
-  top: 5px;
-  right: 10px;
+  top: 130px;
+  left: 15px;
 }
 
 .home-icon,
@@ -109,6 +104,30 @@ section:not(section.shown) {
   width: 100%;
 }
 
+.section-recipe-cards-wrapper {
+  padding: 10px;
+  height: 70%;
+  width: 70%;
+}
+
+.homepage-search,
+.featured-recipes {
+  float: left;
+  width: 50%;
+  text-align: center;
+}
+
 recipe-card {
   margin: 20px;
+}
+
+/* css for the filter page */
+fieldset {
+  width: 170px;
+  background-color: #fff4e6;
+}
+
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
 }
