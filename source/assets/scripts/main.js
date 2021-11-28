@@ -2,7 +2,10 @@
 
 import { Router } from "../scripts/Router.js";
 import { Filter } from "../scripts/filter.js";
+let myStorage = window.localStorage;
 const apiKey = "52121edf0f71442dbf23b640dbe1ad78" ;
+const navSearchBar = document.querySelector('#nav-search-bar');
+const navSearch = document.querySelector('#nav-search-btn');
 const searchBar = document.getElementById("homepage-search-bar");
 const search = document.getElementById("homepage-search-btn");
 const MAX_NUM_RECIPE_CARDS = 30;
@@ -36,6 +39,7 @@ const funcArray = [];
  * no recipecard or recipeview
  */
 const router = new Router(function () {
+  removeFavoriteList();
   document
     .querySelector(".section-recipe-cards-wrapper")
     .classList.remove("shown");
@@ -48,6 +52,9 @@ const router = new Router(function () {
   document
     .querySelector(".nav-search-bar")
     .classList.add("hidden");
+  document
+    .querySelector(".my-favorite-list")
+    .classList.remove("shown");
   searchFilter.classList.add("shown");
 });
 
@@ -58,7 +65,9 @@ window.addEventListener("DOMContentLoaded", init);
 async function init() {
   bindSearch();
   bindState();
+  bindNavSearch();
   filter.filtering();
+  bindFavoriteList();
 }
 
 /**
@@ -91,6 +100,37 @@ async function bindSearch() {
     
   });
 }
+
+/**
+ * create functionality for navSearch where user can search again in result page
+ * 
+ */
+async function bindNavSearch() {
+  navSearchBar.addEventListener("input", (event) => {
+    navSearchBar.textContent = event.target.value;
+  });
+
+  navSearch.addEventListener("click", () => {
+    searchQuery = navSearchBar.textContent;
+    if (
+      !searchQueryHistory.includes(searchQuery) &&
+      !(searchQuery in recipesID)
+    ) {
+      // This is slightly flawed. We don't want to only store search history but rather by title?
+      console.log("Original query, fetching data!");
+      searchQueryHistory.push(searchQuery);
+      baseURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${searchQuery}&instructions=true&addRecipeInformation=true&addRecipeNutrition=true&number=30&price=true`;
+      fetchAPI(searchQuery);
+    } else {
+      // All of this should be integrated into a service worker, just a thought
+      console.log("Unoriginal query, no need to fetch it!");
+      console.log(recipesID);
+      bindRecipeCards(searchQuery);
+    }
+    
+  });
+}
+
 
 /**
  * Fetches the url equivalent of query from the Spoonacular API. Adds recipes
@@ -199,6 +239,14 @@ function bindRecipeCards(query) {
       bindRecipeViewers(recipeCard, page);
       cardIndex++;
     }
+    while(cardIndex < MAX_NUM_RECIPE_CARDS){
+      const recipeCardsWrapper = document.querySelector(
+        ".section-recipe-cards-wrapper"
+      );
+      let recipeCard = recipeCardsWrapper.children[cardIndex];
+      bindRecipeViewers(recipeCard, '');
+      cardIndex++;
+    }
   });
   router.goTo(query);
 }
@@ -218,6 +266,69 @@ function bindRecipeViewers(recipeCard, pageName) {
   }
   recipeCard.addEventListener("click", event);
   funcArray.push(event);
+}
+
+
+/**
+ * function that connect FavoriteList button to display
+ * users' favorite recipe
+ */
+ function bindFavoriteList(){
+  const favButton = document.querySelector('#fav')
+  favButton.addEventListener('click', event =>{
+    let page = 'favoriteList';
+    let numidx = 0;
+    router.insertPage(page, function(){
+      removeFavoriteList()
+      let favoriteList = document.querySelector(".my-favorite-list");
+      let recipeViewer = document.querySelector(".section-recipe-viewers-wrapper");
+      let homePageSearch = document.querySelector(".section-home-page");
+
+      favoriteList.classList.add("shown");
+      recipeViewer.classList.remove("shown");
+      searchFilter.classList.remove("shown");
+      homePageSearch.classList.remove("shown");
+
+      for(let i = 0; i < myStorage.length; i++){
+        console.log(JSON.parse(myStorage.getItem(myStorage.key(i))))
+        let favoriteCard = document.createElement('recipe-card')
+        favoriteList.appendChild(favoriteCard)
+        favoriteCard.data = JSON.parse(myStorage.getItem(myStorage.key(i)))
+        let favoritePage = 'favoriteList' + myStorage.key(i);
+        router.insertPage(favoritePage, function(){
+          const recipeViewersWrapper = document.querySelector(".section-recipe-viewers-wrapper");
+          
+          searchFilter.classList.remove("shown");
+          favoriteList.classList.remove("shown");
+          recipeViewersWrapper.classList.add("shown");
+          
+          document.querySelector("recipe-viewer").data = JSON.parse(myStorage.getItem(myStorage.key(i)));
+        })
+        bindRecipeViewers(favoriteCard, favoritePage);
+        numidx++;
+      }
+      while(numidx < MAX_NUM_RECIPE_CARDS){
+        function nothing(){
+
+        }
+        funcArray.push(nothing);
+        numidx++;
+      }
+    })
+    router.goTo(page);
+    console.log(document.querySelector('.my-favorite-list').classList);
+  })
+}
+
+/**
+ * function that use to remove favorite list's recipe card 
+ * when going back to the main page
+ */
+function removeFavoriteList(){
+  let favoriteList = document.querySelector(".my-favorite-list")
+  while(favoriteList.firstChild){
+    favoriteList.removeChild(favoriteList.firstChild)
+  }
 }
 
 /**
