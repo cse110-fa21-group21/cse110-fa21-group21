@@ -2,7 +2,7 @@
 
 import { Router } from "../scripts/Router.js";
 import { Filter } from "../scripts/filter.js";
-const apiKey = "d7a805d987074402904a262f602c7844";
+const apiKey = "19e32de046cf427cb34e9617e388133d";
 const searchBar = document.getElementById("homepage-search-bar");
 const search = document.getElementById("homepage-search-btn");
 const MAX_NUM_RECIPE_CARDS = 30;
@@ -50,6 +50,7 @@ window.addEventListener("DOMContentLoaded", init);
 async function init() {
   bindSearch();
   bindState();
+  fetchRandomAPI();
   filter.filtering();
 }
 
@@ -107,6 +108,23 @@ async function fetchAPI(query) {
   filter.filtering();
 }
 
+async function fetchRandomAPI() {
+  let randomURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${searchQuery}&instructions=true&addRecipeInformation=true&addRecipeNutrition=true&number=30&price=true&sort=random`;
+
+  await fetch(randomURL)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data.results);
+      for (let i = 0; i < data.results.length; i++) {
+        // add a new entry to the recipesID object
+        recipesID[data.results[i].title] = data.results[i];
+      }
+    });
+  console.log(recipesID.length);
+  bindRecipeCards("");
+  filter.filtering();
+}
+
 /**
  * function that use the router to go to the page users requested
  * it add the route for the search page into the router
@@ -141,6 +159,8 @@ function bindRecipeCards(query) {
      */
     for (const recipeTitle in recipesID) {
       if (recipeTitle.toLocaleLowerCase().includes(query.toLocaleLowerCase())) {
+        recipeArray.push(recipeTitle);
+      } else if (query === "") {
         recipeArray.push(recipeTitle);
       }
     }
