@@ -6,6 +6,7 @@ class recipeCard extends HTMLElement {
     this.attachShadow({ mode: 'open' })
 
     const card = document.createElement('section')
+    card.setAttribute('id','shadow')
     card.classList.add('card')
     card.classList.add('container')
     card.classList.add('p-3')
@@ -13,6 +14,14 @@ class recipeCard extends HTMLElement {
     style.innerHTML = `
       @import "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css";
 
+      #shadow {
+        border: solid black 2px;
+        border-radius: 20px;
+      }
+
+      #card-information{
+        margin-right: 20px;
+      }
       #recipe-title {
         text-align: center;
         font-size: x-large;
@@ -26,13 +35,13 @@ class recipeCard extends HTMLElement {
         width: auto;
         height: auto;
         border-radius: 10px;
+        margin-top: 20px;
       }
       
       #recipe-image {
         display: block;
         width: 70%;
-        padding: 20px;
-        border-radius: 10px;
+        border-radius: 20px;
         margin-left: auto;
         margin-right: auto;
       }
@@ -85,7 +94,7 @@ class recipeCard extends HTMLElement {
         </aside>
       </div>
     </div>
-    <div class="col my-auto">
+    <div id="card-information" class="col my-auto">
       <div class="card">
         <div class="card-header" id="recipe-title"></div>
         <ul class="list-group list-group-flush">
@@ -143,7 +152,7 @@ class recipeCard extends HTMLElement {
           </aside>
         </div>
       </div>
-      <div class="col my-auto">
+      <div id="card-information" class="col my-auto">
         <div class="card">
           <div class="card-header" id="recipe-title"></div>
           <ul class="list-group list-group-flush">

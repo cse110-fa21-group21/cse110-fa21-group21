@@ -1,5 +1,9 @@
 /** recipeViewer.css */
 
+body {
+  background-color: blanchedalmond;
+}
+
 .flex-container {
   display: flex;
   justify-content: center;
@@ -11,6 +15,7 @@
   font-size: xx-large;
   border: 2.5px solid;
   border-radius: 10px;
+  background-color: white;
 }
 
 #recipe-image {
@@ -37,6 +42,7 @@
   padding: 25px;
   width: 300px;
   margin: 20px auto;
+  background-color: white;
 }
 
 #recipe-ingredients {
@@ -49,6 +55,7 @@
   position: sticky;
   align-self: flex-start;
   top: 0;
+  background-color: white;
 }
 
 #recipe-dietary {

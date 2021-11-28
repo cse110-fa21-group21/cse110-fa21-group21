@@ -78,7 +78,7 @@ class recipeViewer extends HTMLElement {
     const viewer  = document.createElement('section')
     viewer.innerHTML = `
     <main id = "card-information">
-      <button>Favorite</button>
+    <button>Add Favorite</button>
         <div id = "recipe-title"></div> 
         <section class = "flex-container">
           <div id = "left-flex">
@@ -133,7 +133,7 @@ class recipeViewer extends HTMLElement {
 
     this.shadowRoot.querySelector('section').innerHTML = `
     <main id = "card-information">
-      <button>Favorite</button>
+    <button>Add Favorite</button>
         <div id = "recipe-title"></div> 
         <section class = "flex-container">
           <div id = "left-flex">
@@ -213,14 +213,26 @@ class recipeViewer extends HTMLElement {
     if (dietary.vegetarian) { this.shadowRoot.getElementById('vegetarian').removeAttribute('hidden') }
     if (dietary['gluten-free']) { this.shadowRoot.getElementById('gluten-free').removeAttribute('hidden') }
     if (dietary['dairy-free']) { this.shadowRoot.getElementById('dairy-free').removeAttribute('hidden') }
-
-    //set favorite Button functionality
+    
+    //determine the text on button
     const favoriteButton = this.shadowRoot.querySelector('button');
+    if(myStorage.getItem(title) != undefined){
+      favoriteButton.textContent = "Remove Favorite"
+    }
+    
+    //set favorite Button functionality
     favoriteButton.addEventListener('click', event =>{
-      myStorage.setItem(title,JSON.stringify(data))
-      alert('Added to Favorite List')
-    })
+      if(favoriteButton.textContent == "Add Favorite"){
+        myStorage.setItem(title,JSON.stringify(data))
+        alert('Added to Favorite List')
+        favoriteButton.textContent = "Remove Favorite"
+      }
+      else if(favoriteButton.textContent == "Remove Favorite"){
+        myStorage.removeItem(title)
+        alert('Removed from Favorite List')
+        favoriteButton.textContent = "Add Favorite"
+      }
+   })
   }
 }
-
 customElements.define('recipe-viewer', recipeViewer)
