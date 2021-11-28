@@ -1,15 +1,21 @@
 /**
-  recipeCard.css
+  altRecipeCard.css
   "I put in some basic CSS to get you all started. I've already imported bootstrap so feel free to
   use it. I would recommend the 'card' component." - Jonathan
 **/
 
+/* .card-container {
+  background-color: wheat;
+}
+
 #recipe-title {
   text-align: center;
   margin: 20px;
-  font-size: x-large;
+  font-size: xx-large;
   border: 2.5px solid;
   border-radius: 10px;
+  padding: 10px;
+  background-color: white;
 }
 
 #recipe-dietary {
@@ -38,47 +44,114 @@
 #recipe-price {
   text-align: left;
   margin: 20px;
-  font-size: x-large;
   border: 2.5px solid;
   border-radius: 10px;
+  padding: 10px;
+  background-color: white;
 }
 
 #recipe-servings {
   text-align: left;
   margin: 20px;
-  font-size: x-large;
   border: 2.5px solid;
   border-radius: 10px;
+  padding: 10px;
+  background-color: white;
 }
 
 #recipe-cooking-time {
   text-align: left;
   margin: 20px;
-  font-size: x-large;
   border: 2.5px solid;
   border-radius: 10px;
+  padding: 10px;
+  background-color: white;
 }
 
 #recipe-calories {
   text-align: left;
   margin: 20px;
-  font-size: x-large;
   border: 2.5px solid;
   border-radius: 10px;
+  padding: 10px;
+  background-color: white;
 }
 
 #recipe-score {
   text-align: left;
+  vertical-align: middle;
   margin: 20px;
-  font-size: x-large;
   border: 2.5px solid;
   border-radius: 10px;
+  padding: 10px;
+  background-color: white;
 }
 
 #recipe-total-calories {
   text-align: left;
   margin: 20px;
-  font-size: x-large;
   border: 2.5px solid;
   border-radius: 10px;
+  padding: 10px;
+  background-color: white;
+} */
+
+/* NEW VERSION OF THE RECIPE CARD */
+
+#shadow {
+  border: solid black 2px;
+  border-radius: 20px;
+  background-color: #ffe293;
+}
+
+#card-information {
+  margin-right: 20px;
+}
+
+#recipe-title {
+  text-align: center;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+#recipe-dietary {
+  display: flex;
+  max-width: 600px;
+  max-height: 500px;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+#recipe-image {
+  display: block;
+  width: 70%;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#recipe-price {
+  text-align: left;
+}
+
+#recipe-servings {
+  text-align: left;
+}
+
+#recipe-cooking-time {
+  text-align: left;
+}
+
+#recipe-calories {
+  text-align: left;
+}
+
+#recipe-score {
+  text-align: left;
+}
+
+#recipe-total-calories {
+  text-align: left;
 }
