@@ -35,6 +35,9 @@ const funcArray = [];
  */
 const router = new Router(function () {
   document
+  .querySelector(".search-filter")
+  .classList.remove("shown");
+  document
     .querySelector(".section-recipe-cards-wrapper")
     .classList.remove("shown");
   document
@@ -46,7 +49,6 @@ const router = new Router(function () {
   document
     .querySelector(".nav-search-bar")
     .classList.add("hidden");
-  searchFilter.classList.add("shown");
 });
 
 const filter = new Filter();
