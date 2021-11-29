@@ -19,10 +19,6 @@ body {
   margin-top: 7%;
 }
 
-.homepage-search-bar {
-  text-align: center;
-}
-
 #homepage-search-bar,
 #homepage-search-btn {
   display: inline;
@@ -108,6 +104,19 @@ section:not(section.shown) {
   width: 100%;
 }
 
+.section-recipe-cards-wrapper {
+  padding: 10px;
+  height: 70%;
+  width: 70%;
+}
+
+.homepage-search,
+.featured-recipes {
+  float: left;
+  width: 50%;
+  text-align: center;
+}
+
 recipe-card {
   margin: 20px;
 }
@@ -120,4 +129,5 @@ fieldset {
 
 .flex-container {
   display: flex;
+  flex-flow: row wrap;
 }

@@ -73,7 +73,35 @@ class recipeViewer extends HTMLElement {
     ol li,
     ul li {
       padding: 5px 0;
-    }        
+    }
+
+    .favorite-button {
+      justify-items: center;
+      display: grid;
+      position: absolute;
+      left: 50px;
+    }
+
+    .favorite-button>button {
+      background-color: white;
+      border: 1px solid #000;
+      border-radius: 20px;
+      padding: 8px 20px 8px 50px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .favorite-button>button:hover {
+      cursor: pointer;
+      filter: brightness(96%);
+    }
+
+    .favorite-button>img {
+      position: absolute;
+      margin-left: -150px;
+      margin-top: 3px;
+      z-index: 3;
+    }
     `
     const viewer  = document.createElement('section')
     viewer.innerHTML = `
@@ -133,8 +161,11 @@ class recipeViewer extends HTMLElement {
 
     this.shadowRoot.querySelector('section').innerHTML = `
     <main id = "card-information">
-    <button>Add Favorite</button>
-        <div id = "recipe-title"></div> 
+        <div id = "recipe-title"></div>
+        <div class = "favorite-button">
+          <img id = "fav-btn" src="./assets/icons/favorite/favorite-blank.png" width = "30px" height = "30px" alt="favorite button">
+          <button>Favorite the Recipe</button>
+        </div>
         <section class = "flex-container">
           <div id = "left-flex">
             <aside id = "card-visuals">
@@ -216,21 +247,23 @@ class recipeViewer extends HTMLElement {
     
     //determine the text on button
     const favoriteButton = this.shadowRoot.querySelector('button');
+    const favImg = this.shadowRoot.querySelector('#fav-btn');
     if(myStorage.getItem(title) != undefined){
-      favoriteButton.textContent = "Remove Favorite"
+      favoriteButton.textContent = "Remove the Favorite"
+      favImg.setAttribute('src', "./assets/icons/favorite/favorite-yellow.png")
     }
     
     //set favorite Button functionality
     favoriteButton.addEventListener('click', event =>{
-      if(favoriteButton.textContent == "Add Favorite"){
+      if(favoriteButton.textContent == "Favorite the Recipe"){
         myStorage.setItem(title,JSON.stringify(data))
-        alert('Added to Favorite List')
-        favoriteButton.textContent = "Remove Favorite"
+        favoriteButton.textContent = "Remove the Favorite"
+        favImg.setAttribute('src', "./assets/icons/favorite/favorite-yellow.png")
       }
-      else if(favoriteButton.textContent == "Remove Favorite"){
+      else if(favoriteButton.textContent == "Remove the Favorite"){
         myStorage.removeItem(title)
-        alert('Removed from Favorite List')
-        favoriteButton.textContent = "Add Favorite"
+        favoriteButton.textContent = "Favorite the Recipe"
+        favImg.setAttribute('src', "./assets/icons/favorite/favorite-blank.png")
       }
    })
   }
