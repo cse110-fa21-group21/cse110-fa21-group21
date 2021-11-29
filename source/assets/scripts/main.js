@@ -67,6 +67,7 @@ async function init() {
   bindState();
   filter.filtering();
   bindFavoriteList();
+  bindHomeButton();
 }
 
 /**
@@ -187,6 +188,7 @@ async function fetchRandomAPI() {
   bindRecipeCards("");
   filter.filtering();
 }
+
 
 /****************************************************************************
  *                      RECIPE CARDS
@@ -339,6 +341,16 @@ function bindState () {
       router.goTo(event.state, true)
     }
     filter.filtering()
+  })
+}
+/**
+ * Bind Home button to navigate to home
+ * 
+ */
+ function bindHomeButton(){
+  const homeButton = document.querySelector('button#home')
+  homeButton.addEventListener('click', event =>{
+    router.goTo('home', true);
   })
 }
 
