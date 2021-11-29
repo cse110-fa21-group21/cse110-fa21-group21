@@ -2,6 +2,7 @@
 
 import { Spoonacular } from '../../scripts/spoonacular.js'
 const spoonacular = new Spoonacular()
+let myStorage = window.localStorage
 
 class recipeViewer extends HTMLElement {
   constructor () {
@@ -122,7 +123,28 @@ class recipeViewer extends HTMLElement {
     if (dietary.vegetarian) { this.shadowRoot.getElementById('vegetarian').removeAttribute('hidden') }
     if (dietary['gluten-free']) { this.shadowRoot.getElementById('gluten-free').removeAttribute('hidden') }
     if (dietary['dairy-free']) { this.shadowRoot.getElementById('dairy-free').removeAttribute('hidden') }
+    
+    //determine the text on button
+    const favoriteButton = this.shadowRoot.querySelector('button');
+    const favImg = this.shadowRoot.querySelector('#fav-btn');
+    if(myStorage.getItem(title) != undefined){
+      favoriteButton.textContent = "Remove the Favorite"
+      favImg.setAttribute('src', "./assets/icons/favorite/favorite-yellow.png")
+    }
+    
+    //set favorite Button functionality
+    favoriteButton.addEventListener('click', () => {
+      if(favoriteButton.textContent == "Favorite the Recipe"){
+        myStorage.setItem(title,JSON.stringify(data))
+        favoriteButton.textContent = "Remove the Favorite"
+        favImg.setAttribute('src', "./assets/icons/favorite/favorite-yellow.png")
+      }
+      else if(favoriteButton.textContent == "Remove the Favorite"){
+        myStorage.removeItem(title)
+        favoriteButton.textContent = "Favorite the Recipe"
+        favImg.setAttribute('src', "./assets/icons/favorite/favorite-blank.png")
+      }
+   })
   }
 }
-
 customElements.define('recipe-viewer', recipeViewer)

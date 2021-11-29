@@ -39,7 +39,7 @@ body {
   background-color: #966751;
 }
 
-.topbar a {
+.topbar button {
   display: inline-block;
   color: black;
   background-color: #ffe293;

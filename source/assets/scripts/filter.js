@@ -562,8 +562,6 @@ export class Filter {
     defaultOption.innerHTML = "---Pick a Cuisine to Filter By---";
     cuisineSelector.add(defaultOption, null);
 
-    console.log(cuisineSelector);
-
     cuisines.forEach((cuisine) => {
       let cuisineOption = document.createElement("option");
       cuisineOption.value = cuisine;
