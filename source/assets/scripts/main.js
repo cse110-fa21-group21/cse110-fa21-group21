@@ -350,7 +350,7 @@ function bindState () {
  function bindHomeButton(){
   const homeButton = document.querySelector('button#home')
   homeButton.addEventListener('click', event =>{
-    router.goTo('home', true);
+    router.goTo('home', false);
   })
 }
 
