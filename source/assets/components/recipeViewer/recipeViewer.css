@@ -70,7 +70,7 @@ ul li {
   left: 50px;
 }
 
-.favorite-button>button {
+.favorite-button > button {
   background-color: white;
   border: 1px solid #000;
   border-radius: 20px;
@@ -79,12 +79,12 @@ ul li {
   z-index: 2;
 }
 
-.favorite-button>button:hover {
+.favorite-button > button:hover {
   cursor: pointer;
   filter: brightness(96%);
 }
 
-.favorite-button>img {
+.favorite-button > img {
   position: absolute;
   margin-left: -150px;
   margin-top: 3px;
