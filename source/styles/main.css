@@ -131,18 +131,21 @@ fieldset {
   display: flex;
   flex-flow: row wrap;
 }
-@media only screen and (max-width: 800px) {
 
+@media only screen and (max-width: 800px) {
   /* not working right now */
   .favorite-icon,
   .shopping-list-icon,
   .home-icon {
     height: 300px;
-
   }
 
-  .flex-container, fieldset, .shown { 
+  .flex-container,
+  fieldset,
+  .shown { 
+    
     width: 90%;
+    
   }
 
   input[type="checkbox"] {
