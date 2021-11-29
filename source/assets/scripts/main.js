@@ -88,7 +88,7 @@ async function bindHomeSearch() {
       console.log("Original query, fetching data!");
       searchQueryHistory.push(searchQuery);
       baseURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${searchQuery}&instructions=true&addRecipeInformation=true&addRecipeNutrition=true&number=30&price=true`;
-      await fetchAPI(searchQuery);
+      fetchAPI(searchQuery);
     } else {
       // All of this should be integrated into a service worker, just a thought
       console.log("Unoriginal query, no need to fetch it!");
@@ -118,7 +118,7 @@ async function bindNavSearch() {
       console.log("Original query, fetching data!");
       searchQueryHistory.push(searchQuery);
       baseURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${searchQuery}&instructions=true&addRecipeInformation=true&addRecipeNutrition=true&number=30&price=true`;
-      await fetchAPI(searchQuery);
+      fetchAPI(searchQuery);
     } else {
       // All of this should be integrated into a service worker, just a thought
       console.log("Unoriginal query, no need to fetch it!");
