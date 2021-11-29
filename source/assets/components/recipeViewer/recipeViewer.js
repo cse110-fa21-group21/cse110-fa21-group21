@@ -1,6 +1,6 @@
 // recipeViewer.js
 
-import { Spoonacular } from '../scripts/spoonacular.js'
+import { Spoonacular } from '../../scripts/spoonacular.js'
 const spoonacular = new Spoonacular()
 let myStorage = window.localStorage
 
@@ -8,144 +8,23 @@ class recipeViewer extends HTMLElement {
   constructor () {
     super()
     this.attachShadow({ mode: 'open' })
-    const style = document.createElement('style');
-    style.innerHTML = `
-    @import "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css";
-    .flex-container {
-      display: flex;
-      justify-content: center;
-    }
-    
-    #recipe-title {
-      text-align: center;
-      margin: 20px;
-      font-size: xx-large;
-      border: 2.5px solid;
-      border-radius: 10px;
-    }
-    
-    #recipe-image {
-      display: block;
-      max-width: 600px;
-      max-height: 500px;
-      width: auto;
-      height: auto;
-      margin-left: auto;
-      margin-right: auto;
-      margin-bottom: 20px;
-      border-radius: 10px;
-    }
-    
-    #left-flex {
-      width: 60%;
-    }
-    
-    #info-container {
-      display: block;
-      text-align: justify;
-      border: 2px solid;
-      border-radius: 10px;
-      padding: 25px;
-      width: 300px;
-      margin: 20px auto;
-    }
-    
-    #recipe-ingredients {
-      border: 2.5px solid;
-      border-radius: 10px;
-      padding: 30px;
-      margin-left: auto;
-      margin-right: auto;
-      width: 350px;
-      position: sticky;
-      align-self: flex-start;
-      top: 0;
-    }
-    
-    #recipe-dietary {
-      text-align: center;
-    }
-    
-    #recipe-instructions {
-      margin-left: 30px;
-    }
-    
-    ol li,
-    ul li {
-      padding: 5px 0;
-    }
 
-    .favorite-button {
-      justify-items: center;
-      display: grid;
-      position: absolute;
-      left: 50px;
-    }
+    this.shadowRoot.innerHTML = `
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <!-- Local StyleSheets -->
+    <link rel="stylesheet" href="./assets/components/recipeViewer/recipeViewer.css">
 
-    .favorite-button>button {
-      background-color: white;
-      border: 1px solid #000;
-      border-radius: 20px;
-      padding: 8px 20px 8px 50px;
-      position: relative;
-      z-index: 2;
-    }
+    <!-- The Viewer Itself -->
+    <section id="shadow"></section>
 
-    .favorite-button>button:hover {
-      cursor: pointer;
-      filter: brightness(96%);
-    }
-
-    .favorite-button>img {
-      position: absolute;
-      margin-left: -150px;
-      margin-top: 3px;
-      z-index: 3;
-    }
+    <!-- Bootstrap JS -->
+    <script 
+     src = "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+     integrity = "sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+     crossorigin = "anonymous"></script>
     `
-    const viewer  = document.createElement('section')
-    viewer.innerHTML = `
-    <main id = "card-information">
-    <button>Add Favorite</button>
-        <div id = "recipe-title"></div> 
-        <section class = "flex-container">
-          <div id = "left-flex">
-            <aside id = "card-visuals">
-              <fig id = "visual">
-                <img id = "recipe-image" src="" alt="recipe-image"/>
-                <figcaption id = "recipe-dietary">
-                  <img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
-                  <img id="gluten-free" src="./assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" hidden alt="Gluten Free"/>
-                  <img id="vegan" src="./assets/icons/dietary/vegan.png" width = "30px" height = "30px" hidden alt="Vegan"/>
-                  <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
-                </figcaption>
-              </fig>
-            </aside>
-            
-            <div id = "info-container">
-              <div id = "recipe-price"> </div>
-              <div id = "recipe-cooking-time"> </div>
-              <div id = "recipe-servings"></div>
-              <div id = "recipe-calories"> </div> 
-              <div id = "recipe-total-calories"></div>
-              <div id = "recipe-score"></div>
-            </div>
-
-            <div id = "recipe-instructions"> </div> 
-          </div>
-
-          <div id = "right-flex">
-            <div id = "recipe-ingredients"> </div>
-          </div>
-        </section> 
-      </main>
-    `
-    const bootstrap = document.createElement('script')
-    bootstrap.setAttribute('src','https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js')
-    bootstrap.setAttribute('integrity','sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM')
-    bootstrap.setAttribute('crossorigin','anonymous')
-
-    this.shadowRoot.append(style, viewer, bootstrap)
   }
 
   get data () {
@@ -254,7 +133,7 @@ class recipeViewer extends HTMLElement {
     }
     
     //set favorite Button functionality
-    favoriteButton.addEventListener('click', event =>{
+    favoriteButton.addEventListener('click', () => {
       if(favoriteButton.textContent == "Favorite the Recipe"){
         myStorage.setItem(title,JSON.stringify(data))
         favoriteButton.textContent = "Remove the Favorite"
