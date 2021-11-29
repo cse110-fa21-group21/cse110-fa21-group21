@@ -1,5 +1,5 @@
 # Test home page e2e
-name: WebPage End-to-End Test
+name: WebPage Unit & End-to-End Test
 
 on:
   push:
@@ -15,5 +15,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install modules
       run: npm install --save-dev jest babel-jest @babel/core @babel/preset-env puppeteer jest-puppeteer
+    - name: Unit test
+      run: npm test ./source/assets/_tests_/unit.test.js
     - name: E2E test
-      run: npm test
+      run: npm test ./source/assets/_tests_/e2e.test.js
