@@ -3,7 +3,7 @@
 import { Router } from "../scripts/Router.js";
 import { Filter } from "../scripts/filter.js";
 
-const apiKey = "54a305b43853416198613d4aaaed7b01" ;
+const apiKey = "6a88c5a5ad1447be91b3b7c17de27b39" ;
 const MAX_NUM_RECIPE_CARDS = 30;
 const searchFilter = document.querySelector(".search-filter");
 
