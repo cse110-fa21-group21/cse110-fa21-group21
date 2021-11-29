@@ -72,7 +72,35 @@ class recipeViewer extends HTMLElement {
     ol li,
     ul li {
       padding: 5px 0;
-    }        
+    }
+
+    .favorite-button {
+      justify-items: center;
+      display: grid;
+      position: absolute;
+      left: 50px;
+    }
+
+    .favorite-button>button {
+      background-color: white;
+      border: 1px solid #000;
+      border-radius: 20px;
+      padding: 8px 20px 8px 50px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .favorite-button>button:hover {
+      cursor: pointer;
+      filter: brightness(96%);
+    }
+
+    .favorite-button>img {
+      position: absolute;
+      margin-left: -150px;
+      margin-top: 3px;
+      z-index: 3;
+    }
     `
     const viewer  = document.createElement('section')
     viewer.innerHTML = `
@@ -131,7 +159,11 @@ class recipeViewer extends HTMLElement {
 
     this.shadowRoot.querySelector('section').innerHTML = `
     <main id = "card-information">
-        <div id = "recipe-title"></div> 
+        <div id = "recipe-title"></div>
+        <div class = "favorite-button">
+          <img id = "fav-btn" src="./assets/icons/favorite/favorite-blank.png" width = "30px" height = "30px" alt="favorite button">
+          <button>Favorite the Recipe</button>
+        </div>
         <section class = "flex-container">
           <div id = "left-flex">
             <aside id = "card-visuals">
