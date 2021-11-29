@@ -1,5 +1,3 @@
-import { expect } from "@jest/globals";
-
 describe('Basic user flow for Website', () => {
     // First, visit the lab 8 website
     beforeAll(async () => {
@@ -36,17 +34,17 @@ describe('Basic user flow for Website', () => {
         expect(page.url()).toBe("https://group21-recipe.netlify.app/#shopList");
     });
 
-    /*
+    
     // Check Search returns 30 recipe cards
     it('Check Search returns 30 recipe cards', async () => {
         console.log('Checking Search result length with "Rice"...');
         // Search up rice from Homepage
         await page.$eval('#homepage-search-bar', (el) => el.value = 'rice');
-        await page.click('homepage-search-btn');
+        await page.click('#homepage-search-btn');
         // 
-        const numRecipes = await page.$$eval('recipe-card#card-*', (recipeItems) => {
+        const numRecipes = await page.$$eval('.section-recipe-cards-wrapper > recipe-card', (recipeItems) => {
             return recipeItems.length;
         });
         expect(numRecipes).toBe(30);
-    });*/
+    });
   });
