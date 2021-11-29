@@ -4,7 +4,7 @@ describe('Basic user flow for Website', () => {
       await page.goto('https://group21-recipe.netlify.app/');
     });
 
-    // Check Home Button leads to home
+    // 1. Check Home Button leads to home
     it('Check home button leads to home', async () => {
         console.log('Checking Home button is functional...');
         // Click on Home Button
@@ -14,7 +14,7 @@ describe('Basic user flow for Website', () => {
         expect(page.url()).toBe("https://group21-recipe.netlify.app/#home");
     });
 
-    // Check Fav Button leads to Fav
+    // 2. Check Fav Button leads to Fav
     it('Check Fav button leads to Fav', async () => {
         console.log('Checking Fav button is functional...');
         // Click on Fav Button
@@ -24,7 +24,7 @@ describe('Basic user flow for Website', () => {
         expect(page.url()).toBe("https://group21-recipe.netlify.app/#fav");
     });
 
-    // Check shopList Button leads to shopList
+    // 3. Check shopList Button leads to shopList
     it('Check shopList button leads to shopList', async () => {
         console.log('Checking shopList button is functional...');
         // Click on shopList Button
@@ -35,7 +35,7 @@ describe('Basic user flow for Website', () => {
     });
 
     
-    // Check Search returns 30 recipe cards
+    // 4. Check Search returns 30 recipe cards
     it('Check Search returns 30 recipe cards', async () => {
         console.log('Checking Search result length with "Rice"...');
         // Search up rice from Homepage
