@@ -143,9 +143,7 @@ fieldset {
   .flex-container,
   fieldset,
   .shown { 
-    
     width: 90%;
-    
   }
 
   input[type="checkbox"] {
@@ -158,4 +156,3 @@ fieldset {
   .topbar {
     display: flex;
   }
-}
