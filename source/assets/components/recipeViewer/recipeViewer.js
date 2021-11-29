@@ -39,7 +39,11 @@ class recipeViewer extends HTMLElement {
 
     this.shadowRoot.querySelector('section').innerHTML = `
     <main id = "card-information">
-        <div id = "recipe-title"></div> 
+        <div id = "recipe-title"></div>
+        <div class = "favorite-button">
+          <img id = "fav-btn" src="./assets/icons/favorite/favorite-blank.png" width = "30px" height = "30px" alt="favorite button">
+          <button>Favorite the Recipe</button>
+        </div>
         <section class = "flex-container">
           <div id = "left-flex">
             <aside id = "card-visuals">
