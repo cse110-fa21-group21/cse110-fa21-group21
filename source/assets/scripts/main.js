@@ -1,5 +1,4 @@
 // main.js
-
 import { Router } from "../scripts/Router.js";
 import { Filter } from "../scripts/filter.js";
 const apiKey = "52121edf0f71442dbf23b640dbe1ad78" ;
