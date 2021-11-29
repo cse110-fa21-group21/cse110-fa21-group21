@@ -1,0 +1,63 @@
+/** recipeCard.css **/
+#shadow {
+  border: solid black 2px;
+  border-radius: 30px;
+  background-color: wheat;
+}
+
+#card-information {
+  margin-right: 20px;
+}
+
+#recipe-title {
+  text-align: center;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+#recipe-dietary {
+  display: flex;
+  max-width: 600px;
+  max-height: 500px;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+#recipe-image {
+  display: block;
+  width: 70%;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+
+#recipe-price {
+  text-align: left;
+}
+
+#recipe-servings {
+  text-align: left;
+}
+
+#recipe-cooking-time {
+  text-align: left;
+}
+
+#recipe-calories {
+  text-align: left;
+}
+
+#recipe-score {
+  text-align: left;
+}
+
+#recipe-total-calories {
+  text-align: left;
+}
+
+li > img {
+  margin-right: 10px;
+}

@@ -69,6 +69,7 @@ export class Filter {
       }
     });
   }
+
   /**
    * We check whether or not this recipe card falls into a range
    * that we have requested not to see. If so, we hide it.
@@ -130,6 +131,7 @@ export class Filter {
       recipeCard.classList.remove("shown");
     }
   }
+
   /**
    * We check whether or not this recipe card falls into a range
    * that we have requested not to see. If so, we hide it.
@@ -257,6 +259,67 @@ export class Filter {
   }
 
   /**
+   * Drop down menu which has the cuisines that a user can select.
+   * This method will filter the user's choice and display the recipes that
+   * have that cuisine that the user chooses.
+   * @param {recipeCard} recipeCard
+   * @private
+   */
+  #filterByCuisine(recipeCard) {
+    const cuisineValue = document.querySelector(
+      "select[id=select-cuisine]"
+    ).value;
+
+    if (!this.#defaultCuisineCheck()) {
+      let data = recipeCard.data;
+      console.log(data);
+      if (data) {
+        let recipeCuisine = data["cuisines"];
+        console.log(recipeCuisine);
+
+        if (!recipeCuisine.includes(cuisineValue)) {
+          recipeCard.classList.add("hidden");
+          recipeCard.classList.remove("shown");
+        }
+      }
+    }
+  }
+
+  /**
+   * Search bar where the user types in the ingredient they want to filter by.
+   * Searches the recipes to see if they include that specific ingredient, then
+   * filters it to only show recipes with that ingredient.
+   * @param {recipeCard} recipeCard
+   * @private
+   */
+  #filterByIngredients(recipeCard) {
+    const searchByIngredientsText = document.querySelector(
+      "input[id=search-ingredients]"
+    ).value;
+
+    if (!this.#emptyIngredientsSearchCheck()) {
+      let data = recipeCard.data;
+      if (data) {
+        let recipeIngredientsData = data["nutrition"]["ingredients"];
+        let recipeIngredients = [];
+
+        recipeIngredientsData.forEach((recipe) => {
+          recipeIngredients.push(recipe["name"]);
+        });
+
+        if (
+          !recipeIngredients.includes(
+            searchByIngredientsText.toLocaleLowerCase()
+          )
+        ) {
+          recipeCard.classList.add("hidden");
+          recipeCard.classList.remove("shown");
+        }
+      }
+    }
+  }
+
+  /**
    * Ensures that no other filter within prices can be checked
    * when the 'all' filter is selected
    * @private
@@ -272,6 +335,7 @@ export class Filter {
       document.querySelector("input[id=fifth-price]").checked = false;
     }
   }
+
   /**
    * Ensures that no other filter within times can be checked
    * when the 'all' filter is selected
@@ -309,6 +373,7 @@ export class Filter {
 
     return first_checked || second_checked || third_checked || fourth_checked;
   }
+
   /**
    * Checks if any filter, excluding the 'all' filter, is checked within
    * prices
@@ -341,6 +406,7 @@ export class Filter {
       fifth_checked
     );
   }
+
   /**
    * Checks if any filter, excluding the 'all' filter, is checked within
    * prices
@@ -372,6 +438,7 @@ export class Filter {
       fifth_checked
     );
   }
+
   /***************************************************
            HELPER METHOD
     *************************************************/
@@ -425,6 +492,7 @@ export class Filter {
     dietary["vegan"] = !recipeCard.shadowRoot.getElementById("vegan").hidden;
     return dietary;
   }
+
   /**
    * Parse the numerical price from the spoonacular.js
    * representation of a recipe price
@@ -437,6 +505,7 @@ export class Filter {
     let value = priceString.substring(dollarIndex + 1);
     return Number(value);
   }
+
   /**
    * Parse the numerical cooking time from the spoonacular.js
    * representation of a recipe cooking time
@@ -450,6 +519,13 @@ export class Filter {
     return Number(value);
   }
 
+  /***************************************************
+           HELPER METHODS -- CUISINE & INGREDIENTS 
+    *************************************************/
+
+  /**
+   * Creates the cuisine selection list (HTML)
+   */
   #createCuisineSelection() {
     const cuisines = [
       "African",
@@ -496,6 +572,11 @@ export class Filter {
     });
   }
 
+  /**
+   * Checks to see if the selection is on the default value so no other actions
+   * will be taken
+   * @returns {Boolean} Comparison between the selected cuisine and the default string
+   */
   #defaultCuisineCheck() {
     const cuisineValue = document.querySelector(
       "select[id=select-cuisine]"
@@ -503,58 +584,16 @@ export class Filter {
     return cuisineValue === "default";
   }
 
-  #filterByCuisine(recipeCard) {
-    //Get the recipes' cuisine somehow.
-
-    const cuisineValue = document.querySelector(
-      "select[id=select-cuisine]"
-    ).value;
-
-    if (!this.#defaultCuisineCheck()) {
-      let data = recipeCard.data;
-      console.log(data);
-      if (data) {
-        let recipeCuisine = data["cuisines"];
-        console.log(recipeCuisine);
-
-        if (!recipeCuisine.includes(cuisineValue)) {
-          recipeCard.classList.add("hidden");
-          recipeCard.classList.remove("shown");
-        }
-      }
-    }
-  }
-
+  /**
+   * Checks to see if the search bar for ingredients is empty, if it is
+   * there's no point in performing any actions on it
+   * @returns {Boolean} Comparison between the searched ingredient and the empty string
+   */
   #emptyIngredientsSearchCheck() {
     const searchByIngredientsText = document.querySelector(
       "input[id=search-ingredients]"
     ).value;
 
     return searchByIngredientsText === "";
-  }
-
-  #filterByIngredients(recipeCard) {
-    //Get the recipes' cuisine somehow.
-
-    const searchByIngredientsText = document.querySelector(
-      "input[id=search-ingredients]"
-    ).value;
-
-    if (!this.#emptyIngredientsSearchCheck()) {
-      let data = recipeCard.data;
-      if (data) {
-        let recipeIngredientsData = data["nutrition"]["ingredients"];
-        let recipeIngredients = [];
-
-        recipeIngredientsData.forEach((recipe) => {
-          recipeIngredients.push(recipe["name"]);
-        });
-
-        if (!recipeIngredients.includes(searchByIngredientsText)) {
-          recipeCard.classList.add("hidden");
-          recipeCard.classList.remove("shown");
-        }
-      }
-    }
   }
 }

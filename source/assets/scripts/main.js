@@ -2,9 +2,7 @@
 
 import { Router } from "../scripts/Router.js";
 import { Filter } from "../scripts/filter.js";
-const apiKey = "52121edf0f71442dbf23b640dbe1ad78" ;
-const searchBar = document.getElementById("homepage-search-bar");
-const search = document.getElementById("homepage-search-btn");
+const apiKey = "54a305b43853416198613d4aaaed7b01";
 const MAX_NUM_RECIPE_CARDS = 30;
 const searchFilter = document.querySelector(".search-filter");
 let searchQuery = "";
@@ -56,7 +54,7 @@ const filter = new Filter();
 window.addEventListener("DOMContentLoaded", init);
 
 async function init() {
-  bindSearch();
+  await bindSearch();
   bindState();
   filter.filtering();
 }
@@ -67,12 +65,51 @@ async function init() {
  * @param none
  */
 async function bindSearch() {
-  searchBar.addEventListener("input", (event) => {
-    searchBar.textContent = event.target.value;
+  await bindHomeSearch();
+  await bindNavSearch();
+}
+
+/**
+ * Enable Search via the HomePage
+ */
+async function bindHomeSearch() {
+  const homeSearchBar = document.getElementById("homepage-search-bar");
+  homeSearchBar.addEventListener("input", (event) => {
+    homeSearchBar.textContent = event.target.value;
+  });
+  const homeSearchBarBtn = document.getElementById("homepage-search-btn");
+  homeSearchBarBtn.addEventListener("click", () => {
+    searchQuery = homeSearchBar.textContent;
+    if (
+      !searchQueryHistory.includes(searchQuery) &&
+      !(searchQuery in recipesID)
+    ) {
+      // This is slightly flawed. We don't want to only store search history but rather by title?
+      console.log("Original query, fetching data!");
+      searchQueryHistory.push(searchQuery);
+      baseURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${searchQuery}&instructions=true&addRecipeInformation=true&addRecipeNutrition=true&number=30&price=true`;
+      fetchAPI(searchQuery);
+    } else {
+      // All of this should be integrated into a service worker, just a thought
+      console.log("Unoriginal query, no need to fetch it!");
+      console.log(recipesID);
+      bindRecipeCards(searchQuery);
+    }
+    
+  });
+}
+/**
+ * Enables Seach via the SearchPage
+ */
+async function bindNavSearch() {
+  const navSearchBar = document.getElementById("nav-search-bar");
+  navSearchBar.addEventListener("input", (event) => {
+    navSearchBar.textContent = event.target.value;
   });
 
-  search.addEventListener("click", () => {
-    searchQuery = searchBar.textContent;
+  const navSearchBarBtn = document.getElementById("nav-search-btn");
+  navSearchBarBtn.addEventListener("click", () => {
+    searchQuery = navSearchBar.textContent;
     if (
       !searchQueryHistory.includes(searchQuery) &&
       !(searchQuery in recipesID)
@@ -113,6 +150,27 @@ async function fetchAPI(query) {
       }
     });
   bindRecipeCards(query);
+  filter.filtering();
+}
+
+/**
+ * Fetches random recipe. Adds recipes to the global recipesID obj, 
+ * format of entry is specified by the recipesID obj.
+ */
+async function fetchRandomAPI() {
+  let randomURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${searchQuery}&instructions=true&addRecipeInformation=true&addRecipeNutrition=true&number=30&price=true&sort=random`;
+
+  await fetch(randomURL)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data.results);
+      for (let i = 0; i < data.results.length; i++) {
+        // add a new entry to the recipesID object
+        recipesID[data.results[i].title] = data.results[i];
+      }
+    });
+  // this line may lead to undefined behavior: i.e. recipe erasal
+  bindRecipeCards("");
   filter.filtering();
 }
 
@@ -164,6 +222,8 @@ function bindRecipeCards(query) {
      */
     for (const recipeTitle in recipesID) {
       if (recipeTitle.toLocaleLowerCase().includes(query.toLocaleLowerCase())) {
+        recipeArray.push(recipeTitle);
+      } else if (query === "") {
         recipeArray.push(recipeTitle);
       }
     }
