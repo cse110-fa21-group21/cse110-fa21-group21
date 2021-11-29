@@ -292,7 +292,7 @@ function bindRecipeCards(query) {
       let recipeCard = recipeCardsWrapper.children[cardIndex];
       recipeCard.classList.remove("shown");
       recipeCard.classList.add("hidden");
-      
+
       bindRecipeViewers(recipeCard, '');
       cardIndex++;
     }
@@ -356,12 +356,18 @@ function bindState () {
     router.insertPage(page, function(){
       removeFavoriteList()
       let favoriteList = document.querySelector(".my-favorite-list");
+      let recipeCards = document.querySelector(".section-recipe-cards-wrapper");
       let recipeViewer = document.querySelector(".section-recipe-viewers-wrapper");
       let homePageSearch = document.querySelector(".section-home-page");
-
+      //Show Favorite List
       favoriteList.classList.add("shown");
+      //Hide Recipe Cards
+      recipeCards.classList.remove("shown");
+      //Hide Recipe Viewer
       recipeViewer.classList.remove("shown");
+      //Hide Search Filter
       searchFilter.classList.remove("shown");
+      //Hide Home Page Search Bar
       homePageSearch.classList.remove("shown");
 
       for(let i = 0; i < myStorage.length; i++){
