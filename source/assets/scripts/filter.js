@@ -1,7 +1,10 @@
+import { Spoonacular } from "../scripts/spoonacular.js";
 export class Filter {
-  constructor() {
+  constructor(
+  ) {
     this.#createCuisineSelection();
   }
+  #spoonacular = new Spoonacular();
   /**
    * Upon being called all recipe cards are filtered. From then on,
    * upon any checkbox being clicked, we refilter the collecting again.
@@ -45,7 +48,9 @@ export class Filter {
    * @private
    */
   #goThroughElements() {
-    const recipeCards = document.querySelectorAll("recipe-card");
+    const recipeCards = 
+      document.querySelector(".section-recipe-cards-wrapper")
+              .querySelectorAll("recipe-card");
     recipeCards.forEach((card) => {
       card.classList.add("shown");
       card.classList.remove("hidden");
@@ -141,7 +146,7 @@ export class Filter {
   #filterByPrice(recipeCard) {
     // parse recipe price
     const recipePrice = this.#extractPrice(
-      recipeCard.shadowRoot.getElementById("recipe-price").innerHTML
+      this.#spoonacular.getRecipePrice(recipeCard.json)
     );
 
     const ranges = [];
@@ -205,7 +210,7 @@ export class Filter {
   #filterByTime(recipeCard) {
     // parse recipe cooking time
     const recipeTime = this.#extractCookingTime(
-      recipeCard.shadowRoot.getElementById("recipe-cooking-time").innerHTML
+      this.#spoonacular.getRecipeCookingTime(recipeCard.json)
     );
 
     const ranges = [];
