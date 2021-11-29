@@ -3,7 +3,6 @@ name: WebPage End-to-End Test
 
 on:
   push:
-    branches: cicd
   pull_request:
     branches: main
 
