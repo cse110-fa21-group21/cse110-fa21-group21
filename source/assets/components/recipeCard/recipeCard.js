@@ -12,10 +12,6 @@ class recipeCard extends HTMLElement {
      
      <!-- Local StyleSheets -->
      <link rel="stylesheet" href="./assets/components/recipeCard/recipeCard.css">
-     <link rel="stylesheet" href="./assets/components/recipeCard/iconRecipeCard.css">
-
-     <!-- Fontawesome CSS -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
      <!-- The Card Itself -->
      <section id="shadow" class="card container p-3"></section>
@@ -86,21 +82,65 @@ class recipeCard extends HTMLElement {
     const title = spoonacular.getRecipeTitle(data)
     this.shadowRoot.getElementById('recipe-title').innerHTML = title
 
-    // set price
+    // set price and price icon
     const price = spoonacular.getRecipePrice(data)
-    this.shadowRoot.getElementById('recipe-price').innerHTML = price
+    const numericalPrice = this.#extractPrice(price)
+    if(numericalPrice < 10){
+      this.shadowRoot.getElementById('recipe-price').innerHTML 
+        = '<img src="./assets/icons/font-awesome/price/1-dollar.png" width = "30px" height = "30px">';
+    }else if(numericalPrice <30){
+      this.shadowRoot.getElementById('recipe-price').innerHTML 
+        ='<img src="./assets/icons/font-awesome/price/2-dollar.png" width = "30px" height = "30px">';
+    }else{
+      this.shadowRoot.getElementById('recipe-price').innerHTML
+        ='<img src="./assets/icons/font-awesome/price/3-dollar.png" width = "30px" height = "30px">'  
+    }
+    this.shadowRoot.getElementById('recipe-price').innerHTML += price
 
-    // set time
+    // set time and time icon
     const time = spoonacular.getRecipeCookingTime(data)
-    this.shadowRoot.getElementById('recipe-cooking-time').innerHTML = time
+    const numericalTime = this.#extractCookingTime(time);
+    if(numericalTime < 15){
+      this.shadowRoot.getElementById('recipe-cooking-time').innerHTML 
+        = '<img src="./assets/icons/font-awesome/cooking-time/less-than-15-min.png" width = "30px" height = "30px">';
+    }else if(numericalTime < 45){
+      this.shadowRoot.getElementById('recipe-cooking-time').innerHTML 
+        ='<img src="./assets/icons/font-awesome/cooking-time/between-15-and-45.png" width = "30px" height = "30px">';
+    }else{
+      this.shadowRoot.getElementById('recipe-cooking-time').innerHTML
+       ='<img src="./assets/icons/font-awesome/cooking-time/over-45-min.png" width = "30px" height = "30px">'  
+    }
+    this.shadowRoot.getElementById('recipe-cooking-time').innerHTML += time
 
-    // set score
+    // set score and score icon
     const score = spoonacular.getRecipeScore(data)
-    this.shadowRoot.getElementById('recipe-score').innerHTML = score
+    const numericalScore = this.#extractScore(score);
+    if(numericalScore < 30){
+      this.shadowRoot.getElementById('recipe-score').innerHTML 
+        = '<img src="./assets/icons/font-awesome/score/sad-face.png" width = "30px" height = "30px">';
+    }else if(numericalScore < 70){
+      this.shadowRoot.getElementById('recipe-score').innerHTML 
+        ='<img src="./assets/icons/font-awesome/score/neutral-face.png" width = "30px" height = "30px">';
+    }else{
+      this.shadowRoot.getElementById('recipe-score').innerHTML
+        ='<img src="./assets/icons/font-awesome/score/smiley-face.png" width = "30px" height = "30px">'  
+    }
+    this.shadowRoot.getElementById('recipe-score').innerHTML += score
 
-    // set servings
+    // set servings and servings icon
     const servings = spoonacular.getRecipeServings(data)
-    this.shadowRoot.getElementById('recipe-servings').innerHTML = servings
+    const numericalServings = this.#extractServings(servings);
+    if(numericalServings == 1){
+      this.shadowRoot.getElementById('recipe-servings').innerHTML 
+        = '<img src="./assets/icons/font-awesome/servings/one-serving.png" width = "30px" height = "30px">';
+    }else if(numericalTime == 2){
+      this.shadowRoot.getElementById('recipe-servings').innerHTML 
+        ='<img src="./assets/icons/font-awesome/servings/two-servings.png" width = "30px" height = "30px">';
+    }else{
+      this.shadowRoot.getElementById('recipe-servings').innerHTML
+        ='<img src="./assets/icons/font-awesome/servings/three-plus-servings.png" width = "30px" height = "30px">'  
+    }
+    this.shadowRoot.getElementById('recipe-servings').innerHTML += servings
 
     // set calories
     const calories = spoonacular.getRecipeCalories(data)
@@ -124,6 +164,58 @@ class recipeCard extends HTMLElement {
       if (dietary['dairy-free']) { this.shadowRoot.getElementById('dairy-free').removeAttribute('hidden') }
     }
   }
+  /**
+   * Parse the numerical price from the spoonacular.js
+   * representation of a recipe price
+   * @param {string} priceString
+   * @returns {Number} recipe spoonacular price
+   * @private
+   */
+   #extractPrice(priceString) {
+    let dollarIndex = priceString.indexOf("$");
+    let value = priceString.substring(dollarIndex + 1);
+    return Number(value);
+  }
+
+  /**
+   * Parse the spoonacular score from the spoonacular.js
+   * representation of a recipe price
+   * @param {string} scoreString
+   * @returns {Number} recipe spoonacular score
+   * @private
+   */
+  #extractScore(scoreString) {
+    let slashIndex = scoreString.indexOf("/");
+    let value = scoreString.substring(7, slashIndex);
+    return Number(value);
+  }
+    
+  /**
+   * Parse the recipe servings from the spoonacular.js
+   * representation of a recipe price
+   * @param {string} priceString
+   * @returns {Number} recipe servings
+   * @private
+   */
+   #extractServings(scoreString) {
+      let colonIndex = scoreString.indexOf(":")+1; //include space
+      let value = scoreString.substring(colonIndex);
+      return Number(value);
+    }
+    
+  /**
+   * Parse the numerical cooking time from the spoonacular.js
+   * representation of a recipe cooking time
+   * @param {string} cookingString
+   * @returns {number} recipe cooking time
+   * @private
+   */
+  #extractCookingTime(cookingString) {
+    let spaceIndex = cookingString.indexOf(" ");
+    let value = cookingString.substring(spaceIndex + 1);
+    return Number(value);
+  }
 }
+
 
 customElements.define('recipe-card', recipeCard)

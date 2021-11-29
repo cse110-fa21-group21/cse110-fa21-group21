@@ -57,3 +57,7 @@
 #recipe-total-calories {
   text-align: left;
 }
+
+li > img {
+  margin-right: 10px;
+}
