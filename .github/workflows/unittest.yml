@@ -17,5 +17,3 @@ jobs:
       run: npm install --save-dev jest babel-jest @babel/core @babel/preset-env puppeteer jest-puppeteer
     - name: Unit test
       run: npm test ./source/assets/_tests_/unit.test.js
-    - name: E2E test
-      run: npm test ./source/assets/_tests_/e2e.test.js
