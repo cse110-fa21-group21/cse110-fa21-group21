@@ -1,10 +1,11 @@
-# Test home page e2e
-name: Unit & End-to-End Test
+# e2e Test Web Page
+name: E2E Test
 
 on:
   push:
+    branches: predeploytest
   pull_request:
-    branches: main
+    branches: predeploytest
 
 jobs:
   build:
@@ -15,7 +16,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install modules
       run: npm install --save-dev jest babel-jest @babel/core @babel/preset-env puppeteer jest-puppeteer
-    - name: Unit test
-      run: npm test ./source/assets/_tests_/unit.test.js
     - name: E2E test
       run: npm test ./source/assets/_tests_/e2e.test.js

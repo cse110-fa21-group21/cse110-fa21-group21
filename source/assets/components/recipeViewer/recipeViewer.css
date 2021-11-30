@@ -1,0 +1,92 @@
+/** recipeViewer.css **/
+.flex-container {
+  display: flex;
+  justify-content: center;
+}
+
+#recipe-title {
+  text-align: center;
+  margin: 20px;
+  font-size: xx-large;
+  border: 2.5px solid;
+  border-radius: 10px;
+}
+
+#recipe-image {
+  display: block;
+  max-width: 600px;
+  max-height: 500px;
+  width: auto;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+#left-flex {
+  width: 60%;
+}
+
+#info-container {
+  display: block;
+  text-align: justify;
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 25px;
+  width: 300px;
+  margin: 20px auto;
+}
+
+#recipe-ingredients {
+  border: 2.5px solid;
+  border-radius: 10px;
+  padding: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 350px;
+  position: sticky;
+  align-self: flex-start;
+  top: 0;
+}
+
+#recipe-dietary {
+  text-align: center;
+}
+
+#recipe-instructions {
+  margin-left: 30px;
+}
+
+ol li,
+ul li {
+  padding: 5px 0;
+}
+
+.favorite-button {
+  justify-items: center;
+  display: grid;
+  position: absolute;
+  left: 50px;
+}
+
+.favorite-button > button {
+  background-color: white;
+  border: 1px solid #000;
+  border-radius: 20px;
+  padding: 8px 20px 8px 50px;
+  position: relative;
+  z-index: 2;
+}
+
+.favorite-button > button:hover {
+  cursor: pointer;
+  filter: brightness(96%);
+}
+
+.favorite-button > img {
+  position: absolute;
+  margin-left: -150px;
+  margin-top: 3px;
+  z-index: 3;
+}
