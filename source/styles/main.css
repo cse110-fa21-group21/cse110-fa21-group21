@@ -124,10 +124,12 @@ recipe-card {
 /* css for the filter page */
 fieldset {
   width: 170px;
-  background-color: #fff4e6;
+  background-color: wheat;
+  margin-right: 30px;
 }
 
 .flex-container {
   display: flex;
   flex-flow: row wrap;
+  background-color: #fff4e6;
 }
