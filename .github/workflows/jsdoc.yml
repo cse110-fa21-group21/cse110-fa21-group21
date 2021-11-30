@@ -2,8 +2,9 @@ name: Generate Documentation
 
 on:
   push:
-    branches:
-      - cicd
+    branches: cicd
+  pull_request:
+    branches: main
 
 jobs:
   deploy:
