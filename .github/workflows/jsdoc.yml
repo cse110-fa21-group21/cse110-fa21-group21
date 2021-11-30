@@ -18,5 +18,4 @@ jobs:
         uses: andstor/jsdoc-action@v1.2.0
         with:
           source_dir: ./source/assets/scripts
-          output_dir: ./specs/out
-          template: minami
+          output_dir: ./out
