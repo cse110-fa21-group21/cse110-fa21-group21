@@ -10,7 +10,7 @@
   },
   "scripts": {
     "test": "jest",
-    "doc": "jsdoc -d ./specs/docs ./source/assets/scripts/main.js"
+    "doc": "jsdoc -d ./docs ./source/assets/scripts/main.js"
   },
   "jest": {
     "preset": "jest-puppeteer",
