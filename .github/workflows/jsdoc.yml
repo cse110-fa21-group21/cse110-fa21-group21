@@ -9,10 +9,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install JSDoc
-        run: npm i --save-dev jsdoc
-      - name: Build doc
-        run: npm run doc
+    - uses: actions/checkout@v2
+    - name: Install JSDoc
+      run: npm i --save-dev jsdoc
+    - name: Build doc
+      run: npm run doc  
