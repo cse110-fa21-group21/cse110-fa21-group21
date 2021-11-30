@@ -133,3 +133,29 @@ fieldset {
   flex-flow: row wrap;
   background-color: #fff4e6;
 }
+
+@media only screen and (max-width: 800px) {
+  /* not working right now */
+  .favorite-icon,
+  .shopping-list-icon,
+  .home-icon {
+    height: 300px;
+  }
+
+  .flex-container,
+  fieldset,
+  .shown {
+    width: 90%;
+  }
+
+  input[type="checkbox"] {
+    transform: scale(2);
+    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-right: 10px;
+  }
+
+  .topbar {
+    display: flex;
+  }
+}
