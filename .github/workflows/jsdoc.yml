@@ -1,0 +1,17 @@
+name: Generate Documentation
+
+on:
+  push:
+    branches: cicd
+  pull_request:
+    branches: main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install JSDoc
+      run: npm install -g jsdoc
+    - name: Build doc
+      run: npm run doc  
