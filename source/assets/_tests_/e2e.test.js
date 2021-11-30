@@ -1,7 +1,7 @@
 describe('Basic user flow for Website', () => {
     // First, visit the lab 8 website
     beforeAll(async () => {
-      await page.goto('https://group21-recipe.netlify.app/');
+      await page.goto('https://predeploytest--group21-recipe.netlify.app/');
     });
 
     // 1. Check Home Button leads to home
@@ -11,7 +11,7 @@ describe('Basic user flow for Website', () => {
         
         await page.click('button#home');
         // Expect current url to be the url to the right
-        expect(page.url()).toBe("https://group21-recipe.netlify.app/");
+        expect(page.url()).toBe("https://predeploytest--group21-recipe.netlify.app/");
     });
 
     // 2. Check Fav Button leads to Fav
@@ -21,7 +21,7 @@ describe('Basic user flow for Website', () => {
         
         await page.click('button#fav');
         // Expect current url to be the url to the right
-        expect(page.url()).toBe("https://group21-recipe.netlify.app/#favoriteList");
+        expect(page.url()).toBe("https://predeploytest--group21-recipe.netlify.app/#favoriteList");
     });
 
     // 3. Check shopList Button leads to shopList
