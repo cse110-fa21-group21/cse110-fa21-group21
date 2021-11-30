@@ -15,7 +15,6 @@ jobs:
       - name: Build doc
         uses: andstor/jsdoc-action@v1.2.0
         with:
-          source_dir: ./source/assets
+          source_dir: ./source/assets/scripts
           output_dir: ./specs/out
-          recurse: true
 
