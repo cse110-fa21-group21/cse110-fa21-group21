@@ -110,6 +110,7 @@ async function bindHomeSearch() {
 }
 /**
  * Enables Seach via the SearchPage
+ * @async
  */
 async function bindNavSearch() {
   const navSearchBar = document.getElementById("nav-search-bar");
