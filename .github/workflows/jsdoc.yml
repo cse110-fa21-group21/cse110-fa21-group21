@@ -12,10 +12,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Install JSDoc
+        run: npm install --save-dev jsdoc
       - name: Build doc
         uses: andstor/jsdoc-action@v1.2.0
         with:
           source_dir: ./source/assets/scripts
           output_dir: ./specs/out
-          config_file: conf.json
           template: minami
