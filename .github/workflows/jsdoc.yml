@@ -13,13 +13,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build doc
-        uses: andstor/jsdoc-action@v1
+        uses: andstor/jsdoc-action@v1.2.0
         with:
           source_dir: ./source
           output_dir: ./specs/out
           recurse: true
-      - name: Deploy doc
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          publish_dir: ./specs/out
+
