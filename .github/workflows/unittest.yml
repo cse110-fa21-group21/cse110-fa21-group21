@@ -1,5 +1,5 @@
-# Test home page e2e
-name: Unit & End-to-End Test
+# Unit Test Web Page
+name: Unit Test
 
 on:
   push:
