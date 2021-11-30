@@ -2,6 +2,8 @@
 name: E2E Test
 
 on:
+  push:
+    branches: predeploytest
   pull_request:
     branches: predeploytest
 
