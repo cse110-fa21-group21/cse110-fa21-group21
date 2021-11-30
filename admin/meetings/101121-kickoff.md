@@ -18,6 +18,7 @@
 1. Henry Nyugen
 
 
+
 ### Start Time and Place
 - **Time (PDT):** 2:05pm
 - **Place:** CS 3217

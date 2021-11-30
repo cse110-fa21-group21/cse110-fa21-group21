@@ -1,5 +1,4 @@
 // main.js
-
 import { Router } from "../scripts/Router.js";
 import { Filter } from "../scripts/filter.js";
 
