@@ -5,10 +5,12 @@
     "babel-jest": "^27.4.0",
     "jest": "^27.4.0",
     "jest-puppeteer": "^6.0.2",
+    "jsdoc": "^3.6.7",
     "puppeteer": "^11.0.0"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "doc": "jsdoc -d ./specs/docs ./source/assets/scripts/main.js"
   },
   "jest": {
     "preset": "jest-puppeteer",
