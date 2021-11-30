@@ -1,5 +1,7 @@
 // spoonacular.js
-export class Spoonacular {
+// module.exports = { getRecipeImageSource, getRecipeTitle, getRecipePrice, getRecipeCookingTime, getRecipeScore, getRecipeCalories, getRecipeServings, getRecipeTotalCalories, getRecipeDietary, getRecipeInstructionsList, getRecipeIngredientsList };
+
+module.exports = class Spoonacular {
   /** RECIPE IMAGE SOURCE */
   getRecipeImageSource(data) {
     if (data) {
@@ -107,10 +109,15 @@ export class Spoonacular {
       const ingredients = data.nutrition.ingredients;
       const ingredientsListElem = document.createElement("ul");
       for (let i = 0; i < ingredients.length; i++) {
-        const listEntry = document.createElement('li')
+        const listEntry = document.createElement("li");
         //Currently only found US units in Spoonacular!
-        listEntry.innerHTML = ingredients[i].amount + " " + ingredients[i].unit + " of " + ingredients[i].name
-        ingredientsListElem.appendChild(listEntry)
+        listEntry.innerHTML =
+          ingredients[i].amount +
+          " " +
+          ingredients[i].unit +
+          " of " +
+          ingredients[i].name;
+        ingredientsListElem.appendChild(listEntry);
 
         //To display ingredient data in console
         //console.log(JSON.stringify(ingredients[i]))
@@ -119,4 +126,4 @@ export class Spoonacular {
     }
     return null;
   }
-}
+};
