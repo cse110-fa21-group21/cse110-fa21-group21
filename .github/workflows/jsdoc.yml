@@ -11,6 +11,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install JSDoc
-      run: npm i --save-dev jsdoc
+      run: npm install -g jsdoc
     - name: Build doc
       run: npm run doc  
