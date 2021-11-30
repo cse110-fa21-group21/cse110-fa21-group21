@@ -1,7 +1,6 @@
 // spoonacular.js
-// module.exports = { getRecipeImageSource, getRecipeTitle, getRecipePrice, getRecipeCookingTime, getRecipeScore, getRecipeCalories, getRecipeServings, getRecipeTotalCalories, getRecipeDietary, getRecipeInstructionsList, getRecipeIngredientsList };
 
-module.exports = class Spoonacular {
+export class Spoonacular {
   /** RECIPE IMAGE SOURCE */
   getRecipeImageSource(data) {
     if (data) {
