@@ -1,0 +1,18 @@
+# e2e Test Web Page
+name: E2E Test
+
+on:
+  pull_request:
+    branches: predeploytest
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install modules
+      run: npm install --save-dev jest babel-jest @babel/core @babel/preset-env puppeteer jest-puppeteer
+    - name: E2E test
+      run: npm test ./source/assets/_tests_/e2e.test.js
