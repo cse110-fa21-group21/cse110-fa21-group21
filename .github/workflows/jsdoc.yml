@@ -16,8 +16,3 @@ jobs:
         run: npm i --save-dev jsdoc
       - name: Build doc
         run: npm run doc
-      - name: Deploy to Github Pages🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.7
-        with:
-          branch: cicd # The branch the action should deploy to.
-          folder: ./specs/docs # The folder the action should deploy
