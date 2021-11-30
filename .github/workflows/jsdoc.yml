@@ -17,5 +17,5 @@ jobs:
         with:
           source_dir: ./source/assets/scripts
           output_dir: ./specs/out
+          config_file: conf.json
           template: minami
-
