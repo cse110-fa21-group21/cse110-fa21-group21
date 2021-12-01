@@ -2,7 +2,7 @@
 
 ## Diagram
 
-![phase2diagram](./cipipeline/phase2.drawio.png)
+![phase2diagram](./phase2.drawio.png)
 
 **Push to any Branch:**
 
