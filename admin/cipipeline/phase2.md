@@ -15,10 +15,6 @@ Linting:
 Unit Testing: 
 * Uses `Jest`
 
-Code Quality Review:
-* Using Codefactor Free Version.
-* Analysis and notifications are real time
-* Click on "details" to open up full analysis
 
 **Pull Request: `predeploytest`**
 
@@ -28,18 +24,26 @@ E2E Testing:
 * Need to be in this staging branch for E2E because Puppeteer requires a link, and that 
 link in `e2e.test.js` is directing to Netlify Branch Deploy of `predeploytest` branch
 
+
+
 **Pull Request: `main`**
 
 Checks:
-* Runs all 3 Checks from before: Linting, Unit Test, Code Quality Review. 
+* Runs 2 Checks from before: Linting, Unit Test.
 * Require all checks to pass before being able to merge
 
+Code Quality Review:
+* Runs when there are any pull requests to main
+* Using Codefactor Free Version.
+* Analysis and notifications are real time
+* Click on "details" to open up full analysis
+  
 Human Review: 
 * Require at least 1 teammate to approve pull request before merge
-Pull Requests:  Need to pay?????
-* Pull requests: Branch Protection Rules is a feature that must be paid for...
-* Want there to be a requirement that the errors from linting must be all resolved before pull request can be done
-* Debating about whether or not to enable required approvals (i.e. before merge at least 1 other person must approve pull request)
+
+Netlify Predeploy:
+* Pull request must be predeployed before being able to merge!
+* predeploy-preview successfully being deployed means -> There were no problems deploying current files with Netlify!
 
 **Merge:**
 
