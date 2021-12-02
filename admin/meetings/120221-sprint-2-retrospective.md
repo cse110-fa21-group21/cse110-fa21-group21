@@ -20,7 +20,7 @@
 2. Ludvig Basmajyan
 
 ### Start Time and Place
-- **Time (PDT): 1:00-1:30pm ** 
+- **Time (PDT): 1:00pm ** 
 - **Place: BLB 107 ** 
 
 ### What went well
@@ -46,5 +46,5 @@
 
 
 ### Meeting End Time
-- **Time (PDT): 1:30 pm** 
+- **Time (PDT): 1:20 pm** 
 
