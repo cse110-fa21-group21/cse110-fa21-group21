@@ -1,7 +1,8 @@
 /** recipeViewer.css */
 
 body {
-  background-color: blanchedalmond;
+  background-color: #fff4e6;
+  font-family: Georgia, serif;
 }
 
 .flex-container {
@@ -13,12 +14,16 @@ body {
   text-align: center;
   margin: 20px;
   font-size: xx-large;
-  border: 2.5px solid;
+  border: 5px solid;
   border-radius: 10px;
-  background-color: white;
+  background-color: wheat;
+  color: #6e4d3d;
+  font-weight: bold;
+  padding: 10px 0;
 }
 
 #recipe-image {
+  border: 2.5px solid #6e4d3d;
   display: block;
   max-width: 600px;
   max-height: 500px;
@@ -37,16 +42,16 @@ body {
 #info-container {
   display: block;
   text-align: justify;
-  border: 2px solid;
+  border: 2.5px solid #6e4d3d;
   border-radius: 10px;
   padding: 25px;
   width: 300px;
   margin: 20px auto;
-  background-color: white;
+  background-color: wheat;
 }
 
 #recipe-ingredients {
-  border: 2.5px solid;
+  border: 2.5px solid #6e4d3d;
   border-radius: 10px;
   padding: 30px;
   margin-left: auto;
@@ -55,7 +60,7 @@ body {
   position: sticky;
   align-self: flex-start;
   top: 0;
-  background-color: white;
+  background-color: wheat;
 }
 
 #recipe-dietary {
@@ -64,6 +69,16 @@ body {
 
 #recipe-instructions {
   margin-left: 30px;
+  font-size: larger;
+}
+
+#recipe-title,
+#recipe-price,
+#recipe-cooking-time,
+#recipe-servings,
+#recipe-calories,
+#recipe-total-calories {
+  padding-bottom: 10px;
 }
 
 ol li,
