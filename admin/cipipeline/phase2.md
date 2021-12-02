@@ -36,10 +36,10 @@ Checks:
 
 Human Review: 
 * Require at least 1 teammate to approve pull request before merge
-Pull Requests:  Need to pay?????
-* Pull requests: Branch Protection Rules is a feature that must be paid for...
-* Want there to be a requirement that the errors from linting must be all resolved before pull request can be done
-* Debating about whether or not to enable required approvals (i.e. before merge at least 1 other person must approve pull request)
+
+Netlify Predeploy:
+* Pull request must be predeployed before being able to merge!
+* predeploy-preview successfully being deployed means -> There were no problems deploying current files with Netlify!
 
 **Merge:**
 
