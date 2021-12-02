@@ -15,10 +15,6 @@ Linting:
 Unit Testing: 
 * Uses `Jest`
 
-Code Quality Review:
-* Using Codefactor Free Version.
-* Analysis and notifications are real time
-* Click on "details" to open up full analysis
 
 **Pull Request: `predeploytest`**
 
@@ -27,6 +23,12 @@ E2E Testing:
 * `predeploytest` branch is basically the staging branch before full deploy.
 * Need to be in this staging branch for E2E because Puppeteer requires a link, and that 
 link in `e2e.test.js` is directing to Netlify Branch Deploy of `predeploytest` branch
+
+Code Quality Review:
+* Runs when there are any pull requests
+* Using Codefactor Free Version.
+* Analysis and notifications are real time
+* Click on "details" to open up full analysis
 
 **Pull Request: `main`**
 
