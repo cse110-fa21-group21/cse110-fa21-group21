@@ -1,7 +1,7 @@
 // unit.test.js
 
 const { test } = require("@jest/globals");
-const Spoonacular = require("../scripts/thisbetterwork.js");
+const Spoonacular = require("../scripts/copyspoonacular.js");
 const riceJsonData = require("../_tests_/recipeJsonData/rice.json");
 
 /*TO DO 1:
