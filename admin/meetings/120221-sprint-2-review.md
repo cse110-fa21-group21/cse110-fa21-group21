@@ -39,19 +39,20 @@
  - *Change Font
 
 - Logo
-  - Home Logo Change
-  - ![image](https://user-images.githubusercontent.com/60757227/144500087-468415ab-e395-48b5-8af7-0553d135c0da.png)
+  - Home Logo Change 
+![image](https://user-images.githubusercontent.com/60757227/144500087-468415ab-e395-48b5-8af7-0553d135c0da.png)
 
 -Home Page
-  - Added Featured Recipe Section
-  - ![image](https://user-images.githubusercontent.com/60757227/144500258-7ef3af26-674b-4932-b388-722e9dd2217d.png)
+  - Added Featured Recipe Section 
+![image](https://user-images.githubusercontent.com/60757227/144500258-7ef3af26-674b-4932-b388-722e9dd2217d.png)
 
 
 -RecipeViewer
   - Added Favorite button
   - Styling 
-  - ![image](https://user-images.githubusercontent.com/60757227/144500300-b1856491-cf2d-409f-9b2e-2d512822f617.png)
     - *Add header about ingredient and instruction
+![image](https://user-images.githubusercontent.com/60757227/144500300-b1856491-cf2d-409f-9b2e-2d512822f617.png)
+
 
 - Integration
   - Code refactoring, works better together
