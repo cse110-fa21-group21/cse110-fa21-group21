@@ -51,5 +51,4 @@ jobs:
           VALIDATE_NATURAL_LANGUAGE: false
           #default branch is either main or master!
           DEFAULT_BRANCH: main
-          
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
