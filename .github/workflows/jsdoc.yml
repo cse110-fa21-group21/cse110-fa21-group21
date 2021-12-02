@@ -12,4 +12,4 @@ jobs:
     - name: Install JSDoc
       run: npm install -g jsdoc
     - name: Build doc
-      run: npm run doc  
+      run: npm run doc
