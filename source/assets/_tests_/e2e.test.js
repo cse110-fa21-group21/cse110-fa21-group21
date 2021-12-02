@@ -31,7 +31,7 @@ describe('Basic user flow for Website', () => {
         
         await page.click('button#shop-list');
         // Expect current url to be the url to the right
-        expect(page.url()).toBe("https://group21-recipe.netlify.app/#shop-list");
+        expect(page.url()).toBe("https://predeploytest--group21-recipe.netlify.app/#shop-list");
     });*/
 
     
