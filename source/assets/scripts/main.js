@@ -24,7 +24,7 @@ let baseURL = "";
  *  - @value{object} data: The JSON representation of a recipe as
  *                         returned by the Spoonacular API
  */
-const recipesID = {}
+const recipesID = {};
 
 const searchQueryHistory = [];
 
@@ -223,46 +223,65 @@ async function fetchRandomAPI() {
         ".section-featured-cards-wrapper"
     );
     featuredRecipesWrapper.classList.add("shown");
+
+    // Hide the Recipe Viewers Wrapper
+    const recipeViewersWrapper = document.querySelector(
+        ".section-recipe-viewers-wrapper"
+    );
+    //   recipeViewersWrapper.classList.remove("shown");
     
     // An array to store recipe to be sort and display
     let recipeArray = [];
 
-      
-  
       for (const recipeTitle in recipesID) {
-        // we check if the recipe title contains the search query
-        // if (recipeTitle.toLocaleLowerCase().includes(query.toLocaleLowerCase())) {
-        //   recipeArray.push(recipeTitle);
-        // } else if (query === "") {
           recipeArray.push(recipeTitle);
-        // }
       }
       // matching recipes are sorted prior to being binded to <recipe-card>s
       sortRecipeCards(recipeArray);
   
       /**
-       * for each recipe title inside the sorted recipeArray
+       * for each recipe title inside the ecipeArray
        * recipeArray[i] to access the corresponding json file in recipesID
        */
   
-      // There are MAX_NUM_RECIPE_CARDS distinct recipeCard DOMs 
+      // There are 2 distinct recipeCard DOMs on the home page
       let cardIndex = 0;
       for(let snapshot = 0; snapshot<recipeArray.length; snapshot++){
         if (cardIndex === 2) break;
   
         const recipeCard = featuredRecipesWrapper.children[snapshot];
         recipeCard.data = recipesID[recipeArray[snapshot]];
+        
         // Show the Recipe Card
         recipeCard.classList.remove("hidden");
         recipeCard.classList.add("shown");
   
         // Add the route that would lead users to the corresponding recipeView
         const page = recipeArray[snapshot];
+
+        
+        router.insertPage(page, function () {
+            // Hide the Recipe Cards Wrapper
+            featuredRecipesWrapper.classList.remove("shown");
+            // Show the Recipe Viewers Wrapper
+            recipeViewersWrapper.classList.add("shown");
+            
+            // Hide the homepage-section
+            const homepage = document.querySelector(
+                ".section-home-page"
+            )
+            homepage.classList.remove("shown");
+            
+        });
+      bindRecipeViewers(recipeCard, page);
+      // Pass the data from the <recipe-card> to the singular <recipe-viewer>
+      document.querySelector("recipe-viewer").data =
+      recipesID[recipeArray[snapshot]];
         
           // Hide the Recipe Cards Wrapper
         //   featuredRecipesWrapper.classList.remove("shown");
           
-          // Pass the data from the <recipe-card> to the singular <recipe-viewer>
+        //   Pass the data from the <recipe-card> to the singular <recipe-viewer>
         //   document.querySelector("recipe-viewer").data =
         //     recipesID[recipeArray[snapshot]];
         // bindRecipeViewers(recipeCard, page);
@@ -296,7 +315,7 @@ function bindRecipeCards(query) {
    * Also set up the recipeCard
    */
 
-  recipesID  = {};
+
 
   router.insertPage(query, function () {
     // Display the Recipe Cards Wrapper
