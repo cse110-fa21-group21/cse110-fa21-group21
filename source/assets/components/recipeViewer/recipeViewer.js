@@ -129,7 +129,7 @@ class recipeViewer extends HTMLElement {
     const favImg = this.shadowRoot.querySelector('#fav-btn');
     if(myStorage.getItem(title) != undefined){
       favoriteButton.textContent = "Remove the Favorite"
-      favImg.setAttribute('src', "./assets/icons/favorite/favorite-yellow.png")
+      favImg.setAttribute('src', "./assets/icons/favorite/favorite-red.png")
     }
     
     //set favorite Button functionality
@@ -137,7 +137,7 @@ class recipeViewer extends HTMLElement {
       if(favoriteButton.textContent == "Favorite the Recipe"){
         myStorage.setItem(title,JSON.stringify(data))
         favoriteButton.textContent = "Remove the Favorite"
-        favImg.setAttribute('src', "./assets/icons/favorite/favorite-yellow.png")
+        favImg.setAttribute('src', "./assets/icons/favorite/favorite-red.png")
       }
       else if(favoriteButton.textContent == "Remove the Favorite"){
         myStorage.removeItem(title)
