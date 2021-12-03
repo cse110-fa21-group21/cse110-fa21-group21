@@ -11,6 +11,8 @@ name: Lint Code Base
 #############################
 on:
   push:
+    # To avoid checking again after a pull request was approved
+    branches-ignore: main
   pull_request:
     branches: main
 
