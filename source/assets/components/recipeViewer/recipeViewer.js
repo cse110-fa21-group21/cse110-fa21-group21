@@ -163,7 +163,6 @@ class recipeViewer extends HTMLElement {
     });
 
     // ADDING TO THE SHOPPING LIST
-
     const shoppingListRecipeStorageKeys = "shoppingListRecipeStorageKeys";
 
     const addToShoppingListButton =
