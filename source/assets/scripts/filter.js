@@ -311,12 +311,9 @@ export class Filter {
         recipeIngredientsData.forEach((recipe) => {
           recipeIngredients.push(recipe["name"]);
         });
-
-        if (
-          !recipeIngredients.includes(
-            searchByIngredientsText.toLocaleLowerCase()
-          )
-        ) {
+        
+        //Check if any ingredients of recipe contain substring of input
+        if (!recipeIngredients.some(a =>a.includes(searchByIngredientsText.toLocaleLowerCase()))) {
           recipeCard.classList.add("hidden");
           recipeCard.classList.remove("shown");
         }
