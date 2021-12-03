@@ -35,14 +35,14 @@ export class Router{
         if(this[page] != undefined){
             let hash;
             if(page == 'home'){
-                hash = '';
+                hash = ' ';
             }
             else{
                 hash = '#' + page;
             }
             if((state != true) && (window.location.hash != hash)){
                 console.log('push ' + hash);
-                history.pushState(page,window.location.href, hash);
+                history.pushState(page,window.location.href,hash);
             }
             this[page]();
         }

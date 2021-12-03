@@ -1,5 +1,6 @@
 // recipeCard.js
 import { Spoonacular } from '../../scripts/spoonacular.js'
+let myStorage = window.localStorage
 
 class recipeCard extends HTMLElement {
   constructor () {
@@ -47,7 +48,7 @@ class recipeCard extends HTMLElement {
     // this will reset the struction of the section element within our shadow root
     this.shadowRoot.querySelector("section").innerHTML = `
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6">  
           <div class="rounded">
             <aside id ="card-visuals">
               <fig id="visual">
@@ -163,6 +164,27 @@ class recipeCard extends HTMLElement {
       if (dietary['gluten-free']) { this.shadowRoot.getElementById('gluten-free').removeAttribute('hidden') }
       if (dietary['dairy-free']) { this.shadowRoot.getElementById('dairy-free').removeAttribute('hidden') }
     }
+
+    // //determine the text on button
+    // const favoriteButton = this.shadowRoot.querySelector('button');
+    // const favImg = this.shadowRoot.querySelector('#fav-btn');
+    // if(myStorage.getItem(title) != undefined){
+    //   favoriteButton.textContent = "Remove the Favorite"
+    //   favImg.setAttribute('src', "./assets/icons/favorite/favorite-yellow.png")
+    // }
+    
+    // //set favorite Button functionality
+    // favoriteButton.addEventListener('click', () => {
+    //   if(favoriteButton.textContent == "Favorite the Recipe"){
+    //     myStorage.setItem(title,JSON.stringify(data))
+    //     favoriteButton.textContent = "Remove the Favorite"
+    //     favImg.setAttribute('src', "./assets/icons/favorite/favorite-yellow.png")
+    //   }
+    //   else if(favoriteButton.textContent == "Remove the Favorite"){
+    //     myStorage.removeItem(title)
+    //     favoriteButton.textContent = "Favorite the Recipe"
+    //     favImg.setAttribute('src', "./assets/icons/favorite/favorite-blank.png")
+    //   }
   }
   /**
    * Parse the numerical price from the spoonacular.js
