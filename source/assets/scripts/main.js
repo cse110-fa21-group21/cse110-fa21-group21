@@ -2,7 +2,8 @@
 import { Router } from "../scripts/Router.js";
 import { Filter } from "../scripts/filter.js";
 
-const apiKey = "6a88c5a5ad1447be91b3b7c17de27b39" ;
+//const apiKey = "6a88c5a5ad1447be91b3b7c17de27b39" ;
+const apiKey = "f62f850e9c7d45a38b02ea70ef420114" ;
 const MAX_NUM_RECIPE_CARDS = 30;
 const searchFilter = document.querySelector(".search-filter");
 
