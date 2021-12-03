@@ -84,30 +84,15 @@ async function bindSearch() {
  */
 async function bindHomeSearch() {
   const homeSearchBar = document.getElementById("homepage-search-bar");
+  const homeSearchBarBtn = document.getElementById("homepage-search-btn");
   homeSearchBar.addEventListener("input", (event) => {
     homeSearchBar.textContent = event.target.value;
   });
   homeSearchBar.addEventListener("keydown", (event)=>{
     if(event.key == "Enter"){
-      searchQuery = homeSearchBar.textContent;
-    if (
-      !searchQueryHistory.includes(searchQuery) &&
-      !(searchQuery in recipesID)
-    ) {
-      // This is slightly flawed. We don't want to only store search history but rather by title?
-      console.log("Original query, fetching data!");
-      searchQueryHistory.push(searchQuery);
-      baseURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${searchQuery}&instructions=true&addRecipeInformation=true&addRecipeNutrition=true&number=30&price=true`;
-      fetchAPI(searchQuery);
-    } else {
-      // All of this should be integrated into a service worker, just a thought
-      console.log("Unoriginal query, no need to fetch it!");
-      console.log(recipesID);
-      bindRecipeCards(searchQuery);
-    }
+      homeSearchBarBtn.click();
     }
   })
-  const homeSearchBarBtn = document.getElementById("homepage-search-btn");
   homeSearchBarBtn.addEventListener("click", () => {
     searchQuery = homeSearchBar.textContent;
     if (
@@ -134,31 +119,15 @@ async function bindHomeSearch() {
  */
 async function bindNavSearch() {
   const navSearchBar = document.getElementById("nav-search-bar");
+  const navSearchBarBtn = document.getElementById("nav-search-btn");
   navSearchBar.addEventListener("input", (event) => {
     navSearchBar.textContent = event.target.value;
   });
   navSearchBar.addEventListener("keydown", (event) =>{
     if(event.key == "Enter"){
-      searchQuery = navSearchBar.textContent;
-      if (
-        !searchQueryHistory.includes(searchQuery) &&
-        !(searchQuery in recipesID)
-      ) {
-      // This is slightly flawed. We don't want to only store search history but rather by title?
-      console.log("Original query, fetching data!");
-      searchQueryHistory.push(searchQuery);
-      baseURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${searchQuery}&instructions=true&addRecipeInformation=true&addRecipeNutrition=true&number=30&price=true`;
-      fetchAPI(searchQuery);
-      } else {
-        // All of this should be integrated into a service worker, just a thought
-        console.log("Unoriginal query, no need to fetch it!");
-        console.log(recipesID);
-        bindRecipeCards(searchQuery);
-      }
+      navSearchBarBtn.click();
     }
   })
-
-  const navSearchBarBtn = document.getElementById("nav-search-btn");
   navSearchBarBtn.addEventListener("click", () => {
     searchQuery = navSearchBar.textContent;
     if (
