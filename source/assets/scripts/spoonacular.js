@@ -115,12 +115,14 @@ export class Spoonacular {
         const checkbox = document.createElement("input");
         checkbox.setAttribute("type", "checkbox");
         listEntry.appendChild(checkbox);
-        listEntry.innerHTML =
-          ingredients[i].amount +
-          " " +
-          ingredients[i].unit +
-          " of " +
-          ingredients[i].name;
+        let innerText = document.createElement("span");
+        let ingredientText = document.createElement("span");
+        innerText.innerHTML =
+          ingredients[i].amount + " " + ingredients[i].unit + " of ";
+        ingredientText.setAttribute("id", "ingredient");
+        ingredientText.innerHTML = ingredients[i].name;
+        listEntry.appendChild(innerText);
+        listEntry.appendChild(ingredientText);
         console.log(listEntry);
         ingredientsListElem.appendChild(listEntry);
 

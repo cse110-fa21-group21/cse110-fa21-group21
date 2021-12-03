@@ -4,8 +4,14 @@
     <title>Recipe App</title>
 
     <!-- Scripts -->
-    <script src="assets/components/recipeCard/recipeCard.js" type="module"></script>
-    <script src="assets/components/recipeViewer/recipeViewer.js" type="module"></script>
+    <script
+      src="assets/components/recipeCard/recipeCard.js"
+      type="module"
+    ></script>
+    <script
+      src="assets/components/recipeViewer/recipeViewer.js"
+      type="module"
+    ></script>
     <script src="assets/scripts/main.js" type="module"></script>
     <script src="assets/scripts/spoonacular.js" type="module"></script>
     <script src="assets/scripts/filter.js" type="module"></script>
@@ -17,188 +23,190 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
       type="text/css"
     />
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width" />
   </head>
 
   <body>
     <main>
-        <!--top nav bar for all pages-->
-        <div class="topbar">
-          <!--Not sure if we can apply the hyperlink tag 'a' here-->
-          <div class="ml-auto">
-            <button id = "home">Home</button>
-            <button id = "fav">Favorite</button>
-            <button id = "shop-list">Shopping List</button>
-            <!-- <a href="#home">Home</a>
+      <!--top nav bar for all pages-->
+      <div class="topbar">
+        <!--Not sure if we can apply the hyperlink tag 'a' here-->
+        <div class="ml-auto">
+          <button id="home">Home</button>
+          <button id="fav">Favorite</button>
+          <button id="shop-list">Shopping List</button>
+          <!-- <a href="#home">Home</a>
             <a id = 'fav' >Favorite</a>
             <a href="#shopList">Shopping List</a> -->
-          </div>
-          <!--search bar on the nav bar-->
-          <div class="nav-search-bar hidden">
-            <input type="text" id="nav-search-bar">
-            <input type="submit" value="Search" id="nav-search-btn">
-          </div>
-        </div>        
+        </div>
+        <!--search bar on the nav bar-->
+        <div class="nav-search-bar hidden">
+          <input type="text" id="nav-search-bar" />
+          <input type="submit" value="Search" id="nav-search-btn" />
+        </div>
+      </div>
 
-        <section class="section-home-page shown">
-          <!--following icons are placed left-up corner at the same places, show and hide appropriately for each page-->
-          <div class="favorite-icon hidden">
-            <i class="fa fa-star" style = "color:yellow" >
-            </i>
-            <!--Favorite-->
-          </div>
-          
-          <div class="shopping-list-icon hidden">
-            <i class="fa fa-shopping-cart" style = "color:yellow">
-            </i>
-            <!--Shopping List-->
-          </div>
+      <section class="section-home-page shown">
+        <!--following icons are placed left-up corner at the same places, show and hide appropriately for each page-->
+        <div class="favorite-icon hidden">
+          <i class="fa fa-star" style="color: yellow"> </i>
+          <!--Favorite-->
+        </div>
 
-          <div class="home-icon">
+        <div class="shopping-list-icon hidden">
+          <i class="fa fa-shopping-cart" style="color: yellow"> </i>
+          <!--Shopping List-->
+        </div>
+
+        <div class="home-icon">
+          <img
+            src="assets/icons/cooking-girl-final.png"
+            alt="group-logo"
+            width="35"
+            height="35"
+          />
+          Home
+        </div>
+
+        <div class="homepage-search">
+          <!--placed in the middle of home page above the home-page search bar; just like google-->
+          <div class="logo">
             <img
               src="assets/icons/cooking-girl-final.png"
               alt="group-logo"
-              width="35"
-              height="35"
+              height="300"
+              class="center-home-icon"
             />
-            Home
           </div>
 
-          <div class="homepage-search">
-            <!--placed in the middle of home page above the home-page search bar; just like google-->
-            <div class="logo">
-              <img
-                src="assets/icons/cooking-girl-final.png"
-                alt="group-logo"
-                height="300"
-                class="center-home-icon"
-              />
-            </div>
-
-            <!--search bar for the home page; if it's easier to just move the 
+          <!--search bar for the home page; if it's easier to just move the 
             search bar from other pages to the middle, feel free to delete this-->
-            <div class="homepage-search-bar">
-              <input type="text" id="homepage-search-bar">
-              <input type="submit" value="Search" id="homepage-search-btn">
-            </div>
+          <div class="homepage-search-bar">
+            <input type="text" id="homepage-search-bar" />
+            <input type="submit" value="Search" id="homepage-search-btn" />
           </div>
+        </div>
 
-          <!--featured recipes, placed at the right of the logo-->
-          <div class="featured-recipes">
-            <h2>Featured Recipes</h2> 
-            <section class="section-featured-cards-wrapper">
-              <recipe-card id="featured-1"></recipe-card>
-              <recipe-card id="featured-2"></recipe-card>
-            </section>
-          </div>
-        </section>
-
-        <div class="flex-container">
-          <section class="search-filter">
-              <fieldset>
-                <legend><h3>Dietary</h3></legend>
-                <form name="filterByDietary" id="filter-by-diet">
-                  <input type="checkbox" id="dairy-free-diet" name="dairy_free" />
-                  <label for="dairy-free-diet"> Dairy Free</label><br />
-                  <input type="checkbox" id="gluten-free-diet" name="gluten_free" />
-                  <label for="gluten-free-diet"> Gluten Free </label><br />
-                  <input type="checkbox" id="vegetarian-diet" name="vegetarian" />
-                  <label for="vegetarian-diet"> Vegetarian </label><br />
-                  <input type="checkbox" id="vegan-diet" name="vegan" />
-                  <label for="vegan-diet"> Vegan </label><br />
-                </form>
-              </fieldset>
-
-              <fieldset>
-                <legend><h3>Price</h3></legend>
-                <form name="filterByPrice" id="filter-by-price">
-                  <input type="checkbox" id="all-price" name="all_price" />
-                  <label for="all-price"> All</label><br />
-                  <input type="checkbox" id="first-price" name="first_price" />
-                  <label for="first-price"> 50.00+</label><br />
-                  <input type="checkbox" id="second-price" name="second_price" />
-                  <label for="second-price"> 20.00 - 50.00</label><br />
-                  <input type="checkbox" id="third-price" name="third_price" />
-                  <label for="third-price"> 10.00 - 20.00</label><br />
-                  <input type="checkbox" id="fourth-price" name="fourth_price" />
-                  <label for="fourth-price"> 5.00 - 10.00</label><br />
-                  <input type="checkbox" id="fifth-price" name="fifth_price" />
-                  <label for="fifth-price"> 0.00 - 5.00</label><br />
-                </form>
-              </fieldset>
-
-              <fieldset>
-                <legend><h3>Time</h3></legend>
-                <form name="filterByTime" id="filter-by-time">
-                  <input type="checkbox" id="all-time" name="all_time" />
-                  <label for="all-time">All</label><br />
-                  <input type="checkbox" id="first-time" name="first_time" />
-                  <label for="first-time">60 min+</label><br />
-                  <input type="checkbox" id="second-time" name="second_time" />
-                  <label for="first-time">45 min - 60 min</label><br />
-                  <input type="checkbox" id="third-time" name="third_time" />
-                  <label for="first-time">30 min - 45 min</label><br />
-                  <input type="checkbox" id="fourth-time" name="fourth_time" />
-                  <label for="first-time">15 min - 30 min</label><br />
-                  <input type="checkbox" id="fifth-time" name="fifth_time" />
-                  <label for="first-time">0 min - 15 min</label><br />
-                </form>
-              </fieldset>
-
-              <fieldset>
-                <legend><h3>Cuisine</h3></legend>
-                <select id="select-cuisine"></select>
-              </fieldset>
-
-              <fieldset>
-                <legend><h3>Ingredients</h3></legend>
-                <input type="search" id="search-ingredients" />
-                <button id="search-ingredients-button">Search</button>
-              </fieldset>
-          </section>
-
-          <section class="section-recipe-cards-wrapper">
-            <!-- create recipe-card -->
-            <recipe-card id="card-1"></recipe-card>
-            <recipe-card id="card-2"></recipe-card>
-            <recipe-card id="card-3"></recipe-card>
-            <recipe-card id="card-4"></recipe-card>
-            <recipe-card id="card-5"></recipe-card>
-            <recipe-card id="card-6"></recipe-card>
-            <recipe-card id="card-7"></recipe-card>
-            <recipe-card id="card-8"></recipe-card>
-            <recipe-card id="card-9"></recipe-card>
-            <recipe-card id="card-10"></recipe-card>
-            <recipe-card id="card-11"></recipe-card>
-            <recipe-card id="card-12"></recipe-card>
-            <recipe-card id="card-13"></recipe-card>
-            <recipe-card id="card-14"></recipe-card>
-            <recipe-card id="card-15"></recipe-card>
-            <recipe-card id="card-16"></recipe-card>
-            <recipe-card id="card-17"></recipe-card>
-            <recipe-card id="card-18"></recipe-card>
-            <recipe-card id="card-19"></recipe-card>
-            <recipe-card id="card-20"></recipe-card>
-            <recipe-card id="card-21"></recipe-card>
-            <recipe-card id="card-22"></recipe-card>
-            <recipe-card id="card-23"></recipe-card>
-            <recipe-card id="card-24"></recipe-card>
-            <recipe-card id="card-25"></recipe-card>
-            <recipe-card id="card-26"></recipe-card>
-            <recipe-card id="card-27"></recipe-card>
-            <recipe-card id="card-28"></recipe-card>
-            <recipe-card id="card-29"></recipe-card>
-            <recipe-card id="card-30"></recipe-card>
+        <!--featured recipes, placed at the right of the logo-->
+        <div class="featured-recipes">
+          <h2>Featured Recipes</h2>
+          <section class="section-featured-cards-wrapper">
+            <recipe-card id="featured-1"></recipe-card>
+            <recipe-card id="featured-2"></recipe-card>
           </section>
         </div>
-      
+      </section>
+
+      <div class="flex-container">
+        <section class="search-filter">
+          <fieldset>
+            <legend><h3>Dietary</h3></legend>
+            <form name="filterByDietary" id="filter-by-diet">
+              <input type="checkbox" id="dairy-free-diet" name="dairy_free" />
+              <label for="dairy-free-diet"> Dairy Free</label><br />
+              <input type="checkbox" id="gluten-free-diet" name="gluten_free" />
+              <label for="gluten-free-diet"> Gluten Free </label><br />
+              <input type="checkbox" id="vegetarian-diet" name="vegetarian" />
+              <label for="vegetarian-diet"> Vegetarian </label><br />
+              <input type="checkbox" id="vegan-diet" name="vegan" />
+              <label for="vegan-diet"> Vegan </label><br />
+            </form>
+          </fieldset>
+
+          <fieldset>
+            <legend><h3>Price</h3></legend>
+            <form name="filterByPrice" id="filter-by-price">
+              <input type="checkbox" id="all-price" name="all_price" />
+              <label for="all-price"> All</label><br />
+              <input type="checkbox" id="first-price" name="first_price" />
+              <label for="first-price"> 50.00+</label><br />
+              <input type="checkbox" id="second-price" name="second_price" />
+              <label for="second-price"> 20.00 - 50.00</label><br />
+              <input type="checkbox" id="third-price" name="third_price" />
+              <label for="third-price"> 10.00 - 20.00</label><br />
+              <input type="checkbox" id="fourth-price" name="fourth_price" />
+              <label for="fourth-price"> 5.00 - 10.00</label><br />
+              <input type="checkbox" id="fifth-price" name="fifth_price" />
+              <label for="fifth-price"> 0.00 - 5.00</label><br />
+            </form>
+          </fieldset>
+
+          <fieldset>
+            <legend><h3>Time</h3></legend>
+            <form name="filterByTime" id="filter-by-time">
+              <input type="checkbox" id="all-time" name="all_time" />
+              <label for="all-time">All</label><br />
+              <input type="checkbox" id="first-time" name="first_time" />
+              <label for="first-time">60 min+</label><br />
+              <input type="checkbox" id="second-time" name="second_time" />
+              <label for="first-time">45 min - 60 min</label><br />
+              <input type="checkbox" id="third-time" name="third_time" />
+              <label for="first-time">30 min - 45 min</label><br />
+              <input type="checkbox" id="fourth-time" name="fourth_time" />
+              <label for="first-time">15 min - 30 min</label><br />
+              <input type="checkbox" id="fifth-time" name="fifth_time" />
+              <label for="first-time">0 min - 15 min</label><br />
+            </form>
+          </fieldset>
+
+          <fieldset>
+            <legend><h3>Cuisine</h3></legend>
+            <select id="select-cuisine"></select>
+          </fieldset>
+
+          <fieldset>
+            <legend><h3>Ingredients</h3></legend>
+            <input type="search" id="search-ingredients" />
+            <button id="search-ingredients-button">Search</button>
+          </fieldset>
+        </section>
+
+        <section class="section-recipe-cards-wrapper">
+          <!-- create recipe-card -->
+          <recipe-card id="card-1"></recipe-card>
+          <recipe-card id="card-2"></recipe-card>
+          <recipe-card id="card-3"></recipe-card>
+          <recipe-card id="card-4"></recipe-card>
+          <recipe-card id="card-5"></recipe-card>
+          <recipe-card id="card-6"></recipe-card>
+          <recipe-card id="card-7"></recipe-card>
+          <recipe-card id="card-8"></recipe-card>
+          <recipe-card id="card-9"></recipe-card>
+          <recipe-card id="card-10"></recipe-card>
+          <recipe-card id="card-11"></recipe-card>
+          <recipe-card id="card-12"></recipe-card>
+          <recipe-card id="card-13"></recipe-card>
+          <recipe-card id="card-14"></recipe-card>
+          <recipe-card id="card-15"></recipe-card>
+          <recipe-card id="card-16"></recipe-card>
+          <recipe-card id="card-17"></recipe-card>
+          <recipe-card id="card-18"></recipe-card>
+          <recipe-card id="card-19"></recipe-card>
+          <recipe-card id="card-20"></recipe-card>
+          <recipe-card id="card-21"></recipe-card>
+          <recipe-card id="card-22"></recipe-card>
+          <recipe-card id="card-23"></recipe-card>
+          <recipe-card id="card-24"></recipe-card>
+          <recipe-card id="card-25"></recipe-card>
+          <recipe-card id="card-26"></recipe-card>
+          <recipe-card id="card-27"></recipe-card>
+          <recipe-card id="card-28"></recipe-card>
+          <recipe-card id="card-29"></recipe-card>
+          <recipe-card id="card-30"></recipe-card>
+        </section>
+      </div>
+
       <section class="section-recipe-viewers-wrapper">
         <!-- create recipe-viewer -->
         <recipe-viewer></recipe-viewer>
       </section>
       <section class="my-favorite-list"></section>
+      <section class="my-shopping-list"></section>
     </main>
     <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/0e68289b8e.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/0e68289b8e.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

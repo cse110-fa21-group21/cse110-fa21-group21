@@ -2,7 +2,7 @@
 import { Router } from "../scripts/Router.js";
 import { Filter } from "../scripts/filter.js";
 
-const apiKey = "6a88c5a5ad1447be91b3b7c17de27b39" ;
+const apiKey = "d7a805d987074402904a262f602c7844";
 const MAX_NUM_RECIPE_CARDS = 30;
 const searchFilter = document.querySelector(".search-filter");
 
@@ -22,7 +22,7 @@ let baseURL = "";
  *  - @value{object} data: The JSON representation of a recipe as
  *                         returned by the Spoonacular API
  */
-const recipesID = {}
+const recipesID = {};
 
 const searchQueryHistory = [];
 
@@ -37,24 +37,18 @@ const funcArray = [];
  */
 const router = new Router(function () {
   removeFavoriteList();
-  document
-  .querySelector(".search-filter")
-  .classList.remove("shown");
+  removeShoppingList();
+  document.querySelector(".search-filter").classList.remove("shown");
   document
     .querySelector(".section-recipe-cards-wrapper")
     .classList.remove("shown");
   document
     .querySelector(".section-recipe-viewers-wrapper")
     .classList.remove("shown");
-  document
-    .querySelector(".section-home-page")
-    .classList.add("shown");
-  document
-    .querySelector(".nav-search-bar")
-    .classList.add("hidden");
-  document
-    .querySelector(".my-favorite-list")
-    .classList.remove("shown");
+  document.querySelector(".section-home-page").classList.add("shown");
+  document.querySelector(".nav-search-bar").classList.add("hidden");
+  document.querySelector(".my-favorite-list").classList.remove("shown");
+  document.querySelector(".my-shopping-list").classList.remove("shown");
 });
 
 const filter = new Filter();
@@ -66,6 +60,7 @@ async function init() {
   bindState();
   filter.filtering();
   bindFavoriteList();
+  bindShoppingList();
   bindHomeButton();
 }
 
@@ -105,7 +100,6 @@ async function bindHomeSearch() {
       console.log(recipesID);
       bindRecipeCards(searchQuery);
     }
-    
   });
 }
 /**
@@ -136,7 +130,6 @@ async function bindNavSearch() {
       console.log(recipesID);
       bindRecipeCards(searchQuery);
     }
-    
   });
 }
 
@@ -169,7 +162,7 @@ async function fetchAPI(query) {
 }
 
 /**
- * Fetches random recipe. Adds recipes to the global recipesID obj, 
+ * Fetches random recipe. Adds recipes to the global recipesID obj,
  * format of entry is specified by the recipesID obj.
  */
 async function fetchRandomAPI() {
@@ -188,7 +181,6 @@ async function fetchRandomAPI() {
   bindRecipeCards("");
   filter.filtering();
 }
-
 
 /****************************************************************************
  *                      RECIPE CARDS
@@ -222,20 +214,14 @@ function bindRecipeCards(query) {
     searchFilter.classList.add("shown");
 
     // Hide the homepage-section
-    const homepage = document.querySelector(
-      ".section-home-page"
-    )
+    const homepage = document.querySelector(".section-home-page");
     homepage.classList.remove("shown");
 
     // Display navbar search bar
-    const navSearchDisplay = document.querySelector(
-      ".nav-search-bar"
-    )
+    const navSearchDisplay = document.querySelector(".nav-search-bar");
     navSearchDisplay.classList.remove("hidden");
 
-    const favoriteList = document.querySelector(
-      ".my-favorite-list"
-    )
+    const favoriteList = document.querySelector(".my-favorite-list");
 
     // An array to store recipe to be sort and display
     let recipeArray = [];
@@ -256,9 +242,9 @@ function bindRecipeCards(query) {
      * recipeArray[i] to access the corresponding json file in recipesID
      */
 
-    // There are MAX_NUM_RECIPE_CARDS distinct recipeCard DOMs 
+    // There are MAX_NUM_RECIPE_CARDS distinct recipeCard DOMs
     let cardIndex = 0;
-    for(let snapshot = 0; snapshot<recipeArray.length; snapshot++){
+    for (let snapshot = 0; snapshot < recipeArray.length; snapshot++) {
       if (cardIndex === MAX_NUM_RECIPE_CARDS) break;
 
       const recipeCard = recipeCardsWrapper.children[snapshot];
@@ -286,7 +272,7 @@ function bindRecipeCards(query) {
       cardIndex++;
     }
     // hide the remaining unused cards
-    while(cardIndex < MAX_NUM_RECIPE_CARDS){
+    while (cardIndex < MAX_NUM_RECIPE_CARDS) {
       const recipeCardsWrapper = document.querySelector(
         ".section-recipe-cards-wrapper"
       );
@@ -295,7 +281,7 @@ function bindRecipeCards(query) {
       recipeCard.classList.remove("shown");
       recipeCard.classList.add("hidden");
 
-      bindRecipeViewers(recipeCard, '');
+      bindRecipeViewers(recipeCard, "");
       cardIndex++;
     }
   });
@@ -319,7 +305,7 @@ function bindRecipeViewers(recipeCard, pageName, state) {
     router.goTo(pageName);
   }
   recipeCard.addEventListener("click", event);
-  if(state == undefined){
+  if (state == undefined) {
     funcArray.push(event);
   }
 }
@@ -329,29 +315,29 @@ function bindRecipeViewers(recipeCard, pageName, state) {
  ****************************************************************************/
 
 /**
-* function that bind the back button
-* and the forward button
-*/
-function bindState () {
-  window.addEventListener('popstate', (event) => {
+ * function that bind the back button
+ * and the forward button
+ */
+function bindState() {
+  window.addEventListener("popstate", (event) => {
     if (event.state == null) {
-      router.goTo('home', true)
+      router.goTo("home", true);
     } else {
-      console.log('Routing to page:', event.state)
-      router.goTo(event.state, true)
+      console.log("Routing to page:", event.state);
+      router.goTo(event.state, true);
     }
-    filter.filtering()
-  })
+    filter.filtering();
+  });
 }
 /**
  * Bind Home button to navigate to home
- * 
+ *
  */
- function bindHomeButton(){
-  const homeButton = document.querySelector('button#home')
-  homeButton.addEventListener('click', event =>{
-    router.goTo('home', false);
-  })
+function bindHomeButton() {
+  const homeButton = document.querySelector("button#home");
+  homeButton.addEventListener("click", (event) => {
+    router.goTo("home", false);
+  });
 }
 
 /****************************************************************************
@@ -360,16 +346,18 @@ function bindState () {
 /**
  * Connects FavoriteList button to display user's favorite recipes
  */
- function bindFavoriteList(){
-  const favButton = document.querySelector('#fav')
-  favButton.addEventListener('click', event =>{
-    let page = 'favoriteList';
+function bindFavoriteList() {
+  const favButton = document.querySelector("#fav");
+  favButton.addEventListener("click", (event) => {
+    let page = "favoriteList";
     let numidx = 0;
-    router.insertPage(page, function(){
-      removeFavoriteList()
+    router.insertPage(page, function () {
+      removeFavoriteList();
       let favoriteList = document.querySelector(".my-favorite-list");
       let recipeCards = document.querySelector(".section-recipe-cards-wrapper");
-      let recipeViewer = document.querySelector(".section-recipe-viewers-wrapper");
+      let recipeViewer = document.querySelector(
+        ".section-recipe-viewers-wrapper"
+      );
       let homePageSearch = document.querySelector(".section-home-page");
       //Show Favorite List
       favoriteList.classList.add("shown");
@@ -382,67 +370,114 @@ function bindState () {
       //Hide Home Page Search Bar
       homePageSearch.classList.remove("shown");
 
-      for(let i = 0; i < myStorage.length; i++){
-        console.log(JSON.parse(myStorage.getItem(myStorage.key(i))))
-        let favoriteCard = document.createElement('recipe-card')
-        favoriteList.appendChild(favoriteCard)
-        favoriteCard.data = JSON.parse(myStorage.getItem(myStorage.key(i)))
-        let favoritePage = 'favoriteList' + myStorage.key(i);
-        router.insertPage(favoritePage, function(){
-          const recipeViewersWrapper = document.querySelector(".section-recipe-viewers-wrapper");
-          
+      for (let i = 0; i < myStorage.length; i++) {
+        console.log(JSON.parse(myStorage.getItem(myStorage.key(i))));
+        let favoriteCard = document.createElement("recipe-card");
+        favoriteList.appendChild(favoriteCard);
+        favoriteCard.data = JSON.parse(myStorage.getItem(myStorage.key(i)));
+        let favoritePage = "favoriteList" + myStorage.key(i);
+        router.insertPage(favoritePage, function () {
+          const recipeViewersWrapper = document.querySelector(
+            ".section-recipe-viewers-wrapper"
+          );
+
           searchFilter.classList.remove("shown");
           favoriteList.classList.remove("shown");
           recipeViewersWrapper.classList.add("shown");
-          
-          document.querySelector("recipe-viewer").data = JSON.parse(myStorage.getItem(myStorage.key(i)));
-        })
+
+          document.querySelector("recipe-viewer").data = JSON.parse(
+            myStorage.getItem(myStorage.key(i))
+          );
+        });
         bindRecipeViewers(favoriteCard, favoritePage, true);
         numidx++;
       }
-    })
+    });
     router.goTo(page);
-    console.log(document.querySelector('.my-favorite-list').classList);
-  })
+    console.log(document.querySelector(".my-favorite-list").classList);
+  });
 }
 
 /**
  * Removes favorite list's recipe card when going back to the main page
  */
-function removeFavoriteList(){
-  let favoriteList = document.querySelector(".my-favorite-list")
-  while(favoriteList.firstChild){
-    favoriteList.removeChild(favoriteList.firstChild)
+function removeFavoriteList() {
+  let favoriteList = document.querySelector(".my-favorite-list");
+  while (favoriteList.firstChild) {
+    favoriteList.removeChild(favoriteList.firstChild);
+  }
+}
+
+/****************************************************************************
+ *                      SHOPPING LIST
+ ****************************************************************************/
+/**
+ * Connects ShoppingList button to display user's shopping list
+ */
+function bindShoppingList() {
+  const shopButton = document.querySelector("#shop-list");
+  shopButton.addEventListener("click", (event) => {
+    let page = "shoppingList";
+    router.insertPage(page, function () {
+      removeShoppingList();
+      let shoppingList = document.querySelector(".my-shopping-list");
+
+      let homePageSearch = document.querySelector(".section-home-page");
+      //Show Shopping List
+      shoppingList.classList.add("shown");
+      //Hide Search Filter
+      searchFilter.classList.remove("shown");
+      //Hide Home Page Search Bar
+      homePageSearch.classList.remove("shown");
+    });
+
+    for (let i = 0; i < myStorage.length; i++) {
+      if (myStorage.key(i).includes("_SLK")) {
+        console.log(myStorage.key(i));
+      }
+    }
+
+    router.goTo(page);
+    console.log(document.querySelector(".my-shopping-list").classList);
+  });
+}
+
+/**
+ * Removes shopping list's list when going back to the main page
+ */
+function removeShoppingList() {
+  let shoppingList = document.querySelector(".my-shopping-list");
+  while (shoppingList.firstChild) {
+    shoppingList.removeChild(shoppingList.firstChild);
   }
 }
 
 /**************************************************************************
  *                       SORTING
  **************************************************************************/
- /**
-  * Function use to sort a given array by score
-  * @param {Array} recipeArray 
-  */
- function sortRecipeCards (recipeArray) {
-   recipeArray.sort((firstCard, secondCard) =>
-     compareRecipeCards(firstCard, secondCard)
-   )
- }
- 
- /**
-  * Compares two recipe-card DOMs and chooses the one with
-  * the higher spoonacular score
-  */
- function compareRecipeCards (firstCard, secondCard) {
-   //Change the score extract firstCard and secondCard's score in to number
-   const firstCardRecipeScore = Number(recipesID[firstCard].spoonacularScore)
-   const secondCardRecipeScore = Number(recipesID[secondCard].spoonacularScore)
-   if (firstCardRecipeScore > secondCardRecipeScore) {
-     return -1
-   } else if (firstCardRecipeScore < secondCardRecipeScore) {
-     return 1
-   } else {
-     return 0
-   }
- }
- 
+/**
+ * Function use to sort a given array by score
+ * @param {Array} recipeArray
+ */
+function sortRecipeCards(recipeArray) {
+  recipeArray.sort((firstCard, secondCard) =>
+    compareRecipeCards(firstCard, secondCard)
+  );
+}
+
+/**
+ * Compares two recipe-card DOMs and chooses the one with
+ * the higher spoonacular score
+ */
+function compareRecipeCards(firstCard, secondCard) {
+  //Change the score extract firstCard and secondCard's score in to number
+  const firstCardRecipeScore = Number(recipesID[firstCard].spoonacularScore);
+  const secondCardRecipeScore = Number(recipesID[secondCard].spoonacularScore);
+  if (firstCardRecipeScore > secondCardRecipeScore) {
+    return -1;
+  } else if (firstCardRecipeScore < secondCardRecipeScore) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
