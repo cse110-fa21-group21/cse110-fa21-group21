@@ -151,6 +151,10 @@ async function bindNavSearch() {
   });
 }
 
+/** 
+* Adds featured recipes recipe cards to the home page.
+* @async 
+*/
 async function bindFeaturedRecipes(){
     fetchRandomAPI();
 }
@@ -209,15 +213,20 @@ async function fetchRandomAPI() {
  *                      RECIPE CARDS
  ****************************************************************************/
 
+/**
+ * function binds the Featured Recipe Cards to the homepage
+ * and binds the Featured Recipe Cards to recipe viewer.
+ * it add the route for the page into the router
+ */
  function bindFeaturedRecipeCards() {
     
-    //display the featured recipes wrapper
+    // Display the featured recipes wrapper
     const featuredRecipesWrapper = document.querySelector(
         ".section-featured-cards-wrapper"
     );
     featuredRecipesWrapper.classList.add("shown");
 
-    //Get the Recipe Viewers Wrapper
+    // Get the Recipe Viewers Wrapper
     const recipeViewersWrapper = document.querySelector(
         ".section-recipe-viewers-wrapper"
     );
@@ -228,8 +237,9 @@ async function fetchRandomAPI() {
     for (const recipeTitle in recipesID) {
         recipeArray.push(recipeTitle);
     }
-    // matching recipes are sorted prior to being binded to <recipe-cards>
-    //the recipe with the higher score is displayed first
+
+    // recipes are sorted prior to being binded to <recipe-cards>
+    // the recipe with the higher score is displayed first
     sortRecipeCards(recipeArray);
 
     /**
@@ -240,37 +250,37 @@ async function fetchRandomAPI() {
     // There are 2 distinct featured recipeCard DOMs on the home page
     let cardIndex = 0;
     for(let snapshot = 0; snapshot<recipeArray.length; snapshot++){
-    if (cardIndex === 2) break;
+        if (cardIndex === 2) break;
 
-    const recipeCard = featuredRecipesWrapper.children[snapshot];
-    recipeCard.data = recipesID[recipeArray[snapshot]];
-    
-    // Show the Recipe Card
-    recipeCard.classList.remove("hidden");
-    recipeCard.classList.add("shown");
-
-    // Add the route that would lead users to the corresponding recipeView
-    const page = recipeArray[snapshot];
-
-    router.insertPage(page, function () {
-        // Hide the Recipe Cards Wrapper
-        featuredRecipesWrapper.classList.remove("shown");
-        // Show the Recipe Viewers Wrapper
-        recipeViewersWrapper.classList.add("shown");
+        const recipeCard = featuredRecipesWrapper.children[snapshot];
+        recipeCard.data = recipesID[recipeArray[snapshot]];
         
-        // Hide the homepage-section
-        const homepage = document.querySelector(
-            ".section-home-page"
-        )
-        homepage.classList.remove("shown");
+        // Show the Recipe Card
+        recipeCard.classList.remove("hidden");
+        recipeCard.classList.add("shown");
+
+        // Add the route that would lead users to the corresponding recipeView
+        const page = recipeArray[snapshot];
+
+        router.insertPage(page, function () {
+            // Hide the Recipe Cards Wrapper
+            featuredRecipesWrapper.classList.remove("shown");
+            // Show the Recipe Viewers Wrapper
+            recipeViewersWrapper.classList.add("shown");
+            
+            // Hide the homepage-section
+            const homepage = document.querySelector(
+                ".section-home-page"
+            )
+            homepage.classList.remove("shown");
+            
+            document.querySelector("recipe-viewer").data =
+            recipesID[recipeArray[snapshot]];
+        });
+        bindRecipeViewers(recipeCard, page);
         
-        document.querySelector("recipe-viewer").data =
-        recipesID[recipeArray[snapshot]];
-    });
-    bindRecipeViewers(recipeCard, page);
-    
-    cardIndex++;
-      }
+        cardIndex++;
+    }
   }
 
 
@@ -319,11 +329,11 @@ function bindRecipeCards(query) {
       ".my-favorite-list"
     )
 
-    // An array to store recipe to be sort and display
+    // An array to store recipes to be sorted and displayed
     let recipeArray = [];
 
     for (const recipeTitle in recipesID) {
-      // we check if the recipe title contains the search query
+      // check if the recipe title contains the search query
       if (recipeTitle.toLocaleLowerCase().includes(query.toLocaleLowerCase())) {
         recipeArray.push(recipeTitle);
       } else if (query === "") {
@@ -527,4 +537,3 @@ function removeFavoriteList(){
      return 0
    }
  }
- 
