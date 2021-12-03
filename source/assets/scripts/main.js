@@ -372,6 +372,8 @@ function bindFavoriteList() {
 
       for (let i = 0; i < myStorage.length; i++) {
         console.log(JSON.parse(myStorage.getItem(myStorage.key(i))));
+        if (myStorage.key(i).includes("_SLK")) continue; //keep favorites list from breaking
+
         let favoriteCard = document.createElement("recipe-card");
         favoriteList.appendChild(favoriteCard);
         favoriteCard.data = JSON.parse(myStorage.getItem(myStorage.key(i)));
