@@ -1,3 +1,10 @@
+//shoppingCard.js
+
+let myStorage = window.localStorage;
+
+let ingredientArray;
+
+
 class shoppingCard extends HTMLElement {
     constructor () {
       super()

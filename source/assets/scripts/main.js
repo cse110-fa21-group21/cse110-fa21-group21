@@ -435,9 +435,18 @@ function bindShoppingList() {
     });
 
     for (let i = 0; i < myStorage.length; i++) {
+
+      //if key does not have "_SLK" it is not relevant to the shopping list.
+      //Thus, we skip that element when iterating through localStorage
+      if (!myStorage.key(i).includes("_SLK")) { continue; }
+
       if (myStorage.key(i).includes("_SLK")) {
         console.log(myStorage.key(i));
       }
+
+      
+
+
     }
 
     router.goTo(page);
