@@ -1,4 +1,4 @@
-// spoonacular.spec.js
+// testspoonacular.js used for unit.test.js
 
 module.exports = class Spoonacular {
 /** RECIPE IMAGE SOURCE */
