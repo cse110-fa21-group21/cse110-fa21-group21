@@ -2,9 +2,10 @@
 import { Router } from "../scripts/Router.js";
 import { Filter } from "../scripts/filter.js";
 
-const apiKey = "10228f91a1da48cd9b25f529d05b0c33";
+const apiKey = "3672cd34bc2d43a0b4144be5a135a8c5";
 
 const MAX_NUM_RECIPE_CARDS = 30;
+const NUM_FEATURED = 2;
 const searchFilter = document.querySelector(".search-filter");
 
 let myStorage = window.localStorage;
@@ -247,10 +248,10 @@ async function fetchRandomAPI() {
      * recipeArray[i] to access the corresponding json file in recipesID
      */
 
-    // There are 2 distinct featured recipeCard DOMs on the home page
+    // There are NUM_FEATURED distinct featured recipeCard DOMs on the home page
     let cardIndex = 0;
     for(let snapshot = 0; snapshot<recipeArray.length; snapshot++){
-        if (cardIndex === 2) break;
+        if (cardIndex === NUM_FEATURED) break;
 
         const recipeCard = featuredRecipesWrapper.children[snapshot];
         recipeCard.data = recipesID[recipeArray[snapshot]];
