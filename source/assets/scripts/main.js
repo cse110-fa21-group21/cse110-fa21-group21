@@ -2,7 +2,7 @@
 import { Router } from "../scripts/Router.js";
 import { Filter } from "../scripts/filter.js";
 
-const apiKey = "d7a805d987074402904a262f602c7844";
+const apiKey = "3672cd34bc2d43a0b4144be5a135a8c5";
 const MAX_NUM_RECIPE_CARDS = 30;
 const searchFilter = document.querySelector(".search-filter");
 
@@ -371,9 +371,10 @@ function bindFavoriteList() {
       homePageSearch.classList.remove("shown");
 
       for (let i = 0; i < myStorage.length; i++) {
-        console.log(JSON.parse(myStorage.getItem(myStorage.key(i))));
+        
         if (myStorage.key(i).includes("_SLK")) continue; //keep favorites list from breaking
-
+        console.log(JSON.parse(myStorage.getItem(myStorage.key(i))));
+        
         let favoriteCard = document.createElement("recipe-card");
         favoriteList.appendChild(favoriteCard);
         favoriteCard.data = JSON.parse(myStorage.getItem(myStorage.key(i)));
