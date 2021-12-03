@@ -1,9 +1,13 @@
-// recipeCard.js
-import { Spoonacular } from '../../scripts/spoonacular.js'
+// ingredientCard.js
+// import { Spoonacular } from '../../scripts/spoonacular.js'
+let myStorage = window.localStorage;
+let key;
 
 class ingredientCard extends HTMLElement {
-  constructor () {
+
+  constructor (storage_key) {
     super()
+    key = storage_key;
     this.attachShadow({ mode: 'open' })
 
     this.shadowRoot.innerHTML = `
@@ -27,6 +31,8 @@ class ingredientCard extends HTMLElement {
     `
   }
 
+  
+
   get data () {
     return this.json
   }
@@ -39,8 +45,6 @@ class ingredientCard extends HTMLElement {
    */
   set data (data) {
     this.json = data
-
-    const spoonacular = new Spoonacular()
 
     // this will reset the struction of the section element within our shadow root
     this.shadowRoot.querySelector("section").innerHTML = `
@@ -66,7 +70,8 @@ class ingredientCard extends HTMLElement {
     `
 
     // set title
-    const title = spoonacular.getRecipeTitle(data)
+    const title = myStorage.getItem();
+    spoonacular.getRecipeTitle(data)
     this.shadowRoot.getElementById('recipe-title').innerHTML = title
 
     // set price and price icon
