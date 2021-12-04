@@ -70,6 +70,12 @@ body {
   text-align: center;
 }
 
+#instruction-header {
+  color: #6e4d3d;
+  font-weight: bold;
+  text-align: center;
+}
+
 #recipe-instructions {
   margin-left: 30px;
   font-size: larger;
@@ -91,6 +97,13 @@ ul li {
 
 ol li {
   padding: 10px 0;
+}
+
+h4 {
+  text-align: center;
+  padding-bottom: 10px;
+  color: #6e4d3d;
+  font-weight: bold;
 }
 
 .favorite-button {
@@ -117,6 +130,6 @@ ol li {
 .favorite-button > img {
   position: absolute;
   margin-left: -150px;
-  margin-top: 3px;
+  margin-top: 5px;
   z-index: 3;
 }

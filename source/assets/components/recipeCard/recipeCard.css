@@ -13,6 +13,8 @@
   text-align: center;
   font-size: x-large;
   font-weight: bold;
+  color: #6e4d3d;
+  background-color: lemonchiffon;
 }
 
 #recipe-dietary {
@@ -46,15 +48,15 @@
   text-align: left;
 }
 
-#recipe-calories {
+#recipe-calories,
+#recipe-total-calories {
   text-align: left;
+  padding-left: 55px;
+  padding-top: 13px;
+  padding-bottom: 13px;
 }
 
 #recipe-score {
-  text-align: left;
-}
-
-#recipe-total-calories {
   text-align: left;
 }
 
