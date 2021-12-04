@@ -52,9 +52,6 @@ const router = new Router(function () {
     .querySelector(".section-home-page")
     .classList.add("shown");
   document
-    .querySelector(".nav-search-bar")
-    .classList.add("hidden");
-  document
     .querySelector(".my-favorite-list")
     .classList.remove("shown");
 });
