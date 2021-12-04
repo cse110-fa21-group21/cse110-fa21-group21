@@ -1,7 +1,7 @@
 # cse110-fa21-group21
 
 Group 21 Recipe Manager Web App: [Bytes & Bites](https://group21-recipe.netlify.app/)
-> Click to search for amazing recipes and favorite those recipes!
+> Search for amazing recipes and favorite those recipes!
 
 Team Members: [Our Team Page!](admin/team.md)
 
