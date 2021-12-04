@@ -1,6 +1,6 @@
 # cse110-fa21-group21
 
-[Group 21 Recipe Site](https://group21-recipe.netlify.app/)
+Group 21 Recipe Web App: [Bites & Bytes](https://group21-recipe.netlify.app/)
 
 [Link to our Team Page!](admin/team.md)
 
