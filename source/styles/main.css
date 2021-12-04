@@ -7,10 +7,16 @@
 }
 
 body {
-  background-color: #fff;
+  background-color: #fff4e6;
 }
 
 /* css for home page */
+h2 {
+  font-weight: bold;
+  color: #6e4d3d;
+  font-size: xx-large;
+}
+
 .center-home-icon {
   display: block;
   position: relative;
@@ -24,6 +30,7 @@ body {
   display: inline;
   position: relative;
   font-size: 30px;
+  border: 1px solid black;
 }
 
 #homepage-search-btn {
@@ -126,12 +133,21 @@ fieldset {
   width: 170px;
   background-color: wheat;
   margin-right: 30px;
+  border: 1px solid #6e4d3d;
+}
+
+legend {
+  color: #6e4d3d;
 }
 
 .flex-container {
   display: flex;
   flex-flow: row wrap;
   background-color: #fff4e6;
+}
+
+#search-ingredients-button {
+  margin-top: 10px;
 }
 
 @media only screen and (max-width: 800px) {
