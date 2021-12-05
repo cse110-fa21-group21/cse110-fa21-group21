@@ -442,6 +442,11 @@ function bindState () {
   homeButton.addEventListener('click', event =>{
     router.goTo('home');
   })
+  const homeButton2 = document.querySelector('img[alt="nav-title"]')
+  homeButton2.addEventListener('click', event =>{
+    router.goTo('home');
+  })
+  
 }
 
 /****************************************************************************
