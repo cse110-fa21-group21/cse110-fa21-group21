@@ -438,10 +438,15 @@ function bindState () {
  * 
  */
  function bindHomeButton(){
-  const homeButton = document.querySelector('button#home')
+  const homeButton = document.querySelector('img[alt="nav-home-icon"]')
   homeButton.addEventListener('click', event =>{
     router.goTo('home');
   })
+  const homeButton2 = document.querySelector('img[alt="nav-title"]')
+  homeButton2.addEventListener('click', event =>{
+    router.goTo('home');
+  })
+  
 }
 
 /****************************************************************************
@@ -451,7 +456,7 @@ function bindState () {
  * Connects FavoriteList button to display user's favorite recipes
  */
  function bindFavoriteList(){
-  const favButton = document.querySelector('#fav')
+  const favButton = document.querySelector('img[alt="nav-favorite-icon"]')
   favButton.addEventListener('click', event =>{
     let page = 'favoriteList';
     let numidx = 0;

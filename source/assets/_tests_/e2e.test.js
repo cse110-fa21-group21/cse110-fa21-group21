@@ -13,7 +13,7 @@ describe('Basic user flow for Website', () => {
         console.log('Checking Home button is functional...');
         // Click on Home Button
         
-        await page.click('button#home');
+        await page.click('img[alt="nav-home-icon"]');
         // Expect current url to be the url to the right
         expect(page.url()).toBe(MAIN_URL);
     });
@@ -23,7 +23,7 @@ describe('Basic user flow for Website', () => {
         console.log('Checking Fav button is functional...');
         // Click on Fav Button
         
-        await page.click('button#fav');
+        await page.click( 'img[alt="nav-favorite-icon"]');
         // Expect current url to be the url to the right
         expect(page.url()).toBe(MAIN_URL + "#favoriteList");
     });
