@@ -1,11 +1,9 @@
 # e2e Test Web Page
-name: predeploytest E2E Test
+name: main branch E2E Test
 
 on:
   push:
-    branches: predeploytest
-  pull_request:
-    branches: predeploytest
+    branches: main
 
 jobs:
   build:
@@ -17,4 +15,4 @@ jobs:
     - name: Install modules
       run: npm install --save-dev jest babel-jest @babel/core @babel/preset-env puppeteer jest-puppeteer
     - name: E2E test
-      run: npm test ./source/assets/_tests_/e2e.test.js
+      run: npm test ./source/assets/_tests_/main.e2e.test.js
