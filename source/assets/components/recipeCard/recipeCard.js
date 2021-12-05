@@ -48,6 +48,13 @@ class recipeCard extends HTMLElement {
     // this will reset the struction of the section element within our shadow root
     this.shadowRoot.querySelector("section").innerHTML = `
       <div class="row">
+        <div class="col-xs-1">
+          <div class="favorite-button">
+            <button>
+              <img id="fav-btn" src="./assets/icons/favorite/favorite-blank.png" width="30px" height="30px" alt="favorite button">
+            </button>
+          </div>
+        </div>
         <div class="col-sm-6">  
           <div class="rounded">
             <aside id ="card-visuals">
