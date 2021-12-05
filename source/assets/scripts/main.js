@@ -2,7 +2,7 @@
 import { Router } from "../scripts/Router.js";
 import { Filter } from "../scripts/filter.js";
 
-const apiKey = "3672cd34bc2d43a0b4144be5a135a8c5";
+const apiKey = "c359de20e92e474287d7c8e842f6e1db";
 
 const MAX_NUM_RECIPE_CARDS = 30;
 const NUM_FEATURED = 2;
@@ -62,7 +62,7 @@ window.addEventListener("DOMContentLoaded", init);
 
 async function init() {
   await bindSearch();
-  await bindFeaturedRecipes();
+  //await bindFeaturedRecipes();
   bindState();
   filter.filtering();
   bindFavoriteList();
@@ -377,14 +377,11 @@ function bindRecipeCards(query) {
     }
     // hide the remaining unused cards
     while(cardIndex < MAX_NUM_RECIPE_CARDS){
-      const recipeCardsWrapper = document.querySelector(
-        ".section-recipe-cards-wrapper"
-      );
-
       let recipeCard = recipeCardsWrapper.children[cardIndex];
-      recipeCard.classList.remove("shown");
+      recipeCard.classList.remove("show");
       recipeCard.classList.add("hidden");
-
+      console.log(recipeCard);
+      console.log(recipeCard.classList);
       bindRecipeViewers(recipeCard, '');
       cardIndex++;
     }
@@ -459,7 +456,6 @@ function bindState () {
   const favButton = document.querySelector('img[alt="nav-favorite-icon"]')
   favButton.addEventListener('click', event =>{
     let page = 'favoriteList';
-    let numidx = 0;
     router.insertPage(page, function(){
       removeFavoriteList()
       let favoriteList = document.querySelector(".my-favorite-list");
@@ -493,7 +489,6 @@ function bindState () {
           document.querySelector("recipe-viewer").data = JSON.parse(myStorage.getItem(myStorage.key(i)));
         })
         bindRecipeViewers(favoriteCard, favoritePage, true);
-        numidx++;
       }
     })
     router.goTo(page);
