@@ -418,6 +418,8 @@ function removeFavoriteList() {
  * Connects ShoppingList button to display user's shopping list
  */
 function bindShoppingList() {
+  
+  // MUST CHANGE 1 LINE BELOW TO: const shopButton = document.querySelector('img[alt="nav-shopping-list-icon"]');
   const shopButton = document.querySelector("#shop-list");
   shopButton.addEventListener("click", (event) => {
     let page = "shoppingList";
