@@ -50,8 +50,8 @@ class recipeCard extends HTMLElement {
       <div class="row">
         <div class="col-xs-1">
           <div class="favorite-button">
-            <button>
-              <img id="fav-btn" src="./assets/icons/favorite/favorite-blank.png" width="30px" height="30px" alt="favorite button">
+            <button id="fav-btn">
+              <img src="./assets/icons/favorite/favorite-blank.png" width="30px" height="30px" alt="favorite button">
             </button>
           </div>
         </div>
