@@ -185,7 +185,6 @@ class recipeCard extends HTMLElement {
     //when button is click it is either favorite the recipe 
     //or it will unfavorite the recipe
     favoriteButton.addEventListener('click', (event) => {
-      console.log(favImg.alt)
       if(favImg.alt == "favorite"){
         event.stopPropagation();//use to stop recipecard's event listener to execute
         myStorage.setItem(title,JSON.stringify(data))
