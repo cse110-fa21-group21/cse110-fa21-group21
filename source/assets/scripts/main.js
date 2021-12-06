@@ -2,12 +2,11 @@
 import { Router } from "../scripts/Router.js";
 import { Filter } from "../scripts/filter.js";
 
-const apiKey = "c359de20e92e474287d7c8e842f6e1db";
+const apiKey = "ec4a0690be5a4155b40c1525f9b8226d";
 
 const MAX_NUM_RECIPE_CARDS = 30;
 const NUM_FEATURED = 2;
 const searchFilter = document.querySelector(".search-filter");
-
 let myStorage = window.localStorage;
 let searchQuery = "";
 let baseURL = "";
@@ -39,6 +38,9 @@ const funcArray = [];
  */
 const router = new Router(function () {
   removeFavoriteList();
+  document.querySelector(
+    ".section-featured-cards-wrapper")
+  .classList.add("shown");
   document
   .querySelector(".search-filter")
   .classList.remove("shown");
@@ -62,7 +64,7 @@ window.addEventListener("DOMContentLoaded", init);
 
 async function init() {
   await bindSearch();
-  //await bindFeaturedRecipes();
+  await bindFeaturedRecipes();
   bindState();
   filter.filtering();
   bindFavoriteList();
@@ -360,6 +362,8 @@ function bindRecipeCards(query) {
       // Add the route that would lead users to the corresponding recipeView
       const page = recipeArray[snapshot];
       router.insertPage(page, function () {
+        //Hide the homepage incase users do recipe-viewer -> home button -> back button
+        homepage.classList.remove("shown");
         // Hide the Recipe Cards Wrapper
         recipeCardsWrapper.classList.remove("shown");
         // Show the Recipe Viewers Wrapper
