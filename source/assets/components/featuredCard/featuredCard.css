@@ -10,7 +10,7 @@
   margin-top: 10px;
 }
 
-#recipe-image {
+.card-img-top {
   border-radius: 30px;
 }
 
