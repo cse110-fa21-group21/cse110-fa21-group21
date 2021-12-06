@@ -3,7 +3,7 @@ import { Router } from "../scripts/Router.js";
 import { Filter } from "../scripts/filter.js";
 
 
-import { default as bind } from "./binds/bind.js";
+import { default as bindings } from "./binds/bind.js";
 
 export const apiKey = "3672cd34bc2d43a0b4144be5a135a8c5";
 
@@ -57,10 +57,10 @@ export const filter = new Filter();
 window.addEventListener("DOMContentLoaded", init);
 
 async function init() {
-  await bind.bindSearch();
-  bind.bindState();
+  await bindings.bindSearch();
+  bindings.bindState();
   filter.filtering();
-  bind.bindFavoriteList();
-  bind.bindShoppingList();
-  bind.bindHomeButton();
+  bindings.bindFavoriteList();
+  bindings.bindShoppingList();
+  bindings.bindHomeButton();
 }
