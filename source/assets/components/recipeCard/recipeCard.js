@@ -1,5 +1,5 @@
 // recipeCard.js
-import { Spoonacular } from '../../scripts/spoonacular.js'
+import { Spoonacular } from '../../scripts/api/spoonacular.js'
 
 class recipeCard extends HTMLElement {
   constructor () {

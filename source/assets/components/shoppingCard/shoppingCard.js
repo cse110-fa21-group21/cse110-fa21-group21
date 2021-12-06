@@ -19,5 +19,4 @@ class shoppingCard extends HTMLElement {
 
 }
 
-
 customElements.define('shopping-card', shoppingCard)
