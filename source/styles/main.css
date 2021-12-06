@@ -30,11 +30,7 @@ h2 {
   display: inline-block;
   position: relative;
   font-size: 30px;
-<<<<<<< Updated upstream
-  border: 1px solid black;
-=======
   border-radius: 30px;
->>>>>>> Stashed changes
 }
 
 #homepage-search-btn {
