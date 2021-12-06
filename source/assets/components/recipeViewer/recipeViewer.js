@@ -58,8 +58,9 @@ class recipeViewer extends HTMLElement {
                 </figcaption>
               </fig>
             </aside>
-            
+
             <div id = "info-container">
+              <h4><span> Recipe Info </span></h4>
               <div id = "recipe-price"> </div>
               <div id = "recipe-cooking-time"> </div>
               <div id = "recipe-servings"></div>
@@ -68,10 +69,13 @@ class recipeViewer extends HTMLElement {
               <div id = "recipe-score"></div>
             </div>
 
+            <div id = "instruction-header"> <h2> Cooking Instructions </h2> </div>
+
             <div id = "recipe-instructions"> </div> 
           </div>
 
           <div id = "right-flex">
+            <h4><span> Ingredients </span></h4>
             <div id = "recipe-ingredients"> </div>
             <button id="add-shopping">Add to the Shopping List</button>
           </div>

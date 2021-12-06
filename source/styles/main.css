@@ -7,10 +7,16 @@
 }
 
 body {
-  background-color: #fff;
+  background-color: #fff4e6;
 }
 
 /* css for home page */
+h2 {
+  font-weight: bold;
+  color: #6e4d3d;
+  font-size: xx-large;
+}
+
 .center-home-icon {
   display: block;
   position: relative;
@@ -24,6 +30,7 @@ body {
   display: inline;
   position: relative;
   font-size: 30px;
+  border: 1px solid black;
 }
 
 #homepage-search-btn {
@@ -36,53 +43,31 @@ body {
 /* css for top bar */
 .topbar {
   height: 150px;
-  background-color: #966751;
+  background-color: #ce905d;
 }
 
-.topbar button {
-  display: inline-block;
-  color: black;
-  background-color: #ffe293;
+#nav-search-bar,
+#nav-search-btn {
+  display: inline;
+  position: relative;
+  margin-top: 80px;
   font-size: 20px;
-  padding: 3px 10px;
-  border-radius: 3px;
-}
-
-.topbar .ml-auto {
-  position: absolute;
-  top: 120px;
-  right: 15px;
 }
 
 #nav-search-btn {
-  font-size: 15px;
+  font-size: 20px;
   font-weight: bold;
   border-radius: 10%;
   background-color: #ffe293;
 }
 
-.nav-search-bar {
-  position: absolute;
-  top: 130px;
-  left: 15px;
+.navbar-icons {
+  margin-top: 20px;
 }
 
-.home-icon,
-.favorite-icon,
-.shopping-list-icon {
-  display: block;
-  position: absolute;
-  top: 10px;
-  left: 20px;
-  font-size: xx-large;
-  font-weight: bold;
-}
-
-.search-bar {
-  display: block;
-  position: relative;
-  top: 60px;
-  left: 20px;
+.nav-flex-container {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 section:not(section.shown) {
@@ -126,12 +111,21 @@ fieldset {
   width: 170px;
   background-color: wheat;
   margin-right: 30px;
+  border: 1px solid #6e4d3d;
+}
+
+legend {
+  color: #6e4d3d;
 }
 
 .flex-container {
   display: flex;
   flex-flow: row wrap;
   background-color: #fff4e6;
+}
+
+#search-ingredients-button {
+  margin-top: 10px;
 }
 
 @media only screen and (max-width: 800px) {

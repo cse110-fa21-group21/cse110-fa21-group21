@@ -1,6 +1,6 @@
 # Group 21
 
-## (Topic) Meeting
+## Brainstorming 2nd Meeting
 
 ### Attendance
 **Present:** 

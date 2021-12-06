@@ -1,5 +1,6 @@
 // recipeCard.js
 import { Spoonacular } from '../../scripts/api/spoonacular.js'
+let myStorage = window.localStorage
 
 class recipeCard extends HTMLElement {
   constructor () {
@@ -47,7 +48,14 @@ class recipeCard extends HTMLElement {
     // this will reset the struction of the section element within our shadow root
     this.shadowRoot.querySelector("section").innerHTML = `
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-xs-1">
+          <div class="favorite-button">
+            <button id="fav-btn">
+              <img src="./assets/icons/favorite/favorite-blank.png" width="30px" height="30px" alt="favorite">
+            </button>
+          </div>
+        </div>
+        <div class="col-sm-6">  
           <div class="rounded">
             <aside id ="card-visuals">
               <fig id="visual">
@@ -163,6 +171,33 @@ class recipeCard extends HTMLElement {
       if (dietary['gluten-free']) { this.shadowRoot.getElementById('gluten-free').removeAttribute('hidden') }
       if (dietary['dairy-free']) { this.shadowRoot.getElementById('dairy-free').removeAttribute('hidden') }
     }
+
+    //Determine whether or not the recipe is favorite before
+    //If it is then it should change the icon to red heart
+    const favoriteButton = this.shadowRoot.querySelector('button');
+    const favImg = this.shadowRoot.querySelector('button img');
+    if(myStorage.getItem(title) != undefined){
+      favImg.setAttribute('src', "./assets/icons/favorite/favorite-red.png")
+      favImg.setAttribute('alt', 'unfavorite')
+    }
+    
+    //set favorite Button functionality
+    //when button is click it is either favorite the recipe 
+    //or it will unfavorite the recipe
+    favoriteButton.addEventListener('click', (event) => {
+      if(favImg.alt == "favorite"){
+        event.stopPropagation();//use to stop recipecard's event listener to execute
+        myStorage.setItem(title,JSON.stringify(data))
+        favImg.setAttribute('src', "./assets/icons/favorite/favorite-red.png")
+        favImg.setAttribute('alt', 'unfavorite')
+      }
+      else if(favImg.alt == "unfavorite"){
+        event.stopPropagation();//use to stop recipecard's event listener to execute
+        myStorage.removeItem(title)
+        favImg.setAttribute('src', "./assets/icons/favorite/favorite-blank.png")
+        favImg.setAttribute('alt', 'favorite')
+      }
+    })
   }
   /**
    * Parse the numerical price from the spoonacular.js

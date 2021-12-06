@@ -1,6 +1,6 @@
 
-// E2E Test that checks code from predeploytest branch!
-let MAIN_URL = 'https://predeploytest--group21-recipe.netlify.app/';
+// E2E Test that checks code from main!
+let MAIN_URL = 'https://group21-recipe.netlify.app/';
 
 describe('Basic user flow for Website', () => {
     // First, visit the lab 8 website

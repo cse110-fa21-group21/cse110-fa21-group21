@@ -25,61 +25,40 @@
     />
     <meta name="viewport" content="width=device-width" />
   </head>
-
   <body>
+
     <main>
-      <!--top nav bar for all pages-->
-      <div class="topbar">
-        <!--Not sure if we can apply the hyperlink tag 'a' here-->
-        <div class="ml-auto">
-          <button id="home">Home</button>
-          <button id="fav">Favorite</button>
-          <button id="shop-list">Shopping List</button>
-          <!-- <a href="#home">Home</a>
-            <a id = 'fav' >Favorite</a>
-            <a href="#shopList">Shopping List</a> -->
-        </div>
-        <!--search bar on the nav bar-->
-        <div class="nav-search-bar hidden">
-          <input type="text" id="nav-search-bar" />
-          <input type="submit" value="Search" id="nav-search-btn" />
-        </div>
-      </div>
+        <!--top nav bar for all pages-->
+        <div class="topbar">
+          <section class="nav-flex-container shown">
+            <div class="navbar-icons">
+              <img src="assets/icons/navIcons/home-icon.png" alt="nav-home-icon" width="100">
+              <img src="assets/icons/navIcons/favorite-icon.png" alt="nav-favorite-icon" width="100">
+              <img src="assets/icons/navIcons/shopping-list-icon.png" alt="nav-shopping-list-icon" width="100">
+            </div>
+            <div class="navbar-title">
+              <img src="assets/icons/navIcons/navbar-title.png" alt="nav-title" width="270">
+            </div>
+            <div class="nav-search-bar">
+              <input type="text" id="nav-search-bar">
+              <input type="submit" value="Search" id="nav-search-btn">
+            </div>
+          </section>
+        </div>        
 
-      <section class="section-home-page shown">
-        <!--following icons are placed left-up corner at the same places, show and hide appropriately for each page-->
-        <div class="favorite-icon hidden">
-          <i class="fa fa-star" style="color: yellow"> </i>
-          <!--Favorite-->
-        </div>
+        <section class="section-home-page shown">
+          <div class="homepage-search">
+            <!--placed in the middle of home page above the home-page search bar; just like google-->
+            <div class="logo">
+              <img
+                src="assets/icons/cooking-girl-final.png"
+                alt="group-logo"
+                height="300"
+                class="center-home-icon"
+              />
+            </div>
 
-        <div class="shopping-list-icon hidden">
-          <i class="fa fa-shopping-cart" style="color: yellow"> </i>
-          <!--Shopping List-->
-        </div>
-
-        <div class="home-icon">
-          <img
-            src="assets/icons/cooking-girl-final.png"
-            alt="group-logo"
-            width="35"
-            height="35"
-          />
-          Home
-        </div>
-
-        <div class="homepage-search">
-          <!--placed in the middle of home page above the home-page search bar; just like google-->
-          <div class="logo">
-            <img
-              src="assets/icons/cooking-girl-final.png"
-              alt="group-logo"
-              height="300"
-              class="center-home-icon"
-            />
-          </div>
-
-          <!--search bar for the home page; if it's easier to just move the 
+            <!--search bar for the home page; if it's easier to just move the 
             search bar from other pages to the middle, feel free to delete this-->
           <div class="homepage-search-bar">
             <input type="text" id="homepage-search-bar" />

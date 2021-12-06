@@ -44,6 +44,7 @@ Human Review:
 Netlify Predeploy:
 * Pull request must be predeployed before being able to merge!
 * predeploy-preview successfully being deployed means -> There were no problems deploying current files with Netlify!
+* This check ensures that whenever we merge to `main`, it will never break the site!
 
 **Merge:**
 
