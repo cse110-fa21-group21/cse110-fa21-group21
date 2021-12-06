@@ -1,0 +1,39 @@
+/** featuredRecipe.css **/
+
+#recipe-dietary {
+  display: flex;
+  max-width: 600px;
+  max-height: 500px;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+#recipe-image {
+  border-radius: 30px;
+}
+
+.card-body {
+  text-align: center;
+  font-size: x-large;
+  font-weight: bold;
+  color: #6e4d3d;
+}
+
+.card {
+  background-color: wheat;
+  border-radius: 30px;
+}
+
+.card-title {
+  padding-bottom: 20px;
+  padding-top: 15px;
+}
+
+.btn-primary {
+  background-color: #ffe293 !important;
+  color: black;
+  font-weight: bold;
+  border: solid black;
+}
