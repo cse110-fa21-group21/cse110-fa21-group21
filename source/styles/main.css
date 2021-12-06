@@ -1,9 +1,9 @@
 /* main.css */
 
-@import url("https://fonts.googleapis.com/css2?family=Ephesis&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mukta&family=Raleway&display=swap");
 
 * {
-  font-family: Georgia, serif;
+  font-family: 'Mukta', sans-serif;
 }
 
 body {
@@ -27,17 +27,24 @@ h2 {
 
 #homepage-search-bar,
 #homepage-search-btn {
-  display: inline;
+  display: inline-block;
   position: relative;
   font-size: 30px;
+<<<<<<< Updated upstream
   border: 1px solid black;
+=======
+  border-radius: 30px;
+>>>>>>> Stashed changes
 }
 
 #homepage-search-btn {
   font-size: 30px;
   font-weight: bold;
-  border-radius: 10%;
+  color: rgb(63, 35, 2);
   background-color: #ffe293;
+  padding: 3px 10px;
+  border: #ffe293;
+  border-radius: 30px;
 }
 
 /* css for top bar */
@@ -57,7 +64,7 @@ h2 {
 #nav-search-btn {
   font-size: 20px;
   font-weight: bold;
-  border-radius: 10%;
+  border-radius: 30px;
   background-color: #ffe293;
 }
 
