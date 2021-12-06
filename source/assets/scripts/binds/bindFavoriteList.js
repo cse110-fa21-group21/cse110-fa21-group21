@@ -14,7 +14,7 @@ import{
  * Connects FavoriteList button to display user's favorite recipes
  */
 export function bindFavoriteList() {
-  const favButton = document.querySelector("#fav");
+  const favButton = document.querySelector('img[alt="nav-favorite-icon"]');
   favButton.addEventListener("click", () => {
     let page = "favoriteList";
     let numidx = 0;

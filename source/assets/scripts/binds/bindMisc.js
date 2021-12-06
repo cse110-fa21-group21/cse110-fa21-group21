@@ -26,7 +26,7 @@ export function bindState() {
  *
  */
 export function bindHomeButton() {
-  const homeButton = document.querySelector("button#home");
+  const homeButton = document.querySelector('img[alt="nav-home-icon"]');
   homeButton.addEventListener("click", () => {
     router.goTo("home", false);
   });
