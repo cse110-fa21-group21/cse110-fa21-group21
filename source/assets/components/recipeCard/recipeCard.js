@@ -51,7 +51,7 @@ class recipeCard extends HTMLElement {
         <div class="col-xs-1">
           <div class="favorite-button">
             <button id="fav-btn">
-              <img src="./assets/icons/favorite/favorite-blank.png" width="30px" height="30px" alt="favorite button">
+              <img src="./assets/icons/favorite/favorite-blank.png" width="30px" height="30px" alt="favorite">
             </button>
           </div>
         </div>
@@ -172,26 +172,33 @@ class recipeCard extends HTMLElement {
       if (dietary['dairy-free']) { this.shadowRoot.getElementById('dairy-free').removeAttribute('hidden') }
     }
 
-    // //determine the text on button
-    // const favoriteButton = this.shadowRoot.querySelector('button');
-    // const favImg = this.shadowRoot.querySelector('#fav-btn');
-    // if(myStorage.getItem(title) != undefined){
-    //   favoriteButton.textContent = "Remove the Favorite"
-    //   favImg.setAttribute('src', "./assets/icons/favorite/favorite-yellow.png")
-    // }
+    //Determine whether or not the recipe is favorite before
+    //If it is then it should change the icon to red heart
+    const favoriteButton = this.shadowRoot.querySelector('button');
+    const favImg = this.shadowRoot.querySelector('button img');
+    if(myStorage.getItem(title) != undefined){
+      favImg.setAttribute('src', "./assets/icons/favorite/favorite-red.png")
+      favImg.setAttribute('alt', 'unfavorite')
+    }
     
-    // //set favorite Button functionality
-    // favoriteButton.addEventListener('click', () => {
-    //   if(favoriteButton.textContent == "Favorite the Recipe"){
-    //     myStorage.setItem(title,JSON.stringify(data))
-    //     favoriteButton.textContent = "Remove the Favorite"
-    //     favImg.setAttribute('src', "./assets/icons/favorite/favorite-yellow.png")
-    //   }
-    //   else if(favoriteButton.textContent == "Remove the Favorite"){
-    //     myStorage.removeItem(title)
-    //     favoriteButton.textContent = "Favorite the Recipe"
-    //     favImg.setAttribute('src', "./assets/icons/favorite/favorite-blank.png")
-    //   }
+    //set favorite Button functionality
+    //when button is click it is either favorite the recipe 
+    //or it will unfavorite the recipe
+    favoriteButton.addEventListener('click', (event) => {
+      console.log(favImg.alt)
+      if(favImg.alt == "favorite"){
+        event.stopPropagation();//use to stop recipecard's event listener to execute
+        myStorage.setItem(title,JSON.stringify(data))
+        favImg.setAttribute('src', "./assets/icons/favorite/favorite-red.png")
+        favImg.setAttribute('alt', 'unfavorite')
+      }
+      else if(favImg.alt == "unfavorite"){
+        event.stopPropagation();//use to stop recipecard's event listener to execute
+        myStorage.removeItem(title)
+        favImg.setAttribute('src', "./assets/icons/favorite/favorite-blank.png")
+        favImg.setAttribute('alt', 'favorite')
+      }
+    })
   }
   /**
    * Parse the numerical price from the spoonacular.js
