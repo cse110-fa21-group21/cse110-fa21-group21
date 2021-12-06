@@ -37,8 +37,8 @@ export const funcArray = [];
  * no recipecard or recipeview
  */
 export const router = new Router(function () {
-  bind.removeFavoriteList();
-  bind.removeShoppingList();
+  bindings.removeFavoriteList();
+  bindings.removeShoppingList();
   document.querySelector(".search-filter").classList.remove("shown");
   document
     .querySelector(".section-recipe-cards-wrapper")
