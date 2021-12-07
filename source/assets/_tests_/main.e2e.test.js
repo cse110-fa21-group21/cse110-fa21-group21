@@ -20,7 +20,6 @@ describe('Basic user flow for Website', () => {
         console.log('Checking Home button is functional...');
         // Click on Home Button
         
-        //await page.click('img[alt="nav-home-icon"]');
         await page.$eval('img[alt="nav-home-icon"]', (el) => el.click());
         // Expect current url to be the url to the right
         expect(page.url()).toBe(MAIN_URL);
@@ -31,7 +30,7 @@ describe('Basic user flow for Website', () => {
         console.log('Checking Fav button is functional...');
         // Click on Fav Button
         
-        //await page.click( 'img[alt="nav-favorite-icon"]');
+        //page.click() doesn't work! (That only works for buttons it seems
         await page.$eval('img[alt="nav-favorite-icon"]', (el) => el.click());
         // Expect current url to be the url to the right
         expect(page.url()).toBe(MAIN_URL + "#favoriteList");
