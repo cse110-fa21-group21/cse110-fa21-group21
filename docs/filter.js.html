@@ -37,36 +37,36 @@ export class Filter {
    * Upon being called all recipe cards are filtered. From then on,
    * upon any checkbox being clicked, we refilter the collecting again.
    */
-  filtering() {
+  filtering(Num) {
     //needed for filtering before new searches
-    this.#goThroughElements();
+    this.#goThroughElements(Num);
 
     const checkboxByDiet = document.querySelector("form[id=filter-by-diet]");
     checkboxByDiet.addEventListener("click", () => {
       // Could use this to add some more functionality to the all button.
-      this.#goThroughElements();
+      this.#goThroughElements(Num);
     });
 
     const checkboxByPrice = document.querySelector("form[id=filter-by-price]");
     checkboxByPrice.addEventListener("click", () => {
-      this.#goThroughElements();
+      this.#goThroughElements(Num);
     });
 
     const checkboxByTime = document.querySelector("form[id=filter-by-time]");
     checkboxByTime.addEventListener("click", () => {
-      this.#goThroughElements();
+      this.#goThroughElements(Num);
     });
 
     const selectByCuisine = document.querySelector("select[id=select-cuisine]");
     selectByCuisine.addEventListener("change", () => {
-      this.#goThroughElements();
+      this.#goThroughElements(Num);
     });
 
     const searchByIngredientsButton = document.querySelector(
       "button[id=search-ingredients-button]"
     );
     searchByIngredientsButton.addEventListener("click", () => {
-      this.#goThroughElements();
+      this.#goThroughElements(Num);
     });
   }
 
@@ -75,11 +75,11 @@ export class Filter {
    * do meet the various filters.
    * @private
    */
-  #goThroughElements() {
+  #goThroughElements(Num) {
     const recipeCards = 
-      document.querySelector(".section-recipe-cards-wrapper")
-              .querySelectorAll("recipe-card");
-    recipeCards.forEach((card) => {
+      document.querySelector(".section-recipe-cards-wrapper");
+    for(let i = 0; i &lt; Num; i++){
+      let card = recipeCards.children[i];
       card.classList.add("shown");
       card.classList.remove("hidden");
       // Should be a dietary check too?
@@ -100,7 +100,7 @@ export class Filter {
       if (!this.#emptyIngredientsSearchCheck()) {
         this.#filterByIngredients(card);
       }
-    });
+    }
   }
 
   /**
@@ -339,12 +339,9 @@ export class Filter {
         recipeIngredientsData.forEach((recipe) => {
           recipeIngredients.push(recipe["name"]);
         });
-
-        if (
-          !recipeIngredients.includes(
-            searchByIngredientsText.toLocaleLowerCase()
-          )
-        ) {
+        
+        //Check if any ingredients of recipe contain substring of input
+        if (!recipeIngredients.some(a =>a.includes(searchByIngredientsText.toLocaleLowerCase()))) {
           recipeCard.classList.add("hidden");
           recipeCard.classList.remove("shown");
         }
@@ -638,13 +635,13 @@ export class Filter {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Router.html">Router</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bindFavoriteList">bindFavoriteList</a></li><li><a href="global.html#bindHomeButton">bindHomeButton</a></li><li><a href="global.html#bindHomeSearch">bindHomeSearch</a></li><li><a href="global.html#bindNavSearch">bindNavSearch</a></li><li><a href="global.html#bindRecipeCards">bindRecipeCards</a></li><li><a href="global.html#bindRecipeViewers">bindRecipeViewers</a></li><li><a href="global.html#bindSearch">bindSearch</a></li><li><a href="global.html#bindState">bindState</a></li><li><a href="global.html#compareRecipeCards">compareRecipeCards</a></li><li><a href="global.html#fetchAPI">fetchAPI</a></li><li><a href="global.html#fetchRandomAPI">fetchRandomAPI</a></li><li><a href="global.html#recipesID">recipesID</a></li><li><a href="global.html#removeFavoriteList">removeFavoriteList</a></li><li><a href="global.html#router">router</a></li><li><a href="global.html#sortRecipeCards">sortRecipeCards</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Router.html">Router</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bindFavoriteList">bindFavoriteList</a></li><li><a href="global.html#bindFeaturedRecipeCards">bindFeaturedRecipeCards</a></li><li><a href="global.html#bindFeaturedRecipes">bindFeaturedRecipes</a></li><li><a href="global.html#bindHomeButton">bindHomeButton</a></li><li><a href="global.html#bindHomeSearch">bindHomeSearch</a></li><li><a href="global.html#bindNavSearch">bindNavSearch</a></li><li><a href="global.html#bindRecipeCards">bindRecipeCards</a></li><li><a href="global.html#bindRecipeViewers">bindRecipeViewers</a></li><li><a href="global.html#bindSearch">bindSearch</a></li><li><a href="global.html#bindState">bindState</a></li><li><a href="global.html#compareRecipeCards">compareRecipeCards</a></li><li><a href="global.html#fetchAPI">fetchAPI</a></li><li><a href="global.html#fetchRandomAPI">fetchRandomAPI</a></li><li><a href="global.html#recipesID">recipesID</a></li><li><a href="global.html#removeFavoriteList">removeFavoriteList</a></li><li><a href="global.html#router">router</a></li><li><a href="global.html#sortRecipeCards">sortRecipeCards</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Tue Nov 30 2021 02:47:35 GMT-0800 (Pacific Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Mon Dec 06 2021 23:03:46 GMT-0800 (Pacific Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
