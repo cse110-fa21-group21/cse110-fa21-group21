@@ -143,21 +143,26 @@ class recipeViewer extends HTMLElement {
     }
 
     //determine the text on button
-    const favoriteButton = this.shadowRoot.querySelector("button");
-    const favImg = this.shadowRoot.querySelector("#fav-btn");
-    if (myStorage.getItem(title) != undefined) {
-      favoriteButton.textContent = "Remove the Favorite";
-      favImg.setAttribute("src", "./assets/icons/favorite/favorite-red.png");
+    const favoriteButton = this.shadowRoot.querySelector('button');
+    const favImg = this.shadowRoot.querySelector('#fav-btn');
+    if(  JSON.parse( myStorage.getItem("FAVORITE_LIST") )[title] ){
+      favoriteButton.textContent = "Remove the Favorite"
+      favImg.setAttribute('src', "./assets/icons/favorite/favorite-red.png")
+      favImg.setAttribute('alt', 'unfavorite')
     }
 
     //set favorite Button functionality
     favoriteButton.addEventListener("click", () => {
+      let localFavoriteList = JSON.parse(myStorage.getItem("FAVORITE_LIST"))
       if (favoriteButton.textContent == "Favorite the Recipe") {
-        myStorage.setItem(title, JSON.stringify(data));
+        localFavoriteList[title] = data
+        console.log(`Adding ${title} to Favorite List...`)
         favoriteButton.textContent = "Remove the Favorite";
         favImg.setAttribute("src", "./assets/icons/favorite/favorite-red.png");
       } else if (favoriteButton.textContent == "Remove the Favorite") {
-        myStorage.removeItem(title);
+        delete localFavoriteList[title]
+        console.log(`Removing ${title} from favorite list...`)
+        myStorage.setItem("FAVORITE_LIST",JSON.stringify(localFavoriteList))
         favoriteButton.textContent = "Favorite the Recipe";
         favImg.setAttribute(
           "src",
