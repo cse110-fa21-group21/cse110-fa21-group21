@@ -10,7 +10,7 @@ const searchFilter = document.querySelector(".search-filter");
 let myStorage = window.localStorage;
 let searchQuery = "";
 let baseURL = "";
-let Num_RecipeCards = 0;
+let Num_RecipeCards = 0;//number of recipe that we are filtering
 /**
  * Every property within the recipesID object abides by the following
  * structure: `title` and data. Together they form the property
@@ -341,7 +341,7 @@ function bindRecipeCards(query) {
         recipeArray.push(recipeTitle);
       }
     }
-    Num_RecipeCards = recipeArray.length;
+    Num_RecipeCards = Math.min(recipeArray.length, 30);
     // matching recipes are sorted prior to being binded to <recipe-card>s
     sortRecipeCards(recipeArray);
 
