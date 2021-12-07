@@ -189,7 +189,7 @@ class recipeCard extends HTMLElement {
       if(favImg.alt == "favorite"){
         event.stopPropagation();//use to stop recipecard's event listener to execute
         localFavoriteList[title] = data
-        console.log(`Adding ${title}: ${JSON.stringify(data,null,4)} to favorite list...`)
+        console.log(`Adding ${title} to Favorite List...`)
         myStorage.setItem("FAVORITE_LIST",JSON.stringify(localFavoriteList))
         favImg.setAttribute('src', "./assets/icons/favorite/favorite-red.png")
         favImg.setAttribute('alt', 'unfavorite')
@@ -197,7 +197,7 @@ class recipeCard extends HTMLElement {
       else if(favImg.alt == "unfavorite"){
         event.stopPropagation();//use to stop recipecard's event listener to execute
         delete localFavoriteList[title]
-        console.log(`Removing ${title}: ${JSON.stringify(data,null,4)} from favorite list...`)
+        console.log(`Removing ${title} from Favorite List...`)
         myStorage.setItem("FAVORITE_LIST",JSON.stringify(localFavoriteList))
         favImg.setAttribute('src', "./assets/icons/favorite/favorite-blank.png")
         favImg.setAttribute('alt', 'favorite')
