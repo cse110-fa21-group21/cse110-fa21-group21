@@ -10,7 +10,7 @@ const searchFilter = document.querySelector(".search-filter");
 let myStorage = window.localStorage;
 let searchQuery = "";
 let baseURL = "";
-
+let Num_RecipeCards = 0;
 /**
  * Every property within the recipesID object abides by the following
  * structure: `title` and data. Together they form the property
@@ -64,7 +64,7 @@ window.addEventListener("DOMContentLoaded", init);
 
 async function init() {
   await bindSearch();
-  await bindFeaturedRecipes();
+  //await bindFeaturedRecipes();
   bindState();
   filter.filtering();
   bindFavoriteList();
@@ -184,7 +184,7 @@ async function fetchAPI(query) {
       }
     });
   bindRecipeCards(query);
-  filter.filtering();
+  filter.filtering(Num_RecipeCards);
 }
 
 /**
@@ -205,7 +205,7 @@ async function fetchRandomAPI() {
     });
   // this line may lead to undefined behavior: i.e. recipe erasal
   bindFeaturedRecipeCards();
-  filter.filtering();
+  filter.filtering(Num_RecipeCards);
 }
 
 
@@ -331,6 +331,7 @@ function bindRecipeCards(query) {
 
     // An array to store recipes to be sorted and displayed
     let recipeArray = [];
+    
 
     for (const recipeTitle in recipesID) {
       // check if the recipe title contains the search query
@@ -340,6 +341,7 @@ function bindRecipeCards(query) {
         recipeArray.push(recipeTitle);
       }
     }
+    Num_RecipeCards = recipeArray.length;
     // matching recipes are sorted prior to being binded to <recipe-card>s
     sortRecipeCards(recipeArray);
 
@@ -431,7 +433,7 @@ function bindState () {
       console.log('Routing to page:', event.state)
       router.goTo(event.state, true)
     }
-    filter.filtering()
+    filter.filtering(Num_RecipeCards)
   })
 }
 /**
