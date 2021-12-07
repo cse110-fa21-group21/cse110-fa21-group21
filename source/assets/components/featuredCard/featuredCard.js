@@ -43,7 +43,7 @@ class featuredCard extends HTMLElement {
 
     // this will reset the struction of the section element within our shadow root
     this.shadowRoot.querySelector("section").innerHTML = `
-      <div class="card" style="width: 18rem">
+      <div class="card" id="featured-card" Sstyle="width: 18rem">
         <img id="recipe-image" class="card-img-top" src="" alt="recipe-image"/>
         <figcaption class="justify-content-center" id="recipe-dietary">
           <img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
@@ -56,7 +56,7 @@ class featuredCard extends HTMLElement {
           <h4 id="card-title">Recipe Title</h4>
         </div>
         <div class="card-footer">
-          <button type="button" class="btn btn-primary">Check Out This Recipe!</a>
+          <button type="button" class="btn btn-primary" id="featured-button">Check Out This Recipe!</a>
         </div>
       </div>
     `
