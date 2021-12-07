@@ -21,11 +21,12 @@ export function bindFavoriteList() {
     router.insertPage(page, function () {
       removeFavoriteList();
       let favoriteList = document.querySelector(".my-favorite-list");
-      let recipeCards = document.querySelector(".section-recipe-cards-wrapper");
-      let recipeViewer = document.querySelector(
+      const shoppingList = document.querySelector(".my-shopping-list")
+      const recipeCards = document.querySelector(".section-recipe-cards-wrapper");
+      const recipeViewer = document.querySelector(
         ".section-recipe-viewers-wrapper"
       );
-      let homePageSearch = document.querySelector(".section-home-page");
+      const homePageSearch = document.querySelector(".section-home-page");
       //Show Favorite List
       favoriteList.classList.add("shown");
       //Hide Recipe Cards
@@ -36,14 +37,15 @@ export function bindFavoriteList() {
       searchFilter.classList.remove("shown");
       //Hide Home Page Search Bar
       homePageSearch.classList.remove("shown");
+      //Hide Shopping List
+      shoppingList.classList.remove("shown")
 
-      for (let i = 0; i < myStorage.length; i++) {
-        console.log(JSON.parse(myStorage.getItem(myStorage.key(i))));
-        
+      const localFavoriteList = JSON.parse(myStorage.getItem("FAVORITE_LIST"));
+      for (const recipeTitle in localFavoriteList) {
         let favoriteCard = document.createElement("recipe-card");
         favoriteList.appendChild(favoriteCard);
-        favoriteCard.data = JSON.parse(myStorage.getItem(myStorage.key(i)));
-        let favoritePage = "favoriteList" + myStorage.key(i);
+        favoriteCard.data = localFavoriteList[recipeTitle]
+        let favoritePage = "favoriteList" + recipeTitle
         router.insertPage(favoritePage, function () {
           const recipeViewersWrapper = document.querySelector(
             ".section-recipe-viewers-wrapper"
@@ -54,7 +56,7 @@ export function bindFavoriteList() {
           recipeViewersWrapper.classList.add("shown");
 
           document.querySelector("recipe-viewer").data = JSON.parse(
-            myStorage.getItem(myStorage.key(i))
+            localFavoriteList[recipeTitle]
           );
         });
         bindRecipeViewers(favoriteCard, favoritePage, true);

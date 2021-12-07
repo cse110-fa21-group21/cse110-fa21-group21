@@ -5,14 +5,19 @@ import { Filter } from "../scripts/filter.js";
 
 import { default as bindings } from "./binds/bind.js";
 
-export const apiKey = "3672cd34bc2d43a0b4144be5a135a8c5";
+export const apiKey = "54a305b43853416198613d4aaaed7b01";
 
 export const MAX_NUM_RECIPE_CARDS = 30;
 export const searchFilter = document.querySelector(".search-filter");
 export const myStorage = window.localStorage;
 
+//ensure there is a shopping list in storage
 if(!myStorage.getItem("SHOPPING_LIST")){
   myStorage.setItem("SHOPPING_LIST", "{}");
+}
+//ensure there is a favorite list in storage
+if(!myStorage.getItem("FAVORITE_LIST")){
+  myStorage.setItem("FAVORITE_LIST", "{}");
 }
 
 /**
