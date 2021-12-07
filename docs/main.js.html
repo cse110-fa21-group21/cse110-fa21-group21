@@ -30,14 +30,15 @@
 import { Router } from "../scripts/Router.js";
 import { Filter } from "../scripts/filter.js";
 
-const apiKey = "6a88c5a5ad1447be91b3b7c17de27b39" ;
-const MAX_NUM_RECIPE_CARDS = 30;
-const searchFilter = document.querySelector(".search-filter");
+const apiKey = "ec4a0690be5a4155b40c1525f9b8226d";
 
+const MAX_NUM_RECIPE_CARDS = 30;
+const NUM_FEATURED = 2;
+const searchFilter = document.querySelector(".search-filter");
 let myStorage = window.localStorage;
 let searchQuery = "";
 let baseURL = "";
-
+let Num_RecipeCards = 0;//number of recipe that we are filtering
 /**
  * Every property within the recipesID object abides by the following
  * structure: `title` and data. Together they form the property
@@ -50,7 +51,7 @@ let baseURL = "";
  *  - @value{object} data: The JSON representation of a recipe as
  *                         returned by the Spoonacular API
  */
-const recipesID = {}
+const recipesID = {};
 
 const searchQueryHistory = [];
 
@@ -65,6 +66,9 @@ const funcArray = [];
  */
 const router = new Router(function () {
   removeFavoriteList();
+  document.querySelector(
+    ".section-featured-cards-wrapper")
+  .classList.add("shown");
   document
   .querySelector(".search-filter")
   .classList.remove("shown");
@@ -78,9 +82,6 @@ const router = new Router(function () {
     .querySelector(".section-home-page")
     .classList.add("shown");
   document
-    .querySelector(".nav-search-bar")
-    .classList.add("hidden");
-  document
     .querySelector(".my-favorite-list")
     .classList.remove("shown");
 });
@@ -91,6 +92,7 @@ window.addEventListener("DOMContentLoaded", init);
 
 async function init() {
   await bindSearch();
+  await bindFeaturedRecipes();
   bindState();
   filter.filtering();
   bindFavoriteList();
@@ -112,10 +114,15 @@ async function bindSearch() {
  */
 async function bindHomeSearch() {
   const homeSearchBar = document.getElementById("homepage-search-bar");
+  const homeSearchBarBtn = document.getElementById("homepage-search-btn");
   homeSearchBar.addEventListener("input", (event) => {
     homeSearchBar.textContent = event.target.value;
   });
-  const homeSearchBarBtn = document.getElementById("homepage-search-btn");
+  homeSearchBar.addEventListener("keydown", (event)=>{
+    if(event.key == "Enter"){
+      homeSearchBarBtn.click();
+    }
+  })
   homeSearchBarBtn.addEventListener("click", () => {
     searchQuery = homeSearchBar.textContent;
     if (
@@ -133,20 +140,24 @@ async function bindHomeSearch() {
       console.log(recipesID);
       bindRecipeCards(searchQuery);
     }
-    
   });
 }
+
 /**
  * Enables Seach via the SearchPage
  * @async
  */
 async function bindNavSearch() {
   const navSearchBar = document.getElementById("nav-search-bar");
+  const navSearchBarBtn = document.getElementById("nav-search-btn");
   navSearchBar.addEventListener("input", (event) => {
     navSearchBar.textContent = event.target.value;
   });
-
-  const navSearchBarBtn = document.getElementById("nav-search-btn");
+  navSearchBar.addEventListener("keydown", (event) =>{
+    if(event.key == "Enter"){
+      navSearchBarBtn.click();
+    }
+  })
   navSearchBarBtn.addEventListener("click", () => {
     searchQuery = navSearchBar.textContent;
     if (
@@ -166,6 +177,14 @@ async function bindNavSearch() {
     }
     
   });
+}
+
+/** 
+* Adds featured recipes recipe cards to the home page.
+* @async 
+*/
+async function bindFeaturedRecipes(){
+    fetchRandomAPI();
 }
 
 /****************************************************************************
@@ -193,7 +212,7 @@ async function fetchAPI(query) {
       }
     });
   bindRecipeCards(query);
-  filter.filtering();
+  filter.filtering(Num_RecipeCards);
 }
 
 /**
@@ -213,14 +232,85 @@ async function fetchRandomAPI() {
       }
     });
   // this line may lead to undefined behavior: i.e. recipe erasal
-  bindRecipeCards("");
-  filter.filtering();
+  bindFeaturedRecipeCards();
+  filter.filtering(Num_RecipeCards);
 }
 
 
 /****************************************************************************
  *                      RECIPE CARDS
  ****************************************************************************/
+
+/**
+ * function binds the Featured Recipe Cards to the homepage
+ * and binds the Featured Recipe Cards to recipe viewer.
+ * it add the route for the page into the router
+ */
+ function bindFeaturedRecipeCards() {
+    
+    // Display the featured recipes wrapper
+    const featuredRecipesWrapper = document.querySelector(
+        ".section-featured-cards-wrapper"
+    );
+    featuredRecipesWrapper.classList.add("shown");
+
+    // Get the Recipe Viewers Wrapper
+    const recipeViewersWrapper = document.querySelector(
+        ".section-recipe-viewers-wrapper"
+    );
+    
+    // An array to store recipes to be sorted and displayed
+    let recipeArray = [];
+
+    for (const recipeTitle in recipesID) {
+        recipeArray.push(recipeTitle);
+    }
+
+    // recipes are sorted prior to being binded to &lt;recipe-cards>
+    // the recipe with the higher score is displayed first
+    sortRecipeCards(recipeArray);
+
+    /**
+     * for each recipe title inside the recipeArray
+     * recipeArray[i] to access the corresponding json file in recipesID
+     */
+
+    // There are NUM_FEATURED distinct featured recipeCard DOMs on the home page
+    let cardIndex = 0;
+    for(let snapshot = 0; snapshot&lt;recipeArray.length; snapshot++){
+        if (cardIndex === NUM_FEATURED) break;
+
+        const recipeCard = featuredRecipesWrapper.children[snapshot];
+        recipeCard.data = recipesID[recipeArray[snapshot]];
+        
+        // Show the Recipe Card
+        recipeCard.classList.remove("hidden");
+        recipeCard.classList.add("shown");
+
+        // Add the route that would lead users to the corresponding recipeView
+        const page = recipeArray[snapshot];
+
+        router.insertPage(page, function () {
+            // Hide the Recipe Cards Wrapper
+            featuredRecipesWrapper.classList.remove("shown");
+            // Show the Recipe Viewers Wrapper
+            recipeViewersWrapper.classList.add("shown");
+            
+            // Hide the homepage-section
+            const homepage = document.querySelector(
+                ".section-home-page"
+            )
+            homepage.classList.remove("shown");
+            
+            document.querySelector("recipe-viewer").data =
+            recipesID[recipeArray[snapshot]];
+        });
+        bindRecipeViewers(recipeCard, page);
+        
+        cardIndex++;
+    }
+  }
+
 
 /**
  * function that use the router to go to the page users requested
@@ -233,6 +323,8 @@ function bindRecipeCards(query) {
    * Add route to the router
    * Also set up the recipeCard
    */
+
+
   router.insertPage(query, function () {
     // Display the Recipe Cards Wrapper
     const recipeCardsWrapper = document.querySelector(
@@ -265,17 +357,19 @@ function bindRecipeCards(query) {
       ".my-favorite-list"
     )
 
-    // An array to store recipe to be sort and display
+    // An array to store recipes to be sorted and displayed
     let recipeArray = [];
+    
 
     for (const recipeTitle in recipesID) {
-      // we check if the recipe title contains the search query
+      // check if the recipe title contains the search query
       if (recipeTitle.toLocaleLowerCase().includes(query.toLocaleLowerCase())) {
         recipeArray.push(recipeTitle);
       } else if (query === "") {
         recipeArray.push(recipeTitle);
       }
     }
+    Num_RecipeCards = Math.min(recipeArray.length, 30);
     // matching recipes are sorted prior to being binded to &lt;recipe-card>s
     sortRecipeCards(recipeArray);
 
@@ -298,6 +392,8 @@ function bindRecipeCards(query) {
       // Add the route that would lead users to the corresponding recipeView
       const page = recipeArray[snapshot];
       router.insertPage(page, function () {
+        //Hide the homepage incase users do recipe-viewer -> home button -> back button
+        homepage.classList.remove("shown");
         // Hide the Recipe Cards Wrapper
         recipeCardsWrapper.classList.remove("shown");
         // Show the Recipe Viewers Wrapper
@@ -315,14 +411,11 @@ function bindRecipeCards(query) {
     }
     // hide the remaining unused cards
     while(cardIndex &lt; MAX_NUM_RECIPE_CARDS){
-      const recipeCardsWrapper = document.querySelector(
-        ".section-recipe-cards-wrapper"
-      );
-
       let recipeCard = recipeCardsWrapper.children[cardIndex];
-      recipeCard.classList.remove("shown");
+      recipeCard.classList.remove("show");
       recipeCard.classList.add("hidden");
-
+      console.log(recipeCard);
+      console.log(recipeCard.classList);
       bindRecipeViewers(recipeCard, '');
       cardIndex++;
     }
@@ -368,7 +461,7 @@ function bindState () {
       console.log('Routing to page:', event.state)
       router.goTo(event.state, true)
     }
-    filter.filtering()
+    filter.filtering(Num_RecipeCards)
   })
 }
 /**
@@ -376,10 +469,15 @@ function bindState () {
  * 
  */
  function bindHomeButton(){
-  const homeButton = document.querySelector('button#home')
+  const homeButton = document.querySelector('img[alt="nav-home-icon"]')
   homeButton.addEventListener('click', event =>{
-    router.goTo('home', false);
+    router.goTo('home');
   })
+  const homeButton2 = document.querySelector('img[alt="nav-title"]')
+  homeButton2.addEventListener('click', event =>{
+    router.goTo('home');
+  })
+  
 }
 
 /****************************************************************************
@@ -389,10 +487,9 @@ function bindState () {
  * Connects FavoriteList button to display user's favorite recipes
  */
  function bindFavoriteList(){
-  const favButton = document.querySelector('#fav')
+  const favButton = document.querySelector('img[alt="nav-favorite-icon"]')
   favButton.addEventListener('click', event =>{
     let page = 'favoriteList';
-    let numidx = 0;
     router.insertPage(page, function(){
       removeFavoriteList()
       let favoriteList = document.querySelector(".my-favorite-list");
@@ -426,7 +523,6 @@ function bindState () {
           document.querySelector("recipe-viewer").data = JSON.parse(myStorage.getItem(myStorage.key(i)));
         })
         bindRecipeViewers(favoriteCard, favoritePage, true);
-        numidx++;
       }
     })
     router.goTo(page);
@@ -472,9 +568,7 @@ function removeFavoriteList(){
    } else {
      return 0
    }
- }
- 
-</code></pre>
+ }</code></pre>
         </article>
     </section>
 
@@ -484,13 +578,13 @@ function removeFavoriteList(){
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Router.html">Router</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bindFavoriteList">bindFavoriteList</a></li><li><a href="global.html#bindHomeButton">bindHomeButton</a></li><li><a href="global.html#bindHomeSearch">bindHomeSearch</a></li><li><a href="global.html#bindNavSearch">bindNavSearch</a></li><li><a href="global.html#bindRecipeCards">bindRecipeCards</a></li><li><a href="global.html#bindRecipeViewers">bindRecipeViewers</a></li><li><a href="global.html#bindSearch">bindSearch</a></li><li><a href="global.html#bindState">bindState</a></li><li><a href="global.html#compareRecipeCards">compareRecipeCards</a></li><li><a href="global.html#fetchAPI">fetchAPI</a></li><li><a href="global.html#fetchRandomAPI">fetchRandomAPI</a></li><li><a href="global.html#recipesID">recipesID</a></li><li><a href="global.html#removeFavoriteList">removeFavoriteList</a></li><li><a href="global.html#router">router</a></li><li><a href="global.html#sortRecipeCards">sortRecipeCards</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Router.html">Router</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bindFavoriteList">bindFavoriteList</a></li><li><a href="global.html#bindFeaturedRecipeCards">bindFeaturedRecipeCards</a></li><li><a href="global.html#bindFeaturedRecipes">bindFeaturedRecipes</a></li><li><a href="global.html#bindHomeButton">bindHomeButton</a></li><li><a href="global.html#bindHomeSearch">bindHomeSearch</a></li><li><a href="global.html#bindNavSearch">bindNavSearch</a></li><li><a href="global.html#bindRecipeCards">bindRecipeCards</a></li><li><a href="global.html#bindRecipeViewers">bindRecipeViewers</a></li><li><a href="global.html#bindSearch">bindSearch</a></li><li><a href="global.html#bindState">bindState</a></li><li><a href="global.html#compareRecipeCards">compareRecipeCards</a></li><li><a href="global.html#fetchAPI">fetchAPI</a></li><li><a href="global.html#fetchRandomAPI">fetchRandomAPI</a></li><li><a href="global.html#recipesID">recipesID</a></li><li><a href="global.html#removeFavoriteList">removeFavoriteList</a></li><li><a href="global.html#router">router</a></li><li><a href="global.html#sortRecipeCards">sortRecipeCards</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Tue Nov 30 2021 02:47:35 GMT-0800 (Pacific Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Mon Dec 06 2021 23:03:46 GMT-0800 (Pacific Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -4,18 +4,10 @@
     <title>Recipe App</title>
 
     <!-- Scripts -->
-    <script
-      src="assets/components/recipeCard/recipeCard.js"
-      type="module"
-    ></script>
-    <script
-      src="assets/components/recipeViewer/recipeViewer.js"
-      type="module"
-    ></script>
-    <script
-      src="assets/components/shoppingCard/shoppingCard.js"
-      type="module"
-    ></script>
+    <script src="assets/components/recipeCard/recipeCard.js" type="module"></script>
+    <script src="assets/components/recipeViewer/recipeViewer.js" type="module"></script>
+    <script src="assets/components/featuredCard/featuredCard.js" type="module"></script>
+    <script src="assets/components/shoppingCard/shoppingCard.js" type="module"></script>
     <script src="assets/scripts/main.js" type="module"></script>
     <script src="assets/scripts/api/spoonacular.js" type="module"></script>
     <script src="assets/scripts/filter.js" type="module"></script>
@@ -70,6 +62,7 @@
           </div>
         </div>
 
+<<<<<<< HEAD
         <!--featured recipes, placed at the right of the logo-->
         <div class="featured-recipes">
           <h2>Featured Recipes</h2>
@@ -79,6 +72,24 @@
           </section>
         </div>
       </section>
+=======
+          <!--featured recipes, placed at the right of the logo-->
+          <!-- <div class="featured-recipes">
+            <h2>Featured Recipes</h2> 
+            <section class="section-featured-cards-wrapper">
+              <recipe-card id="featured-1"></recipe-card>
+              <recipe-card id="featured-2"></recipe-card>
+            </section>
+          </div> -->
+          <div class="featured-recipes">
+            <h2>Featured Recipes</h2> 
+            <section class="section-featured-cards-wrapper">
+              <featured-recipe-card id="featured-1"></featured-recipe-card>
+              <featured-recipe-card id="featured-2"></featured-recipe-card>
+            </section>
+          </div>
+        </section>
+>>>>>>> main
 
       <div class="flex-container">
         <section class="search-filter">

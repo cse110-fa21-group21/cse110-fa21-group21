@@ -9,36 +9,36 @@ export class Filter {
    * Upon being called all recipe cards are filtered. From then on,
    * upon any checkbox being clicked, we refilter the collecting again.
    */
-  filtering() {
+  filtering(Num) {
     //needed for filtering before new searches
-    this.#goThroughElements();
+    this.#goThroughElements(Num);
 
     const checkboxByDiet = document.querySelector("form[id=filter-by-diet]");
     checkboxByDiet.addEventListener("click", () => {
       // Could use this to add some more functionality to the all button.
-      this.#goThroughElements();
+      this.#goThroughElements(Num);
     });
 
     const checkboxByPrice = document.querySelector("form[id=filter-by-price]");
     checkboxByPrice.addEventListener("click", () => {
-      this.#goThroughElements();
+      this.#goThroughElements(Num);
     });
 
     const checkboxByTime = document.querySelector("form[id=filter-by-time]");
     checkboxByTime.addEventListener("click", () => {
-      this.#goThroughElements();
+      this.#goThroughElements(Num);
     });
 
     const selectByCuisine = document.querySelector("select[id=select-cuisine]");
     selectByCuisine.addEventListener("change", () => {
-      this.#goThroughElements();
+      this.#goThroughElements(Num);
     });
 
     const searchByIngredientsButton = document.querySelector(
       "button[id=search-ingredients-button]"
     );
     searchByIngredientsButton.addEventListener("click", () => {
-      this.#goThroughElements();
+      this.#goThroughElements(Num);
     });
   }
 
@@ -47,11 +47,11 @@ export class Filter {
    * do meet the various filters.
    * @private
    */
-  #goThroughElements() {
+  #goThroughElements(Num) {
     const recipeCards = 
-      document.querySelector(".section-recipe-cards-wrapper")
-              .querySelectorAll("recipe-card");
-    recipeCards.forEach((card) => {
+      document.querySelector(".section-recipe-cards-wrapper");
+    for(let i = 0; i < Num; i++){
+      let card = recipeCards.children[i];
       card.classList.add("shown");
       card.classList.remove("hidden");
       // Should be a dietary check too?
@@ -72,7 +72,7 @@ export class Filter {
       if (!this.#emptyIngredientsSearchCheck()) {
         this.#filterByIngredients(card);
       }
-    });
+    }
   }
 
   /**
