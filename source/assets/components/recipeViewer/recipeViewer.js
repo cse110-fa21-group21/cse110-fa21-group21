@@ -113,6 +113,22 @@ class recipeViewer extends HTMLElement {
 
     // set ingredients
     const ingredients = spoonacular.getRecipeIngredientsList(data);
+    ingredients.querySelectorAll('li').forEach(
+      (entry) => {
+        const checkbox = entry.querySelector('input[type="checkbox"]');
+        const label = entry.querySelector('label');
+        const ingredient = label.innerText;
+        const localShoppingList = JSON.parse(myStorage.getItem("SHOPPING_LIST"))
+        if(
+          localShoppingList[title] 
+          && 
+          Object.keys(localShoppingList[title]).includes(ingredient)
+        ){
+          checkbox.checked = true
+          checkbox.disabled = true
+        }
+      }
+    )
     this.shadowRoot
       .getElementById("recipe-ingredients")
       .appendChild(ingredients);
@@ -172,8 +188,7 @@ class recipeViewer extends HTMLElement {
     });
 
     // ADDING TO THE SHOPPING LIST
-    const addToShoppingListButton =
-      this.shadowRoot.querySelector("#add-shopping");
+    const addToShoppingListButton = this.shadowRoot.querySelector("#add-shopping");
 
     addToShoppingListButton.addEventListener("click", () => {
       // myStorage.removeItem(shoppingListTitle);
@@ -182,7 +197,14 @@ class recipeViewer extends HTMLElement {
       let ingredientUL = ingredientList.firstElementChild.children;
 
       // After getting UL loop through all the list elements
-      const shoppingListObj = {};
+      const localShoppingList = JSON.parse(myStorage.getItem("SHOPPING_LIST"))
+      let shoppingListObj;
+      if(localShoppingList[title]) {
+         shoppingListObj = localShoppingList[title];
+      }else{
+        shoppingListObj = {};
+      }
+
 
       for (let i = 0; i < ingredientUL.length; i++) {
         let ingredientCheck = ingredientUL[i].querySelector("input");
@@ -196,10 +218,8 @@ class recipeViewer extends HTMLElement {
 
       //Retrieve and Parse the Local Storage Shopping List
       console.log(`Adding\n${title}: ${JSON.stringify(shoppingListObj,null,4)}\nto local storage...`);
-      const localShoppingList = JSON.parse(myStorage.getItem("SHOPPING_LIST"));
       //Add the Recipe to the Shopping List
       localShoppingList[title] = shoppingListObj;
-
       myStorage.setItem("SHOPPING_LIST", JSON.stringify(localShoppingList));
       console.log(`SHOPPING_LIST: ${JSON.parse( JSON.stringify(myStorage.getItem("SHOPPING_LIST"),null,4) )} `);
     });
