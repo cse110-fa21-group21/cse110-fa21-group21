@@ -42,9 +42,18 @@ export function bindFavoriteList() {
 
       const localFavoriteList = JSON.parse(myStorage.getItem("FAVORITE_LIST"));
       for (const recipeTitle in localFavoriteList) {
-        let favoriteCard = document.createElement("recipe-card");
+        const favoriteCard = document.createElement("recipe-card");
         favoriteList.appendChild(favoriteCard);
         favoriteCard.data = localFavoriteList[recipeTitle]
+
+        const favoriteButton = favoriteCard.shadowRoot.querySelector('button');
+        favoriteButton.onclick = (event) => {
+            event.stopPropagation();//use to stop recipecard's event listener to execute
+            console.log(`Removing ${recipeTitle}: ${JSON.stringify(localFavoriteList[recipeTitle])} from favorite list...`)
+            delete localFavoriteList[recipeTitle]
+            favoriteCard.remove()
+            myStorage.setItem("FAVORITE_LIST",JSON.stringify(localFavoriteList))
+        }
         let favoritePage = "favoriteList" + recipeTitle
         router.insertPage(favoritePage, function () {
           const recipeViewersWrapper = document.querySelector(
@@ -55,9 +64,7 @@ export function bindFavoriteList() {
           favoriteList.classList.remove("shown");
           recipeViewersWrapper.classList.add("shown");
 
-          document.querySelector("recipe-viewer").data = JSON.parse(
-            localFavoriteList[recipeTitle]
-          );
+          document.querySelector("recipe-viewer").data = localFavoriteList[recipeTitle]
         });
         bindRecipeViewers(favoriteCard, favoritePage, true);
         numidx++;
