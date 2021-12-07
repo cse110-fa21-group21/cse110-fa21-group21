@@ -111,19 +111,10 @@ export class Spoonacular {
       for (let i = 0; i < ingredients.length; i++) {
         const listEntry = document.createElement("li");
         //Currently only found US units in Spoonacular!
-
-        const checkbox = document.createElement("input");
-        checkbox.setAttribute("type", "checkbox");
-        listEntry.appendChild(checkbox);
-        let innerText = document.createElement("span");
-        let ingredientText = document.createElement("span");
-        innerText.innerHTML =
-          ingredients[i].amount + " " + ingredients[i].unit + " of ";
-        ingredientText.setAttribute("id", "ingredient");
-        ingredientText.innerHTML = ingredients[i].name;
-        listEntry.appendChild(innerText);
-        listEntry.appendChild(ingredientText);
-        console.log(listEntry);
+        listEntry.innerHTML = `
+         <input id="${ingredients[i].name + "-checkbox"}" class="form-check-input" type="checkbox">
+         <label id="ingredient" for="${ingredients[i].name + "-checkbox"}" class="form-check-label">${ingredients[i].amount} ${ingredients[i].unit} of ${ingredients[i].name}</label>
+        `
         ingredientsListElem.appendChild(listEntry);
 
         //To display ingredient data in console
