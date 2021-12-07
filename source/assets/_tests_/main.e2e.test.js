@@ -67,7 +67,7 @@ describe('Basic user flow for Website', () => {
     it('Adding recipe to Favorite List', async () => {
         console.log('Checking favorite list add with button on RecipeCard...');
         //This delay is necessary to interact with recipe cards! (If not, it says favbtn doesn't exist!)
-        await delay(1000);
+        await delay(5000);
         const recipeCard = await page.$('.section-recipe-cards-wrapper > recipe-card');
         //Click on favorite btn on first recipe card
         let shadowrt = await recipeCard.getProperty('shadowRoot');

@@ -1,6 +1,6 @@
 // unit.test.js
 
-const { test } = require("@jest/globals");
+const { test, expect } = require("@jest/globals");
 const Spoonacular = require("../scripts/testspoonacular.js");
 const riceJsonData = require("../_tests_/recipeJsonData/rice.json");
 
@@ -76,3 +76,15 @@ test("Dietary", () => {
     "dairy-free": true,
   });
 });
+
+test("ExtractPrice", () => {
+  console.log("Checking filter price extract...");
+  const priceString = spoonacular.getRecipePrice(riceJsonData);
+  expect(spoonacular.extractPrice(priceString)).toBe(9.67);
+})
+
+test("ExtractCookingTime", () =>{
+  console.log("Checking filter cooking time extract...");
+  const cookingString = spoonacular.getRecipeCookingTime(riceJsonData);
+  expect(spoonacular.extractCookingTime(cookingString)).toBe(45);
+})

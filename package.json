@@ -1,19 +1,19 @@
 {
-  "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@babel/preset-env": "^7.16.4",
-    "babel-jest": "^27.4.1",
-    "jest": "^27.4.1",
-    "jest-puppeteer": "^6.0.2",
-    "jsdoc": "^3.6.7",
-    "puppeteer": "^11.0.0"
-  },
-  "scripts": {
-    "test": "jest",
-    "doc": "jsdoc -d ./docs ./source/assets/scripts"
-  },
-  "jest": {
-    "preset": "jest-puppeteer",
-    "verbose": true
+    "devDependencies": {
+      "@babel/core": "^7.16.0",
+      "@babel/preset-env": "^7.16.4",
+      "babel-jest": "^27.4.1",
+      "jest": "^27.4.1",
+      "jest-puppeteer": "^6.0.2",
+      "jsdoc": "^3.6.7",
+      "puppeteer": "^11.0.0"
+    },
+    "scripts": {
+      "test": "jest",
+      "doc": "jsdoc -d ./docs ./source/assets/scripts"
+    },
+    "jest": {
+      "preset": "jest-puppeteer",
+      "verbose": true
+    }
   }
-}

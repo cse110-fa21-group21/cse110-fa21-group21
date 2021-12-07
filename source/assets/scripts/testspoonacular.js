@@ -125,4 +125,32 @@ getRecipeIngredientsList(data) {
   }
   return null;
 }
+
+/**Lines 496-507 in filter.js
+   * Parse the numerical price from the spoonacular.js
+   * representation of a recipe price
+   * @param {string} priceString
+   * @returns {Number} recipe spoonacular price
+   * @private
+   */
+ extractPrice(priceString) {
+  let dollarIndex = priceString.indexOf("$");
+  let value = priceString.substring(dollarIndex + 1);
+  return Number(value);
+}
+
+/**
+   * Parse the numerical cooking time from the spoonacular.js
+   * representation of a recipe cooking time
+   * @param {string} cookingString
+   * @returns {number} recipe cooking time
+   * @private
+   */
+ extractCookingTime(cookingString) {
+  let spaceIndex = cookingString.indexOf(" ");
+  let value = cookingString.substring(spaceIndex + 1);
+  return Number(value);
+}
 };
+
+
