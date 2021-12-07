@@ -1,55 +1,57 @@
 import{
-  router as router,
   myStorage as myStorage,
+  router as router,
   searchFilter as searchFilter
-} from "../main.js" 
+} from "../main.js"
 /****************************************************************************
- *                      SHOPPING LIST
+ *                      SHOPPING CARDS
  ****************************************************************************/
-/**
- * Connects ShoppingList button to display user's shopping list
- */
 export function bindShoppingList() {
   const shopButton = document.querySelector('img[alt="nav-shopping-list-icon"]');
-  shopButton.addEventListener("click", () => {
+  shopButton.addEventListener("click",()=>{
+    removeShoppingList();
     let page = "shoppingList";
-    router.insertPage(page, function () {
-      removeShoppingList();
-      let shoppingList = document.querySelector(".my-shopping-list");
+    router.insertPage(page, function(){
+      const shoppingListCardWrapper = document.querySelector(".my-shopping-list")
+      const homePageSearch = document.querySelector(".section-home-page");
+      const shoppingList = JSON.parse(myStorage.getItem("SHOPPING_LIST"));
+      const recipeCards = document.querySelector(".section-recipe-cards-wrapper");
+      const recipeViewer = document.querySelector(
+        ".section-recipe-viewers-wrapper"
+      );
 
-      let homePageSearch = document.querySelector(".section-home-page");
       //Show Shopping List
-      shoppingList.classList.add("shown");
+      shoppingListCardWrapper.classList.add("shown");
       //Hide Search Filter
       searchFilter.classList.remove("shown");
       //Hide Home Page Search Bar
       homePageSearch.classList.remove("shown");
+      //Hide Recipe Cards
+      recipeCards.classList.remove("shown");
+      //Hide Recipe Viewer
+      recipeViewer.classList.remove("shown");
+      //Hide Search Filter
+      searchFilter.classList.remove("shown");
+      //Hide Home Page Search Bar
+      homePageSearch.classList.remove("shown");
+      
+
+      for( const recipeTitle in shoppingList ) {
+        const shoppingCard = document.createElement("shopping-card")
+        shoppingCard.data = recipeTitle
+        shoppingListCardWrapper.appendChild(shoppingCard)
+      }
     });
-
-    for (let i = 0; i < myStorage.length; i++) {
-
-      //if key does not have "_SLK" it is not relevant to the shopping list.
-      //Thus, we skip that element when iterating through localStorage
-      if (!myStorage.key(i).includes("_SLK")) { continue; }
-
-      if (myStorage.key(i).includes("_SLK")) {
-        console.log(myStorage.key(i));
-      } 
-
-    }
-
     router.goTo(page);
-    console.log(document.querySelector(".my-shopping-list").classList);
-  });
+  })
 }
 
 /**
  * Removes shopping list's list when going back to the main page
  */
-export function removeShoppingList() {
+ export function removeShoppingList() {
   let shoppingList = document.querySelector(".my-shopping-list");
   while (shoppingList.firstChild) {
     shoppingList.removeChild(shoppingList.firstChild);
   }
 }
-

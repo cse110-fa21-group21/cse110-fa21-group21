@@ -11,6 +11,10 @@ export const MAX_NUM_RECIPE_CARDS = 30;
 export const searchFilter = document.querySelector(".search-filter");
 export const myStorage = window.localStorage;
 
+if(!myStorage.getItem("SHOPPING_LIST")){
+  myStorage.setItem("SHOPPING_LIST", "{}");
+}
+
 /**
  * Every property within the recipesID object abides by the following
  * structure: `title` and data. Together they form the property
