@@ -173,41 +173,37 @@ class recipeViewer extends HTMLElement {
       this.shadowRoot.querySelector("#add-shopping");
 
     addToShoppingListButton.addEventListener("click", () => {
-      let shoppingListTitle = title + "_SLK";
       // myStorage.removeItem(shoppingListTitle);
       // let ingredientListValue = [];
       let ingredientList = this.shadowRoot.querySelector("#recipe-ingredients");
-      let ingredientUL =
-        ingredientList.firstElementChild.querySelectorAll("li");
+      let ingredientUL = ingredientList.firstElementChild.children;
+
       // After getting UL loop through all the list elements
+      const shoppingListObj = {};
+
       for (let i = 0; i < ingredientUL.length; i++) {
         let ingredientCheck = ingredientUL[i].querySelector("input");
         let ingredient = ingredientUL[i].querySelector("#ingredient");
         // Might have to use some sort of empty list?
         if (ingredientCheck.checked) {
-          if (!myStorage.getItem(shoppingListTitle)) {
-            myStorage.setItem(shoppingListTitle, ingredient.innerHTML);
-          } else {
-            if (
-              !myStorage
-                .getItem(shoppingListTitle)
-                .includes(ingredient.innerHTML)
-            ) {
-              let arr = [];
-              arr.push(myStorage.getItem(shoppingListTitle));
-              arr.push(ingredient.innerHTML);
-              myStorage.setItem(shoppingListTitle, arr);
-              console.log(myStorage.getItem(shoppingListTitle));
-            }
-          }
+            shoppingListObj[ingredient.innerHTML] = false;
+            console.log(`Adding ${ingredient.innerHTML} to Shopping List`);
         }
       }
+
+      //Retrieve and Parse the Local Storage Shopping List
+      console.log(`Adding\n${title}: ${JSON.stringify(shoppingListObj,null,4)}\nto local storage...`);
+      const localShoppingList = JSON.parse(myStorage.getItem("SHOPPING_LIST"));
+      //Add the Recipe to the Shopping List
+      localShoppingList[title] = shoppingListObj;
+
+      myStorage.setItem("SHOPPING_LIST", JSON.stringify(localShoppingList));
       // Somehow save the ingredients that are checked
       // myStorage.removeItem(shoppingListTitle);
       // if (ingredientListValue.length) {
       //   myStorage.setItem(shoppingListTitle, ingredientListValue);
       // }
-      console.log(myStorage.getItem(shoppingListTitle));
+      console.log(`SHOPPING_LIST: ${JSON.parse( JSON.stringify(myStorage.getItem("SHOPPING_LIST"),null,4) )} `);
     });
   }
 }
