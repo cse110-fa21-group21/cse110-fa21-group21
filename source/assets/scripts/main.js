@@ -2,16 +2,15 @@
 import { Router } from "../scripts/Router.js";
 import { Filter } from "../scripts/filter.js";
 
-const apiKey = "c359de20e92e474287d7c8e842f6e1db";
+const apiKey = "ec4a0690be5a4155b40c1525f9b8226d";
 
 const MAX_NUM_RECIPE_CARDS = 30;
 const NUM_FEATURED = 2;
 const searchFilter = document.querySelector(".search-filter");
-
 let myStorage = window.localStorage;
 let searchQuery = "";
 let baseURL = "";
-
+let Num_RecipeCards = 0;//number of recipe that we are filtering
 /**
  * Every property within the recipesID object abides by the following
  * structure: `title` and data. Together they form the property
@@ -39,6 +38,9 @@ const funcArray = [];
  */
 const router = new Router(function () {
   removeFavoriteList();
+  document.querySelector(
+    ".section-featured-cards-wrapper")
+  .classList.add("shown");
   document
   .querySelector(".search-filter")
   .classList.remove("shown");
@@ -62,7 +64,7 @@ window.addEventListener("DOMContentLoaded", init);
 
 async function init() {
   await bindSearch();
-  //await bindFeaturedRecipes();
+  await bindFeaturedRecipes();
   bindState();
   filter.filtering();
   bindFavoriteList();
@@ -182,7 +184,7 @@ async function fetchAPI(query) {
       }
     });
   bindRecipeCards(query);
-  filter.filtering();
+  filter.filtering(Num_RecipeCards);
 }
 
 /**
@@ -203,7 +205,7 @@ async function fetchRandomAPI() {
     });
   // this line may lead to undefined behavior: i.e. recipe erasal
   bindFeaturedRecipeCards();
-  filter.filtering();
+  filter.filtering(Num_RecipeCards);
 }
 
 
@@ -329,6 +331,7 @@ function bindRecipeCards(query) {
 
     // An array to store recipes to be sorted and displayed
     let recipeArray = [];
+    
 
     for (const recipeTitle in recipesID) {
       // check if the recipe title contains the search query
@@ -338,6 +341,7 @@ function bindRecipeCards(query) {
         recipeArray.push(recipeTitle);
       }
     }
+    Num_RecipeCards = Math.min(recipeArray.length, 30);
     // matching recipes are sorted prior to being binded to <recipe-card>s
     sortRecipeCards(recipeArray);
 
@@ -360,6 +364,8 @@ function bindRecipeCards(query) {
       // Add the route that would lead users to the corresponding recipeView
       const page = recipeArray[snapshot];
       router.insertPage(page, function () {
+        //Hide the homepage incase users do recipe-viewer -> home button -> back button
+        homepage.classList.remove("shown");
         // Hide the Recipe Cards Wrapper
         recipeCardsWrapper.classList.remove("shown");
         // Show the Recipe Viewers Wrapper
@@ -427,7 +433,7 @@ function bindState () {
       console.log('Routing to page:', event.state)
       router.goTo(event.state, true)
     }
-    filter.filtering()
+    filter.filtering(Num_RecipeCards)
   })
 }
 /**
