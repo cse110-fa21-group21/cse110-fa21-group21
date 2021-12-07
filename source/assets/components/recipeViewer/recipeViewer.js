@@ -167,8 +167,6 @@ class recipeViewer extends HTMLElement {
     });
 
     // ADDING TO THE SHOPPING LIST
-    const shoppingListRecipeStorageKeys = "shoppingListRecipeStorageKeys";
-
     const addToShoppingListButton =
       this.shadowRoot.querySelector("#add-shopping");
 
@@ -198,11 +196,6 @@ class recipeViewer extends HTMLElement {
       localShoppingList[title] = shoppingListObj;
 
       myStorage.setItem("SHOPPING_LIST", JSON.stringify(localShoppingList));
-      // Somehow save the ingredients that are checked
-      // myStorage.removeItem(shoppingListTitle);
-      // if (ingredientListValue.length) {
-      //   myStorage.setItem(shoppingListTitle, ingredientListValue);
-      // }
       console.log(`SHOPPING_LIST: ${JSON.parse( JSON.stringify(myStorage.getItem("SHOPPING_LIST"),null,4) )} `);
     });
   }
