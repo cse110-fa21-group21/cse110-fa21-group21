@@ -13,6 +13,7 @@ export function bindShoppingList() {
     let page = "shoppingList";
     router.insertPage(page, function(){
       const shoppingListCardWrapper = document.querySelector(".my-shopping-list")
+      const favoriteList = document.querySelector(".my-favorite-list")
       const homePageSearch = document.querySelector(".section-home-page");
       const shoppingList = JSON.parse(myStorage.getItem("SHOPPING_LIST"));
       const recipeCards = document.querySelector(".section-recipe-cards-wrapper");
@@ -34,7 +35,8 @@ export function bindShoppingList() {
       searchFilter.classList.remove("shown");
       //Hide Home Page Search Bar
       homePageSearch.classList.remove("shown");
-      
+      //Hide Favorite List
+      favoriteList.classList.remove("shown");
 
       for( const recipeTitle in shoppingList ) {
         const shoppingCard = document.createElement("shopping-card")
