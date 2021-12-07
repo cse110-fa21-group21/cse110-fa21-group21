@@ -59,9 +59,12 @@ export function bindFavoriteList() {
           const recipeViewersWrapper = document.querySelector(
             ".section-recipe-viewers-wrapper"
           );
-
+          //Hide Search Filter
           searchFilter.classList.remove("shown");
+          //Hide Favorite Lis
           favoriteList.classList.remove("shown");
+          //Hide Shopping List
+          shoppingList.classList.remove("shown")
           recipeViewersWrapper.classList.add("shown");
 
           document.querySelector("recipe-viewer").data = localFavoriteList[recipeTitle]
