@@ -2,6 +2,7 @@
 // E2E Test that checks code from main!
 let MAIN_URL = 'https://group21-recipe.netlify.app/';
 
+
 function delay(time) {
     return new Promise(function(resolve) {
        setTimeout(resolve, time)
@@ -66,6 +67,7 @@ describe('Basic user flow for Website', () => {
     //5. Check that favorite list is functional!
     it('Adding recipe to Favorite List', async () => {
         console.log('Checking favorite list add with button on RecipeCard...');
+        //This delay is necessary to interact with recipe cards! (If not, it says favbtn doesn't exist!)
         await delay(1000);
         const recipeCard = await page.$('.section-recipe-cards-wrapper > recipe-card');
         //Click on favorite btn on first recipe card
