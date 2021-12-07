@@ -12,6 +12,7 @@ export function bindShoppingList() {
     removeShoppingList();
     let page = "shoppingList";
     router.insertPage(page, function(){
+      removeShoppingList();
       const shoppingListCardWrapper = document.querySelector(".my-shopping-list")
       const favoriteList = document.querySelector(".my-favorite-list")
       const homePageSearch = document.querySelector(".section-home-page");
