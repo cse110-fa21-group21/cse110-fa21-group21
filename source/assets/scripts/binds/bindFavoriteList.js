@@ -38,8 +38,6 @@ export function bindFavoriteList() {
       homePageSearch.classList.remove("shown");
 
       for (let i = 0; i < myStorage.length; i++) {
-        
-        if (myStorage.key(i).includes("_SLK")) continue; //keep favorites list from breaking
         console.log(JSON.parse(myStorage.getItem(myStorage.key(i))));
         
         let favoriteCard = document.createElement("recipe-card");
