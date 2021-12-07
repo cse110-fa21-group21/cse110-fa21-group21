@@ -43,25 +43,27 @@ class featuredCard extends HTMLElement {
 
     // this will reset the struction of the section element within our shadow root
     this.shadowRoot.querySelector("section").innerHTML = `
-      <div class="card" style="width: 18rem; height = 25rem">
+      <div class="card" style="width: 18rem">
         <img id="recipe-image" class="card-img-top" src="" alt="recipe-image"/>
         <figcaption class="justify-content-center" id="recipe-dietary">
           <img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
           <img id="gluten-free" src="./assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" hidden alt="Gluten Free"/>
           <img id="vegan" src="./assets/icons/dietary/vegan.png" width = "30px" height = "30px" hidden alt="Vegan"/>
           <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
+          <img id="blank" src="./assets/icons/dietary/blank.png" width = "30px" height = "30px" hidden alt="Blank"/>
         </figcaption>
-        <div class="card-body">
-          <h4 id="recipe-title">Recipe Title</h4>
+        <div class="card-body d-flex flex-column" style = "height: 7rem">
+          <h4 id="card-title">Recipe Title</h4>
         </div>
         <div class="card-footer">
-          <a href="#" class="btn btn-primary">Check Out This Recipe!</a>
+          <button type="button" class="btn btn-primary">Check Out This Recipe!</a>
         </div>
       </div>
     `
+
     // set title
     const title = spoonacular.getRecipeTitle(data)
-    this.shadowRoot.getElementById('recipe-title').innerHTML = title
+    this.shadowRoot.getElementById('card-title').innerHTML = title
 
     // set image.src
     const image = spoonacular.getRecipeImageSource(data)
@@ -74,6 +76,7 @@ class featuredCard extends HTMLElement {
       if (dietary.vegetarian) { this.shadowRoot.getElementById('vegetarian').removeAttribute('hidden') }
       if (dietary['gluten-free']) { this.shadowRoot.getElementById('gluten-free').removeAttribute('hidden') }
       if (dietary['dairy-free']) { this.shadowRoot.getElementById('dairy-free').removeAttribute('hidden') }
+      else { this.shadowRoot.getElementById('blank').removeAttribute('hidden') }
     }
   }
 }
