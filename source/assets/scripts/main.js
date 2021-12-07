@@ -64,7 +64,7 @@ window.addEventListener("DOMContentLoaded", init);
 
 async function init() {
   await bindSearch();
-  //await bindFeaturedRecipes();
+  await bindFeaturedRecipes();
   bindState();
   filter.filtering();
   bindFavoriteList();
