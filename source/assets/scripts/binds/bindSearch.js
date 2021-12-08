@@ -24,10 +24,16 @@ export async function bindSearch() {
  */
 async function bindHomeSearch() {
   const homeSearchBar = document.getElementById("homepage-search-bar");
+  const homeSearchBarBtn = document.getElementById("homepage-search-btn");
   homeSearchBar.addEventListener("input", (event) => {
     homeSearchBar.textContent = event.target.value;
   });
-  const homeSearchBarBtn = document.getElementById("homepage-search-btn");
+  homeSearchBar.addEventListener("keydown", (event)=>{
+    if(event.key == "Enter"){
+      homeSearchBarBtn.click();
+    }
+  })
+  
   homeSearchBarBtn.addEventListener("click", () => {
     searchQuery = homeSearchBar.textContent;
     if (
@@ -54,11 +60,15 @@ async function bindHomeSearch() {
  */
 async function bindNavSearch() {
   const navSearchBar = document.getElementById("nav-search-bar");
+  const navSearchBarBtn = document.getElementById("nav-search-btn");
   navSearchBar.addEventListener("input", (event) => {
     navSearchBar.textContent = event.target.value;
   });
-
-  const navSearchBarBtn = document.getElementById("nav-search-btn");
+  navSearchBar.addEventListener("keydown", (event) =>{
+    if(event.key == "Enter"){
+      navSearchBarBtn.click();
+    }
+  })
   navSearchBarBtn.addEventListener("click", () => {
     searchQuery = navSearchBar.textContent;
     if (
