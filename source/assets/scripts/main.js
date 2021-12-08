@@ -69,6 +69,7 @@ async function init() {
   filter.filtering();
   bindFavoriteList();
   bindHomeButton();
+  bindFilterButton();
 }
 
 /**
@@ -178,6 +179,7 @@ async function fetchAPI(query) {
        * Each individual entry corresponds to a unique matching recipe
        */
       console.log(data.results);
+      if(data.results == undefined) return;
       for (let i = 0; i < data.results.length; i++) {
         // add a new entry to the recipesID object
         recipesID[data.results[i].title] = data.results[i];
@@ -198,6 +200,7 @@ async function fetchRandomAPI() {
     .then((response) => response.json())
     .then((data) => {
       console.log(data.results);
+      if(data.results == undefined) return;
       for (let i = 0; i < data.results.length; i++) {
         // add a new entry to the recipesID object
         recipesID[data.results[i].title] = data.results[i];
@@ -312,6 +315,12 @@ function bindRecipeCards(query) {
 
     // Display the search filter
     searchFilter.classList.add("shown");
+
+    //display the button that toggles the filters on and off
+    const filterToggle = document.querySelector(
+      ".filter-toggle"
+    );
+    filterToggle.classList.add("shown");
 
     // Hide the homepage-section
     const homepage = document.querySelector(
@@ -449,6 +458,30 @@ function bindState () {
   homeButton2.addEventListener('click', event =>{
     router.goTo('home');
   })
+  
+}
+/**
+ * Bind Filter button to show and hide filters
+ * 
+ */
+ function bindFilterButton(){
+
+  const filterButton = document.querySelector('img[alt="filter-icon"]');
+  
+  // console.log(filterButton);
+
+  filterButton.addEventListener('click', event =>{
+
+    //if filters are shown, hide them
+    if(searchFilter.classList.contains("shown")){
+      searchFilter.classList.remove("shown");
+    }
+    else{ //else if filters are hidden, show them
+      searchFilter.classList.add("shown");
+    }
+    
+  })
+  
   
 }
 
