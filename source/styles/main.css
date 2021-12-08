@@ -1,9 +1,9 @@
 /* main.css */
 
-@import url("https://fonts.googleapis.com/css2?family=Ephesis&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mukta&family=Raleway&display=swap");
 
 * {
-  font-family: Georgia, serif;
+  font-family: Mukta, sans-serif;
 }
 
 body {
@@ -93,6 +93,7 @@ section:not(section.shown) {
   padding: 10px;
   height: 70%;
   width: 70%;
+  flex-grow: 1;
 }
 
 .homepage-search,
@@ -128,11 +129,24 @@ fieldset {
   width: 170px;
   background-color: wheat;
   margin-right: 30px;
-  border: 1px solid #6e4d3d;
+  border: 2px solid #6e4d3d;
+  padding-top: 0;
+  border-radius: 10px;
+}
+
+form {
+  padding-bottom: 5px;
+  padding-left: 10px;
 }
 
 legend {
   color: #6e4d3d;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.checkbox input {
+  padding-bottom: 50px;
 }
 
 .flex-container {
@@ -143,6 +157,14 @@ legend {
 
 #search-ingredients-button {
   margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10%;
+  background-color: #ffe293;
+  border: solid 1px #6e4d3d;
+}
+
+#select-cuisine {
+  margin-bottom: 10px;
 }
 
 @media only screen and (max-width: 800px) {

@@ -63,6 +63,22 @@ body {
   background-color: wheat;
 }
 
+#add-shopping {
+  display: block;
+  text-align: justify;
+  border-radius: 10px;
+  margin: 20px auto;
+  background-color: #fcc42b;
+  padding: 10px;
+  border: 2.5px solid #6e4d3d;
+}
+
+#right-flex {
+  position: sticky;
+  align-self: flex-start;
+  top: 0;
+}
+
 #recipe-dietary {
   text-align: center;
 }

@@ -1,4 +1,4 @@
-// recipeCard.js
+// featuredCard.js
 
 import { 
   Spoonacular
