@@ -1,4 +1,4 @@
-import { bindRecipeCards } from "../binds/bindRecipeCard.js";
+import { bindRecipeCards, Num_RecipeCards } from "../binds/bindRecipeCard.js";
 
 import { 
   filter as filter,
@@ -31,7 +31,8 @@ export async function fetchAPI(query, baseURL) {
       }
     });
   bindRecipeCards(query);
-  filter.filtering();
+  console.log("apiFetch.js: fetchAPI: Num_RecipeCards: " + Num_RecipeCards);
+  filter.filtering(Num_RecipeCards);
 }
 
 /**
@@ -52,5 +53,6 @@ export async function fetchRandomAPI() {
     });
   // this line may lead to undefined behavior: i.e. recipe erasal
   bindRecipeCards("");
-  filter.filtering();
+  console.log("apiFetch.js: fetchRandomAPI: Num_RecipeCards: " + Num_RecipeCards);
+  filter.filtering(Num_RecipeCards);
 }

@@ -3,8 +3,10 @@ import {
   router as router,
   recipesID as recipesID,
   searchFilter as searchFilter,
-  MAX_NUM_RECIPE_CARDS
+  MAX_NUM_RECIPE_CARDS,
 } from "../main.js";
+
+export let Num_RecipeCards; //number of recipe that we are filtering
 /****************************************************************************
  *                      RECIPE CARDS
  ****************************************************************************/
@@ -57,6 +59,8 @@ import {
         recipeArray.push(recipeTitle);
       }
     }
+    Num_RecipeCards = Math.min(recipeArray.length, 30);
+    console.log("bindRecipeCard.js: Initialize: Num_RecipeCards: " + Num_RecipeCards);
     // matching recipes are sorted prior to being binded to <recipe-card>s
     sortRecipeCards(recipeArray);
 
