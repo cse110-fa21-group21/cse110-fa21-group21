@@ -1,7 +1,8 @@
 import { 
   router as router, 
   filter as filter,
-  searchFilter as searchFilter
+  searchFilter as searchFilter,
+  filterToggle as filterToggle
 } from "../main.js";
 import { Num_RecipeCards} from "./bindRecipeCard.js";
 /****************************************************************************
