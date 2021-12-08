@@ -30,7 +30,7 @@ h2 {
   display: inline-block;
   position: relative;
   font-size: 30px;
-  border-radius: 30px;
+  border-radius: 20px;
 }
 
 #homepage-search-btn {
@@ -39,8 +39,8 @@ h2 {
   color: rgb(63, 35, 2);
   background-color: #ffe293;
   padding: 3px 10px;
-  border: #ffe293;
-  border-radius: 30px;
+  border: 1px solid rgb(63, 35, 2);
+  border-radius: 20px;
 }
 
 /* css for top bar */
@@ -55,12 +55,13 @@ h2 {
   position: relative;
   margin-top: 80px;
   font-size: 20px;
+  border-radius: 10px;
 }
 
 #nav-search-btn {
   font-size: 20px;
   font-weight: bold;
-  border-radius: 30px;
+  border-radius: 10px;
   background-color: #ffe293;
 }
 
