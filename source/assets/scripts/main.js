@@ -58,7 +58,7 @@ export const router = new Router(function () {
     .querySelector(".section-recipe-viewers-wrapper")
     .classList.remove("shown");
   document.querySelector(".section-home-page").classList.add("shown");
-  document.querySelector(".nav-search-bar").classList.add("hidden");
+  document.querySelector(".nav-search-bar").classList.add("shown");
   document.querySelector(".my-favorite-list").classList.remove("shown");
   document.querySelector(".my-shopping-list").classList.remove("shown");
 });
