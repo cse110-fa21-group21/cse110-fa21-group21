@@ -1,4 +1,4 @@
-import { Spoonacular } from "../scripts/spoonacular.js";
+import { Spoonacular } from "./api/spoonacular.js";
 export class Filter {
   constructor(
   ) {

@@ -1,5 +1,5 @@
 // recipeCard.js
-import { Spoonacular } from '../../scripts/spoonacular.js'
+import { Spoonacular } from '../../scripts/api/spoonacular.js'
 let myStorage = window.localStorage
 
 class recipeCard extends HTMLElement {
@@ -176,7 +176,7 @@ class recipeCard extends HTMLElement {
     //If it is then it should change the icon to red heart
     const favoriteButton = this.shadowRoot.querySelector('button');
     const favImg = this.shadowRoot.querySelector('button img');
-    if(myStorage.getItem(title) != undefined){
+    if(  JSON.parse( myStorage.getItem("FAVORITE_LIST") )[title] ){
       favImg.setAttribute('src', "./assets/icons/favorite/favorite-red.png")
       favImg.setAttribute('alt', 'unfavorite')
     }
@@ -185,15 +185,20 @@ class recipeCard extends HTMLElement {
     //when button is click it is either favorite the recipe 
     //or it will unfavorite the recipe
     favoriteButton.addEventListener('click', (event) => {
+      let localFavoriteList = JSON.parse(myStorage.getItem("FAVORITE_LIST"))
       if(favImg.alt == "favorite"){
         event.stopPropagation();//use to stop recipecard's event listener to execute
-        myStorage.setItem(title,JSON.stringify(data))
+        localFavoriteList[title] = data
+        console.log(`Adding ${title} to Favorite List...`)
+        myStorage.setItem("FAVORITE_LIST",JSON.stringify(localFavoriteList))
         favImg.setAttribute('src', "./assets/icons/favorite/favorite-red.png")
         favImg.setAttribute('alt', 'unfavorite')
       }
       else if(favImg.alt == "unfavorite"){
         event.stopPropagation();//use to stop recipecard's event listener to execute
-        myStorage.removeItem(title)
+        delete localFavoriteList[title]
+        console.log(`Removing ${title} from Favorite List...`)
+        myStorage.setItem("FAVORITE_LIST",JSON.stringify(localFavoriteList))
         favImg.setAttribute('src', "./assets/icons/favorite/favorite-blank.png")
         favImg.setAttribute('alt', 'favorite')
       }
