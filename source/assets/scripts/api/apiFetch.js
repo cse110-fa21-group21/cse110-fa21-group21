@@ -32,6 +32,6 @@ export async function fetchAPI(query, baseURL) {
       }
     });
   bindRecipeCards(query);
-  console.log("apiFetch.js: fetchAPI: Num_RecipeCards: " + numRecipeCards);
-  filter.filtering(numRecipeCards);
+  console.log("apiFetch.js: fetchAPI: Num_RecipeCards: " + numRecipeCards["display"]);
+  filter.filtering(numRecipeCards["display"]);
 }

@@ -25,5 +25,5 @@ import {
     });
   // this line may lead to undefined behavior: i.e. recipe erasal
   bindFeaturedRecipeCards();
-  filter.filtering(numRecipeCards);
+  filter.filtering(numRecipeCards["display"]);
 }

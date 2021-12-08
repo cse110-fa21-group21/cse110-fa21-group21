@@ -8,7 +8,7 @@ import {
   default as bindings 
 } from "./binds/bind.module.js";
 
-export const apiKey = "bbb19646160e40fcaddc4256a65f3a77";
+export const apiKey = "54a305b43853416198613d4aaaed7b01";
 
 export const MAX_NUM_RECIPE_CARDS = 30;
 export const NUM_FEATURED = 2;
@@ -16,7 +16,7 @@ export const searchFilter = document.querySelector(".search-filter");
 export const filterToggle = document.querySelector(".filter-toggle");
 export const myStorage = window.localStorage;
 
-export let numRecipeCards = 0;
+export const numRecipeCards = { display: 0};
 //ensure there is a shopping list in storage
 if(!myStorage.getItem("SHOPPING_LIST")){
   myStorage.setItem("SHOPPING_LIST", "{}");

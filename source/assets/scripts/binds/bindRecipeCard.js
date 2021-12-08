@@ -67,8 +67,8 @@ import {
         recipeArray.push(recipeTitle);
       }
     }
-    numRecipeCards = Math.min(recipeArray.length, MAX_NUM_RECIPE_CARDS);
-    console.log("bindRecipeCard.js: Initialize: Num_RecipeCards: " + Num_RecipeCards);
+    numRecipeCards["display"] = Math.min(recipeArray.length, MAX_NUM_RECIPE_CARDS);
+    console.log("bindRecipeCard.js: Initialize: Num_RecipeCards: " + numRecipeCards["display"]);
     // matching recipes are sorted prior to being binded to <recipe-card>s
     sortRecipeCards(recipeArray);
 

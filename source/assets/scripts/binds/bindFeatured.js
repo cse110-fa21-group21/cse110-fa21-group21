@@ -3,6 +3,8 @@ import {
     apiKey,
     NUM_FEATURED,
     recipesID as recipesID, 
+    searchFilter as searchFilter,
+    filterToggle as filterToggle,
     router as router
 } from "../main.js";
 
@@ -88,13 +90,26 @@ export function bindFeaturedRecipeCards() {
             featuredRecipesWrapper.classList.remove("shown");
             // Show the Recipe Viewers Wrapper
             recipeViewersWrapper.classList.add("shown");
-            
             // Hide the homepage-section
-            const homepage = document.querySelector(
-                ".section-home-page"
-            )
+            //Hide Search Filter
+            searchFilter.classList.remove("shown");
+            //Hide Filter Toggle class
+            filterToggle.classList.remove("shown");
+            //Hide Favorite List
+            const favoriteList = document.querySelector(".my-favorite-list");
+            favoriteList.classList.remove("shown");
+            ///Hide Shopping List
+            const shoppingList = document.querySelector(".my-shopping-list");
+            shoppingList.classList.remove("shown");
+
+            // Hide the homepage-section
+            const homepage = document.querySelector(".section-home-page");
             homepage.classList.remove("shown");
-            
+
+            // Display navbar search bar
+            const navSearchDisplay = document.querySelector(".nav-search-bar");
+            navSearchDisplay.classList.remove("hidden");
+
             document.querySelector("recipe-viewer").data =
             recipesID[recipeArray[snapshot]];
         });

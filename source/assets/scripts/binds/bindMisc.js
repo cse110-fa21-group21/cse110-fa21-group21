@@ -20,8 +20,8 @@ export function bindState() {
       console.log("Routing to page:", event.state);
       router.goTo(event.state, true);
     }
-    console.log("bindMisc.js: bindState: Num_RecipeCards: " + numRecipeCards);
-    filter.filtering(numRecipeCards);
+    console.log("bindMisc.js: bindState: Num_RecipeCards: " + numRecipeCards["display"]);
+    filter.filtering(numRecipeCards["display"]);
   });
 }
 /**
