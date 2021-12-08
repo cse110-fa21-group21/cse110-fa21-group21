@@ -4,9 +4,11 @@ import { Filter } from "../scripts/filter.js";
 
 //const apiKey = "d7a805d987074402904a262f602c7844";
 
-import { default as bindings } from "./binds/bind.js";
+import { 
+  default as bindings 
+} from "./binds/bind.module.js";
 
-export const apiKey = "3672cd34bc2d43a0b4144be5a135a8c5";
+export const apiKey = "54a305b43853416198613d4aaaed7b01";
 
 export const MAX_NUM_RECIPE_CARDS = 30;
 export const NUM_FEATURED = 2;
@@ -14,6 +16,7 @@ export const searchFilter = document.querySelector(".search-filter");
 export const filterToggle = document.querySelector(".filter-toggle");
 export const myStorage = window.localStorage;
 
+export const numRecipeCards = { display: 0};
 //ensure there is a shopping list in storage
 if(!myStorage.getItem("SHOPPING_LIST")){
   myStorage.setItem("SHOPPING_LIST", "{}");
@@ -71,6 +74,7 @@ window.addEventListener("DOMContentLoaded", init);
 
 async function init() {
   await bindings.bindSearch();
+  await bindings.bindFeaturedRecipes();
   bindings.bindState();
   filter.filtering();
   bindings.bindFavoriteList();

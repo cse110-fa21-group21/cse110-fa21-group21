@@ -1,6 +1,9 @@
 // recipeViewer.js
 
-import { Spoonacular } from "../../scripts/api/spoonacular.js";
+import { 
+  Spoonacular 
+} from "../../scripts/api/api.module.js";
+
 const spoonacular = new Spoonacular();
 let myStorage = window.localStorage;
 
@@ -178,13 +181,13 @@ class recipeViewer extends HTMLElement {
       } else if (favoriteButton.textContent == "Remove the Favorite") {
         delete localFavoriteList[title]
         console.log(`Removing ${title} from favorite list...`)
-        myStorage.setItem("FAVORITE_LIST",JSON.stringify(localFavoriteList))
         favoriteButton.textContent = "Favorite the Recipe";
         favImg.setAttribute(
           "src",
           "./assets/icons/favorite/favorite-blank.png"
         );
       }
+      myStorage.setItem("FAVORITE_LIST",JSON.stringify(localFavoriteList))
     });
 
     // ADDING TO THE SHOPPING LIST
