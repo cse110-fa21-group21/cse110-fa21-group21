@@ -16,7 +16,7 @@ body {
 #recipe-title {
   text-align: center;
   margin: 20px;
-  font-size: xx-large;
+  font-size: 3rem;
   border: 5px solid;
   border-radius: 10px;
   background-color: wheat;
@@ -87,12 +87,20 @@ body {
   color: #6e4d3d;
   font-weight: bold;
   text-align: center;
+  text-decoration: underline;
+  font-size: xx-large;
 }
 
 #recipe-instructions {
   margin-left: 30px;
   font-size: larger;
   text-align: justify;
+  background-color: wheat;
+  border-radius: 10px;
+  padding-bottom: 0.5rem;
+  padding-right: 0.8rem;
+  padding-top: 0.5rem;
+  line-height: 130%;
 }
 
 #recipe-title,
@@ -101,7 +109,7 @@ body {
 #recipe-servings,
 #recipe-calories,
 #recipe-total-calories {
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 
 ul li {
@@ -130,7 +138,7 @@ h4 {
   background-color: wheat;
   border: 2.5px solid #6e4d3d;
   border-radius: 20px;
-  padding: 8px 20px 8px 50px;
+  padding: 8px 20px 3px 50px;
   position: relative;
   z-index: 2;
 }
