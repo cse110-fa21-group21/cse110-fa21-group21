@@ -3,6 +3,7 @@ import {
   router as router,
   recipesID as recipesID,
   searchFilter as searchFilter,
+  filterToggle as filterToggle,
   MAX_NUM_RECIPE_CARDS,
 } from "../main.js";
 
@@ -37,6 +38,10 @@ export let Num_RecipeCards; //number of recipe that we are filtering
 
     // Display the search filter
     searchFilter.classList.add("shown");
+
+    //Display the filter toggle class
+    filterToggle.classList.add("shown");
+
 
     // Hide the homepage-section
     const homepage = document.querySelector(".section-home-page");
@@ -87,6 +92,8 @@ export let Num_RecipeCards; //number of recipe that we are filtering
         recipeCardsWrapper.classList.remove("shown");
         // Show the Recipe Viewers Wrapper
         recipeViewersWrapper.classList.add("shown");
+        //Hide the Filter Toggle Class
+        filterToggle.classList.remove("shown");
         // Hide the Filter
         searchFilter.classList.remove("shown");
         // Hide the Favorite List

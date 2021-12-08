@@ -1,6 +1,7 @@
 import{
   router as router,
   searchFilter as searchFilter,
+  filterToggle as filterToggle,
   myStorage as myStorage
 } from "../main.js";
 
@@ -33,6 +34,8 @@ export function bindFavoriteList() {
       recipeCards.classList.remove("shown");
       //Hide Recipe Viewer
       recipeViewer.classList.remove("shown");
+      //Hide Filter Toggle class
+      filterToggle.classList.remove("shown");
       //Hide Search Filter
       searchFilter.classList.remove("shown");
       //Hide Home Page Search Bar
@@ -61,7 +64,9 @@ export function bindFavoriteList() {
           );
           //Hide Search Filter
           searchFilter.classList.remove("shown");
-          //Hide Favorite Lis
+          //Hide Filter Toggle class
+          filterToggle.classList.remove("shown");
+          //Hide Favorite List
           favoriteList.classList.remove("shown");
           //Hide Shopping List
           shoppingList.classList.remove("shown")

@@ -11,6 +11,7 @@ export const apiKey = "54a305b43853416198613d4aaaed7b01";
 export const MAX_NUM_RECIPE_CARDS = 30;
 export const NUM_FEATURED = 2;
 export const searchFilter = document.querySelector(".search-filter");
+export const filterToggle = document.querySelector(".filter-toggle");
 export const myStorage = window.localStorage;
 
 //ensure there is a shopping list in storage
