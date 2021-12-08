@@ -179,7 +179,6 @@ async function fetchAPI(query) {
        * Each individual entry corresponds to a unique matching recipe
        */
       console.log(data.results);
-      if(data.results == undefined) return;
       for (let i = 0; i < data.results.length; i++) {
         // add a new entry to the recipesID object
         recipesID[data.results[i].title] = data.results[i];
@@ -200,7 +199,6 @@ async function fetchRandomAPI() {
     .then((response) => response.json())
     .then((data) => {
       console.log(data.results);
-      if(data.results == undefined) return;
       for (let i = 0; i < data.results.length; i++) {
         // add a new entry to the recipesID object
         recipesID[data.results[i].title] = data.results[i];
