@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Mukta&family=Raleway&display=swap");
 
 * {
-  font-family: 'Mukta', sans-serif;
+  font-family: "Mukta", sans-serif;
 }
 
 body {
@@ -36,10 +36,10 @@ h2 {
 #homepage-search-btn {
   font-size: 30px;
   font-weight: bold;
-  color: rgb(63, 35, 2);
+  color: rgb(63 35 2);
   background-color: #ffe293;
   padding: 3px 10px;
-  border: 1px solid rgb(63, 35, 2);
+  border: 1px solid rgb(63 35 2);
   border-radius: 20px;
 }
 
