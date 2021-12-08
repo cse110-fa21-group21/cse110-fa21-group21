@@ -2,6 +2,7 @@
 import { Router } from "../scripts/Router.js";
 import { Filter } from "../scripts/filter.js";
 
+const apiKey = "d7a805d987074402904a262f602c7844";
 
 import { default as bindings } from "./binds/bind.js";
 

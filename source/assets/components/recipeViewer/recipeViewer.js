@@ -42,7 +42,7 @@ class recipeViewer extends HTMLElement {
     <main id = "card-information">
         <div id = "recipe-title"></div>
         <div class = "favorite-button">
-          <img id = "fav-btn" src="./assets/icons/favorite/favorite-blank.png" width = "30px" height = "30px" alt="favorite button">
+          <img id = "fav-btn" src="assets/icons/favorite/favorite-blank.png" width = "30px" height = "30px" alt="favorite button">
           <button>Favorite the Recipe</button>
         </div>
         <section class = "flex-container">
@@ -51,10 +51,10 @@ class recipeViewer extends HTMLElement {
               <fig id = "visual">
                 <img id = "recipe-image" src="" alt="recipe-image"/>
                 <figcaption id = "recipe-dietary">
-                  <img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
-                  <img id="gluten-free" src="./assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" hidden alt="Gluten Free"/>
-                  <img id="vegan" src="./assets/icons/dietary/vegan.png" width = "30px" height = "30px" hidden alt="Vegan"/>
-                  <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
+                  <img id="dairy-free" src="assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
+                  <img id="gluten-free" src="assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" hidden alt="Gluten Free"/>
+                  <img id="vegan" src="assets/icons/dietary/vegan.png" width = "30px" height = "30px" hidden alt="Vegan"/>
+                  <img id="vegetarian" src="assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
                 </figcaption>
               </fig>
             </aside>
@@ -163,7 +163,7 @@ class recipeViewer extends HTMLElement {
     const favImg = this.shadowRoot.querySelector('#fav-btn');
     if(  JSON.parse( myStorage.getItem("FAVORITE_LIST") )[title] ){
       favoriteButton.textContent = "Remove the Favorite"
-      favImg.setAttribute('src', "./assets/icons/favorite/favorite-red.png")
+      favImg.setAttribute('src', "assets/icons/favorite/favorite-red.png")
       favImg.setAttribute('alt', 'unfavorite')
     }
 
@@ -174,7 +174,7 @@ class recipeViewer extends HTMLElement {
         localFavoriteList[title] = data
         console.log(`Adding ${title} to Favorite List...`)
         favoriteButton.textContent = "Remove the Favorite";
-        favImg.setAttribute("src", "./assets/icons/favorite/favorite-red.png");
+        favImg.setAttribute("src", "assets/icons/favorite/favorite-red.png");
       } else if (favoriteButton.textContent == "Remove the Favorite") {
         delete localFavoriteList[title]
         console.log(`Removing ${title} from favorite list...`)
