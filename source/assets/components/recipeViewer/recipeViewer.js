@@ -1,6 +1,9 @@
 // recipeViewer.js
 
-import { Spoonacular } from "../../scripts/api/spoonacular.js";
+import { 
+  Spoonacular 
+} from "../../scripts/api/api.module.js";
+
 const spoonacular = new Spoonacular();
 let myStorage = window.localStorage;
 

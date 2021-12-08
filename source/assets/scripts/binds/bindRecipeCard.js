@@ -4,10 +4,10 @@ import {
   recipesID as recipesID,
   searchFilter as searchFilter,
   filterToggle as filterToggle,
-  MAX_NUM_RECIPE_CARDS
+  numRecipeCards as numRecipeCards,
+  MAX_NUM_RECIPE_CARDS,
 } from "../main.js";
 
-export let Num_RecipeCards; //number of recipe that we are filtering
 /****************************************************************************
  *                      RECIPE CARDS
  ****************************************************************************/
@@ -67,7 +67,7 @@ export let Num_RecipeCards; //number of recipe that we are filtering
         recipeArray.push(recipeTitle);
       }
     }
-    Num_RecipeCards = Math.min(recipeArray.length, 30);
+    numRecipeCards = Math.min(recipeArray.length, MAX_NUM_RECIPE_CARDS);
     console.log("bindRecipeCard.js: Initialize: Num_RecipeCards: " + Num_RecipeCards);
     // matching recipes are sorted prior to being binded to <recipe-card>s
     sortRecipeCards(recipeArray);
@@ -134,7 +134,7 @@ export let Num_RecipeCards; //number of recipe that we are filtering
  * Function use to sort a given array by score
  * @param {Array} recipeArray
  */
-function sortRecipeCards(recipeArray) {
+export function sortRecipeCards(recipeArray) {
   recipeArray.sort((firstCard, secondCard) =>
     compareRecipeCards(firstCard, secondCard)
   );
