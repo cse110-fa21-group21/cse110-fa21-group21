@@ -1,4 +1,4 @@
-// recipeCard.js
+// featuredCard.js
 import { Spoonacular } from '../../scripts/api/spoonacular.js'
 
 class featuredCard extends HTMLElement {
