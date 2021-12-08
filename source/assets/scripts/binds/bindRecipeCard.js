@@ -42,6 +42,9 @@ export let Num_RecipeCards; //number of recipe that we are filtering
     //Display the filter toggle class
     filterToggle.classList.add("shown");
 
+    ///Hide Shopping List
+    const shoppingList = document.querySelector(".my-shopping-list");
+    shoppingList.classList.remove("shown");
 
     // Hide the homepage-section
     const homepage = document.querySelector(".section-home-page");
@@ -94,6 +97,8 @@ export let Num_RecipeCards; //number of recipe that we are filtering
         recipeViewersWrapper.classList.add("shown");
         //Hide the Filter Toggle Class
         filterToggle.classList.remove("shown");
+        ///Hide Shopping List
+        shoppingList.classList.remove("shown");
         // Hide the Filter
         searchFilter.classList.remove("shown");
         // Hide the Favorite List

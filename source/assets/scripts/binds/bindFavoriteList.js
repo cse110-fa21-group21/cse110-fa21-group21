@@ -22,7 +22,7 @@ export function bindFavoriteList() {
     router.insertPage(page, function () {
       removeFavoriteList();
       let favoriteList = document.querySelector(".my-favorite-list");
-      const shoppingList = document.querySelector(".my-shopping-list")
+      const shoppingList = document.querySelector(".my-shopping-list");
       const recipeCards = document.querySelector(".section-recipe-cards-wrapper");
       const recipeViewer = document.querySelector(
         ".section-recipe-viewers-wrapper"
@@ -41,7 +41,7 @@ export function bindFavoriteList() {
       //Hide Home Page Search Bar
       homePageSearch.classList.remove("shown");
       //Hide Shopping List
-      shoppingList.classList.remove("shown")
+      shoppingList.classList.remove("shown");
 
       const localFavoriteList = JSON.parse(myStorage.getItem("FAVORITE_LIST"));
       for (const recipeTitle in localFavoriteList) {

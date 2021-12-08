@@ -52,6 +52,7 @@ export const router = new Router(function () {
   bindings.removeFavoriteList();
   bindings.removeShoppingList();
   document.querySelector(".search-filter").classList.remove("shown");
+  document.querySelector(".filter-toggle").classList.remove("shown");
   document
     .querySelector(".section-recipe-cards-wrapper")
     .classList.remove("shown");
