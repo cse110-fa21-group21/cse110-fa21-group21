@@ -6,7 +6,7 @@ import { Filter } from "../scripts/filter.js";
 
 import { default as bindings } from "./binds/bind.js";
 
-export const apiKey = "ce4a252fa4e747428ea8e1411582d82c";
+export const apiKey = "d7a805d987074402904a262f602c7844";
 
 export const MAX_NUM_RECIPE_CARDS = 30;
 export const NUM_FEATURED = 2;
