@@ -4,7 +4,7 @@ import {
   recipesID as recipesID,
   searchFilter as searchFilter,
   filterToggle as filterToggle,
-  MAX_NUM_RECIPE_CARDS,
+  MAX_NUM_RECIPE_CARDS
 } from "../main.js";
 
 export let Num_RecipeCards; //number of recipe that we are filtering

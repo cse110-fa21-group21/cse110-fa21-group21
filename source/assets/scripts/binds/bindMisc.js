@@ -1,6 +1,7 @@
 import { 
   router as router, 
-  filter as filter
+  filter as filter,
+  searchFilter as searchFilter
 } from "../main.js";
 import { Num_RecipeCards} from "./bindRecipeCard.js";
 /****************************************************************************
@@ -39,3 +40,26 @@ export function bindHomeButton() {
     router.goTo('home', false);
   })
 }
+
+/**
+ * Bind Filter button to show and hide filters
+ * 
+ */
+ export function bindFilterButton(){
+
+  //select the actual filter icon inside the filter toggle class
+   const filterButton = document.querySelector('img[alt="filter-icon"]');
+  
+  filterButton.addEventListener('click', event =>{
+
+    //if filters are shown, hide them
+    if(searchFilter.classList.contains("shown")){
+      searchFilter.classList.remove("shown");
+    }
+    else{ //else if filters are hidden, show them
+      searchFilter.classList.add("shown");
+    }
+    
+  })
+}
+
