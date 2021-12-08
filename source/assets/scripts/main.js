@@ -2,11 +2,12 @@
 import { Router } from "../scripts/Router.js";
 import { Filter } from "../scripts/filter.js";
 
-const apiKey = "d7a805d987074402904a262f602c7844";
+const apiKey = "3672cd34bc2d43a0b4144be5a135a8c5";
 
 const MAX_NUM_RECIPE_CARDS = 30;
 const NUM_FEATURED = 2;
 const searchFilter = document.querySelector(".search-filter");
+const filterToggle = document.querySelector(".filter-toggle");
 let myStorage = window.localStorage;
 let searchQuery = "";
 let baseURL = "";
@@ -69,6 +70,7 @@ async function init() {
   filter.filtering();
   bindFavoriteList();
   bindHomeButton();
+  bindFilterButton();
 }
 
 /**
@@ -313,6 +315,9 @@ function bindRecipeCards(query) {
     // Display the search filter
     searchFilter.classList.add("shown");
 
+    //display the class with the button that toggles the filters on and off
+    filterToggle.classList.add("shown");
+
     // Hide the homepage-section
     const homepage = document.querySelector(
       ".section-home-page"
@@ -372,6 +377,8 @@ function bindRecipeCards(query) {
         recipeViewersWrapper.classList.add("shown");
         // Hide the Filter
         searchFilter.classList.remove("shown");
+        //Hide the Filter Toggle class
+        filterToggle.classList.remove("shown");
         // Hide the Favorite List
         favoriteList.classList.remove("shown");
         // Pass the data from the <recipe-card> to the singular <recipe-viewer>
@@ -451,6 +458,29 @@ function bindState () {
   })
   
 }
+/**
+ * Bind Filter button to show and hide filters
+ * 
+ */
+ function bindFilterButton(){
+
+  //select the actual filter icon inside the filter toggle class
+   const filterButton = document.querySelector('img[alt="filter-icon"]');
+  
+  filterButton.addEventListener('click', event =>{
+
+    //if filters are shown, hide them
+    if(searchFilter.classList.contains("shown")){
+      searchFilter.classList.remove("shown");
+    }
+    else{ //else if filters are hidden, show them
+      searchFilter.classList.add("shown");
+    }
+    
+  })
+  
+  
+}
 
 /****************************************************************************
  *                      FAVORITE LIST
@@ -474,6 +504,8 @@ function bindState () {
       recipeCards.classList.remove("shown");
       //Hide Recipe Viewer
       recipeViewer.classList.remove("shown");
+      //Hide filter toggle class
+      filterToggle.classList.remove("shown");
       //Hide Search Filter
       searchFilter.classList.remove("shown");
       //Hide Home Page Search Bar
@@ -488,6 +520,7 @@ function bindState () {
         router.insertPage(favoritePage, function(){
           const recipeViewersWrapper = document.querySelector(".section-recipe-viewers-wrapper");
           
+          filterToggle.classList.remove("shown");
           searchFilter.classList.remove("shown");
           favoriteList.classList.remove("shown");
           recipeViewersWrapper.classList.add("shown");
