@@ -1,9 +1,9 @@
 import { 
   router as router, 
   filter as filter,
-  searchFilter as searchFilter
+  searchFilter as searchFilter,
+  numRecipeCards as numRecipeCards
 } from "../main.js";
-import { Num_RecipeCards} from "./bindRecipeCard.js";
 /****************************************************************************
  *                        ROUTING
  ****************************************************************************/
@@ -20,8 +20,8 @@ export function bindState() {
       console.log("Routing to page:", event.state);
       router.goTo(event.state, true);
     }
-    console.log("bindMisc.js: bindState: Num_RecipeCards: " + Num_RecipeCards);
-    filter.filtering(Num_RecipeCards);
+    console.log("bindMisc.js: bindState: Num_RecipeCards: " + numRecipeCards["display"]);
+    filter.filtering(numRecipeCards["display"]);
   });
 }
 /**
