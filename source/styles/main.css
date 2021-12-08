@@ -1,9 +1,9 @@
 /* main.css */
 
-@import url("https://fonts.googleapis.com/css2?family=Ephesis&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mukta&family=Raleway&display=swap");
 
 * {
-  font-family: Georgia, serif;
+  font-family: Mukta, sans-serif;
 }
 
 body {
@@ -158,6 +158,9 @@ legend {
 #search-ingredients-button {
   margin-top: 10px;
   margin-bottom: 10px;
+  border-radius: 10%;
+  background-color: #ffe293;
+  border: solid 1px #6e4d3d;
 }
 
 #select-cuisine {
