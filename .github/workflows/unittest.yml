@@ -16,6 +16,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install modules
-      run: npm install --save-dev jest babel-jest @babel/core @babel/preset-env puppeteer jest-puppeteer
+      run: npm install --save-dev jest babel-jest @babel/core @babel/preset-env
     - name: Unit test
       run: npm test ./source/assets/_tests_/unit.test.js
