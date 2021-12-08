@@ -26,8 +26,14 @@ export function bindState() {
  *
  */
 export function bindHomeButton() {
+  //Home Button on top left
   const homeButton = document.querySelector('img[alt="nav-home-icon"]');
   homeButton.addEventListener("click", () => {
     router.goTo("home", false);
   });
+  //Bytes & Bites Button
+  const homeButton2 = document.querySelector('img[alt="nav-title"]');
+  homeButton2.addEventListener('click', event =>{
+    router.goTo('home', false);
+  })
 }
