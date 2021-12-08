@@ -1,3 +1,30 @@
+/* For hover info from w3*/
+.hoverTip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.hoverTip .hoverTipText {
+  visibility: hidden; 
+  width: 120px;
+  background-color: rgb(63, 35, 2);
+  color: wheat;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 3;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.hoverTip:hover .hoverTipText {
+  visibility: visible;
+}
+
 /** recipeViewer.css **/
 
 body {

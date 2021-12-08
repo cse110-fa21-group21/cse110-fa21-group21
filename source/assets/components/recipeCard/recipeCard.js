@@ -61,10 +61,22 @@ class recipeCard extends HTMLElement {
               <fig id="visual">
                 <img id="recipe-image" src="" alt="recipe-image"/>
                 <figcaption class="justify-content-center" id="recipe-dietary">
+                  <div class="hoverTip">
                     <img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
+                    <span class="hoverTipText" >Dairy Free</span>
+                  </div>
+                  <div class="hoverTip">
                     <img id="gluten-free" src="./assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" hidden alt="Gluten Free"/>
+                    <span class="hoverTipText">Gluten Free</span>
+                  </div>
+                  <div class="hoverTip">
                     <img id="vegan" src="./assets/icons/dietary/vegan.png" width = "30px" height = "30px" hidden alt="Vegan"/>
+                    <span class="hoverTipText">Vegan</span>
+                  </div>
+                  <div class="hoverTip">
                     <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
+                    <span class="hoverTipText">Vegetarian</span>
+                  </div>
                 </figcaption>
               </fig>
             </aside>
