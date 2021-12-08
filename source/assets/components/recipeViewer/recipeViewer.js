@@ -75,7 +75,7 @@ class recipeViewer extends HTMLElement {
           </div>
 
           <div id = "right-flex">
-            <h4><span> Ingredients </span></h4>
+            <h4><span> Ingredients </span></h4>  
             <div id = "recipe-ingredients"> </div>
             <button id="add-shopping">Add to the Shopping List</button>
           </div>

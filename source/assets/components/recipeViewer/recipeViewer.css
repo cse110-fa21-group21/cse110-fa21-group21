@@ -53,17 +53,30 @@ body {
   background-color: wheat;
 }
 
+#add-shopping {
+  display: block;
+  text-align: justify;
+  border-radius: 10px;
+  margin: 20px auto;
+  background-color: #fcc42b;
+  padding: 10px;
+  border: 2.5px solid #6e4d3d;
+}
+
 #recipe-ingredients {
   border: 2.5px solid #6e4d3d;
   border-radius: 10px;
-  padding: 20px;
-  margin-left: 30px;
+  padding: 20px 20px 10px 5px;
+  margin-left: 40px;
   margin-right: auto;
-  width: 350px;
+  width: 23rem;
+  background-color: wheat;
+}
+
+#right-flex {
   position: sticky;
   align-self: flex-start;
   top: 0;
-  background-color: wheat;
 }
 
 #recipe-dietary {
