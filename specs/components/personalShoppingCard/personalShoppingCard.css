@@ -1,0 +1,52 @@
+body {
+  font-family: Georgia, serif;
+}
+
+#shadow {
+  border: solid black 2px;
+  border-radius: 30px;
+  background-color: #fff4e6;
+}
+
+#shopping-list-title {
+  text-align: center;
+  margin: 20px;
+  font-size: xx-large;
+  border: 5px solid;
+  border-radius: 10px;
+  background-color: wheat;
+  color: #6e4d3d;
+  font-weight: bold;
+  padding: 10px 0;
+}
+
+.form-control[disabled] {
+  background-color: wheat;
+}
+
+.input-group-text {
+  background-color: #6e4d3d;
+  opacity: 0.8;
+}
+
+
+.input-group-text:hover{
+  opacity: 1;
+}
+
+.card-footer {
+  background-color: transparent;
+  display: inline-flex;
+  justify-content: right;
+}
+
+.trash-ingredient {
+  margin-left: 0.5em;
+  width: 2em;
+  height: 2em;
+}
+
+.add-ingredient {
+  width: 2em;
+  height: 2em;
+}
