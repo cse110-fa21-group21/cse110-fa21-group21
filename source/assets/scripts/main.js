@@ -2,13 +2,13 @@
 import { Router } from "../scripts/Router.js";
 import { Filter } from "../scripts/filter.js";
 
-//const apiKey = "d7a805d987074402904a262f602c7844";
-//const apiKey = "54a305b43853416198613d4aaaed7b01";
+//const apiKey = "7bfc3ea23abd447584cad24cc08dba96";
+
 import { 
   default as bindings 
 } from "./binds/bind.module.js";
 
-export const apiKey = "52121edf0f71442dbf23b640dbe1ad78";
+export const apiKey = "8d86cab1c3ca4ff386c701576ab2980e";
 
 export const MAX_NUM_RECIPE_CARDS = 30;
 export const NUM_FEATURED = 2;

@@ -28,18 +28,21 @@ h2 {
 
 #homepage-search-bar,
 #homepage-search-btn {
-  display: inline;
+  display: inline-block;
   position: relative;
   font-size: 30px;
-  border: 1px solid black;
+  border-radius: 20px;
 }
 
 #homepage-search-btn {
   cursor: pointer;
   font-size: 30px;
   font-weight: bold;
-  border-radius: 10%;
+  color: rgb(63 35 2);
   background-color: #ffe293;
+  padding: 3px 10px;
+  border: 1px solid rgb(63 35 2);
+  border-radius: 20px;
   box-shadow: 0 9px #999;
 }
 
@@ -61,13 +64,14 @@ h2 {
   position: relative;
   margin-top: 80px;
   font-size: 20px;
+  border-radius: 30px;
 }
 
 #nav-search-btn {
   cursor: pointer;
   font-size: 20px;
   font-weight: bold;
-  border-radius: 10%;
+  border-radius: 10px;
   background-color: #ffe293;
   box-shadow: 0 9px #999;
 }
