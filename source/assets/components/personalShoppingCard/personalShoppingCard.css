@@ -8,7 +8,7 @@ body {
   background-color: #fff4e6;
 }
 
-#recipe-title {
+#shopping-list-title {
   text-align: center;
   margin: 20px;
   font-size: xx-large;
@@ -29,7 +29,7 @@ body {
   opacity: 0.9;
 }
 
-.input-group-text:hover {
+.input-group-text:hover{
   opacity: 1;
 }
 
@@ -39,3 +39,12 @@ body {
   justify-content: right;
 }
 
+.trash-ingredient {
+  width: 1em;
+  height: 1em;
+}
+
+.add-ingredient {
+  width: 1em;
+  height: 1em;
+}

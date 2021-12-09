@@ -40,9 +40,15 @@ export function bindShoppingList() {
       favoriteList.classList.remove("shown");
 
       for( const recipeTitle in shoppingList ) {
-        const shoppingCard = document.createElement("shopping-card")
-        shoppingCard.data = recipeTitle
-        shoppingListCardWrapper.appendChild(shoppingCard)
+        if(recipeTitle === "Personal Shopping List"){
+          const personalShoppingCard = document.createElement("personal-shopping-card")
+          personalShoppingCard.data = recipeTitle
+          shoppingListCardWrapper.appendChild(personalShoppingCard)
+        }else{
+          const shoppingCard = document.createElement("shopping-card")
+          shoppingCard.data = recipeTitle
+          shoppingListCardWrapper.appendChild(shoppingCard)
+        }
       }
     });
     router.goTo(page);
