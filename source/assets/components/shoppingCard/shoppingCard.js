@@ -6,7 +6,14 @@ import
 
 //shoppingCard.js
 let myStorage = window.localStorage;
+/**
+ * Custom HTML element named shoppingCard
+ * To display Shopping List for each recipe in the Shopping List Page. (Separate from personalShoppingCard)
+ */
 class shoppingCard extends HTMLElement {
+    /**
+    * Constructor sets up the default HTML for shoppingCard
+    */
     constructor () {
       super()
       this.attachShadow({ mode: 'open' })
@@ -28,10 +35,19 @@ class shoppingCard extends HTMLElement {
         crossorigin = "anonymous"></script>
       `;
     }
+    /**
+    * Getter function for JSON file of shoppingCard
+    * @returns {JSON} json of this shoppingCard
+    */
     get data () {
         return this.json
     }
     
+  /**
+   * Setter function for shoppingCard 
+   * Fills in items from the ingredients list in RecipeViewer!
+   * @param {string} recipeTitle: Title of recipe that we are adding ingredients from
+   */
     set data(recipeTitle){
       let recipeIngredients  = JSON.parse(myStorage.getItem("SHOPPING_LIST"))[recipeTitle]
       this.json = recipeIngredients;
@@ -39,7 +55,7 @@ class shoppingCard extends HTMLElement {
         <div class="card-header" id="recipe-title">${recipeTitle}</div>
         <div class="card-body" id="recipe-ingredients"></div>
         <div class="card-footer border-0 pt-0 mt-0">
-          <img id = "fav-btn" src="assets/icons/shopping/trash-can.png" width = "50px" height = "50px" alt="trash-can-icon">
+          <img id = "trash-btn" src="assets/icons/shopping/trash-can.png" width = "50rem" height = "50rem" alt="trash-can-icon">
         </div>      
       `
 
@@ -49,10 +65,10 @@ class shoppingCard extends HTMLElement {
           ingredientWrapper.classList.add("mb-3")
 
           ingredientWrapper.innerHTML = `
-            <input id="text" class="form-control" type="text" value="${ingredient.toUpperCase()}" disabled>
             <div class="input-group-text">
               <input id="checkbox" class="form-check-input mt-0" type="checkbox">
             </div>
+            <input id="text" class="form-control" type="text" value="${ingredient.toUpperCase()}" disabled>
           `
           ingredientWrapper
             .querySelector("#checkbox")

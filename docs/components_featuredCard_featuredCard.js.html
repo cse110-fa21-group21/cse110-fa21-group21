@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/featuredCard/featuredCard.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/featuredCard/featuredCard.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// featuredCard.js
+
+import { 
+  Spoonacular
+} from "../../scripts/api/api.module.js"
+
+/**
+ * Custom HTML element named featuredCArd
+ * Similar to recipeCard, but used in order to have a more simplified view. 
+ * Only shows up in main home page
+ */
+class featuredCard extends HTMLElement {
+  /**
+    * Constructor sets up the default HTML for featuredCard
+    */
+  constructor () {
+    super()
+    this.attachShadow({ mode: 'open' })
+
+    this.shadowRoot.innerHTML = `
+     &lt;!-- Bootstrap CSS -->
+     &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     
+     &lt;!-- The Card Itself -->
+     &lt;section id="shadow">&lt;/section>
+
+     &lt;!-- Local StyleSheets -->
+     &lt;link rel="stylesheet" href="./assets/components/featuredCard/featuredCard.css">
+
+     &lt;!-- Bootstrap JS -->
+     &lt;script 
+      src = "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+      integrity = "sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin = "anonymous">&lt;/script>
+    `
+  }
+  /**
+  * Getter function for JSON file of featuredCard
+  * @returns {JSON} json of this featuredCArd
+  */
+  get data () {
+    return this.json
+  }
+
+  /**
+   * Setter function for JSON file of featuredCard.
+   * Use data from API to set up featuredCard accordingly.
+   * Gets Random Data!
+   * @param {JSON} data: Recipe Data from spoonacular API
+   */
+  set data (data) {
+    this.json = data
+
+    const spoonacular = new Spoonacular()
+
+    // this will reset the struction of the section element within our shadow root
+    this.shadowRoot.querySelector("section").innerHTML = `
+      &lt;div class="card" id="featured-card" style="width: 18rem">
+        &lt;img id="recipe-image" class="card-img-top" src="" alt="recipe-image"/>
+        &lt;figcaption class="justify-content-center" id="recipe-dietary">
+          &lt;img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
+          &lt;img id="gluten-free" src="./assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" hidden alt="Gluten Free"/>
+          &lt;img id="vegan" src="./assets/icons/dietary/vegan.png" width = "30px" height = "30px" hidden alt="Vegan"/>
+          &lt;img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
+          &lt;img id="blank" src="./assets/icons/dietary/blank.png" width = "30px" height = "30px" hidden alt="Blank"/>
+        &lt;/figcaption>
+        &lt;div class="card-body d-flex flex-column" style = "height: 7rem">
+          &lt;h4 id="card-title">Recipe Title&lt;/h4>
+        &lt;/div>
+        &lt;div class="card-footer">
+          &lt;button type="button" class="btn btn-primary" id="featured-button">Check Out This Recipe!&lt;/a>
+        &lt;/div>
+      &lt;/div>
+    `
+
+    // set title
+    const title = spoonacular.getRecipeTitle(data)
+    this.shadowRoot.getElementById('card-title').innerHTML = title
+
+    // set image.src
+    const image = spoonacular.getRecipeImageSource(data)
+    this.shadowRoot.getElementById('recipe-image').setAttribute('src', image)
+
+    // set dietary logos
+    const dietary = spoonacular.getRecipeDietary(data)
+    if (dietary) {
+      if (dietary.vegan) { this.shadowRoot.getElementById('vegan').removeAttribute('hidden') }
+      if (dietary.vegetarian) { this.shadowRoot.getElementById('vegetarian').removeAttribute('hidden') }
+      if (dietary['gluten-free']) { this.shadowRoot.getElementById('gluten-free').removeAttribute('hidden') }
+      if (dietary['dairy-free']) { this.shadowRoot.getElementById('dairy-free').removeAttribute('hidden') }
+      else { this.shadowRoot.getElementById('blank').removeAttribute('hidden') }
+    }
+  }
+}
+
+customElements.define('featured-recipe-card', featuredCard)
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="featuredCard.html">featuredCard</a></li><li><a href="Filter.html">Filter</a></li><li><a href="recipeCard.html">recipeCard</a></li><li><a href="recipeViewer.html">recipeViewer</a></li><li><a href="Router.html">Router</a></li><li><a href="shoppingCard.html">shoppingCard</a></li><li><a href="Spoonacular.html">Spoonacular</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bindFavoriteList">bindFavoriteList</a></li><li><a href="global.html#bindFeaturedRecipeCards">bindFeaturedRecipeCards</a></li><li><a href="global.html#bindFeaturedRecipes">bindFeaturedRecipes</a></li><li><a href="global.html#bindFilterButton">bindFilterButton</a></li><li><a href="global.html#bindHomeButton">bindHomeButton</a></li><li><a href="global.html#bindHomeSearch">bindHomeSearch</a></li><li><a href="global.html#bindNavSearch">bindNavSearch</a></li><li><a href="global.html#bindRecipeCards">bindRecipeCards</a></li><li><a href="global.html#bindRecipeViewers">bindRecipeViewers</a></li><li><a href="global.html#bindSearch">bindSearch</a></li><li><a href="global.html#bindShoppingList">bindShoppingList</a></li><li><a href="global.html#bindState">bindState</a></li><li><a href="global.html#compareRecipeCards">compareRecipeCards</a></li><li><a href="global.html#fetchAPI">fetchAPI</a></li><li><a href="global.html#fetchRandomAPI">fetchRandomAPI</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#recipesID">recipesID</a></li><li><a href="global.html#removeFavoriteList">removeFavoriteList</a></li><li><a href="global.html#removeShoppingList">removeShoppingList</a></li><li><a href="global.html#router">router</a></li><li><a href="global.html#sortRecipeCards">sortRecipeCards</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Dec 08 2021 16:22:23 GMT-0800 (Pacific Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

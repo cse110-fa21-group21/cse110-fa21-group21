@@ -12,6 +12,7 @@ import {
  * function that connect each recipe-card to its recipeViewer
  * @param {HTMLElement} recipeCard the recipe-card element that use to connect to its recipeViewer
  * @param {string} pageName name of the route that should be goTo
+ * @param {boolean} state true: when from BindFavoriteList.js
  */
  export function bindRecipeViewers(recipeCard, pageName, state) {
   // delete previous eventlistener that is set in last search

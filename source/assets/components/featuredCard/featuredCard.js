@@ -4,7 +4,15 @@ import {
   Spoonacular
 } from "../../scripts/api/api.module.js"
 
+/**
+ * Custom HTML element named featuredCArd
+ * Similar to recipeCard, but used in order to have a more simplified view. 
+ * Only shows up in main home page
+ */
 class featuredCard extends HTMLElement {
+  /**
+    * Constructor sets up the default HTML for featuredCard
+    */
   constructor () {
     super()
     this.attachShadow({ mode: 'open' })
@@ -26,18 +34,19 @@ class featuredCard extends HTMLElement {
       crossorigin = "anonymous"></script>
     `
   }
-
+  /**
+  * Getter function for JSON file of featuredCard
+  * @returns {JSON} json of this featuredCArd
+  */
   get data () {
     return this.json
   }
 
   /**
-   * Change make to recipeCard instead keep create elements
-   * Setting the structure of shadowRoot to what it need to be
-   * then we can just call data to set up information for each
-   * part of the recipecard
-   * I did not get what is recipe-dietary part doing so I didnt
-   * do that in the set data
+   * Setter function for JSON file of featuredCard.
+   * Use data from API to set up featuredCard accordingly.
+   * Gets Random Data!
+   * @param {JSON} data: Recipe Data from spoonacular API
    */
   set data (data) {
     this.json = data
@@ -49,13 +58,24 @@ class featuredCard extends HTMLElement {
       <div class="card" id="featured-card" style="width: 18rem">
         <img id="recipe-image" class="card-img-top" src="" alt="recipe-image"/>
         <figcaption class="justify-content-center" id="recipe-dietary">
-          <img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
-          <img id="gluten-free" src="./assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" hidden alt="Gluten Free"/>
-          <img id="vegan" src="./assets/icons/dietary/vegan.png" width = "30px" height = "30px" hidden alt="Vegan"/>
-          <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
-          <img id="blank" src="./assets/icons/dietary/blank.png" width = "30px" height = "30px" hidden alt="Blank"/>
+          <div class="hover-tip">
+            <img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
+            <span class="hover-tip-text" >Dairy Free</span>
+          </div>
+          <div class="hover-tip">
+            <img id="gluten-free" src="./assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" hidden alt="Gluten Free"/>
+            <span class="hover-tip-text">Gluten Free</span>
+          </div>
+          <div class="hover-tip">
+             <img id="vegan" src="./assets/icons/dietary/vegan.png" width = "30px" height = "30px" hidden alt="Vegan"/>
+             <span class="hover-tip-text">Vegan</span>
+          </div>
+          <div class="hover-tip">
+             <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
+             <span class="hover-tip-text">Vegetarian</span>
+          </div>
         </figcaption>
-        <div class="card-body d-flex flex-column" style = "height: 7rem">
+        <div class="card-body d-flex flex-column" style = "height: 8rem">
           <h4 id="card-title">Recipe Title</h4>
         </div>
         <div class="card-footer">

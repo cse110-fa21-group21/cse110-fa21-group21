@@ -8,7 +8,7 @@ body {
   background-color: #ffd4b0;
 }
 
-#recipe-title {
+#shopping-list-title {
   text-align: center;
   margin: 20px;
   font-size: xx-large;
@@ -22,16 +22,20 @@ body {
 
 .form-control[disabled] {
   background-color: white;
+}
+
+.form-control {
   border: solid 2px #6e4d3d;
 }
 
 .input-group-text {
   background-color: #ffe293;
-  opacity: 0.9;
   border: solid 2px #6e4d3d;
+  opacity: 0.9;
 }
 
 .input-group-text:hover {
+  cursor: pointer;
   opacity: 1;
 }
 
@@ -41,12 +45,14 @@ body {
   justify-content: right;
 }
 
-#trash-btn {
-  cursor: pointer;
+.trash-ingredient {
+  width: 1.3em;
+  height: 1.3em;
 }
 
-input[type="checkbox"] {
-  cursor: pointer;
+.add-ingredient {
+  width: 1em;
+  height: 1em;
 }
 
 @media only screen and (max-width: 800px) {

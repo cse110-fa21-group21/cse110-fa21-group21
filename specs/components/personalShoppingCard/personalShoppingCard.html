@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Recipe Card Markup</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Stylesheets -->
+    <!-- Bootstrap v5.0 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Local -->
+    <link rel="stylesheet" href="./personalShoppingCard.css">
+</head>
+<body>
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  <!-- 
+  <shopping-list-card> 
+  -->
+    <!-- Shadow DOM, so style changes here won't bleed to the entire interface -->
+    <section id="shadow" class="card container p-3">
+        <div class="card-header" id="shopping-list-title"> Personal Shopping List </div>
+        <div class="card-body" id="recipe-ingredients">
+          <div class="input-group mb-3">
+            <input class="form-control" type="text" value="Ingredient 1" disabled>
+            <div class="input-group-text">
+              <input class="form-check-input mt-0" type="checkbox">
+              <img class="trash-ingredient" src="../../../source/assets/icons/shopping/trash-can.png" alt="Trash Can Button">            
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input class="form-control" type="text" value="Ingredient 2" disabled>
+            <div class="input-group-text">
+              <input class="form-check-input mt-0" type="checkbox">
+              <img class="trash-ingredient" src="../../../source/assets/icons/shopping/trash-can.png" alt="Trash Can Button">            
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input class="form-control" type="text" value="Ingredient 3" disabled>
+            <div class="input-group-text">
+              <input class="form-check-input mt-0" type="checkbox">
+              <img class="trash-ingredient" src="../../../source/assets/icons/shopping/trash-can.png" alt="Trash Can Button">            
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input class="form-control" type="text" value="Ingredient 4" disabled>
+            <div class="input-group-text">
+              <input class="form-check-input mt-0" type="checkbox">
+              <img class="trash-ingredient" src="../../../source/assets/icons/shopping/trash-can.png" alt="Trash Can Button">            
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input class="form-control" type="text" value="Ingredient 5" disabled>
+            <div class="input-group-text">
+              <input class="form-check-input mt-0" type="checkbox">
+              <img class="trash-ingredient" src="../../../source/assets/icons/shopping/trash-can.png" alt="Trash Can Button">            
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-text">
+              <img class="add-ingredient" src="../../../source/assets/icons/shopping/add.png" alt="Add Button">            
+            </div>
+            <input class="form-control" type="text" value="" placeholder="Add to your shopping list..." >
+          </div>
+        </div>
+    </section> 
+    <!-- END OF SHADOW DOM -->
+  <!-- 
+  You can imagine there being a closing tag here
+  </shopping-list-card> 
+  -->
+</body>
+</html>

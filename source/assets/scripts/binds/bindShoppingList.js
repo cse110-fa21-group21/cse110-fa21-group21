@@ -1,11 +1,18 @@
 import{
   myStorage as myStorage,
   router as router,
-  searchFilter as searchFilter
+  searchFilter as searchFilter,
+  filterToggle as filterToggle
 } from "../main.js"
 /****************************************************************************
  *                      SHOPPING CARDS
  ****************************************************************************/
+
+
+/**
+ * Connects Shopping button to display user's shopping Lists
+ * Hide and display necessary elements.
+ */
 export function bindShoppingList() {
   const shopButton = document.querySelector('img[alt="nav-shopping-list-icon"]');
   shopButton.addEventListener("click",()=>{
@@ -24,10 +31,8 @@ export function bindShoppingList() {
 
       //Show Shopping List
       shoppingListCardWrapper.classList.add("shown");
-      //Hide Search Filter
-      searchFilter.classList.remove("shown");
-      //Hide Home Page Search Bar
-      homePageSearch.classList.remove("shown");
+      //hide the filter toggle 
+      filterToggle.classList.remove("shown");
       //Hide Recipe Cards
       recipeCards.classList.remove("shown");
       //Hide Recipe Viewer
@@ -40,9 +45,15 @@ export function bindShoppingList() {
       favoriteList.classList.remove("shown");
 
       for( const recipeTitle in shoppingList ) {
-        const shoppingCard = document.createElement("shopping-card")
-        shoppingCard.data = recipeTitle
-        shoppingListCardWrapper.appendChild(shoppingCard)
+        if(recipeTitle === "Personal Shopping List"){
+          const personalShoppingCard = document.createElement("personal-shopping-card")
+          personalShoppingCard.data = recipeTitle
+          shoppingListCardWrapper.appendChild(personalShoppingCard)
+        }else{
+          const shoppingCard = document.createElement("shopping-card")
+          shoppingCard.data = recipeTitle
+          shoppingListCardWrapper.appendChild(shoppingCard)
+        }
       }
     });
     router.goTo(page);

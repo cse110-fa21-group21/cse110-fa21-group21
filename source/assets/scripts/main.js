@@ -2,7 +2,7 @@
 import { Router } from "../scripts/Router.js";
 import { Filter } from "../scripts/filter.js";
 
-//const apiKey = "d7a805d987074402904a262f602c7844";
+//const apiKey = "7bfc3ea23abd447584cad24cc08dba96";
 
 import { 
   default as bindings 
@@ -17,9 +17,19 @@ export const filterToggle = document.querySelector(".filter-toggle");
 export const myStorage = window.localStorage;
 
 export const numRecipeCards = { display: 0};
-//ensure there is a shopping list in storage
+//ensure we have a Shopping List in local storage
 if(!myStorage.getItem("SHOPPING_LIST")){
-  myStorage.setItem("SHOPPING_LIST", "{}");
+  const intialShoppingListObj = {}
+  intialShoppingListObj["Personal Shopping List"] = {}
+  myStorage.setItem("SHOPPING_LIST", JSON.stringify(intialShoppingListObj))
+//ensure we have a Personal Shopping List in local storage
+}else if (
+  !Object.keys(JSON.parse(myStorage.getItem("SHOPPING_LIST")))
+         .includes("Personal Shopping List")
+  ){
+  const localShoppingList = JSON.parse(myStorage.getItem("SHOPPING_LIST"))
+  localShoppingList["Personal Shopping List"] = {}
+  myStorage.setItem("SHOPPING_LIST", JSON.stringify(localShoppingList))
 }
 //ensure there is a shopping list data in storage
 if(!myStorage.getItem("SHOPPING_LIST_DATA")){
@@ -66,6 +76,9 @@ export const router = new Router(function () {
   document
     .querySelector(".section-recipe-viewers-wrapper")
     .classList.remove("shown");
+  document
+    .querySelector(".section-featured-cards-wrapper")
+    .classList.add("shown");
   document.querySelector(".section-home-page").classList.add("shown");
   document.querySelector(".nav-search-bar").classList.add("shown");
   document.querySelector(".my-favorite-list").classList.remove("shown");
@@ -76,6 +89,10 @@ export const filter = new Filter();
 
 window.addEventListener("DOMContentLoaded", init);
 
+/**
+ * Init function that runs all necessary functions at start up. 
+ * Such as binding buttons!
+ */
 async function init() {
   await bindings.bindSearch();
   await bindings.bindFeaturedRecipes();
