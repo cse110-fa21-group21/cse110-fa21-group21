@@ -37,3 +37,7 @@
   font-weight: bold;
   border: solid black;
 }
+
+#featured-card {
+  box-shadow: 6px 9px #999;
+}

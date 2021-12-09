@@ -1,7 +1,8 @@
 import{
   myStorage as myStorage,
   router as router,
-  searchFilter as searchFilter
+  searchFilter as searchFilter,
+  filterToggle as filterToggle
 } from "../main.js"
 /****************************************************************************
  *                      SHOPPING CARDS
@@ -30,10 +31,8 @@ export function bindShoppingList() {
 
       //Show Shopping List
       shoppingListCardWrapper.classList.add("shown");
-      //Hide Search Filter
-      searchFilter.classList.remove("shown");
-      //Hide Home Page Search Bar
-      homePageSearch.classList.remove("shown");
+      //hide the filter toggle 
+      filterToggle.classList.remove("shown");
       //Hide Recipe Cards
       recipeCards.classList.remove("shown");
       //Hide Recipe Viewer

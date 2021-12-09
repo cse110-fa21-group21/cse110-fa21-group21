@@ -39,7 +39,15 @@ h2 {
   font-weight: bold;
   border-radius: 10%;
   background-color: #ffe293;
+  box-shadow: 0 9px #999;
 }
+
+#homepage-search-btn:active {
+  background-color: #e2c882;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
 
 /* css for top bar */
 .topbar {
@@ -61,6 +69,13 @@ h2 {
   font-weight: bold;
   border-radius: 10%;
   background-color: #ffe293;
+  box-shadow: 0 9px #999;
+}
+
+#nav-search-btn:active {
+  background-color: #e2c882;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 .navbar-icons {
@@ -68,8 +83,16 @@ h2 {
   cursor: pointer;
 }
 
+.navbar-icons img:active {
+  transform: scale(0.8);
+}
+
 .navbar-title {
   cursor: pointer;
+}
+
+.navbar-title:active {
+  transform: scale(0.9);
 }
 
 .nav-flex-container {
@@ -165,15 +188,28 @@ legend {
 }
 
 #search-ingredients-button {
+  cursor: pointer;
   margin-top: 10px;
   margin-bottom: 10px;
   border-radius: 10%;
   background-color: #ffe293;
   border: solid 1px #6e4d3d;
+  box-shadow: 0 4px #999;
+}
+
+#search-ingredients-button:active {
+  background-color: #e2c882;
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
 }
 
 #select-cuisine {
+  cursor: pointer;
   margin-bottom: 10px;
+}
+
+input[type=checkbox] {
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 800px) {
