@@ -2,7 +2,7 @@
 let myStorage = window.localStorage;
 /**
  * Custom HTML element named shoppingCard
- * To display Shopping List for each recipe in the Shopping List Page
+ * To display Shopping List for each recipe in the Shopping List Page. (Separate from personalShoppingCard)
  */
 class shoppingCard extends HTMLElement {
     /**
@@ -30,8 +30,8 @@ class shoppingCard extends HTMLElement {
       `;
     }
     /**
-    * Getter function for JSON file of recipeViewer
-    * @returns {JSON} json of this recipeViewer
+    * Getter function for JSON file of shoppingCard
+    * @returns {JSON} json of this shoppingCard
     */
     get data () {
         return this.json

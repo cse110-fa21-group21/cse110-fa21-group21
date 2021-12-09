@@ -8,7 +8,7 @@ import {
   default as bindings 
 } from "./binds/bind.module.js";
 
-export const apiKey = "5b4f607b137b43a89759181c6107d4ec";
+export const apiKey = "52121edf0f71442dbf23b640dbe1ad78";
 
 export const MAX_NUM_RECIPE_CARDS = 30;
 export const NUM_FEATURED = 2;
