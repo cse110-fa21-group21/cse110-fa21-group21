@@ -19,7 +19,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
       type="text/css"
     />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
 
@@ -56,40 +56,41 @@
 
             <!--search bar for the home page; if it's easier to just move the 
             search bar from other pages to the middle, feel free to delete this-->
-          <div class="homepage-search-bar">
-            <input type="text" id="homepage-search-bar" />
-            <input type="submit" value="Search" id="homepage-search-btn" />
+            <div class="homepage-search-bar">
+              <input type="text" id="homepage-search-bar" />
+              <input type="submit" value="Search" id="homepage-search-btn" />
+            </div>
           </div>
-        </div>
 
-        <!--featured recipes, placed at the right of the logo-->
-        <div class="featured-recipes">
-          <h2>Featured Recipes</h2>
-          <section class="section-featured-cards-wrapper">
-            <featured-recipe-card id="featured-1"></featured-recipe-card>
-            <featured-recipe-card id="featured-2"></featured-recipe-card>
-          </section>
-        </div>
-      </section>
-
-      <div class="flex-container">
-        <section class ="filter-toggle">
-            <img id="filter-collapse" src="assets/icons/filter-icon.png" alt="filter-icon" width="30">
+          <!--featured recipes, placed at the right of the logo-->
+          <div class="featured-recipes">
+            <h2>Featured Recipes</h2>
+            <section class="section-featured-cards-wrapper">
+              <featured-recipe-card id="featured-1"></featured-recipe-card>
+              <featured-recipe-card id="featured-2"></featured-recipe-card>
+            </section>
+          </div>
         </section>
-        <section class="search-filter">
-          <fieldset>
-            <legend><h3>Dietary</h3></legend>
-            <form name="filterByDietary" id="filter-by-diet">
-              <input type="checkbox" id="dairy-free-diet" name="dairy_free" />
-              <label for="dairy-free-diet"> Dairy Free</label><br />
-              <input type="checkbox" id="gluten-free-diet" name="gluten_free" />
-              <label for="gluten-free-diet"> Gluten Free </label><br />
-              <input type="checkbox" id="vegetarian-diet" name="vegetarian" />
-              <label for="vegetarian-diet"> Vegetarian </label><br />
-              <input type="checkbox" id="vegan-diet" name="vegan" />
-              <label for="vegan-diet"> Vegan </label><br />
-            </form>
-          </fieldset>
+
+
+        <div class="flex-container">
+          <section class ="filter-toggle">
+            <img id="filter-collapse" src="assets/icons/filter-icon.png" alt="filter-icon" width="30">
+          </section>
+          <section class="search-filter">
+            <fieldset>
+              <legend><h3>Dietary</h3></legend>
+              <form name="filterByDietary" id="filter-by-diet">
+                <input type="checkbox" id="dairy-free-diet" name="dairy_free" />
+                <label for="dairy-free-diet"> Dairy Free</label><br />
+                <input type="checkbox" id="gluten-free-diet" name="gluten_free" />
+                <label for="gluten-free-diet"> Gluten Free </label><br />
+                <input type="checkbox" id="vegetarian-diet" name="vegetarian" />
+                <label for="vegetarian-diet"> Vegetarian </label><br />
+                <input type="checkbox" id="vegan-diet" name="vegan" />
+                <label for="vegan-diet"> Vegan </label><br />
+              </form>
+            </fieldset>
 
           <fieldset>
             <legend><h3>Price</h3></legend>
