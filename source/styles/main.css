@@ -48,7 +48,6 @@ h2 {
   transform: translateY(4px);
 }
 
-
 /* css for top bar */
 .topbar {
   height: 150px;
@@ -157,6 +156,14 @@ personal-shopping-card {
 }
 
 /* css for the filter page */
+#filter-collapse {
+  cursor: pointer;
+}
+
+#filter-collapse:active {
+  transform: translateY(2px);
+}
+
 fieldset {
   width: 170px;
   background-color: wheat;
@@ -208,7 +215,7 @@ legend {
   margin-bottom: 10px;
 }
 
-input[type=checkbox] {
+input[type="checkbox"] {
   cursor: pointer;
 }
 

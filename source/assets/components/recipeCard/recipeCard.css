@@ -3,6 +3,12 @@
   border: solid black 2px;
   border-radius: 30px;
   background-color: wheat;
+  box-shadow: 0 9px #999;
+}
+
+#shadow:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(2px);
 }
 
 #card-information {
@@ -89,4 +95,8 @@ li > img {
   margin-left: -150px;
   margin-top: 5px;
   z-index: 3;
+}
+
+#fav-btn:active {
+  transform: scale(0.8);
 }
