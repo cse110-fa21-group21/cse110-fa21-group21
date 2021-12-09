@@ -30,6 +30,7 @@ body {
 }
 
 .input-group-text:hover {
+  cursor: pointer;
   opacity: 1;
 }
 

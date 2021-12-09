@@ -69,6 +69,13 @@ body {
   background-color: #fcc42b;
   padding: 10px;
   border: 2.5px solid #6e4d3d;
+  box-shadow: 0 9px #999;
+}
+
+#add-shopping:active {
+  background-color: #e2c882;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 #recipe-ingredients {
@@ -79,6 +86,7 @@ body {
   margin-right: auto;
   width: 23rem;
   background-color: wheat;
+  box-shadow: 2px 9px #999;
 }
 
 #right-flex {
@@ -161,4 +169,8 @@ h4 {
   margin-left: -150px;
   margin-top: 5px;
   z-index: 3;
+}
+
+.form-check-input {
+  cursor: pointer;
 }

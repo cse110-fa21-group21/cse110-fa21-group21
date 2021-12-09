@@ -35,10 +35,18 @@ h2 {
 }
 
 #homepage-search-btn {
+  cursor: pointer;
   font-size: 30px;
   font-weight: bold;
   border-radius: 10%;
   background-color: #ffe293;
+  box-shadow: 0 9px #999;
+}
+
+#homepage-search-btn:active {
+  background-color: #e2c882;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 /* css for top bar */
@@ -56,14 +64,35 @@ h2 {
 }
 
 #nav-search-btn {
+  cursor: pointer;
   font-size: 20px;
   font-weight: bold;
   border-radius: 10%;
   background-color: #ffe293;
+  box-shadow: 0 9px #999;
+}
+
+#nav-search-btn:active {
+  background-color: #e2c882;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 .navbar-icons {
   margin-top: 20px;
+  cursor: pointer;
+}
+
+.navbar-icons img:active {
+  transform: scale(0.8);
+}
+
+.navbar-title {
+  cursor: pointer;
+}
+
+.navbar-title:active {
+  transform: scale(0.9);
 }
 
 .nav-flex-container {
@@ -128,6 +157,14 @@ personal-shopping-card {
 }
 
 /* css for the filter page */
+#filter-collapse {
+  cursor: pointer;
+}
+
+#filter-collapse:active {
+  transform: translateY(2px);
+}
+
 fieldset {
   width: 170px;
   background-color: wheat;
@@ -159,15 +196,28 @@ legend {
 }
 
 #search-ingredients-button {
+  cursor: pointer;
   margin-top: 10px;
   margin-bottom: 10px;
   border-radius: 10%;
   background-color: #ffe293;
   border: solid 1px #6e4d3d;
+  box-shadow: 0 4px #999;
+}
+
+#search-ingredients-button:active {
+  background-color: #e2c882;
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
 }
 
 #select-cuisine {
+  cursor: pointer;
   margin-bottom: 10px;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
 }
 
 @viewport {

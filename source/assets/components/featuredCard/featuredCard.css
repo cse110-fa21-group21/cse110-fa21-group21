@@ -38,6 +38,10 @@
   border: solid black;
 }
 
+#featured-card {
+  box-shadow: 6px 9px #999;
+}
+
 @media only screen and (max-width: 800px) {
   /* Responsive design for featured recipe cards */
   .card {
