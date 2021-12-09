@@ -66,21 +66,21 @@ class recipeViewer extends HTMLElement {
               <fig id = "visual">
                 <img id = "recipe-image" src="" alt="recipe-image"/>
                 <figcaption id = "recipe-dietary">
-                  <div class="hovertip">
+                  <div class="hover-tip">
                     <img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
-                    <span class="hovertip-text" >Dairy Free</span>
+                    <span class="hover-tip-text" >Dairy Free</span>
                   </div>
-                  <div class="hovertip">
+                  <div class="hover-tip">
                     <img id="gluten-free" src="./assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" hidden alt="Gluten Free"/>
-                    <span class="hovertip-text">Gluten Free</span>
+                    <span class="hover-tip-text">Gluten Free</span>
                   </div>
-                  <div class="hovertip">
+                  <div class="hover-tip">
                     <img id="vegan" src="./assets/icons/dietary/vegan.png" width = "30px" height = "30px" hidden alt="Vegan"/>
-                    <span class="hovertip-text">Vegan</span>
+                    <span class="hover-tip-text">Vegan</span>
                   </div>
-                  <div class="hovertip">
+                  <div class="hover-tip">
                     <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
-                    <span class="hovertip-text">Vegetarian</span>
+                    <span class="hover-tip-text">Vegetarian</span>
                   </div>
                 </figcaption>
               </fig>
