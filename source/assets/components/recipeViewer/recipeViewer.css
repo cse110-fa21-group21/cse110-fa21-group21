@@ -1,4 +1,4 @@
-/* For hover info from w3*/
+/* For hover info from w3 */
 .hover-tip {
   position: relative;
   display: inline-block;
@@ -14,8 +14,6 @@
   text-align: center;
   /* padding: 2px 0;  */
   border-radius: 6px;
- 
-  /* Position the tooltip text - see examples below! */
   position: absolute;
   z-index: 3;
 }

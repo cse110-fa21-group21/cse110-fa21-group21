@@ -1,13 +1,13 @@
 // recipeViewer.js
 
-import { Spoonacular } from '../../scripts/spoonacular.js'
-const spoonacular = new Spoonacular()
-let myStorage = window.localStorage
+import { Spoonacular } from "../../scripts/api/spoonacular.js";
+const spoonacular = new Spoonacular();
+let myStorage = window.localStorage;
 
 class recipeViewer extends HTMLElement {
-  constructor () {
-    super()
-    this.attachShadow({ mode: 'open' })
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
 
     this.shadowRoot.innerHTML = `
     <!-- Bootstrap CSS -->
@@ -24,25 +24,30 @@ class recipeViewer extends HTMLElement {
      src = "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
      integrity = "sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
      crossorigin = "anonymous"></script>
-    `
+    `;
   }
 
-  get data () {
-    return this.json
+  get data() {
+    return this.json;
   }
 
   /**
    * similiar to recipeCard change to reset information
    * for a recipe-viewer element instead creating
    */
-  set data (data) {
-    this.json = data
+  set data(data) {
+    this.json = data;
 
-    this.shadowRoot.querySelector('section').innerHTML = `
+    this.shadowRoot.querySelector("section").innerHTML = `
     <main id = "card-information">
         <div id = "recipe-title"></div>
+<<<<<<< HEAD
         <div class = "favorite-button hovertip">
           <img id = "fav-btn" src="./assets/icons/favorite/favorite-blank.png" width = "30px" height = "30px" alt="favorite button">
+=======
+        <div class = "favorite-button">
+          <img id = "fav-btn" src="assets/icons/favorite/favorite-blank.png" width = "30px" height = "30px" alt="favorite button">
+>>>>>>> f37c686fc2c34648592343d4d6e0082f0d929ff5
           <button>Favorite the Recipe</button>
         </div>
         <section class = "flex-container">
@@ -51,6 +56,7 @@ class recipeViewer extends HTMLElement {
               <fig id = "visual">
                 <img id = "recipe-image" src="" alt="recipe-image"/>
                 <figcaption id = "recipe-dietary">
+<<<<<<< HEAD
                   <div class="hovertip">
                     <img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
                     <span class="hovertip-text" >Dairy Free</span>
@@ -66,6 +72,23 @@ class recipeViewer extends HTMLElement {
                   <div class="hovertip">
                     <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
                     <span class="hovertip-text">Vegetarian</span>
+=======
+                  <div class="hover-tip">
+                    <img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
+                    <span class="hover-tip-text" >Dairy Free</span>
+                  </div>
+                  <div class="hover-tip">
+                    <img id="gluten-free" src="./assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" hidden alt="Gluten Free"/>
+                    <span class="hover-tip-text">Gluten Free</span>
+                  </div>
+                  <div class="hover-tip">
+                    <img id="vegan" src="./assets/icons/dietary/vegan.png" width = "30px" height = "30px" hidden alt="Vegan"/>
+                    <span class="hover-tip-text">Vegan</span>
+                  </div>
+                  <div class="hover-tip">
+                    <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
+                    <span class="hover-tip-text">Vegetarian</span>
+>>>>>>> f37c686fc2c34648592343d4d6e0082f0d929ff5
                   </div>
                 </figcaption>
               </fig>
@@ -87,81 +110,154 @@ class recipeViewer extends HTMLElement {
           </div>
 
           <div id = "right-flex">
-            <div id = "recipe-ingredients"> 
-              <h4><span> Ingredients </span></h4>
-            </div>
+            <h4><span> Ingredients </span></h4>
+            <div id = "recipe-ingredients"> </div>
+            <button id="add-shopping">Add to the Shopping List</button>
           </div>
         </section> 
       </main>
-    `
+    `;
     // set title
-    const title = spoonacular.getRecipeTitle(data)
-    this.shadowRoot.getElementById('recipe-title').innerHTML = title
+    const title = spoonacular.getRecipeTitle(data);
+    this.shadowRoot.getElementById("recipe-title").innerHTML = title;
 
     // set price
-    const price = spoonacular.getRecipePrice(data)
-    this.shadowRoot.getElementById('recipe-price').innerHTML = price
+    const price = spoonacular.getRecipePrice(data);
+    this.shadowRoot.getElementById("recipe-price").innerHTML = price;
 
     // set time
-    const time = spoonacular.getRecipeCookingTime(data)
-    this.shadowRoot.getElementById('recipe-cooking-time').innerHTML = time
+    const time = spoonacular.getRecipeCookingTime(data);
+    this.shadowRoot.getElementById("recipe-cooking-time").innerHTML = time;
 
     // set score
-    const score = spoonacular.getRecipeScore(data)
-    this.shadowRoot.getElementById('recipe-score').innerHTML = score
+    const score = spoonacular.getRecipeScore(data);
+    this.shadowRoot.getElementById("recipe-score").innerHTML = score;
 
     // set servings
-    const servings = spoonacular.getRecipeServings(data)
-    this.shadowRoot.getElementById('recipe-servings').innerHTML = servings
+    const servings = spoonacular.getRecipeServings(data);
+    this.shadowRoot.getElementById("recipe-servings").innerHTML = servings;
 
     // set calories
-    const calories = spoonacular.getRecipeCalories(data)
-    this.shadowRoot.getElementById('recipe-calories').innerHTML = calories
+    const calories = spoonacular.getRecipeCalories(data);
+    this.shadowRoot.getElementById("recipe-calories").innerHTML = calories;
 
     // set totalCalories
-    const totalCalories = spoonacular.getRecipeTotalCalories(data)
-    this.shadowRoot.getElementById('recipe-total-calories').innerHTML = totalCalories
-    
+    const totalCalories = spoonacular.getRecipeTotalCalories(data);
+    this.shadowRoot.getElementById("recipe-total-calories").innerHTML =
+      totalCalories;
+
     // set ingredients
-    const ingredients = spoonacular.getRecipeIngredientsList(data)
-    this.shadowRoot.getElementById('recipe-ingredients').appendChild(ingredients)
+    const ingredients = spoonacular.getRecipeIngredientsList(data);
+    ingredients.querySelectorAll('li').forEach(
+      (entry) => {
+        const checkbox = entry.querySelector('input[type="checkbox"]');
+        const label = entry.querySelector('label');
+        const ingredient = label.innerText;
+        const localShoppingList = JSON.parse(myStorage.getItem("SHOPPING_LIST"))
+        if(
+          localShoppingList[title] 
+          && 
+          Object.keys(localShoppingList[title]).includes(ingredient)
+        ){
+          checkbox.checked = true
+          checkbox.disabled = true
+        }
+      }
+    )
+    this.shadowRoot
+      .getElementById("recipe-ingredients")
+      .appendChild(ingredients);
 
     // set instructions
-    const instructions = spoonacular.getRecipeInstructionsList(data)
-    this.shadowRoot.getElementById('recipe-instructions').appendChild(instructions)
+    const instructions = spoonacular.getRecipeInstructionsList(data);
+    this.shadowRoot
+      .getElementById("recipe-instructions")
+      .appendChild(instructions);
 
     // set image
-    const image = spoonacular.getRecipeImageSource(data)
-    this.shadowRoot.getElementById('recipe-image').setAttribute('src', image)
+    const image = spoonacular.getRecipeImageSource(data);
+    this.shadowRoot.getElementById("recipe-image").setAttribute("src", image);
 
     // set dietary logos
-    const dietary = spoonacular.getRecipeDietary(data)
-    if (dietary.vegan) { this.shadowRoot.getElementById('vegan').removeAttribute('hidden') }
-    if (dietary.vegetarian) { this.shadowRoot.getElementById('vegetarian').removeAttribute('hidden') }
-    if (dietary['gluten-free']) { this.shadowRoot.getElementById('gluten-free').removeAttribute('hidden') }
-    if (dietary['dairy-free']) { this.shadowRoot.getElementById('dairy-free').removeAttribute('hidden') }
-    
+    const dietary = spoonacular.getRecipeDietary(data);
+    if (dietary.vegan) {
+      this.shadowRoot.getElementById("vegan").removeAttribute("hidden");
+    }
+    if (dietary.vegetarian) {
+      this.shadowRoot.getElementById("vegetarian").removeAttribute("hidden");
+    }
+    if (dietary["gluten-free"]) {
+      this.shadowRoot.getElementById("gluten-free").removeAttribute("hidden");
+    }
+    if (dietary["dairy-free"]) {
+      this.shadowRoot.getElementById("dairy-free").removeAttribute("hidden");
+    }
+
     //determine the text on button
     const favoriteButton = this.shadowRoot.querySelector('button');
     const favImg = this.shadowRoot.querySelector('#fav-btn');
-    if(myStorage.getItem(title) != undefined){
+    if(  JSON.parse( myStorage.getItem("FAVORITE_LIST") )[title] ){
       favoriteButton.textContent = "Remove the Favorite"
-      favImg.setAttribute('src', "./assets/icons/favorite/favorite-red.png")
+      favImg.setAttribute('src', "assets/icons/favorite/favorite-red.png")
+      favImg.setAttribute('alt', 'unfavorite')
     }
-    
+
     //set favorite Button functionality
-    favoriteButton.addEventListener('click', () => {
-      if(favoriteButton.textContent == "Favorite the Recipe"){
-        myStorage.setItem(title,JSON.stringify(data))
-        favoriteButton.textContent = "Remove the Favorite"
-        favImg.setAttribute('src', "./assets/icons/favorite/favorite-red.png")
+    favoriteButton.addEventListener("click", () => {
+      let localFavoriteList = JSON.parse(myStorage.getItem("FAVORITE_LIST"))
+      if (favoriteButton.textContent == "Favorite the Recipe") {
+        localFavoriteList[title] = data
+        console.log(`Adding ${title} to Favorite List...`)
+        favoriteButton.textContent = "Remove the Favorite";
+        favImg.setAttribute("src", "assets/icons/favorite/favorite-red.png");
+      } else if (favoriteButton.textContent == "Remove the Favorite") {
+        delete localFavoriteList[title]
+        console.log(`Removing ${title} from favorite list...`)
+        myStorage.setItem("FAVORITE_LIST",JSON.stringify(localFavoriteList))
+        favoriteButton.textContent = "Favorite the Recipe";
+        favImg.setAttribute(
+          "src",
+          "./assets/icons/favorite/favorite-blank.png"
+        );
       }
-      else if(favoriteButton.textContent == "Remove the Favorite"){
-        myStorage.removeItem(title)
-        favoriteButton.textContent = "Favorite the Recipe"
-        favImg.setAttribute('src', "./assets/icons/favorite/favorite-blank.png")
+    });
+
+    // ADDING TO THE SHOPPING LIST
+    const addToShoppingListButton = this.shadowRoot.querySelector("#add-shopping");
+
+    addToShoppingListButton.addEventListener("click", () => {
+      // myStorage.removeItem(shoppingListTitle);
+      // let ingredientListValue = [];
+      let ingredientList = this.shadowRoot.querySelector("#recipe-ingredients");
+      let ingredientUL = ingredientList.firstElementChild.children;
+
+      // After getting UL loop through all the list elements
+      const localShoppingList = JSON.parse(myStorage.getItem("SHOPPING_LIST"))
+      let shoppingListObj;
+      if(localShoppingList[title]) {
+         shoppingListObj = localShoppingList[title];
+      }else{
+        shoppingListObj = {};
       }
-   })
+
+
+      for (let i = 0; i < ingredientUL.length; i++) {
+        let ingredientCheck = ingredientUL[i].querySelector("input");
+        let ingredient = ingredientUL[i].querySelector("#ingredient");
+        // Might have to use some sort of empty list?
+        if (ingredientCheck.checked) {
+            shoppingListObj[ingredient.innerHTML] = false;
+            console.log(`Adding ${ingredient.innerHTML} to Shopping List`);
+        }
+      }
+
+      //Retrieve and Parse the Local Storage Shopping List
+      console.log(`Adding\n${title}: ${JSON.stringify(shoppingListObj,null,4)}\nto local storage...`);
+      //Add the Recipe to the Shopping List
+      localShoppingList[title] = shoppingListObj;
+      myStorage.setItem("SHOPPING_LIST", JSON.stringify(localShoppingList));
+      console.log(`SHOPPING_LIST: ${JSON.parse( JSON.stringify(myStorage.getItem("SHOPPING_LIST"),null,4) )} `);
+    });
   }
 }
-customElements.define('recipe-viewer', recipeViewer)
+customElements.define("recipe-viewer", recipeViewer);
