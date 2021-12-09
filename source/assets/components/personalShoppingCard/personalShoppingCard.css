@@ -51,8 +51,8 @@ body {
 }
 
 .add-ingredient {
-  width: 1.3em;
-  height: 1.3em;
+  width: 1em;
+  height: 1em;
 }
 
 @media only screen and (max-width: 800px) {
