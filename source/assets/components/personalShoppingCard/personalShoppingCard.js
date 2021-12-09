@@ -1,6 +1,13 @@
 //shoppingCard.js
+/**
+ * Custom HTML element similar to original shoppingCard named personalShoppingCard
+ * To display Shopping List that user can personally customize
+ */
 let myStorage = window.localStorage;
 class personalShoppingCard extends HTMLElement {
+    /**
+    * Constructor sets up the default HTML for personalShoppingCard
+    */
     constructor () {
       super()
       this.attachShadow({ mode: 'open' })
@@ -22,10 +29,18 @@ class personalShoppingCard extends HTMLElement {
         crossorigin = "anonymous"></script>
       `;
     }
+    /**
+    * Getter function for JSON file of personalShoppingCard
+    * @returns {JSON} json of this personalShoppingCard
+    */
     get data () {
         return this.json
     }
-    
+    /**
+   * Setter function for personalshoppingCard 
+   * User can delete and add items!
+   * @param {string} recipeTitle: Title of recipe that we are adding ingredients from, in this case it would be "Personal Shopping List"
+   */
     set data(recipeTitle){
       const personalShoppingList  = JSON.parse(myStorage.getItem("SHOPPING_LIST"))[recipeTitle]
       this.json = personalShoppingList
@@ -76,11 +91,11 @@ class personalShoppingCard extends HTMLElement {
             this.#addTrashCanListener(ingredientWrapper)
           }
         )
-
-        this.shadowRoot
-        .querySelector('.add-to-ingredients')
-        .querySelector('.add-ingredient')
-        .addEventListener('click', ()=>{
+        
+        let addIngBtn = this.shadowRoot.querySelector('.add-to-ingredients')
+                                       .querySelector('.add-ingredient')
+        
+        addIngBtn.addEventListener('click', ()=>{
           // validation
            const textbox =   this.shadowRoot.querySelector('.add-to-ingredients')
                                             .querySelector('input[type="text"]')
@@ -115,6 +130,16 @@ class personalShoppingCard extends HTMLElement {
             textbox.value = ""
            }
         })
+
+        //For Ingredients to be added after pressing "Enter" as well
+        this.shadowRoot
+        .querySelector('.add-to-ingredients')
+        .querySelector('input[type="text"]')
+        .addEventListener("keydown", (event) => {
+          if (event.key === "Enter") {
+            addIngBtn.click();
+          }
+        });
     }
 
     #addTrashCanListener (ingredientWrapper){

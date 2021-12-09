@@ -91,7 +91,12 @@ class recipeViewer extends HTMLElement {
 
           <div id = "right-flex">
             <h4><span> Ingredients </span></h4>  
-            <div id = "recipe-ingredients"> </div>
+            <div id = "recipe-ingredients"> 
+              <button id="select-all-ing">
+                <img id="select-all-icon" src="assets/icons/select-all-icon.png" width = "40px" height = "40px" alt="Check All"/>
+                Check All
+              </button>
+            </div>
             <button id="add-shopping">Add to the Shopping List</button>
           </div>
         </section> 
@@ -202,6 +207,19 @@ class recipeViewer extends HTMLElement {
       myStorage.setItem("FAVORITE_LIST",JSON.stringify(localFavoriteList))
     });
 
+    //Check All button for ingredients (Useful for adding to shopping list)
+    this.shadowRoot.querySelector("#select-all-ing").addEventListener("click", () => {
+      //Select descendant of recipe-ingredient
+      let ingboxes = this.shadowRoot.querySelectorAll('input[class="form-check-input"]');
+      
+      for (let ingbox of ingboxes) {
+        
+        if(!ingbox.checked){
+          console.log("Clicked: " + ingbox.id)
+          ingbox.checked = true;
+        }
+      }
+    }); 
     // ADDING TO THE SHOPPING LIST
     const addToShoppingListButton = this.shadowRoot.querySelector("#add-shopping");
 
@@ -209,7 +227,7 @@ class recipeViewer extends HTMLElement {
       // myStorage.removeItem(shoppingListTitle);
       // let ingredientListValue = [];
       let ingredientList = this.shadowRoot.querySelector("#recipe-ingredients");
-      let ingredientUL = ingredientList.firstElementChild.children;
+      let ingredientUL = ingredientList.lastElementChild.children;
 
       // After getting UL loop through all the list elements
       const localShoppingList = JSON.parse(myStorage.getItem("SHOPPING_LIST"))
