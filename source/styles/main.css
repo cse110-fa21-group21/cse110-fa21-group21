@@ -170,13 +170,11 @@ legend {
 
 @viewport {
   width: device-width;
-  zoom: 1.0;
+  zoom: 1;
 }
 
 @media only screen and (max-width: 800px) {
-  
   /* Responsive design for home page */
-  
   .nav-flex-container {
     display: flex;
     flex-direction: column;
