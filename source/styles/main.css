@@ -34,6 +34,7 @@ h2 {
 }
 
 #homepage-search-btn {
+  cursor: pointer;
   font-size: 30px;
   font-weight: bold;
   border-radius: 10%;
@@ -55,6 +56,7 @@ h2 {
 }
 
 #nav-search-btn {
+  cursor: pointer;
   font-size: 20px;
   font-weight: bold;
   border-radius: 10%;
@@ -63,6 +65,11 @@ h2 {
 
 .navbar-icons {
   margin-top: 20px;
+  cursor: pointer;
+}
+
+.navbar-title {
+  cursor: pointer;
 }
 
 .nav-flex-container {
