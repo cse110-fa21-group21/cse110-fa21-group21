@@ -37,3 +37,19 @@
   font-weight: bold;
   border: solid black;
 }
+
+@media only screen and (max-width: 800px) {
+  /* Responsive design for featured recipe cards */
+  .card {
+    width: 9rem !important;
+  }
+
+  h4 {
+    font-size: large !important;
+  }
+
+  .btn-primary {
+    height: 3rem !important;
+    font-size: small !important;
+  }
+}
