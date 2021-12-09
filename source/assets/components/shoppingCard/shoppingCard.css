@@ -5,7 +5,7 @@ body {
 #shadow {
   border: solid black 2px;
   border-radius: 30px;
-  background-color: #fff4e6;
+  background-color: #ffd4b0;
 }
 
 #recipe-title {
@@ -21,12 +21,14 @@ body {
 }
 
 .form-control[disabled] {
-  background-color: wheat;
+  background-color: white;
+  border: solid 2px #6e4d3d;
 }
 
 .input-group-text {
-  background-color: #6e4d3d;
+  background-color: #ffe293;
   opacity: 0.9;
+  border: solid 2px #6e4d3d;
 }
 
 .input-group-text:hover {
@@ -45,4 +47,10 @@ body {
 
 input[type="checkbox"] {
   cursor: pointer;
+}
+
+@media only screen and (max-width: 800px) {
+  .card-header {
+    font-size: x-large !important;
+  }
 }

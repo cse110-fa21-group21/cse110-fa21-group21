@@ -73,7 +73,7 @@ h2 {
   font-weight: bold;
   border-radius: 10px;
   background-color: #ffe293;
-  box-shadow: 0 9px #999;
+  box-shadow: 0 5px #6e4d3d;
 }
 
 #nav-search-btn:active {
@@ -327,5 +327,11 @@ input[type="checkbox"] {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  /* For some reason div inside section still displays when screen is smaller! */
+  section:not(.shown) > div {
+    display: none;
+    visibility: hidden;
   }
 }

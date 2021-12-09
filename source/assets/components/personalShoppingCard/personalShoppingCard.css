@@ -5,7 +5,7 @@ body {
 #shadow {
   border: solid black 2px;
   border-radius: 30px;
-  background-color: #fff4e6;
+  background-color: #ffd4b0;
 }
 
 #shopping-list-title {
@@ -21,11 +21,16 @@ body {
 }
 
 .form-control[disabled] {
-  background-color: wheat;
+  background-color: white;
+}
+
+.form-control {
+  border: solid 2px #6e4d3d;
 }
 
 .input-group-text {
-  background-color: #6e4d3d;
+  background-color: #ffe293;
+  border: solid 2px #6e4d3d;
   opacity: 0.9;
 }
 
@@ -41,11 +46,17 @@ body {
 }
 
 .trash-ingredient {
-  width: 1em;
-  height: 1em;
+  width: 1.3em;
+  height: 1.3em;
 }
 
 .add-ingredient {
   width: 1em;
   height: 1em;
+}
+
+@media only screen and (max-width: 800px) {
+  .card-header {
+    font-size: x-large !important;
+  }
 }
