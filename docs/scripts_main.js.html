@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: scripts/main.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: scripts/main.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// main.js
+import { Router } from "../scripts/Router.js";
+import { Filter } from "../scripts/filter.js";
+
+//const apiKey = "d7a805d987074402904a262f602c7844";
+
+import { 
+  default as bindings 
+} from "./binds/bind.module.js";
+
+export const apiKey = "54a305b43853416198613d4aaaed7b01";
+
+export const MAX_NUM_RECIPE_CARDS = 30;
+export const NUM_FEATURED = 2;
+export const searchFilter = document.querySelector(".search-filter");
+export const filterToggle = document.querySelector(".filter-toggle");
+export const myStorage = window.localStorage;
+
+export const numRecipeCards = { display: 0};
+//ensure there is a shopping list in storage
+if(!myStorage.getItem("SHOPPING_LIST")){
+  myStorage.setItem("SHOPPING_LIST", "{}");
+}
+//ensure there is a favorite list in storage
+if(!myStorage.getItem("FAVORITE_LIST")){
+  myStorage.setItem("FAVORITE_LIST", "{}");
+}
+
+/**
+ * Every property within the recipesID object abides by the following
+ * structure: `title` and data. Together they form the property
+ * {
+ *   ...,
+ *   'title': data,
+ *   ...
+ * }
+ *  - @key{string} title : The recipe's title
+ *  - @value{object} data: The JSON representation of a recipe as
+ *                         returned by the Spoonacular API
+ */
+export const recipesID = {};
+
+export const searchQueryHistory = [];
+
+// array use to keep track each functon for recipe-card
+// will act like queue using push and shift
+export const funcArray = [];
+
+/**
+ * Constructor for router that would lead users to the home
+ * page, now homepage should have nothing to be show
+ * no recipecard or recipeview
+ */
+export const router = new Router(function () {
+  bindings.removeFavoriteList();
+  bindings.removeShoppingList();
+  document.querySelector(".search-filter").classList.remove("shown");
+  document.querySelector(".filter-toggle").classList.remove("shown");
+  document
+    .querySelector(".section-recipe-cards-wrapper")
+    .classList.remove("shown");
+  document
+    .querySelector(".section-recipe-viewers-wrapper")
+    .classList.remove("shown");
+  document.querySelector(".section-home-page").classList.add("shown");
+  document.querySelector(".nav-search-bar").classList.add("shown");
+  document.querySelector(".my-favorite-list").classList.remove("shown");
+  document.querySelector(".my-shopping-list").classList.remove("shown");
+});
+
+export const filter = new Filter();
+
+window.addEventListener("DOMContentLoaded", init);
+
+/**
+ * Init function that runs all necessary functions at start up. 
+ * Such as binding buttons!
+ */
+async function init() {
+  await bindings.bindSearch();
+  await bindings.bindFeaturedRecipes();
+  bindings.bindState();
+  filter.filtering();
+  bindings.bindFavoriteList();
+  bindings.bindShoppingList();
+  bindings.bindHomeButton();
+  bindings.bindFilterButton();
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="featuredCard.html">featuredCard</a></li><li><a href="Filter.html">Filter</a></li><li><a href="recipeCard.html">recipeCard</a></li><li><a href="recipeViewer.html">recipeViewer</a></li><li><a href="Router.html">Router</a></li><li><a href="shoppingCard.html">shoppingCard</a></li><li><a href="Spoonacular.html">Spoonacular</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bindFavoriteList">bindFavoriteList</a></li><li><a href="global.html#bindFeaturedRecipeCards">bindFeaturedRecipeCards</a></li><li><a href="global.html#bindFeaturedRecipes">bindFeaturedRecipes</a></li><li><a href="global.html#bindFilterButton">bindFilterButton</a></li><li><a href="global.html#bindHomeButton">bindHomeButton</a></li><li><a href="global.html#bindHomeSearch">bindHomeSearch</a></li><li><a href="global.html#bindNavSearch">bindNavSearch</a></li><li><a href="global.html#bindRecipeCards">bindRecipeCards</a></li><li><a href="global.html#bindRecipeViewers">bindRecipeViewers</a></li><li><a href="global.html#bindSearch">bindSearch</a></li><li><a href="global.html#bindShoppingList">bindShoppingList</a></li><li><a href="global.html#bindState">bindState</a></li><li><a href="global.html#compareRecipeCards">compareRecipeCards</a></li><li><a href="global.html#fetchAPI">fetchAPI</a></li><li><a href="global.html#fetchRandomAPI">fetchRandomAPI</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#recipesID">recipesID</a></li><li><a href="global.html#removeFavoriteList">removeFavoriteList</a></li><li><a href="global.html#removeShoppingList">removeShoppingList</a></li><li><a href="global.html#router">router</a></li><li><a href="global.html#sortRecipeCards">sortRecipeCards</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Dec 08 2021 16:22:23 GMT-0800 (Pacific Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -12,7 +12,7 @@ let baseURL = "";
 /**
  * Pulls the search query from our search bar. In the event that the search query is
  * original we call fetchAPI(Query). Otherwise, we call bindRecipeCards(searchQuery).
- * @param none
+ * @async
  */
 export async function bindSearch() {
   await bindHomeSearch();
@@ -21,13 +21,20 @@ export async function bindSearch() {
 
 /**
  * Enable Search via the HomePage
+ * @async
  */
 async function bindHomeSearch() {
   const homeSearchBar = document.getElementById("homepage-search-bar");
+  const homeSearchBarBtn = document.getElementById("homepage-search-btn");
   homeSearchBar.addEventListener("input", (event) => {
     homeSearchBar.textContent = event.target.value;
   });
-  const homeSearchBarBtn = document.getElementById("homepage-search-btn");
+  homeSearchBar.addEventListener("keydown", (event)=>{
+    if(event.key == "Enter"){
+      homeSearchBarBtn.click();
+    }
+  })
+  
   homeSearchBarBtn.addEventListener("click", () => {
     searchQuery = homeSearchBar.textContent;
     if (
@@ -54,11 +61,15 @@ async function bindHomeSearch() {
  */
 async function bindNavSearch() {
   const navSearchBar = document.getElementById("nav-search-bar");
+  const navSearchBarBtn = document.getElementById("nav-search-btn");
   navSearchBar.addEventListener("input", (event) => {
     navSearchBar.textContent = event.target.value;
   });
-
-  const navSearchBarBtn = document.getElementById("nav-search-btn");
+  navSearchBar.addEventListener("keydown", (event) =>{
+    if(event.key == "Enter"){
+      navSearchBarBtn.click();
+    }
+  })
   navSearchBarBtn.addEventListener("click", () => {
     searchQuery = navSearchBar.textContent;
     if (

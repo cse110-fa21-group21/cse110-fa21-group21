@@ -8,6 +8,7 @@
 
 body {
   background-color: #fff4e6;
+  min-height: 100vh;
 }
 
 /* css for home page */
@@ -34,6 +35,7 @@ h2 {
 }
 
 #homepage-search-btn {
+  cursor: pointer;
   font-size: 30px;
   font-weight: bold;
   color: rgb(63 35 2);
@@ -41,6 +43,13 @@ h2 {
   padding: 3px 10px;
   border: 1px solid rgb(63 35 2);
   border-radius: 20px;
+  box-shadow: 0 9px #999;
+}
+
+#homepage-search-btn:active {
+  background-color: #e2c882;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 /* css for top bar */
@@ -59,14 +68,35 @@ h2 {
 }
 
 #nav-search-btn {
+  cursor: pointer;
   font-size: 20px;
   font-weight: bold;
   border-radius: 10px;
   background-color: #ffe293;
+  box-shadow: 0 9px #999;
+}
+
+#nav-search-btn:active {
+  background-color: #e2c882;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 .navbar-icons {
   margin-top: 20px;
+  cursor: pointer;
+}
+
+.navbar-icons img:active {
+  transform: scale(0.8);
+}
+
+.navbar-title {
+  cursor: pointer;
+}
+
+.navbar-title:active {
+  transform: scale(0.9);
 }
 
 .nav-flex-container {
@@ -97,6 +127,7 @@ section:not(section.shown) {
   padding: 10px;
   height: 70%;
   width: 70%;
+  flex-grow: 1;
 }
 
 .homepage-search,
@@ -123,20 +154,43 @@ section:not(section.shown) {
   background-color: wheat;
 }
 
-recipe-card {
+recipe-card,
+shopping-card,
+personal-shopping-card {
   margin: 20px;
 }
 
 /* css for the filter page */
+#filter-collapse {
+  cursor: pointer;
+}
+
+#filter-collapse:active {
+  transform: translateY(2px);
+}
+
 fieldset {
   width: 170px;
   background-color: wheat;
   margin-right: 30px;
-  border: 1px solid #6e4d3d;
+  border: 2px solid #6e4d3d;
+  padding-top: 0;
+  border-radius: 10px;
+}
+
+form {
+  padding-bottom: 5px;
+  padding-left: 10px;
 }
 
 legend {
   color: #6e4d3d;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.checkbox input {
+  padding-bottom: 50px;
 }
 
 .flex-container {
@@ -146,31 +200,132 @@ legend {
 }
 
 #search-ingredients-button {
+  cursor: pointer;
   margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10%;
+  background-color: #ffe293;
+  border: solid 1px #6e4d3d;
+  box-shadow: 0 4px #999;
+}
+
+#search-ingredients-button:active {
+  background-color: #e2c882;
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
+}
+
+#select-cuisine {
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+}
+
+@viewport {
+  width: device-width;
+  zoom: 1;
 }
 
 @media only screen and (max-width: 800px) {
-  /* not working right now */
-  .favorite-icon,
-  .shopping-list-icon,
-  .home-icon {
-    height: 300px;
+  /* Responsive design for home page */
+  .nav-flex-container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
   }
 
-  .flex-container,
-  fieldset,
-  .shown {
-    width: 90%;
-  }
-
-  input[type="checkbox"] {
-    transform: scale(2);
-    margin-bottom: 10px;
-    margin-top: 5px;
-    margin-right: 10px;
+  body {
+    height: 100vh;
+    width: 100vw;
   }
 
   .topbar {
+    width: 100vw;
     display: flex;
+  }
+
+  .navbar-icons img {
+    width: 12%;
+    margin: 0.1rem 2rem;
+  }
+
+  .navbar-icons {
+    margin-top: 0;
+    margin-left: 0.6rem;
+    order: 2;
+  }
+
+  .navbar-title {
+    display: flex;
+    align-items: center;
+    order: 1;
+    margin-top: 0.8rem;
+    margin-left: 6rem;
+  }
+
+  .navbar-title img {
+    width: 10rem;
+  }
+
+  .nav-search-bar {
+    order: 3;
+    display: none;
+  }
+
+  .logo img {
+    height: 10rem;
+    margin-left: 6rem;
+  }
+
+  .homepage-search {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .homepage-search-bar {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #homepage-search-bar {
+    width: 14rem;
+    height: 35px;
+    margin-top: 1rem;
+    margin-left: 1.8rem;
+    margin-right: 0.5rem;
+    border-radius: 10px;
+  }
+
+  #homepage-search-btn {
+    font-size: large;
+    width: 10rem;
+    height: 35px;
+    margin-top: 1.2rem;
+    border-radius: 10px;
+  }
+
+  .section-home-page:not(.homepage-search-bar) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .section-featured-cards-wrapper {
+    display: flex;
+    flex-direction: row;
+  }
+
+  h2 {
+    font-size: x-large;
+    text-decoration: underline;
+  }
+
+  .featured-recipes {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 }
