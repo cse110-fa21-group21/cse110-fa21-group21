@@ -2,7 +2,7 @@
 import { Router } from "../scripts/Router.js";
 import { Filter } from "../scripts/filter.js";
 
-const apiKey = "c359de20e92e474287d7c8e842f6e1db";
+const apiKey = "7bfc3ea23abd447584cad24cc08dba96";
 
 const MAX_NUM_RECIPE_CARDS = 30;
 const NUM_FEATURED = 2;

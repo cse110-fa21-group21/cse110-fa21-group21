@@ -41,7 +41,7 @@ class recipeViewer extends HTMLElement {
     this.shadowRoot.querySelector('section').innerHTML = `
     <main id = "card-information">
         <div id = "recipe-title"></div>
-        <div class = "favorite-button">
+        <div class = "favorite-button hovertip">
           <img id = "fav-btn" src="./assets/icons/favorite/favorite-blank.png" width = "30px" height = "30px" alt="favorite button">
           <button>Favorite the Recipe</button>
         </div>
@@ -51,21 +51,21 @@ class recipeViewer extends HTMLElement {
               <fig id = "visual">
                 <img id = "recipe-image" src="" alt="recipe-image"/>
                 <figcaption id = "recipe-dietary">
-                  <div class="hoverTip">
+                  <div class="hovertip">
                     <img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
-                    <span class="hoverTipText" >Dairy Free</span>
+                    <span class="hovertip-text" >Dairy Free</span>
                   </div>
-                  <div class="hoverTip">
+                  <div class="hovertip">
                     <img id="gluten-free" src="./assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" hidden alt="Gluten Free"/>
-                    <span class="hoverTipText">Gluten Free</span>
+                    <span class="hovertip-text">Gluten Free</span>
                   </div>
-                  <div class="hoverTip">
+                  <div class="hovertip">
                     <img id="vegan" src="./assets/icons/dietary/vegan.png" width = "30px" height = "30px" hidden alt="Vegan"/>
-                    <span class="hoverTipText">Vegan</span>
+                    <span class="hovertip-text">Vegan</span>
                   </div>
-                  <div class="hoverTip">
+                  <div class="hovertip">
                     <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
-                    <span class="hoverTipText">Vegetarian</span>
+                    <span class="hovertip-text">Vegetarian</span>
                   </div>
                 </figcaption>
               </fig>

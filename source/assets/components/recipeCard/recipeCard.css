@@ -1,20 +1,20 @@
 /** recipeCard.css **/
 
 /* For hover info from w3*/
-.hoverTip {
+.hovertip {
   position: relative;
   display: inline-block;
   border-bottom: 1px black; /* If you want dots under the hoverable text */
 }
 
 /* Tooltip text */
-.hoverTip .hoverTipText {
+.hovertip .hovertip-text {
   visibility: hidden; 
-  width: 120px;
+  width: 90px;
   background-color: rgb(63, 35, 2);
   color: wheat;
   text-align: center;
-  padding: 5px 0;
+  /* padding: 2px 0; */
   border-radius: 6px;
  
   /* Position the tooltip text - see examples below! */
@@ -23,7 +23,7 @@
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
-.hoverTip:hover .hoverTipText {
+.hovertip:hover .hovertip-text {
   visibility: visible;
 }
 

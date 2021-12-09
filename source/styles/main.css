@@ -55,6 +55,7 @@ h2 {
   position: relative;
   margin-top: 80px;
   font-size: 20px;
+  border-radius: 30px;
 }
 
 #nav-search-btn {
