@@ -58,11 +58,22 @@ class featuredCard extends HTMLElement {
       <div class="card" id="featured-card" style="width: 18rem">
         <img id="recipe-image" class="card-img-top" src="" alt="recipe-image"/>
         <figcaption class="justify-content-center" id="recipe-dietary">
-          <img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
-          <img id="gluten-free" src="./assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" hidden alt="Gluten Free"/>
-          <img id="vegan" src="./assets/icons/dietary/vegan.png" width = "30px" height = "30px" hidden alt="Vegan"/>
-          <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
-          <img id="blank" src="./assets/icons/dietary/blank.png" width = "30px" height = "30px" hidden alt="Blank"/>
+          <div class="hover-tip">
+            <img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
+            <span class="hover-tip-text" >Dairy Free</span>
+          </div>
+          <div class="hover-tip">
+            <img id="gluten-free" src="./assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" hidden alt="Gluten Free"/>
+            <span class="hover-tip-text">Gluten Free</span>
+          </div>
+          <div class="hover-tip">
+             <img id="vegan" src="./assets/icons/dietary/vegan.png" width = "30px" height = "30px" hidden alt="Vegan"/>
+             <span class="hover-tip-text">Vegan</span>
+          </div>
+          <div class="hover-tip">
+             <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
+             <span class="hover-tip-text">Vegetarian</span>
+          </div>
         </figcaption>
         <div class="card-body d-flex flex-column" style = "height: 8rem">
           <h4 id="card-title">Recipe Title</h4>
