@@ -64,7 +64,7 @@ class featuredCard extends HTMLElement {
           <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
           <img id="blank" src="./assets/icons/dietary/blank.png" width = "30px" height = "30px" hidden alt="Blank"/>
         </figcaption>
-        <div class="card-body d-flex flex-column" style = "height: 7rem">
+        <div class="card-body d-flex flex-column" style = "height: 8rem">
           <h4 id="card-title">Recipe Title</h4>
         </div>
         <div class="card-footer">
