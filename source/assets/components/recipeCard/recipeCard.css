@@ -1,10 +1,6 @@
 /** recipeCard.css **/
 
-<<<<<<< HEAD
-/* For hover info from w3*/
-=======
 /* For hover info from w3 */
->>>>>>> f37c686fc2c34648592343d4d6e0082f0d929ff5
 .hover-tip {
   position: relative;
   display: inline-block;
@@ -12,18 +8,10 @@
 }
 
 /* Tooltip text */
-<<<<<<< HEAD
 .hover-tip .hover-tip-text {
   visibility: hidden; 
   width: 90px;
-  background-color: rgb(63, 35, 2);
-=======
-.hover-tip,
-.hover-tip-text {
-  visibility: hidden;
-  width: 120px;
   background-color: rgb(63 35 2);
->>>>>>> f37c686fc2c34648592343d4d6e0082f0d929ff5
   color: wheat;
   text-align: center;
   /* padding: 2px 0; */
@@ -33,17 +21,12 @@
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
-<<<<<<< HEAD
 .hover-tip:hover .hover-tip-text {
-=======
-.hover-tip:hover,
-.hover-tip-text {
->>>>>>> f37c686fc2c34648592343d4d6e0082f0d929ff5
   visibility: visible;
 }
 
 #shadow {
-  border: solid black 2px;
+  border: solid rgb(0 0 0) 2px;
   border-radius: 30px;
   background-color: wheat;
 }

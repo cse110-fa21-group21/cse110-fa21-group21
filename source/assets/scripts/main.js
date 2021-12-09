@@ -2,11 +2,7 @@
 import { Router } from "../scripts/Router.js";
 import { Filter } from "../scripts/filter.js";
 
-<<<<<<< HEAD
-const apiKey = "7bfc3ea23abd447584cad24cc08dba96";
-=======
-//const apiKey = "d7a805d987074402904a262f602c7844";
->>>>>>> f37c686fc2c34648592343d4d6e0082f0d929ff5
+//const apiKey = "7bfc3ea23abd447584cad24cc08dba96";
 
 import { default as bindings } from "./binds/bind.js";
 

@@ -41,13 +41,8 @@ class recipeViewer extends HTMLElement {
     this.shadowRoot.querySelector("section").innerHTML = `
     <main id = "card-information">
         <div id = "recipe-title"></div>
-<<<<<<< HEAD
         <div class = "favorite-button hovertip">
           <img id = "fav-btn" src="./assets/icons/favorite/favorite-blank.png" width = "30px" height = "30px" alt="favorite button">
-=======
-        <div class = "favorite-button">
-          <img id = "fav-btn" src="assets/icons/favorite/favorite-blank.png" width = "30px" height = "30px" alt="favorite button">
->>>>>>> f37c686fc2c34648592343d4d6e0082f0d929ff5
           <button>Favorite the Recipe</button>
         </div>
         <section class = "flex-container">
@@ -56,7 +51,6 @@ class recipeViewer extends HTMLElement {
               <fig id = "visual">
                 <img id = "recipe-image" src="" alt="recipe-image"/>
                 <figcaption id = "recipe-dietary">
-<<<<<<< HEAD
                   <div class="hovertip">
                     <img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
                     <span class="hovertip-text" >Dairy Free</span>
@@ -72,23 +66,6 @@ class recipeViewer extends HTMLElement {
                   <div class="hovertip">
                     <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
                     <span class="hovertip-text">Vegetarian</span>
-=======
-                  <div class="hover-tip">
-                    <img id="dairy-free" src="./assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
-                    <span class="hover-tip-text" >Dairy Free</span>
-                  </div>
-                  <div class="hover-tip">
-                    <img id="gluten-free" src="./assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" hidden alt="Gluten Free"/>
-                    <span class="hover-tip-text">Gluten Free</span>
-                  </div>
-                  <div class="hover-tip">
-                    <img id="vegan" src="./assets/icons/dietary/vegan.png" width = "30px" height = "30px" hidden alt="Vegan"/>
-                    <span class="hover-tip-text">Vegan</span>
-                  </div>
-                  <div class="hover-tip">
-                    <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
-                    <span class="hover-tip-text">Vegetarian</span>
->>>>>>> f37c686fc2c34648592343d4d6e0082f0d929ff5
                   </div>
                 </figcaption>
               </fig>
