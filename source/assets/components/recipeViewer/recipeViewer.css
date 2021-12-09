@@ -52,13 +52,15 @@ body {
   margin: 20px auto;
   background-color: wheat;
 }
+
 #select-all-ing {
-  background-color: Transparent;
-  background-repeat:no-repeat;
+  background-color: transparent;
+  background-repeat: no-repeat;
   border: none;
   cursor: pointer;
   overflow: hidden;
 }
+
 #add-shopping {
   display: block;
   text-align: center;
