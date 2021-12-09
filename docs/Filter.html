@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Router</title>
+    <title>JSDoc: Class: Filter</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Router</h1>
+    <h1 class="page-title">Class: Filter</h1>
 
     
 
@@ -28,9 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>Router<span class="signature">(homeFunc)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Filter<span class="signature">()</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">Router class use to navaiage within SPAIt should take in search information and lead the user to the corresponding page(set up searching result page)It should take user to recipeView when user click on the recipecard</div>
+            <div class="class-description">Filter class used filter and choose which recipes to display based on user preference.Includes: Dietary, Price, Time, Cuisine, Ingredients</div>
         
     
 </header>
@@ -45,7 +45,7 @@
     
 
     
-    <h4 class="name" id="Router"><span class="type-signature"></span>new Router<span class="signature">(homeFunc)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Filter"><span class="type-signature"></span>new Filter<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -53,7 +53,7 @@
 
 
 <div class="description">
-    Constructor set up the home function user should see the home page
+    Constructor sets up the filter
 </div>
 
 
@@ -62,55 +62,6 @@
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>homeFunc</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">that take users to home page</td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -146,7 +97,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scripts_Router.js.html">scripts/Router.js</a>, <a href="scripts_Router.js.html#line8">line 8</a>
+        <a href="scripts_filter.js.html">scripts/filter.js</a>, <a href="scripts_filter.js.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -187,7 +138,7 @@
         <h3 class="subsection-title">Classes</h3>
 
         <dl>
-            <dt><a href="Router.html">Router</a></dt>
+            <dt><a href="Filter.html">Filter</a></dt>
             <dd></dd>
         </dl>
     
@@ -209,7 +160,7 @@
     
 
     
-    <h4 class="name" id="goTo"><span class="type-signature"></span>goTo<span class="signature">(page, state)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="filtering"><span class="type-signature"></span>filtering<span class="signature">(Num)</span><span class="type-signature"></span></h4>
     
 
     
@@ -217,7 +168,7 @@
 
 
 <div class="description">
-    Use the route go to the user requested page
+    Upon being called all recipe cards are filtered. From then on,upon any checkbox being clicked, we refilter the collecting again.
 </div>
 
 
@@ -253,13 +204,13 @@
 
         <tr>
             
-                <td class="name"><code>page</code></td>
+                <td class="name"><code>Num</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">int</span>
 
 
             
@@ -269,30 +220,7 @@
 
             
 
-            <td class="description last">the name of the route</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>state</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">whether the route is set by click or back button</td>
+            <td class="description last">number of recipes we want to show</td>
         </tr>
 
     
@@ -333,167 +261,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scripts_Router.js.html">scripts/Router.js</a>, <a href="scripts_Router.js.html#line34">line 34</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="insertPage"><span class="type-signature"></span>insertPage<span class="signature">(page, pageFunc)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Add route to the router. Each route can take users to a specific page
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>page</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the name of the route</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>pageFunc</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">that take users to the page they requested</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scripts_Router.js.html">scripts/Router.js</a>, <a href="scripts_Router.js.html#line25">line 25</a>
+        <a href="scripts_filter.js.html">scripts/filter.js</a>, <a href="scripts_filter.js.html#line20">line 20</a>
     </li></ul></dd>
     
 

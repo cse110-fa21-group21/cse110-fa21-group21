@@ -1,6 +1,13 @@
 //shoppingCard.js
 let myStorage = window.localStorage;
+/**
+ * Custom HTML element named shoppingCard
+ * To display Shopping List for each recipe in the Shopping List Page
+ */
 class shoppingCard extends HTMLElement {
+    /**
+    * Constructor sets up the default HTML for shoppingCard
+    */
     constructor () {
       super()
       this.attachShadow({ mode: 'open' })
@@ -22,10 +29,19 @@ class shoppingCard extends HTMLElement {
         crossorigin = "anonymous"></script>
       `;
     }
+    /**
+    * Getter function for JSON file of recipeViewer
+    * @returns {JSON} json of this recipeViewer
+    */
     get data () {
         return this.json
     }
     
+  /**
+   * Setter function for shoppingCard 
+   * Fills in items from the ingredients list in RecipeViewer!
+   * @param {string} recipeTitle: Title of recipe that we are adding ingredients from
+   */
     set data(recipeTitle){
       let recipeIngredients  = JSON.parse(myStorage.getItem("SHOPPING_LIST"))[recipeTitle]
       this.json = recipeIngredients;

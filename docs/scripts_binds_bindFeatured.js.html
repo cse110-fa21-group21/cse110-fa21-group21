@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: scripts/binds/bindFeatured.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: scripts/binds/bindFeatured.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//bindFeatured.js
+import { 
+    apiKey,
+    NUM_FEATURED,
+    recipesID as recipesID, 
+    searchFilter as searchFilter,
+    filterToggle as filterToggle,
+    router as router
+} from "../main.js";
+
+import { 
+    fetchRandomAPI
+} from "../api/api.module.js";
+
+import { 
+    sortRecipeCards 
+} from "./bindRecipeCard.js";
+
+import { 
+    bindRecipeViewers 
+} from "./bindRecipeViewers.js";
+
+
+/** 
+* Adds featured recipes recipe cards to the home page.
+* @async 
+*/
+export async function bindFeaturedRecipes(){
+    const homeSearchBar = document.getElementById("homepage-search-bar");
+    const searchQuery = homeSearchBar.textContent;
+    const url  = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&amp;query=${searchQuery}&amp;instructions=true&amp;addRecipeInformation=true&amp;addRecipeNutrition=true&amp;number=30&amp;price=true&amp;sort=random`
+    fetchRandomAPI(url);
+}
+
+/****************************************************************************
+ *                      FEATURED RECIPE CARDS
+ ****************************************************************************/
+
+/**
+ * function binds the Featured Recipe Cards to the homepage
+ * and binds the Featured Recipe Cards to recipe viewer.
+ * it add the route for the page into the router
+ */
+export function bindFeaturedRecipeCards() {
+    
+    // Display the featured recipes wrapper
+    const featuredRecipesWrapper = document.querySelector(
+        ".section-featured-cards-wrapper"
+    );
+    featuredRecipesWrapper.classList.add("shown");
+
+    // Get the Recipe Viewers Wrapper
+    const recipeViewersWrapper = document.querySelector(
+        ".section-recipe-viewers-wrapper"
+    );
+    
+    // An array to store recipes to be sorted and displayed
+    let recipeArray = [];
+
+    for (const recipeTitle in recipesID) {
+        recipeArray.push(recipeTitle);
+    }
+
+    // recipes are sorted prior to being binded to &lt;recipe-cards>
+    // the recipe with the higher score is displayed first
+    sortRecipeCards(recipeArray);
+
+    /**
+     * for each recipe title inside the recipeArray
+     * recipeArray[i] to access the corresponding json file in recipesID
+     */
+
+    // There are NUM_FEATURED distinct featured recipeCard DOMs on the home page
+    let cardIndex = 0;
+    for(let snapshot = 0; snapshot&lt;recipeArray.length; snapshot++){
+        if (cardIndex === NUM_FEATURED) break;
+
+        const recipeCard = featuredRecipesWrapper.children[snapshot];
+        recipeCard.data = recipesID[recipeArray[snapshot]];
+        
+        // Show the Recipe Card
+        recipeCard.classList.remove("hidden");
+        recipeCard.classList.add("shown");
+
+        // Add the route that would lead users to the corresponding recipeView
+        const page = recipeArray[snapshot];
+
+        router.insertPage(page, function () {
+            // Hide the Recipe Cards Wrapper
+            featuredRecipesWrapper.classList.remove("shown");
+            // Show the Recipe Viewers Wrapper
+            recipeViewersWrapper.classList.add("shown");
+            // Hide the homepage-section
+            //Hide Search Filter
+            searchFilter.classList.remove("shown");
+            //Hide Filter Toggle class
+            filterToggle.classList.remove("shown");
+            //Hide Favorite List
+            const favoriteList = document.querySelector(".my-favorite-list");
+            favoriteList.classList.remove("shown");
+            ///Hide Shopping List
+            const shoppingList = document.querySelector(".my-shopping-list");
+            shoppingList.classList.remove("shown");
+
+            // Hide the homepage-section
+            const homepage = document.querySelector(".section-home-page");
+            homepage.classList.remove("shown");
+
+            // Display navbar search bar
+            const navSearchDisplay = document.querySelector(".nav-search-bar");
+            navSearchDisplay.classList.remove("hidden");
+
+            document.querySelector("recipe-viewer").data =
+            recipesID[recipeArray[snapshot]];
+        });
+        bindRecipeViewers(recipeCard, page);
+        
+        cardIndex++;
+    }
+  }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="featuredCard.html">featuredCard</a></li><li><a href="Filter.html">Filter</a></li><li><a href="recipeCard.html">recipeCard</a></li><li><a href="recipeViewer.html">recipeViewer</a></li><li><a href="Router.html">Router</a></li><li><a href="shoppingCard.html">shoppingCard</a></li><li><a href="Spoonacular.html">Spoonacular</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bindFavoriteList">bindFavoriteList</a></li><li><a href="global.html#bindFeaturedRecipeCards">bindFeaturedRecipeCards</a></li><li><a href="global.html#bindFeaturedRecipes">bindFeaturedRecipes</a></li><li><a href="global.html#bindFilterButton">bindFilterButton</a></li><li><a href="global.html#bindHomeButton">bindHomeButton</a></li><li><a href="global.html#bindHomeSearch">bindHomeSearch</a></li><li><a href="global.html#bindNavSearch">bindNavSearch</a></li><li><a href="global.html#bindRecipeCards">bindRecipeCards</a></li><li><a href="global.html#bindRecipeViewers">bindRecipeViewers</a></li><li><a href="global.html#bindSearch">bindSearch</a></li><li><a href="global.html#bindShoppingList">bindShoppingList</a></li><li><a href="global.html#bindState">bindState</a></li><li><a href="global.html#compareRecipeCards">compareRecipeCards</a></li><li><a href="global.html#fetchAPI">fetchAPI</a></li><li><a href="global.html#fetchRandomAPI">fetchRandomAPI</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#recipesID">recipesID</a></li><li><a href="global.html#removeFavoriteList">removeFavoriteList</a></li><li><a href="global.html#removeShoppingList">removeShoppingList</a></li><li><a href="global.html#router">router</a></li><li><a href="global.html#sortRecipeCards">sortRecipeCards</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Dec 08 2021 16:22:23 GMT-0800 (Pacific Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

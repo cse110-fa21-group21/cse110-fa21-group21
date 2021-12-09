@@ -6,6 +6,12 @@ import{
 /****************************************************************************
  *                      SHOPPING CARDS
  ****************************************************************************/
+
+
+/**
+ * Connects Shopping button to display user's shopping Lists
+ * Hide and display necessary elements.
+ */
 export function bindShoppingList() {
   const shopButton = document.querySelector('img[alt="nav-shopping-list-icon"]');
   shopButton.addEventListener("click",()=>{

@@ -12,7 +12,7 @@ let baseURL = "";
 /**
  * Pulls the search query from our search bar. In the event that the search query is
  * original we call fetchAPI(Query). Otherwise, we call bindRecipeCards(searchQuery).
- * @param none
+ * @async
  */
 export async function bindSearch() {
   await bindHomeSearch();
@@ -21,6 +21,7 @@ export async function bindSearch() {
 
 /**
  * Enable Search via the HomePage
+ * @async
  */
 async function bindHomeSearch() {
   const homeSearchBar = document.getElementById("homepage-search-bar");
