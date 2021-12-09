@@ -39,9 +39,7 @@
 }
 
 @media only screen and (max-width: 800px) {
-  
   /* Responsive design for featured recipe cards */
-  
   .card {
     width: 9rem !important;
   }
