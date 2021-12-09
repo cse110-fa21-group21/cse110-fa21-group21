@@ -324,4 +324,13 @@ input[type="checkbox"] {
     flex-direction: column;
     justify-content: space-between;
   }
+
+  .shown {
+    visibility: visible;
+  }
+  
+  .hidden {
+    display: none;
+    visibility: hidden;
+  }
 }
