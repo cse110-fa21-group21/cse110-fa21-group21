@@ -31,6 +31,12 @@ if(!myStorage.getItem("SHOPPING_LIST")){
   localShoppingList["Personal Shopping List"] = {}
   myStorage.setItem("SHOPPING_LIST", JSON.stringify(localShoppingList))
 }
+
+//ensure there is a shopping list data in storage
+if(!myStorage.getItem("SHOPPING_LIST_DATA")){
+  myStorage.setItem("SHOPPING_LIST_DATA","{}");
+}
+
 //ensure there is a Favorite List in storage
 if(!myStorage.getItem("FAVORITE_LIST")){
   myStorage.setItem("FAVORITE_LIST", "{}");

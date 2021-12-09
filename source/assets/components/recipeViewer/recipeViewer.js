@@ -243,6 +243,7 @@ class recipeViewer extends HTMLElement {
 
       // After getting UL loop through all the list elements
       const localShoppingList = JSON.parse(myStorage.getItem("SHOPPING_LIST"))
+      const localShoppingListData = JSON.parse(myStorage.getItem("SHOPPING_LIST_DATA"))
       let shoppingListObj;
       if(localShoppingList[title]) {
          shoppingListObj = localShoppingList[title];
@@ -265,7 +266,9 @@ class recipeViewer extends HTMLElement {
       console.log(`Adding\n${title}: ${JSON.stringify(shoppingListObj,null,4)}\nto local storage...`);
       //Add the Recipe to the Shopping List
       localShoppingList[title] = shoppingListObj;
+      localShoppingListData[title] = data;
       myStorage.setItem("SHOPPING_LIST", JSON.stringify(localShoppingList));
+      myStorage.setItem("SHOPPING_LIST_DATA", JSON.stringify(localShoppingListData));
       console.log(`SHOPPING_LIST: ${JSON.parse( JSON.stringify(myStorage.getItem("SHOPPING_LIST"),null,4) )} `);
     });
   }
