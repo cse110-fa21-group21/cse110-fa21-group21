@@ -8,7 +8,7 @@ import {
   default as bindings 
 } from "./binds/bind.module.js";
 
-export const apiKey = "54a305b43853416198613d4aaaed7b01";
+export const apiKey = "ec4a0690be5a4155b40c1525f9b8226d";
 
 export const MAX_NUM_RECIPE_CARDS = 30;
 export const NUM_FEATURED = 2;
@@ -20,6 +20,10 @@ export const numRecipeCards = { display: 0};
 //ensure there is a shopping list in storage
 if(!myStorage.getItem("SHOPPING_LIST")){
   myStorage.setItem("SHOPPING_LIST", "{}");
+}
+//ensure there is a shopping list data in storage
+if(!myStorage.getItem("SHOPPING_LIST_DATA")){
+  myStorage.setItem("SHOPPING_LIST_DATA","{}");
 }
 //ensure there is a favorite list in storage
 if(!myStorage.getItem("FAVORITE_LIST")){

@@ -87,7 +87,7 @@ export function bindFeaturedRecipeCards() {
 
         router.insertPage(page, function () {
             // Hide the Recipe Cards Wrapper
-            featuredRecipesWrapper.classList.remove("shown");
+            //featuredRecipesWrapper.classList.remove("shown");
             // Show the Recipe Viewers Wrapper
             recipeViewersWrapper.classList.add("shown");
             // Hide the homepage-section

@@ -1,3 +1,9 @@
+import 
+{ 
+  router as router,
+  searchFilter as searchFilter
+} from "../../scripts/main.js";
+
 //shoppingCard.js
 let myStorage = window.localStorage;
 class shoppingCard extends HTMLElement {
@@ -81,6 +87,26 @@ class shoppingCard extends HTMLElement {
               console.log(`SHOPPING_LIST: ${JSON.stringify(JSON.parse(myStorage.getItem("SHOPPING_LIST")),null,4)}`)
             }
           )
+      this.shadowRoot
+          .querySelector("div")
+          .addEventListener("click", ()=>{
+            let shoppingListPageViewer = recipeTitle;
+            router.insertPage(shoppingListPageViewer, function(){
+              const localShoppingListData = JSON.parse(myStorage.getItem("SHOPPING_LIST_DATA"));
+              const recipeViewer = document.querySelector(
+                ".section-recipe-viewers-wrapper"
+              );
+              const homePageSearch = document.querySelector(".section-home-page");
+              const shoppingList = document.querySelector(".my-shopping-list");
+              recipeViewer.classList.add("shown");
+              homePageSearch.classList.remove("shown");
+              shoppingList.classList.remove("shown");
+              searchFilter.classList.remove("shown");
+              
+              document.querySelector("recipe-viewer").data = localShoppingListData[recipeTitle]
+            })
+            router.goTo(shoppingListPageViewer);
+          })
     }
 
 }
