@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: scripts/binds/bindMisc.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,43 +17,83 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: scripts/binds/bindMisc.js</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
     <section>
-        <article><h1>cse110-fa21-group21</h1>
-<p>Group 21 Recipe Manager Web App: <a href="https://group21-recipe.netlify.app/">Bytes &amp; Bites</a></p>
-<blockquote>
-<p>Search for amazing recipes and favorite those recipes!</p>
-</blockquote>
-<p>Team Members: <a href="admin/team.md">Our Team Page!</a></p>
-<p>Team Project Board: <a href="https://miro.com/welcomeonboard/eDl5VnFud0psZ044OTVwcUI1aUN3Y0EzRTJrMGFwRWxqQUQyZFVmVHM1MUsxYWtsWUtta09ROW1FTXI3T0RCaXwzMDc0NDU3MzY2MTcxNDk4MTUz?invite_link_id=708376118998">Miro Whiteboard!</a></p>
-<p>Documentation: <a href="https://cse110-fa21-group21.github.io/cse110-fa21-group21/">JSDoc Documentation</a></p></article>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { 
+  router as router, 
+  filter as filter,
+  searchFilter as searchFilter,
+  numRecipeCards as numRecipeCards
+} from "../main.js";
+/****************************************************************************
+ *                        ROUTING
+ ****************************************************************************/
+
+/**
+ * function that bind the back button
+ * and the forward button
+ */
+export function bindState() {
+  window.addEventListener("popstate", (event) => {
+    if (event.state == null) {
+      router.goTo("home", true);
+    } else {
+      console.log("Routing to page:", event.state);
+      router.goTo(event.state, true);
+    }
+    console.log("bindMisc.js: bindState: Num_RecipeCards: " + numRecipeCards["display"]);
+    filter.filtering(numRecipeCards["display"]);
+  });
+}
+/**
+ * Bind Home button to navigate to home
+ *
+ */
+export function bindHomeButton() {
+  //Home Button on top left
+  const homeButton = document.querySelector('img[alt="nav-home-icon"]');
+  homeButton.addEventListener("click", () => {
+    router.goTo("home", false);
+  });
+  //Bytes &amp; Bites Button
+  const homeButton2 = document.querySelector('img[alt="nav-title"]');
+  homeButton2.addEventListener('click', event =>{
+    router.goTo('home', false);
+  })
+}
+
+/**
+ * Bind Filter button to show and hide filters
+ * 
+ */
+ export function bindFilterButton(){
+
+  //select the actual filter icon inside the filter toggle class
+   const filterButton = document.querySelector('img[alt="filter-icon"]');
+  
+  filterButton.addEventListener('click', event =>{
+
+    //if filters are shown, hide them
+    if(searchFilter.classList.contains("shown")){
+      searchFilter.classList.remove("shown");
+    }
+    else{ //else if filters are hidden, show them
+      searchFilter.classList.add("shown");
+    }
+    
+  })
+}
+
+</code></pre>
+        </article>
     </section>
-
-
 
 
 

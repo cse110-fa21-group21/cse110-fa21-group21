@@ -1,4 +1,32 @@
-// recipeViewer.js
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/recipeViewer/recipeViewer.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/recipeViewer/recipeViewer.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// recipeViewer.js
 
 import { 
   Spoonacular 
@@ -19,20 +47,20 @@ class recipeViewer extends HTMLElement {
     this.attachShadow({ mode: "open" });
 
     this.shadowRoot.innerHTML = `
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    &lt;!-- Bootstrap CSS -->
+    &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     
-    <!-- Local StyleSheets -->
-    <link rel="stylesheet" href="./assets/components/recipeViewer/recipeViewer.css">
+    &lt;!-- Local StyleSheets -->
+    &lt;link rel="stylesheet" href="./assets/components/recipeViewer/recipeViewer.css">
 
-    <!-- The Viewer Itself -->
-    <section id="shadow"></section>
+    &lt;!-- The Viewer Itself -->
+    &lt;section id="shadow">&lt;/section>
 
-    <!-- Bootstrap JS -->
-    <script 
+    &lt;!-- Bootstrap JS -->
+    &lt;script 
      src = "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
      integrity = "sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-     crossorigin = "anonymous"></script>
+     crossorigin = "anonymous">&lt;/script>
     `;
   }
   /**
@@ -54,48 +82,48 @@ class recipeViewer extends HTMLElement {
     this.json = data;
 
     this.shadowRoot.querySelector("section").innerHTML = `
-    <main id = "card-information">
-        <div id = "recipe-title"></div>
-        <div class = "favorite-button">
-          <img id = "fav-btn" src="assets/icons/favorite/favorite-blank.png" width = "30px" height = "30px" alt="favorite button">
-          <button>Favorite the Recipe</button>
-        </div>
-        <section class = "flex-container">
-          <div id = "left-flex">
-            <aside id = "card-visuals">
-              <fig id = "visual">
-                <img id = "recipe-image" src="" alt="recipe-image"/>
-                <figcaption id = "recipe-dietary">
-                  <img id="dairy-free" src="assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
-                  <img id="gluten-free" src="assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" hidden alt="Gluten Free"/>
-                  <img id="vegan" src="assets/icons/dietary/vegan.png" width = "30px" height = "30px" hidden alt="Vegan"/>
-                  <img id="vegetarian" src="assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
-                </figcaption>
-              </fig>
-            </aside>
+    &lt;main id = "card-information">
+        &lt;div id = "recipe-title">&lt;/div>
+        &lt;div class = "favorite-button">
+          &lt;img id = "fav-btn" src="assets/icons/favorite/favorite-blank.png" width = "30px" height = "30px" alt="favorite button">
+          &lt;button>Favorite the Recipe&lt;/button>
+        &lt;/div>
+        &lt;section class = "flex-container">
+          &lt;div id = "left-flex">
+            &lt;aside id = "card-visuals">
+              &lt;fig id = "visual">
+                &lt;img id = "recipe-image" src="" alt="recipe-image"/>
+                &lt;figcaption id = "recipe-dietary">
+                  &lt;img id="dairy-free" src="assets/icons/dietary/dairy-free.png" width = "30px" height = "30px" hidden alt="Dairy Free"/>
+                  &lt;img id="gluten-free" src="assets/icons/dietary/gluten-free.png" width = "30px" height = "30px" hidden alt="Gluten Free"/>
+                  &lt;img id="vegan" src="assets/icons/dietary/vegan.png" width = "30px" height = "30px" hidden alt="Vegan"/>
+                  &lt;img id="vegetarian" src="assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
+                &lt;/figcaption>
+              &lt;/fig>
+            &lt;/aside>
 
-            <div id = "info-container">
-              <h4><span> Recipe Info </span></h4>
-              <div id = "recipe-price"> </div>
-              <div id = "recipe-cooking-time"> </div>
-              <div id = "recipe-servings"></div>
-              <div id = "recipe-calories"> </div> 
-              <div id = "recipe-total-calories"></div>
-              <div id = "recipe-score"></div>
-            </div>
+            &lt;div id = "info-container">
+              &lt;h4>&lt;span> Recipe Info &lt;/span>&lt;/h4>
+              &lt;div id = "recipe-price"> &lt;/div>
+              &lt;div id = "recipe-cooking-time"> &lt;/div>
+              &lt;div id = "recipe-servings">&lt;/div>
+              &lt;div id = "recipe-calories"> &lt;/div> 
+              &lt;div id = "recipe-total-calories">&lt;/div>
+              &lt;div id = "recipe-score">&lt;/div>
+            &lt;/div>
 
-            <div id = "instruction-header"> <h2> Cooking Instructions </h2> </div>
+            &lt;div id = "instruction-header"> &lt;h2> Cooking Instructions &lt;/h2> &lt;/div>
 
-            <div id = "recipe-instructions"> </div> 
-          </div>
+            &lt;div id = "recipe-instructions"> &lt;/div> 
+          &lt;/div>
 
-          <div id = "right-flex">
-            <h4><span> Ingredients </span></h4>  
-            <div id = "recipe-ingredients"> </div>
-            <button id="add-shopping">Add to the Shopping List</button>
-          </div>
-        </section> 
-      </main>
+          &lt;div id = "right-flex">
+            &lt;h4>&lt;span> Ingredients &lt;/span>&lt;/h4>  
+            &lt;div id = "recipe-ingredients"> &lt;/div>
+            &lt;button id="add-shopping">Add to the Shopping List&lt;/button>
+          &lt;/div>
+        &lt;/section> 
+      &lt;/main>
     `;
     // set title
     const title = spoonacular.getRecipeTitle(data);
@@ -136,7 +164,7 @@ class recipeViewer extends HTMLElement {
         const localShoppingList = JSON.parse(myStorage.getItem("SHOPPING_LIST"))
         if(
           localShoppingList[title] 
-          && 
+          &amp;&amp; 
           Object.keys(localShoppingList[title]).includes(ingredient)
         ){
           checkbox.checked = true
@@ -221,7 +249,7 @@ class recipeViewer extends HTMLElement {
       }
 
 
-      for (let i = 0; i < ingredientUL.length; i++) {
+      for (let i = 0; i &lt; ingredientUL.length; i++) {
         let ingredientCheck = ingredientUL[i].querySelector("input");
         let ingredient = ingredientUL[i].querySelector("#ingredient");
         // Might have to use some sort of empty list?
@@ -241,3 +269,26 @@ class recipeViewer extends HTMLElement {
   }
 }
 customElements.define("recipe-viewer", recipeViewer);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="featuredCard.html">featuredCard</a></li><li><a href="Filter.html">Filter</a></li><li><a href="recipeCard.html">recipeCard</a></li><li><a href="recipeViewer.html">recipeViewer</a></li><li><a href="Router.html">Router</a></li><li><a href="shoppingCard.html">shoppingCard</a></li><li><a href="Spoonacular.html">Spoonacular</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bindFavoriteList">bindFavoriteList</a></li><li><a href="global.html#bindFeaturedRecipeCards">bindFeaturedRecipeCards</a></li><li><a href="global.html#bindFeaturedRecipes">bindFeaturedRecipes</a></li><li><a href="global.html#bindFilterButton">bindFilterButton</a></li><li><a href="global.html#bindHomeButton">bindHomeButton</a></li><li><a href="global.html#bindHomeSearch">bindHomeSearch</a></li><li><a href="global.html#bindNavSearch">bindNavSearch</a></li><li><a href="global.html#bindRecipeCards">bindRecipeCards</a></li><li><a href="global.html#bindRecipeViewers">bindRecipeViewers</a></li><li><a href="global.html#bindSearch">bindSearch</a></li><li><a href="global.html#bindShoppingList">bindShoppingList</a></li><li><a href="global.html#bindState">bindState</a></li><li><a href="global.html#compareRecipeCards">compareRecipeCards</a></li><li><a href="global.html#fetchAPI">fetchAPI</a></li><li><a href="global.html#fetchRandomAPI">fetchRandomAPI</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#recipesID">recipesID</a></li><li><a href="global.html#removeFavoriteList">removeFavoriteList</a></li><li><a href="global.html#removeShoppingList">removeShoppingList</a></li><li><a href="global.html#router">router</a></li><li><a href="global.html#sortRecipeCards">sortRecipeCards</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Dec 08 2021 16:22:23 GMT-0800 (Pacific Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

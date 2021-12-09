@@ -72,6 +72,10 @@ export const filter = new Filter();
 
 window.addEventListener("DOMContentLoaded", init);
 
+/**
+ * Init function that runs all necessary functions at start up. 
+ * Such as binding buttons!
+ */
 async function init() {
   await bindings.bindSearch();
   await bindings.bindFeaturedRecipes();

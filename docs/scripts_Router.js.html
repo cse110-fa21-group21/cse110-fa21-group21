@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: scripts/Router.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,43 +17,72 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: scripts/Router.js</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
     <section>
-        <article><h1>cse110-fa21-group21</h1>
-<p>Group 21 Recipe Manager Web App: <a href="https://group21-recipe.netlify.app/">Bytes &amp; Bites</a></p>
-<blockquote>
-<p>Search for amazing recipes and favorite those recipes!</p>
-</blockquote>
-<p>Team Members: <a href="admin/team.md">Our Team Page!</a></p>
-<p>Team Project Board: <a href="https://miro.com/welcomeonboard/eDl5VnFud0psZ044OTVwcUI1aUN3Y0EzRTJrMGFwRWxqQUQyZFVmVHM1MUsxYWtsWUtta09ROW1FTXI3T0RCaXwzMDc0NDU3MzY2MTcxNDk4MTUz?invite_link_id=708376118998">Miro Whiteboard!</a></p>
-<p>Documentation: <a href="https://cse110-fa21-group21.github.io/cse110-fa21-group21/">JSDoc Documentation</a></p></article>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Router class use to navaiage within SPA
+ * It should take in search information and lead the user to 
+ * the corresponding page(set up searching result page)
+ * It should take user to recipeView when user click on the recipecard
+ */
+
+export class Router{
+    static routes = {};
+
+
+    /**
+     * Constructor set up the home function user should see the home page
+     * @param {function} homeFunc that take users to home page
+     */
+    constructor(homeFunc){
+        this['home'] = homeFunc;
+    }
+
+    /**
+     * Add route to the router. Each route can take users to a specific page
+     * @param {string} page the name of the route
+     * @param {function} pageFunc that take users to the page they requested
+     */
+    insertPage(page,pageFunc){
+        this[page] = pageFunc;
+    }
+
+    /**
+     * Use the route go to the user requested page
+     * @param {string} page the name of the route
+     * @param {Boolean} state whether the route is set by click or back button
+     */
+    goTo(page, state){
+        if(this[page] != undefined){
+            let hash;
+            if(page == 'home'){
+                hash = ' ';
+            }
+            else{
+                hash = '#' + page;
+            }
+            if((state != true) &amp;&amp; (window.location.hash != hash)){
+                console.log('push ' + hash);
+                history.pushState(page,window.location.href,hash);
+            }
+            this[page]();
+        }
+        else{
+            console.log('error, page not found: '+ page);
+            return;
+        }
+    }
+}
+</code></pre>
+        </article>
     </section>
-
-
 
 
 

@@ -1,4 +1,32 @@
-import { Spoonacular } from "./api/spoonacular.js";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: scripts/filter.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: scripts/filter.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { Spoonacular } from "./api/spoonacular.js";
 /**
  * Filter class used filter and choose which recipes to display based on user preference.
  * Includes: Dietary, Price, Time, Cuisine, Ingredients
@@ -59,7 +87,7 @@ export class Filter {
   #goThroughElements(Num) {
     const recipeCards = 
       document.querySelector(".section-recipe-cards-wrapper");
-    for(let i = 0; i < Num; i++){
+    for(let i = 0; i &lt; Num; i++){
       let card = recipeCards.children[i];
       card.classList.add("shown");
       card.classList.remove("hidden");
@@ -125,22 +153,22 @@ export class Filter {
      * if an item falls into a range but we are not requesting to see
      * it then it should be hidden
      */
-    if (dairy_free_checked && !dairy_free_diet) {
+    if (dairy_free_checked &amp;&amp; !dairy_free_diet) {
       recipeCard.classList.add("hidden");
       recipeCard.classList.remove("shown");
     }
 
-    if (gluten_free_checked && !gluten_free_diet) {
+    if (gluten_free_checked &amp;&amp; !gluten_free_diet) {
       recipeCard.classList.add("hidden");
       recipeCard.classList.remove("shown");
     }
 
-    if (vegetarian_checked && !vegetarian_diet) {
+    if (vegetarian_checked &amp;&amp; !vegetarian_diet) {
       recipeCard.classList.add("hidden");
       recipeCard.classList.remove("shown");
     }
 
-    if (vegan_checked && !vegan_diet) {
+    if (vegan_checked &amp;&amp; !vegan_diet) {
       recipeCard.classList.add("hidden");
       recipeCard.classList.remove("shown");
     }
@@ -165,10 +193,10 @@ export class Filter {
      * by design must be mutually exclusive
      */
     const first_price = recipePrice >= 50.0;
-    const second_price = recipePrice >= 20.0 && recipePrice < 50.0;
-    const third_price = recipePrice >= 10.0 && recipePrice < 20.0;
-    const fourth_price = recipePrice >= 5.0 && recipePrice < 10.0;
-    const fifth_price = recipePrice >= 0.0 && recipePrice < 5.0;
+    const second_price = recipePrice >= 20.0 &amp;&amp; recipePrice &lt; 50.0;
+    const third_price = recipePrice >= 10.0 &amp;&amp; recipePrice &lt; 20.0;
+    const fourth_price = recipePrice >= 5.0 &amp;&amp; recipePrice &lt; 10.0;
+    const fifth_price = recipePrice >= 0.0 &amp;&amp; recipePrice &lt; 5.0;
 
     ranges.push(first_price);
     ranges.push(second_price);
@@ -229,10 +257,10 @@ export class Filter {
      * by design must be mutually exclusive
      */
     const first_time = recipeTime >= 60;
-    const second_time = recipeTime >= 45 && recipeTime < 60;
-    const third_time = recipeTime >= 30 && recipeTime < 45;
-    const fourth_time = recipeTime >= 15 && recipeTime < 30;
-    const fifth_time = recipeTime >= 0 && recipeTime < 15;
+    const second_time = recipeTime >= 45 &amp;&amp; recipeTime &lt; 60;
+    const third_time = recipeTime >= 30 &amp;&amp; recipeTime &lt; 45;
+    const fourth_time = recipeTime >= 15 &amp;&amp; recipeTime &lt; 30;
+    const fifth_time = recipeTime >= 0 &amp;&amp; recipeTime &lt; 15;
 
     ranges.push(first_time);
     ranges.push(second_time);
@@ -476,7 +504,7 @@ export class Filter {
        * if an item falls into a range but we are not requesting to see
        * it then it should be hidden
        */
-      if (range && !checks[index]) {
+      if (range &amp;&amp; !checks[index]) {
         card.classList.add("hidden");
         card.classList.remove("shown");
       }
@@ -532,7 +560,7 @@ export class Filter {
   }
 
   /***************************************************
-           HELPER METHODS -- CUISINE & INGREDIENTS 
+           HELPER METHODS -- CUISINE &amp; INGREDIENTS 
     *************************************************/
 
   /**
@@ -610,3 +638,26 @@ export class Filter {
     return searchByIngredientsText === "";
   }
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="featuredCard.html">featuredCard</a></li><li><a href="Filter.html">Filter</a></li><li><a href="recipeCard.html">recipeCard</a></li><li><a href="recipeViewer.html">recipeViewer</a></li><li><a href="Router.html">Router</a></li><li><a href="shoppingCard.html">shoppingCard</a></li><li><a href="Spoonacular.html">Spoonacular</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bindFavoriteList">bindFavoriteList</a></li><li><a href="global.html#bindFeaturedRecipeCards">bindFeaturedRecipeCards</a></li><li><a href="global.html#bindFeaturedRecipes">bindFeaturedRecipes</a></li><li><a href="global.html#bindFilterButton">bindFilterButton</a></li><li><a href="global.html#bindHomeButton">bindHomeButton</a></li><li><a href="global.html#bindHomeSearch">bindHomeSearch</a></li><li><a href="global.html#bindNavSearch">bindNavSearch</a></li><li><a href="global.html#bindRecipeCards">bindRecipeCards</a></li><li><a href="global.html#bindRecipeViewers">bindRecipeViewers</a></li><li><a href="global.html#bindSearch">bindSearch</a></li><li><a href="global.html#bindShoppingList">bindShoppingList</a></li><li><a href="global.html#bindState">bindState</a></li><li><a href="global.html#compareRecipeCards">compareRecipeCards</a></li><li><a href="global.html#fetchAPI">fetchAPI</a></li><li><a href="global.html#fetchRandomAPI">fetchRandomAPI</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#recipesID">recipesID</a></li><li><a href="global.html#removeFavoriteList">removeFavoriteList</a></li><li><a href="global.html#removeShoppingList">removeShoppingList</a></li><li><a href="global.html#router">router</a></li><li><a href="global.html#sortRecipeCards">sortRecipeCards</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Dec 08 2021 16:22:23 GMT-0800 (Pacific Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
