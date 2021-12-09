@@ -325,7 +325,7 @@ input[type="checkbox"] {
     justify-content: space-between;
   }
 
-  /* For some reason div inside section still displays when screen is smaller!*/
+  /* For some reason div inside section still displays when screen is smaller! */
   section:not(.shown) > div {
     display: none;
     visibility: hidden;
