@@ -17,11 +17,21 @@ export const filterToggle = document.querySelector(".filter-toggle");
 export const myStorage = window.localStorage;
 
 export const numRecipeCards = { display: 0};
-//ensure there is a shopping list in storage
+//ensure we have a Shopping List in local storage
 if(!myStorage.getItem("SHOPPING_LIST")){
-  myStorage.setItem("SHOPPING_LIST", "{}");
+  const intialShoppingListObj = {}
+  intialShoppingListObj["Personal Shopping List"] = {}
+  myStorage.setItem("SHOPPING_LIST", JSON.stringify(intialShoppingListObj))
+//ensure we have a Personal Shopping List in local storage
+}else if (
+  !Object.keys(JSON.parse(myStorage.getItem("SHOPPING_LIST")))
+         .includes("Personal Shopping List")
+  ){
+  const localShoppingList = JSON.parse(myStorage.getItem("SHOPPING_LIST"))
+  localShoppingList["Personal Shopping List"] = {}
+  myStorage.setItem("SHOPPING_LIST", JSON.stringify(localShoppingList))
 }
-//ensure there is a favorite list in storage
+//ensure there is a Favorite List in storage
 if(!myStorage.getItem("FAVORITE_LIST")){
   myStorage.setItem("FAVORITE_LIST", "{}");
 }
