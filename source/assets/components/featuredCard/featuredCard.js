@@ -74,6 +74,7 @@ class featuredCard extends HTMLElement {
              <img id="vegetarian" src="./assets/icons/dietary/vegetarian.png" width = "30px" height = "30px" hidden alt="Vegetarian"/>
              <span class="hover-tip-text">Vegetarian</span>
           </div>
+          <img id="blank" src="./assets/icons/dietary/blank.png" width = "30px" height = "30px" hidden alt="Blank"/>
         </figcaption>
         <div class="card-body d-flex flex-column" style = "height: 8rem">
           <h4 id="card-title">Recipe Title</h4>
@@ -95,11 +96,26 @@ class featuredCard extends HTMLElement {
     // set dietary logos
     const dietary = spoonacular.getRecipeDietary(data)
     if (dietary) {
-      if (dietary.vegan) { this.shadowRoot.getElementById('vegan').removeAttribute('hidden') }
-      if (dietary.vegetarian) { this.shadowRoot.getElementById('vegetarian').removeAttribute('hidden') }
-      if (dietary['gluten-free']) { this.shadowRoot.getElementById('gluten-free').removeAttribute('hidden') }
-      if (dietary['dairy-free']) { this.shadowRoot.getElementById('dairy-free').removeAttribute('hidden') }
-      else { this.shadowRoot.getElementById('blank').removeAttribute('hidden') }
+      let blank = true;
+      if (dietary.vegan) { 
+        blank = false;
+        this.shadowRoot.getElementById('vegan').removeAttribute('hidden') 
+      }
+      if (dietary.vegetarian) { 
+        blank = false;
+        this.shadowRoot.getElementById('vegetarian').removeAttribute('hidden') 
+      }
+      if (dietary['gluten-free']) { 
+        blank = false;
+        this.shadowRoot.getElementById('gluten-free').removeAttribute('hidden') 
+      }
+      if (dietary['dairy-free']) { 
+        blank = false; 
+        this.shadowRoot.getElementById('dairy-free').removeAttribute('hidden') 
+      }
+      if (blank) {
+        this.shadowRoot.getElementById('blank').removeAttribute('hidden') 
+      }
     }
   }
 }
