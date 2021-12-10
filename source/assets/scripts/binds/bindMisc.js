@@ -55,9 +55,11 @@ export function bindHomeButton() {
     //if filters are shown, hide them
     if(searchFilter.classList.contains("shown")){
       searchFilter.classList.remove("shown");
+      filterButton.src="assets/icons/collapse-show.png";
     }
     else{ //else if filters are hidden, show them
       searchFilter.classList.add("shown");
+      filterButton.src="assets/icons/collapse-hide.png";
     }
     
   })
