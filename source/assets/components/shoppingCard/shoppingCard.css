@@ -21,7 +21,7 @@ body {
   padding: 10px 0;
 }
 
-#recipe-title:hover{
+#recipe-title:hover {
   cursor: pointer;
   background-color: #ffe293;
 }
