@@ -9,6 +9,7 @@ body {
 }
 
 #recipe-title {
+  display: inline-block;
   text-align: center;
   margin: 20px;
   font-size: xx-large;
@@ -18,6 +19,11 @@ body {
   color: #6e4d3d;
   font-weight: bold;
   padding: 10px 0;
+}
+
+#recipe-title:hover{
+  cursor: pointer;
+  background-color: #ffe293;
 }
 
 .form-control[disabled] {

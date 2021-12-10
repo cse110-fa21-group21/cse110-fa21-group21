@@ -52,7 +52,7 @@ class shoppingCard extends HTMLElement {
       let recipeIngredients  = JSON.parse(myStorage.getItem("SHOPPING_LIST"))[recipeTitle]
       this.json = recipeIngredients;
       this.shadowRoot.querySelector("section").innerHTML = `
-        <div class="card-header" id="recipe-title">${recipeTitle}</div>
+        <div class="card-header" id="recipe-title"> ${recipeTitle} </div>
         <div class="card-body" id="recipe-ingredients"></div>
         <div class="card-footer border-0 pt-0 mt-0">
           <img id = "trash-btn" src="assets/icons/shopping/trash-can.png" width = "50rem" height = "50rem" alt="trash-can-icon">
