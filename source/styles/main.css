@@ -163,6 +163,8 @@ personal-shopping-card {
 /* css for the filter page */
 #filter-collapse {
   cursor: pointer;
+  position: absolute;
+  top: 115px;
 }
 
 #filter-collapse:active {
