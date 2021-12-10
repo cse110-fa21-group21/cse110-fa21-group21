@@ -9,3 +9,6 @@ Team Project Board: [Miro Whiteboard!](https://miro.com/welcomeonboard/eDl5VnFud
 
 
 Documentation: [JSDoc Documentation](https://cse110-fa21-group21.github.io/cse110-fa21-group21/)
+
+
+[Public Video](https://youtu.be/gJfDA69nQPg)
