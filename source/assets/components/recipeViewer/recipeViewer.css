@@ -208,7 +208,7 @@ h4 {
   .favorite-button {
     position: relative;
     text-align: center;
-    left: 0px;
+    left: 0;
   }
 
   .flex-container {
