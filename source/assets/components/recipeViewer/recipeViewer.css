@@ -198,3 +198,50 @@ h4 {
 .form-check-input {
   cursor: pointer;
 }
+
+/* Mobile Friendliness */
+@media only screen and (max-width: 800px) {
+  #recipe-title {
+    font-size: 1.5rem;
+  }
+
+  .favorite-button {
+    position: relative;
+    text-align: center;
+    left: 0;
+  }
+
+  .flex-container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+  }
+
+  #left-flex {
+    width: 100%;
+    order: 2;
+  }
+
+  #right-flex {
+    width: 100%;
+    position: relative;
+    order: 1;
+  }
+
+  #recipe-instructions {
+    width: 95%;
+    margin-left: 2.5%;
+    font-size: large;
+    line-height: 110%;
+  }
+
+  #recipe-ingredients {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #add-shopping {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
