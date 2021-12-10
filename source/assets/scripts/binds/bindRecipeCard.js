@@ -36,8 +36,10 @@ import {
     );
     recipeViewersWrapper.classList.remove("shown");
 
-    // Display the search filter
-    searchFilter.classList.add("shown");
+    // Display the search filter, not if mobile
+    if(window.screen.width > 800){
+      searchFilter.classList.add("shown");
+    } 
 
     //Display the filter toggle class
     filterToggle.classList.add("shown");
