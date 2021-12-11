@@ -2,6 +2,7 @@
 
 ## First TA Meeting
 
+
 ### Attendance
 **Present:** 
 1. Ken Chen
