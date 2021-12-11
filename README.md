@@ -12,3 +12,5 @@ Documentation: [JSDoc Documentation](https://cse110-fa21-group21.github.io/cse11
 
 
 [Public Video](https://youtu.be/gJfDA69nQPg)
+
+[Private Video](https://youtu.be/3e5-xLYYaWw)
